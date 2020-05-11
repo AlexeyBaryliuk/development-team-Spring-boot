@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="development-team-service-rest" />
+        <module name="development-team-service-api" />
+        <module name="development-team-web-app" />
+        <module name="development-team-rest-app" />
+        <module name="development-team-dao" />
+        <module name="development-team-service" />
+        <module name="development-team-test" />
+        <module name="development-team-model" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="abaryliuk-development-team" target="1.8" />
+      <module name="development-team-dao" target="1.8" />
+      <module name="development-team-model" target="1.8" />
+      <module name="development-team-rest-app" target="1.8" />
+      <module name="development-team-service" target="1.8" />
+      <module name="development-team-service-api" target="1.8" />
+      <module name="development-team-service-rest" target="1.8" />
+      <module name="development-team-test" target="1.8" />
+      <module name="development-team-web-app" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

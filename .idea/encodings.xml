@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/development-team-dao/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/development-team-dao/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/development-team-model/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/development-team-rest-app/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/development-team-service-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/development-team-service-rest/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/development-team-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/development-team-test/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/development-team-web-app/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/development-team-web-app/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/abaryliuk-development-team.iml" filepath="$PROJECT_DIR$/abaryliuk-development-team.iml" />
+      <module fileurl="file://$PROJECT_DIR$/development-team-dao/development-team-dao.iml" filepath="$PROJECT_DIR$/development-team-dao/development-team-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/development-team-model/development-team-model.iml" filepath="$PROJECT_DIR$/development-team-model/development-team-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/development-team-rest-app/development-team-rest-app.iml" filepath="$PROJECT_DIR$/development-team-rest-app/development-team-rest-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/development-team-service/development-team-service.iml" filepath="$PROJECT_DIR$/development-team-service/development-team-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/development-team-service-api/development-team-service-api.iml" filepath="$PROJECT_DIR$/development-team-service-api/development-team-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/development-team-service-rest/development-team-service-rest.iml" filepath="$PROJECT_DIR$/development-team-service-rest/development-team-service-rest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/development-team-test/development-team-test.iml" filepath="$PROJECT_DIR$/development-team-test/development-team-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/development-team-web-app/development-team-web-app.iml" filepath="$PROJECT_DIR$/development-team-web-app/development-team-web-app.iml" />
+    </modules>
+  </component>
+</project>
