@@ -1,0 +1,27 @@
+160318 [qtp2044272973-15] DEBUG c.e.b.c.web_app.ProjectsController - gotoAddProjectPage({})
+170314 [qtp2044272973-20] DEBUG c.e.b.c.web_app.ProjectsController - addProjectProject{projectId=null, description='sdfghjk', dateAdded=2020-05-06}, org.springframework.validation.BeanPropertyBindingResult: 0 errors)
+170317 [qtp2044272973-20] DEBUG c.e.b.c.s.ProjectsServiceRest - create(Project{projectId=null, description='sdfghjk', dateAdded=2020-05-06})
+172214 [qtp2044272973-15] DEBUG c.e.b.c.web_app.ProjectsController - Find all projects
+172215 [qtp2044272973-15] DEBUG c.e.b.c.s.ProjectsDtoServiceRest - countOfDevelopers()
+175651 [qtp2044272973-20] DEBUG c.e.b.c.web_app.ProjectsController - CONTROLLER - gotoEditProjectsPage(4,{})
+175652 [qtp2044272973-20] DEBUG c.e.b.c.s.ProjectsServiceRest - findById(4)
+176250 [qtp2044272973-20] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - selectDevelopersFromProjects_Developers(4) 
+176360 [qtp2044272973-20] DEBUG c.e.b.c.s.DevelopersServiceRest - findAll()
+180366 [qtp2044272973-15] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - ______findByIdFromProjects_Developers(4, 1)
+180468 [qtp2044272973-15] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - SERVICE REST*******addDeveloperToProjects_Developers(4, 1)
+180544 [qtp2044272973-15] DEBUG c.e.b.c.web_app.ProjectsController - Developer with developerId = 1 added to projects_developers
+180545 [qtp2044272973-15] DEBUG c.e.b.c.web_app.ProjectsController - CONTROLLER - gotoEditProjectsPage(4,{})
+180545 [qtp2044272973-15] DEBUG c.e.b.c.s.ProjectsServiceRest - findById(4)
+180573 [qtp2044272973-15] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - selectDevelopersFromProjects_Developers(4) 
+180603 [qtp2044272973-15] DEBUG c.e.b.c.s.DevelopersServiceRest - findAll()
+188377 [qtp2044272973-20] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - ______findByIdFromProjects_Developers(4, 5)
+188396 [qtp2044272973-20] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - SERVICE REST*******addDeveloperToProjects_Developers(4, 5)
+188407 [qtp2044272973-20] DEBUG c.e.b.c.web_app.ProjectsController - Developer with developerId = 5 added to projects_developers
+188407 [qtp2044272973-20] DEBUG c.e.b.c.web_app.ProjectsController - CONTROLLER - gotoEditProjectsPage(4,{})
+188408 [qtp2044272973-20] DEBUG c.e.b.c.s.ProjectsServiceRest - findById(4)
+188424 [qtp2044272973-20] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - selectDevelopersFromProjects_Developers(4) 
+188439 [qtp2044272973-20] DEBUG c.e.b.c.s.DevelopersServiceRest - findAll()
+192124 [qtp2044272973-15] DEBUG c.e.b.c.web_app.ProjectsController - updateProject(Project{projectId=4, description='sdfghjk', dateAdded=2020-05-06}, org.springframework.validation.BeanPropertyBindingResult: 0 errors)
+192126 [qtp2044272973-15] DEBUG c.e.b.c.s.ProjectsServiceRest - update(Project{projectId=4, description='sdfghjk', dateAdded=2020-05-06})
+192198 [qtp2044272973-20] DEBUG c.e.b.c.web_app.ProjectsController - Find all projects
+192198 [qtp2044272973-20] DEBUG c.e.b.c.s.ProjectsDtoServiceRest - countOfDevelopers()

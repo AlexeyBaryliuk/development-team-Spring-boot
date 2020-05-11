@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProjectJdbcDaoDtoImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">development-team-dao</a> &gt; <a href="index.source.html" class="el_package">com.epam.brest.courses.daoImpl</a> &gt; <span class="el_source">ProjectJdbcDaoDtoImpl.java</span></div><h1>ProjectJdbcDaoDtoImpl.java</h1><pre class="source lang-java linenums">package com.epam.brest.courses.daoImpl;
+
+import com.epam.brest.courses.dao.ProjectsJdbcDaoDto;
+import com.epam.brest.courses.model.dto.ProjectsDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
+import java.time.LocalDate;
+
+import java.util.List;
+
+public class ProjectJdbcDaoDtoImpl implements ProjectsJdbcDaoDto {
+
+<span class="nc" id="L18">    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectJdbcDaoDtoImpl.class);</span>
+
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+<span class="nc" id="L22">    public ProjectJdbcDaoDtoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {</span>
+<span class="nc" id="L23">        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;</span>
+<span class="nc" id="L24">    }</span>
+
+<span class="nc" id="L26">    MapSqlParameterSource parameterSource = new MapSqlParameterSource();</span>
+
+    @Value(&quot;${PRO.sqlFindBetweenDate}&quot;)
+    private String findBetweenDate;
+
+    @Value(&quot;${PRO.sqlCountOfDevelopers}&quot;)
+    private String countOfDevelopers;
+
+    @Override
+    public List&lt;ProjectsDto&gt; findBetweenDates(LocalDate dateStart, LocalDate dateEnd) {
+
+<span class="nc" id="L37">    LOGGER.debug(&quot;findBetweenDates. DateStart = {} DateEnd = {}&quot;, dateStart,dateEnd);</span>
+
+<span class="nc" id="L39">        parameterSource.addValue(&quot;dateStart&quot;,dateStart);</span>
+<span class="nc" id="L40">        parameterSource.addValue(&quot;dateEnd&quot;,dateEnd);</span>
+
+<span class="nc" id="L42">        return namedParameterJdbcTemplate.query(findBetweenDate,parameterSource</span>
+                , new BeanPropertyRowMapper&lt;&gt;(ProjectsDto.class));
+    }
+
+    @Override
+    public List&lt;ProjectsDto&gt;  countOfDevelopers() {
+
+<span class="nc" id="L49">        LOGGER.debug(&quot;CountOfDevelopers()&quot;);</span>
+<span class="nc" id="L50">        return namedParameterJdbcTemplate.query(countOfDevelopers</span>
+<span class="nc" id="L51">                ,new BeanPropertyRowMapper&lt;&gt;().newInstance(ProjectsDto.class));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

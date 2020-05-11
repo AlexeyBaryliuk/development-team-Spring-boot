@@ -1,0 +1,150 @@
+15:45:30 [qtp1613424566-20] DEBUG c.e.b.c.r.ProjectsDtoController - findAll()
+15:45:30 [qtp1613424566-20] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
+15:45:30 [qtp1613424566-20] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()
+15:45:56 [qtp1613424566-15] DEBUG c.e.b.c.r.DevelopersController - findAll()
+15:45:56 [qtp1613424566-15] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
+15:45:56 [qtp1613424566-15] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
+15:46:01 [qtp1613424566-16] DEBUG c.e.b.c.r.ProjectsDtoController - findAll()
+15:46:01 [qtp1613424566-16] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
+15:46:01 [qtp1613424566-16] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()
+15:46:19 [qtp1613424566-16] DEBUG c.e.b.c.r.ProjectsController - Add project Project{projectId=null, description='My project', dateAdded=2020-05-11}
+15:46:19 [qtp1613424566-16] DEBUG c.e.b.c.s.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='My project', dateAdded=2020-05-11}
+15:46:19 [qtp1613424566-16] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='My project', dateAdded=2020-05-11}
+15:46:19 [qtp1613424566-16] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date 2020-05-11
+15:46:19 [qtp1613424566-17] DEBUG c.e.b.c.r.ProjectsDtoController - findAll()
+15:46:19 [qtp1613424566-17] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
+15:46:19 [qtp1613424566-17] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()
+15:46:33 [qtp1613424566-20] DEBUG c.e.b.c.r.ProjectsController - findById
+15:46:33 [qtp1613424566-20] DEBUG c.e.b.c.s.ProjectsServiceImpl - Find by id - findById() projectId = 4
+15:46:33 [qtp1613424566-20] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - List of projects - size=:  1 
+15:46:33 [qtp1613424566-17] DEBUG c.e.b.c.r.Projects_DevelopersController - selectDevelopersFromProjects_Developers(4)
+15:46:33 [qtp1613424566-17] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 4
+15:46:33 [qtp1613424566-17] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 4
+15:46:33 [qtp1613424566-17] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 0
+15:46:33 [qtp1613424566-20] DEBUG c.e.b.c.r.DevelopersController - findAll()
+15:46:33 [qtp1613424566-20] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
+15:46:33 [qtp1613424566-20] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
+15:46:42 [qtp1613424566-16] DEBUG c.e.b.c.r.ProjectsController - findById
+15:46:42 [qtp1613424566-16] DEBUG c.e.b.c.s.ProjectsServiceImpl - Find by id - findById() projectId = 4
+15:46:42 [qtp1613424566-16] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - List of projects - size=:  1 
+15:46:42 [qtp1613424566-17] DEBUG c.e.b.c.r.Projects_DevelopersController - selectDevelopersFromProjects_Developers(4)
+15:46:42 [qtp1613424566-17] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 4
+15:46:42 [qtp1613424566-17] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 4
+15:46:42 [qtp1613424566-17] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 0
+15:46:42 [qtp1613424566-18] DEBUG c.e.b.c.r.DevelopersController - findAll()
+15:46:42 [qtp1613424566-18] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
+15:46:42 [qtp1613424566-18] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
+15:46:48 [qtp1613424566-20] DEBUG c.e.b.c.r.ProjectsController - updateProjectt(Project{projectId=4, description='My project 2222222222', dateAdded=2020-05-11})
+15:46:48 [qtp1613424566-20] DEBUG c.e.b.c.s.ProjectsServiceImpl - Update project - update(): project = Project{projectId=4, description='My project 2222222222', dateAdded=2020-05-11}
+15:46:48 [qtp1613424566-20] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date = :      2020-05-11
+15:46:48 [qtp1613424566-17] DEBUG c.e.b.c.r.ProjectsDtoController - findAll()
+15:46:48 [qtp1613424566-17] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
+15:46:48 [qtp1613424566-17] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()
+15:46:54 [qtp1613424566-18] DEBUG c.e.b.c.r.ProjectsController - findById
+15:46:54 [qtp1613424566-18] DEBUG c.e.b.c.s.ProjectsServiceImpl - Find by id - findById() projectId = 4
+15:46:54 [qtp1613424566-18] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - List of projects - size=:  1 
+15:46:54 [qtp1613424566-20] DEBUG c.e.b.c.r.Projects_DevelopersController - selectDevelopersFromProjects_Developers(4)
+15:46:54 [qtp1613424566-20] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 4
+15:46:54 [qtp1613424566-20] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 4
+15:46:54 [qtp1613424566-20] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 0
+15:46:54 [qtp1613424566-15] DEBUG c.e.b.c.r.DevelopersController - findAll()
+15:46:54 [qtp1613424566-15] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
+15:46:54 [qtp1613424566-15] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
+15:47:03 [qtp1613424566-17] DEBUG c.e.b.c.r.Projects_DevelopersController - findByIdFromProjects_Develoers(4,5)
+15:47:03 [qtp1613424566-17] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE findByIdFromProjects_Develoers(). Developer id = 5. ProjectId = 4
+15:47:03 [qtp1613424566-17] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO. findByIdFromProjects_Develoers();
+15:47:03 [qtp1613424566-17] DEBUG c.e.b.c.r.Projects_DevelopersController - ______PROJECTS_DEVELOPERS______(Optional.empty)
+15:47:03 [qtp1613424566-15] DEBUG c.e.b.c.r.Projects_DevelopersController - RESTaddDeveloperToProjects_Developers(4,5)
+15:47:03 [qtp1613424566-15] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 4, Developer id = 5
+15:47:03 [qtp1613424566-15] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 4. Developer id = 5
+15:47:03 [qtp1613424566-17] DEBUG c.e.b.c.r.ProjectsController - findById
+15:47:03 [qtp1613424566-17] DEBUG c.e.b.c.s.ProjectsServiceImpl - Find by id - findById() projectId = 4
+15:47:03 [qtp1613424566-17] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - List of projects - size=:  1 
+15:47:03 [qtp1613424566-15] DEBUG c.e.b.c.r.Projects_DevelopersController - selectDevelopersFromProjects_Developers(4)
+15:47:03 [qtp1613424566-15] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 4
+15:47:03 [qtp1613424566-15] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 4
+15:47:03 [qtp1613424566-15] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 1
+15:47:03 [qtp1613424566-20] DEBUG c.e.b.c.r.DevelopersController - findAll()
+15:47:03 [qtp1613424566-20] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
+15:47:03 [qtp1613424566-20] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
+15:47:10 [qtp1613424566-17] DEBUG c.e.b.c.r.Projects_DevelopersController - findByIdFromProjects_Develoers(4,3)
+15:47:10 [qtp1613424566-17] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE findByIdFromProjects_Develoers(). Developer id = 3. ProjectId = 4
+15:47:10 [qtp1613424566-17] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO. findByIdFromProjects_Develoers();
+15:47:10 [qtp1613424566-17] DEBUG c.e.b.c.r.Projects_DevelopersController - ______PROJECTS_DEVELOPERS______(Optional.empty)
+15:47:10 [qtp1613424566-18] DEBUG c.e.b.c.r.Projects_DevelopersController - RESTaddDeveloperToProjects_Developers(4,3)
+15:47:10 [qtp1613424566-18] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 4, Developer id = 3
+15:47:10 [qtp1613424566-18] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 4. Developer id = 3
+15:47:10 [qtp1613424566-17] DEBUG c.e.b.c.r.ProjectsController - findById
+15:47:10 [qtp1613424566-17] DEBUG c.e.b.c.s.ProjectsServiceImpl - Find by id - findById() projectId = 4
+15:47:10 [qtp1613424566-17] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - List of projects - size=:  1 
+15:47:10 [qtp1613424566-20] DEBUG c.e.b.c.r.Projects_DevelopersController - selectDevelopersFromProjects_Developers(4)
+15:47:10 [qtp1613424566-20] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 4
+15:47:10 [qtp1613424566-20] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 4
+15:47:10 [qtp1613424566-20] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 2
+15:47:10 [qtp1613424566-15] DEBUG c.e.b.c.r.DevelopersController - findAll()
+15:47:10 [qtp1613424566-15] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
+15:47:10 [qtp1613424566-15] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
+15:47:12 [qtp1613424566-20] DEBUG c.e.b.c.r.ProjectsController - updateProjectt(Project{projectId=4, description='My project 2222222222', dateAdded=2020-05-11})
+15:47:12 [qtp1613424566-20] DEBUG c.e.b.c.s.ProjectsServiceImpl - Update project - update(): project = Project{projectId=4, description='My project 2222222222', dateAdded=2020-05-11}
+15:47:12 [qtp1613424566-20] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date = :      2020-05-11
+15:47:12 [qtp1613424566-15] DEBUG c.e.b.c.r.ProjectsDtoController - findAll()
+15:47:12 [qtp1613424566-15] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
+15:47:12 [qtp1613424566-15] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()
+15:47:29 [qtp1613424566-18] DEBUG c.e.b.c.r.ProjectsDtoController - findBetwenDates(2019-11-20,2020-05-29)
+15:47:29 [qtp1613424566-18] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Find project between dates - findBetweenDates
+15:47:29 [qtp1613424566-18] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - findBetweenDates. DateStart = 2019-11-20 DateEnd = 2020-05-29
+15:47:33 [qtp1613424566-15] DEBUG c.e.b.c.r.ProjectsDtoController - findAll()
+15:47:33 [qtp1613424566-15] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
+15:47:33 [qtp1613424566-15] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()
+15:47:45 [qtp1613424566-20] DEBUG c.e.b.c.r.ProjectsController - delete()
+15:47:45 [qtp1613424566-20] DEBUG c.e.b.c.s.ProjectsServiceImpl - Delete project - delete() projectId = 4
+15:47:45 [qtp1613424566-20] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Delete project by id 4
+15:47:45 [qtp1613424566-17] DEBUG c.e.b.c.r.ProjectsDtoController - findAll()
+15:47:45 [qtp1613424566-17] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
+15:47:45 [qtp1613424566-17] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()
+15:47:49 [qtp1613424566-20] DEBUG c.e.b.c.r.DevelopersController - findAll()
+15:47:49 [qtp1613424566-20] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
+15:47:49 [qtp1613424566-20] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
+15:48:16 [qtp1613424566-15] DEBUG c.e.b.c.r.DevelopersController - create() Developer Developers{developerId=null, firstName='ss', lastName='Lopatass'}
+15:48:16 [qtp1613424566-15] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='ss', lastName='Lopatass'}
+15:48:16 [qtp1613424566-15] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='ss', lastName='Lopatass'} 
+15:48:16 [qtp1613424566-15] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
+15:48:16 [qtp1613424566-17] DEBUG c.e.b.c.r.DevelopersController - findAll()
+15:48:16 [qtp1613424566-17] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
+15:48:16 [qtp1613424566-17] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
+15:48:24 [qtp1613424566-20] DEBUG c.e.b.c.r.ProjectsDtoController - findAll()
+15:48:24 [qtp1613424566-20] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
+15:48:24 [qtp1613424566-20] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()
+15:48:26 [qtp1613424566-15] DEBUG c.e.b.c.r.ProjectsController - findById
+15:48:26 [qtp1613424566-15] DEBUG c.e.b.c.s.ProjectsServiceImpl - Find by id - findById() projectId = 3
+15:48:26 [qtp1613424566-15] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - List of projects - size=:  1 
+15:48:26 [qtp1613424566-20] DEBUG c.e.b.c.r.Projects_DevelopersController - selectDevelopersFromProjects_Developers(3)
+15:48:26 [qtp1613424566-20] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 3
+15:48:26 [qtp1613424566-20] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 3
+15:48:26 [qtp1613424566-20] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 1
+15:48:26 [qtp1613424566-15] DEBUG c.e.b.c.r.DevelopersController - findAll()
+15:48:26 [qtp1613424566-15] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
+15:48:26 [qtp1613424566-15] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
+15:48:36 [qtp1613424566-17] DEBUG c.e.b.c.r.Projects_DevelopersController - findByIdFromProjects_Develoers(3,9)
+15:48:36 [qtp1613424566-17] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE findByIdFromProjects_Develoers(). Developer id = 9. ProjectId = 3
+15:48:36 [qtp1613424566-17] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO. findByIdFromProjects_Develoers();
+15:48:36 [qtp1613424566-17] DEBUG c.e.b.c.r.Projects_DevelopersController - ______PROJECTS_DEVELOPERS______(Optional.empty)
+15:48:36 [qtp1613424566-20] DEBUG c.e.b.c.r.Projects_DevelopersController - RESTaddDeveloperToProjects_Developers(3,9)
+15:48:36 [qtp1613424566-20] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 3, Developer id = 9
+15:48:36 [qtp1613424566-20] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 3. Developer id = 9
+15:48:36 [qtp1613424566-16] DEBUG c.e.b.c.r.ProjectsController - findById
+15:48:36 [qtp1613424566-16] DEBUG c.e.b.c.s.ProjectsServiceImpl - Find by id - findById() projectId = 3
+15:48:36 [qtp1613424566-16] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - List of projects - size=:  1 
+15:48:36 [qtp1613424566-15] DEBUG c.e.b.c.r.Projects_DevelopersController - selectDevelopersFromProjects_Developers(3)
+15:48:36 [qtp1613424566-15] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 3
+15:48:36 [qtp1613424566-15] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 3
+15:48:36 [qtp1613424566-15] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 2
+15:48:36 [qtp1613424566-20] DEBUG c.e.b.c.r.DevelopersController - findAll()
+15:48:36 [qtp1613424566-20] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
+15:48:36 [qtp1613424566-20] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
+15:48:38 [qtp1613424566-15] DEBUG c.e.b.c.r.ProjectsController - updateProjectt(Project{projectId=3, description='Create a web application based on Hibernate', dateAdded=2020-01-17})
+15:48:38 [qtp1613424566-15] DEBUG c.e.b.c.s.ProjectsServiceImpl - Update project - update(): project = Project{projectId=3, description='Create a web application based on Hibernate', dateAdded=2020-01-17}
+15:48:38 [qtp1613424566-15] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date = :      2020-01-17
+15:48:38 [qtp1613424566-20] DEBUG c.e.b.c.r.ProjectsDtoController - findAll()
+15:48:38 [qtp1613424566-20] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
+15:48:38 [qtp1613424566-20] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()

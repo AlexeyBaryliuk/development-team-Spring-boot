@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+development-team-web-app,com.epam.brest.courses.web_app,DevelopersController,136,0,6,0,36,0,11,0,8,0
+development-team-web-app,com.epam.brest.courses.web_app,HelloController,19,0,0,0,5,0,3,0,3,0
+development-team-web-app,com.epam.brest.courses.web_app,ProjectsController,243,0,14,0,56,0,16,0,9,0
+development-team-web-app,com.epam.brest.courses.web_app.validators,ProjectsValidator,4,24,0,4,1,7,1,4,1,2
+development-team-web-app,com.epam.brest.courses.web_app.validators,DevelopersValidator,4,41,0,8,1,11,1,6,1,2

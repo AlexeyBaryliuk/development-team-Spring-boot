@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+development-team-dao,com.epam.brest.courses.daoImpl,ProjectJdbcDaoImpl,187,0,4,0,33,0,10,0,8,0
+development-team-dao,com.epam.brest.courses.daoImpl,ProjectJdbcDaoDtoImpl,59,0,0,0,12,0,4,0,4,0
+development-team-dao,com.epam.brest.courses.daoImpl,GeneratedKeyHolderFactory,0,7,0,0,0,2,0,2,0,2
+development-team-dao,com.epam.brest.courses.daoImpl,Projects_DevelopersJdbcDaoImpl,126,0,0,0,25,0,6,0,6,0
+development-team-dao,com.epam.brest.courses.daoImpl,DevelopersJdbcDaoImpl,41,122,0,0,7,26,1,6,1,6

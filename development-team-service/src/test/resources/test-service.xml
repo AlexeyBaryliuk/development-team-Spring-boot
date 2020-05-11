@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="developers" class="com.epam.brest.courses.model.Developers"/>
+
+    <bean id="projects" class="com.epam.brest.courses.model.Projects" scope="prototype"/>
+
+
+    <bean id="developersService" class="com.epam.brest.courses.service.DevelopersServiceImpl">
+        <constructor-arg ref="developersDao"/>
+    </bean>
+
+    <bean id="projectsDtoService" class="com.epam.brest.courses.service.ProjectsDtoServiceImpl">
+        <constructor-arg ref="projectsDtoDao"/>
+    </bean>
+
+    <bean id="projectsService" class="com.epam.brest.courses.service.ProjectsServiceImpl">
+        <constructor-arg ref="projectsDao"/>
+    </bean>
+
+    <bean id="projects_developersService" class="com.epam.brest.courses.service.Projects_DevelopersServiceImpl">
+        <constructor-arg ref="projects_developersDao"/>
+    </bean>
+
+    <bean id="projects_developersDao" class="com.epam.brest.courses.daoImpl.Projects_DevelopersJdbcDaoImpl">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="developersDao" class="com.epam.brest.courses.daoImpl.DevelopersJdbcDaoImpl">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="projectsDtoDao" class="com.epam.brest.courses.daoImpl.ProjectJdbcDaoDtoImpl">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="projectsDao" class="com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+</beans>

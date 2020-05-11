@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>abaryliuk-development-team</artifactId>
+        <groupId>com.epam.brest.courses</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>development-team-web-app</artifactId>
+
+    <packaging>war</packaging>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>development-team-model</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>development-team-dao</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>development-team-service</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>development-team-service-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>development-team-service-rest</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>development-team-test</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring5</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.10.3</version>
+        </dependency>
+        <!--tests-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>tomcat</id>
+            <activation>
+
+                <property>
+                    <name>DT</name>
+                    <value>tomcat</value>
+                </property>
+            </activation>
+            <properties>
+                <port>8080</port>
+                <point.projects>rest_app_DT/projects</point.projects>
+                <point.projectsDto>rest_app_DT/projectsDto</point.projectsDto>
+                <point.developers>rest_app_DT/developers</point.developers>
+                <point.projects_developers>rest_app_DT/projects_developers</point.projects_developers>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>jetty</id>
+            <activation>
+                <property>
+                    <name>DT</name>
+                    <value>jetty</value>
+                </property>
+            </activation>
+            <properties>
+                <port>8088</port>
+                <point.projects>jetty_rest/projects</point.projects>
+                <point.projectsDto>jetty_rest/projectsDto</point.projectsDto>
+                <point.developers>jetty_rest/developers</point.developers>
+                <point.projects_developers>jetty_rest/projects_developers</point.projects_developers>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>jettyPlugin</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>DT</name>
+                    <value>jettyPlugin</value>
+                </property>
+            </activation>
+            <properties>
+                <port>8088</port>
+                <point.projects>projects</point.projects>
+                <point.projectsDto>projectsDto</point.projectsDto>
+                <point.developers>developers</point.developers>
+                <point.projects_developers>projects_developers</point.projects_developers>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <finalName>web_app_DT</finalName>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+
+        </resources>
+        <plugins>
+            <!-- Embedded Jetty HTTP Server for testing web application -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
+                    <httpConnector>
+                        <port>8080</port>
+                    </httpConnector>
+
+
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

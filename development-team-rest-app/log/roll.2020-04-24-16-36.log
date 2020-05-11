@@ -1,0 +1,3 @@
+63676 [qtp1880052106-17] DEBUG c.e.b.c.rest_app.ProjectsController - projects()
+63784 [qtp1880052106-17] DEBUG c.e.b.c.service.ProjectsServiceImpl - Find all projects - findAll()
+63784 [qtp1880052106-17] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - fidAll()

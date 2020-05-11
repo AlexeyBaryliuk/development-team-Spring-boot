@@ -1,0 +1,144 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Use spring servlet for all requests, including static resources -->
+    <mvc:default-servlet-handler/>
+
+    <!-- Use @MVC annotations -->
+    <mvc:annotation-driven/>
+
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+    <!-- Component scan for @Controller, @Service... annotations -->
+    <context:component-scan base-package="com.epam.brest.courses.*"/>
+
+        <import resource="classpath*:test-db.xml"/>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:application.properties</value>
+                <value>classpath:sql-development-team.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="developersController" class="com.epam.brest.courses.web_app.DevelopersController">
+        <constructor-arg index="0" ref="developerService"/>
+    </bean>
+
+    <bean id="projectsController" class="com.epam.brest.courses.web_app.ProjectsController">
+        <constructor-arg index="0" ref="projectDtoService"/>
+        <constructor-arg index="1" ref="projectService"/>
+        <constructor-arg index="2" ref="developerService"/>
+        <constructor-arg index="3" ref="projects_developerService"/>
+    </bean>
+
+<!--    <bean id="projects_developersServiceRest" class="com.epam.brest.courses.service_rest.Projects_DevelopersServiceRest">-->
+<!--        <constructor-arg index="0" value="${protocol}://${host}:${port}/${point.projects_developers}"/>-->
+<!--        <constructor-arg index="1" ref="restTemplate"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="projectsServiceRest" class="com.epam.brest.courses.service_rest.ProjectsServiceRest">-->
+<!--        <constructor-arg index="0" value="${protocol}://${host}:${port}/${point.projects}"/>-->
+<!--        <constructor-arg index="1" ref="restTemplate"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="projectsDtoServiceRest" class="com.epam.brest.courses.service_rest.ProjectsDtoServiceRest">-->
+<!--        <constructor-arg index="0" value="${protocol}://${host}:${port}/${point.projectsDto}"/>-->
+<!--        <constructor-arg index="1" ref="restTemplate"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="developersServiceRest" class="com.epam.brest.courses.service_rest.DevelopersServiceRest">-->
+<!--        <constructor-arg index="0" value="${protocol}://${host}:${port}/${point.developers}"/>-->
+<!--        <constructor-arg index="1" ref="restTemplate"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">-->
+<!--        <property name="messageConverters">-->
+<!--            <list>-->
+<!--                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+
+
+    <!-- Thymeleaf Template Resolver -->
+    <bean id="templateResolver"
+          class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="/WEB-INF/templates/" />
+        <property name="suffix" value=".html" />
+        <property name="templateMode" value="HTML" />
+        <!-- Template cache is true by default. Set to false if you want             -->
+        <!-- templates to be automatically updated when modified.                    -->
+        <property name="cacheable" value="false" />
+    </bean>
+
+    <bean id="projects_developerService" class="com.epam.brest.courses.service.Projects_DevelopersServiceImpl">
+        <constructor-arg ref="projects_developerDao"/>
+    </bean>
+
+        <bean id="projects_developerDao" class="com.epam.brest.courses.daoImpl.Projects_DevelopersJdbcDaoImpl">
+            <constructor-arg ref="namedParameterJdbcTemplate"/>
+        </bean>
+
+    <bean id="developerService" class="com.epam.brest.courses.service.DevelopersServiceImpl">
+        <constructor-arg ref="developerDao"/>
+    </bean>
+
+        <bean id="developerDao" class="com.epam.brest.courses.daoImpl.DevelopersJdbcDaoImpl">
+            <constructor-arg ref="namedParameterJdbcTemplate"/>
+        </bean>
+
+    <bean id="projectService" class="com.epam.brest.courses.service.ProjectsServiceImpl">
+        <constructor-arg ref="projectDao"/>
+    </bean>
+
+        <bean id="projectDao" class="com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl">
+            <constructor-arg ref="namedParameterJdbcTemplate"/>
+        </bean>
+
+    <bean id="projectDtoService" class="com.epam.brest.courses.service.ProjectsDtoServiceImpl">
+        <constructor-arg ref="projectDtoDao"/>
+    </bean>
+
+        <bean id="projectDtoDao" class="com.epam.brest.courses.daoImpl.ProjectJdbcDaoDtoImpl">
+            <constructor-arg ref="namedParameterJdbcTemplate"/>
+        </bean>
+
+        <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+            <constructor-arg name="dataSource" ref="dataSource"/>
+        </bean>
+
+    <!-- Thymeleaf Template Engine (Spring5-specific version) -->
+    <bean id="templateEngine"
+          class="org.thymeleaf.spring5.SpringTemplateEngine">
+        <property name="templateResolvers">
+            <set>
+                <ref bean="templateResolver" />
+            </set>
+        </property>
+    </bean>
+
+    <!-- Thymeleaf View Resolver - implementation of Spring's ViewResolver interface -->
+    <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine" />
+        <property name="characterEncoding" value="UTF-8" />
+    </bean>
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+          p:basename="/WEB-INF/messages">
+    </bean>
+
+</beans>

@@ -1,0 +1,3 @@
+69038 [qtp193156903-21] DEBUG c.e.b.c.r.ProjectsDtoController - findAll()
+69439 [qtp193156903-21] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
+69441 [qtp193156903-21] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()

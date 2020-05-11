@@ -1,0 +1,23 @@
+151178 [qtp60187547-17] DEBUG c.e.b.c.web_app.ProjectsController - Find all projects
+151183 [qtp60187547-17] DEBUG c.e.b.c.s.ProjectsDtoServiceRest - countOfDevelopers()
+154982 [qtp60187547-26] DEBUG c.e.b.c.web_app.ProjectsController - gotoAddProjectPage({})
+169403 [qtp60187547-17] DEBUG c.e.b.c.web_app.ProjectsController - addProjectProject{projectId=null, description='My project', dateAdded=2020-05-11}, org.springframework.validation.BeanPropertyBindingResult: 0 errors)
+169405 [qtp60187547-17] DEBUG c.e.b.c.s.ProjectsServiceRest - create(Project{projectId=null, description='My project', dateAdded=2020-05-11})
+169947 [qtp60187547-26] DEBUG c.e.b.c.web_app.ProjectsController - Find all projects
+169947 [qtp60187547-26] DEBUG c.e.b.c.s.ProjectsDtoServiceRest - countOfDevelopers()
+183352 [qtp60187547-17] DEBUG c.e.b.c.web_app.ProjectsController - CONTROLLER - gotoEditProjectsPage(4,{})
+183352 [qtp60187547-17] DEBUG c.e.b.c.s.ProjectsServiceRest - findById(4)
+183540 [qtp60187547-17] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - selectDevelopersFromProjects_Developers(4) 
+183614 [qtp60187547-17] DEBUG c.e.b.c.s.DevelopersServiceRest - findAll()
+192305 [qtp60187547-26] DEBUG c.e.b.c.web_app.ProjectsController - CONTROLLER - gotoEditProjectsPage(4,{})
+192310 [qtp60187547-26] DEBUG c.e.b.c.s.ProjectsServiceRest - findById(4)
+192355 [qtp60187547-26] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - selectDevelopersFromProjects_Developers(4) 
+192370 [qtp60187547-26] DEBUG c.e.b.c.s.DevelopersServiceRest - findAll()
+198455 [qtp60187547-20] DEBUG c.e.b.c.web_app.ProjectsController - updateProject(Project{projectId=4, description='My project 2222222222', dateAdded=2020-05-11}, org.springframework.validation.BeanPropertyBindingResult: 0 errors)
+198459 [qtp60187547-20] DEBUG c.e.b.c.s.ProjectsServiceRest - update(Project{projectId=4, description='My project 2222222222', dateAdded=2020-05-11})
+198562 [qtp60187547-26] DEBUG c.e.b.c.web_app.ProjectsController - Find all projects
+198562 [qtp60187547-26] DEBUG c.e.b.c.s.ProjectsDtoServiceRest - countOfDevelopers()
+205104 [qtp60187547-20] DEBUG c.e.b.c.web_app.ProjectsController - CONTROLLER - gotoEditProjectsPage(4,{})
+205105 [qtp60187547-20] DEBUG c.e.b.c.s.ProjectsServiceRest - findById(4)
+205146 [qtp60187547-20] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - selectDevelopersFromProjects_Developers(4) 
+205156 [qtp60187547-20] DEBUG c.e.b.c.s.DevelopersServiceRest - findAll()

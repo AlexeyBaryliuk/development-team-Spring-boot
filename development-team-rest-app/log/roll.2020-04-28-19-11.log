@@ -1,0 +1,6 @@
+636899 [qtp333085360-35] DEBUG c.e.b.c.rest_app.ProjectsController - projects()
+636900 [qtp333085360-35] DEBUG c.e.b.c.service.ProjectsServiceImpl - Find all projects - findAll()
+636900 [qtp333085360-35] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - fidAll()
+638839 [qtp333085360-19] DEBUG c.e.b.c.rest_app.ProjectsController - projects()
+638839 [qtp333085360-19] DEBUG c.e.b.c.service.ProjectsServiceImpl - Find all projects - findAll()
+638839 [qtp333085360-19] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - fidAll()

@@ -1,0 +1,6 @@
+15653 [qtp1463823265-21] DEBUG c.e.b.c.web_app.ProjectsController - delete(1,{})
+15661 [qtp1463823265-21] DEBUG c.e.b.c.s.ProjectsServiceRest - delete(1)
+15719 [qtp1463823265-17] DEBUG c.e.b.c.web_app.ProjectsController - Find all projects
+15720 [qtp1463823265-17] DEBUG c.e.b.c.s.ProjectsDtoServiceRest - countOfDevelopers()
+17647 [qtp1463823265-21] DEBUG c.e.b.c.w.DevelopersController - DCONTROLLER findAll()
+17649 [qtp1463823265-21] DEBUG c.e.b.c.s.DevelopersServiceRest - findAll()

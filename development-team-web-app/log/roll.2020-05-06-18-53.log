@@ -1,0 +1,2 @@
+38855 [qtp2044272973-17] DEBUG c.e.b.c.web_app.ProjectsController - Find all projects
+39784 [qtp2044272973-17] DEBUG c.e.b.c.s.ProjectsDtoServiceRest - countOfDevelopers()

@@ -1,0 +1,6 @@
+24689 [qtp2044272973-19] DEBUG c.e.b.c.web_app.ProjectsController - Find all projects
+24722 [qtp2044272973-19] DEBUG c.e.b.c.s.ProjectsDtoServiceRest - countOfDevelopers()
+37541 [qtp2044272973-18] DEBUG c.e.b.c.w.DevelopersController - DCONTROLLER findAll()
+37543 [qtp2044272973-18] DEBUG c.e.b.c.s.DevelopersServiceRest - findAll()
+55389 [qtp2044272973-20] DEBUG c.e.b.c.web_app.ProjectsController - Find all projects
+55390 [qtp2044272973-20] DEBUG c.e.b.c.s.ProjectsDtoServiceRest - countOfDevelopers()
