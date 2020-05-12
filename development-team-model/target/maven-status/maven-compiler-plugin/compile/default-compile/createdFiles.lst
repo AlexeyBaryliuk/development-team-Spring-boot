@@ -1,0 +1,6 @@
+com/epam/brest/courses/model/Projects.class
+com/epam/brest/courses/model/Developers.class
+com/epam/brest/courses/model/dto/ProjectsDto.class
+com/epam/brest/courses/model/Projects_Developers.class
+com/epam/brest/courses/model/constants/DeveloperConstants.class
+com/epam/brest/courses/model/constants/ProjectConstants.class

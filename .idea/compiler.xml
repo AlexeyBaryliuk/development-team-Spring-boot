@@ -7,25 +7,37 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="development-team-service-rest" />
-        <module name="development-team-service-api" />
         <module name="development-team-web-app" />
         <module name="development-team-rest-app" />
         <module name="development-team-dao" />
         <module name="development-team-service" />
         <module name="development-team-test" />
+        <module name="development-team-service-api" />
         <module name="development-team-model" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="abaryliuk-development-team" target="1.8" />
-      <module name="development-team-dao" target="1.8" />
-      <module name="development-team-model" target="1.8" />
-      <module name="development-team-rest-app" target="1.8" />
-      <module name="development-team-service" target="1.8" />
-      <module name="development-team-service-api" target="1.8" />
+      <module name="abaryliuk-development-team" target="1.5" />
+      <module name="development-team-dao" target="8" />
+      <module name="development-team-model" target="1.5" />
+      <module name="development-team-rest-app" target="8" />
+      <module name="development-team-service" target="1.5" />
+      <module name="development-team-service-api" target="1.5" />
       <module name="development-team-service-rest" target="1.8" />
-      <module name="development-team-test" target="1.8" />
-      <module name="development-team-web-app" target="1.8" />
+      <module name="development-team-test" target="1.5" />
+      <module name="development-team-web-app" target="1.5" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="development-team-dao" options="" />
+      <module name="development-team-model" options="" />
+      <module name="development-team-rest-app" options="" />
+      <module name="development-team-service" options="" />
+      <module name="development-team-service-api" options="" />
+      <module name="development-team-service-rest" options="" />
+      <module name="development-team-test" options="" />
+      <module name="development-team-web-app" options="" />
+    </option>
   </component>
 </project>

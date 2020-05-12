@@ -1,7 +1,7 @@
 package com.epam.brest.courses.web_app;
 
 import com.epam.brest.courses.model.Projects;
-import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

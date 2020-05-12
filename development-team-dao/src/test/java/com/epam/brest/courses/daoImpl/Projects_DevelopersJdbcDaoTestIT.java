@@ -4,10 +4,11 @@ package com.epam.brest.courses.daoImpl;
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.model.Projects_Developers;
-import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -20,8 +21,8 @@ import static com.epam.brest.courses.model.constants.ProjectConstants.PROJECT_DE
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@SpringBootTest
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:test-dao.xml"})
 public class Projects_DevelopersJdbcDaoTestIT {
 
     @Autowired

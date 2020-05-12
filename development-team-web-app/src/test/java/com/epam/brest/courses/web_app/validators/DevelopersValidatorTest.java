@@ -1,12 +1,12 @@
 package com.epam.brest.courses.web_app.validators;
 
 import com.epam.brest.courses.model.Developers;
+import org.apache.commons.lang.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
-import org.thymeleaf.util.StringUtils;
 
 import static com.epam.brest.courses.model.constants.DeveloperConstants.FIRSTNAME_SIZE;
 import static com.epam.brest.courses.model.constants.DeveloperConstants.LASTNAME_SIZE;

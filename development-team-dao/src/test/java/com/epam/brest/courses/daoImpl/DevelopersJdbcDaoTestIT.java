@@ -1,13 +1,18 @@
 package com.epam.brest.courses.daoImpl;
 
-import com.epam.brest.courses.dao.DevelopersJdbcDao;
+import com.epam.brest.courses.daoImpl.testConfiguration.TestConfig;
 import com.epam.brest.courses.model.Developers;
-import com.epam.brest.courses.model.Projects;
-import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -15,21 +20,22 @@ import java.util.Optional;
 
 import static com.epam.brest.courses.model.constants.DeveloperConstants.FIRSTNAME_SIZE;
 import static com.epam.brest.courses.model.constants.DeveloperConstants.LASTNAME_SIZE;
-import static com.epam.brest.courses.model.constants.ProjectConstants.PROJECT_DESCRIPTION_SIZE;
 import static org.junit.jupiter.api.Assertions.*;
 
+
+@SpringBootTest(classes={Developers.class, TestConfig.class} )
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:test-dao.xml"})
+@TestPropertySource("classpath:sql-development-team.properties")
+@Sql({"classpath:create-db.sql", "classpath:insert-db.sql"})
+@ActiveProfiles("test")
 class DevelopersJdbcDaoTestIT {
+
 
     @Autowired
     DevelopersJdbcDaoImpl developersJdbcDao;
 
     @Autowired
     ProjectJdbcDaoImpl projectJdbcDao;
-
-    @Autowired
-    Projects project;
 
     @Test
     void shouldFindAllDevelopers() {

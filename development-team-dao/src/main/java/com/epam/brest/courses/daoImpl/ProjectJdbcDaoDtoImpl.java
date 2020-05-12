@@ -5,14 +5,18 @@ import com.epam.brest.courses.model.dto.ProjectsDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
 import java.util.List;
 
+@Component
+@PropertySource("classpath:sql-development-team.properties")
 public class ProjectJdbcDaoDtoImpl implements ProjectsJdbcDaoDto {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectJdbcDaoDtoImpl.class);
