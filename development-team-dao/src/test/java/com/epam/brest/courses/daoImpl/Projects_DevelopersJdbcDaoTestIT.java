@@ -1,6 +1,7 @@
 package com.epam.brest.courses.daoImpl;
 
 
+import com.epam.brest.courses.daoImpl.testConfiguration.TestConfig;
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.model.Projects_Developers;
@@ -9,7 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -21,8 +25,11 @@ import static com.epam.brest.courses.model.constants.ProjectConstants.PROJECT_DE
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@SpringBootTest
+@SpringBootTest(classes={Projects_Developers.class, TestConfig.class} )
 @ExtendWith(SpringExtension.class)
+@TestPropertySource("classpath:sql-development-team.properties")
+@Sql({"classpath:create-db.sql", "classpath:insert-db.sql"})
+@ActiveProfiles("test")
 public class Projects_DevelopersJdbcDaoTestIT {
 
     @Autowired
@@ -34,9 +41,7 @@ public class Projects_DevelopersJdbcDaoTestIT {
     @Autowired
     Projects_DevelopersJdbcDaoImpl projects_developersJdbcDao;
 
-    @Autowired
-    Projects project;
-
+    Projects project = new Projects();
 
     @Test
     void shouldSelectDevelopersFromProjects_Developers() {

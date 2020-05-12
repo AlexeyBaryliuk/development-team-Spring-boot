@@ -28,12 +28,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @ActiveProfiles("test")
 class DevelopersJdbcDaoTestIT {
 
-
     @Autowired
     DevelopersJdbcDaoImpl developersJdbcDao;
-
-    @Autowired
-    ProjectJdbcDaoImpl projectJdbcDao;
 
     @Test
     void shouldFindAllDevelopers() {

@@ -1,12 +1,16 @@
 package com.epam.brest.courses.daoImpl;
 
-import com.epam.brest.courses.dao.ProjectsJdbcDao;
+import com.epam.brest.courses.daoImpl.testConfiguration.TestConfig;
 import com.epam.brest.courses.model.Projects;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
@@ -16,20 +20,17 @@ import java.util.Optional;
 import static com.epam.brest.courses.model.constants.ProjectConstants.PROJECT_DESCRIPTION_SIZE;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@SpringBootTest(classes={Projects.class, TestConfig.class} )
 @ExtendWith(SpringExtension.class)
+@TestPropertySource("classpath:sql-development-team.properties")
+@Sql({"classpath:create-db.sql", "classpath:insert-db.sql"})
+@ActiveProfiles("test")
 class ProjectJdbcDaoTestIT {
 
     @Autowired
-    Projects project;
+    ProjectJdbcDaoImpl projectsDao;
 
-    private ProjectsJdbcDao projectsDao;
-
-    @Autowired
-    public ProjectJdbcDaoTestIT(ProjectsJdbcDao projectsDao) {
-        this.projectsDao = projectsDao;
-    }
-
+    Projects project = new Projects();
 
     @Test
     void shouldGetAllProjects() {

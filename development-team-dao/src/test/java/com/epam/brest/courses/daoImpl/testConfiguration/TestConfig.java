@@ -1,7 +1,10 @@
 package com.epam.brest.courses.daoImpl.testConfiguration;
 
+import com.epam.brest.courses.dao.ProjectsJdbcDao;
 import com.epam.brest.courses.daoImpl.DevelopersJdbcDaoImpl;
+import com.epam.brest.courses.daoImpl.ProjectJdbcDaoDtoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl;
+import com.epam.brest.courses.daoImpl.Projects_DevelopersJdbcDaoImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -20,6 +23,15 @@ public class TestConfig {
     public ProjectJdbcDaoImpl projectJdbcDao() {
         return new ProjectJdbcDaoImpl(namedParameterJdbcTemplate());
     }
+
+    @Bean
+    public ProjectJdbcDaoDtoImpl projectJdbcDaoDto() {
+        return new ProjectJdbcDaoDtoImpl(namedParameterJdbcTemplate());}
+
+    @Bean
+    public Projects_DevelopersJdbcDaoImpl projects_developersJdbcDao() {
+        return new Projects_DevelopersJdbcDaoImpl(namedParameterJdbcTemplate());}
+
     @Bean
     public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
         return new NamedParameterJdbcTemplate(dataSource());

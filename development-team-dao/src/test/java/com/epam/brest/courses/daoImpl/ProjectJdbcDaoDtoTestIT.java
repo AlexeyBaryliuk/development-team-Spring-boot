@@ -1,5 +1,6 @@
 package com.epam.brest.courses.daoImpl;
 
+import com.epam.brest.courses.daoImpl.testConfiguration.TestConfig;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.model.dto.ProjectsDto;
 import org.apache.commons.lang.RandomStringUtils;
@@ -10,6 +11,9 @@ import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.text.ParseException;
@@ -18,8 +22,11 @@ import java.util.List;
 import static com.epam.brest.courses.model.constants.ProjectConstants.PROJECT_DESCRIPTION_SIZE;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@SpringBootTest(classes={ProjectsDto.class, TestConfig.class} )
 @ExtendWith(SpringExtension.class)
+@TestPropertySource("classpath:sql-development-team.properties")
+@Sql({"classpath:create-db.sql", "classpath:insert-db.sql"})
+@ActiveProfiles("test")
 class ProjectJdbcDaoDtoTestIT {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectJdbcDaoDtoTestIT.class);
@@ -30,8 +37,7 @@ class ProjectJdbcDaoDtoTestIT {
     @Autowired
     ProjectJdbcDaoImpl projectJdbcDao;
 
-    @Autowired
-    Projects project;
+    Projects project = new Projects();
 
     @Test
     void shouldFindBetweenDates() throws ParseException {
