@@ -1,7 +1,0 @@
-15:18:00 [main] INFO  c.e.b.c.d.DevelopersJdbcDaoTestIT - Starting DevelopersJdbcDaoTestIT on alexey-Lenovo-ideapad-110-15ISK with PID 14331 (started by alexey in /home/alexey/IdeaProjects/Development-team-SpringBoot/development-team-Spring-boot/development-team-dao)
-15:18:01 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoTestIT - Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
-15:18:01 [main] INFO  c.e.b.c.d.DevelopersJdbcDaoTestIT - The following profiles are active: test
-15:18:01 [main] INFO  c.e.b.c.d.DevelopersJdbcDaoTestIT - Started DevelopersJdbcDaoTestIT in 1.563 seconds (JVM running for 5.423)
-15:18:03 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='CvuNuVtdkmcWDQBKFcKC', lastName='wlcqkaRIeUmwnEhjxTCk'} 
-15:18:03 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-15:18:03 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 9

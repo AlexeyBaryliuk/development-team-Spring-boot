@@ -1,6 +1,0 @@
-3634 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
-4001 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Delete developerId = 1
-4013 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 1
-4064 [main] DEBUG c.e.b.c.daoImpl.DevelopersMockTest - Id------ = 1 
-4064 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='Jon', lastName='Connor'} 
-4065 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 0 
