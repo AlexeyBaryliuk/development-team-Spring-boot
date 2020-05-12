@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_development-team-test" default="compile.module.development-team-test">
+  <dirname property="module.development-team-test.basedir" file="${ant.file.module_development-team-test}"/>
+  
+  <property name="module.jdk.home.development-team-test" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.development-team-test" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.development-team-test" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.development-team-test" value="-encoding UTF-8 -source 5 -target 1.5 ${compiler.args}"/>
+  
+  <property name="development-team-test.output.dir" value="${module.development-team-test.basedir}/target/classes"/>
+  <property name="development-team-test.testoutput.dir" value="${module.development-team-test.basedir}/target/test-classes"/>
+  
+  <path id="development-team-test.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="development-team-test.module.production.classpath">
+    <path refid="${module.jdk.classpath.development-team-test}"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-jdbc:2.2.6.release.classpath"/>
+    <path refid="library.maven:_com.zaxxer:hikaricp:3.4.2.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter:2.2.6.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot:2.2.6.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-autoconfigure:2.2.6.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-logging:2.2.6.release.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-to-slf4j:2.12.1.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-api:2.12.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:jul-to-slf4j:1.7.30.classpath"/>
+    <path refid="library.maven:_jakarta.annotation:jakarta.annotation-api:1.3.5.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.2.5.release.classpath"/>
+    <path refid="library.maven:_com.h2database:h2:1.4.200.classpath"/>
+  </path>
+  
+  <path id="development-team-test.runtime.production.module.classpath">
+    <pathelement location="${development-team-test.output.dir}"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-jdbc:2.2.6.release.classpath"/>
+    <path refid="library.maven:_com.zaxxer:hikaricp:3.4.2.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter:2.2.6.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot:2.2.6.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-autoconfigure:2.2.6.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-logging:2.2.6.release.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-to-slf4j:2.12.1.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-api:2.12.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:jul-to-slf4j:1.7.30.classpath"/>
+    <path refid="library.maven:_jakarta.annotation:jakarta.annotation-api:1.3.5.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.yaml:snakeyaml:1.25.classpath"/>
+    <path refid="library.maven:_com.h2database:h2:1.4.200.classpath"/>
+  </path>
+  
+  <path id="development-team-test.module.classpath">
+    <path refid="${module.jdk.classpath.development-team-test}"/>
+    <pathelement location="${development-team-test.output.dir}"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-jdbc:2.2.6.release.classpath"/>
+    <path refid="library.maven:_com.zaxxer:hikaricp:3.4.2.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter:2.2.6.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot:2.2.6.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-autoconfigure:2.2.6.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-logging:2.2.6.release.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-to-slf4j:2.12.1.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-api:2.12.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:jul-to-slf4j:1.7.30.classpath"/>
+    <path refid="library.maven:_jakarta.annotation:jakarta.annotation-api:1.3.5.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.yaml:snakeyaml:1.25.classpath"/>
+    <path refid="library.maven:_com.h2database:h2:1.4.200.classpath"/>
+  </path>
+  
+  <path id="development-team-test.runtime.module.classpath">
+    <pathelement location="${development-team-test.testoutput.dir}"/>
+    <pathelement location="${development-team-test.output.dir}"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-jdbc:2.2.6.release.classpath"/>
+    <path refid="library.maven:_com.zaxxer:hikaricp:3.4.2.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter:2.2.6.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot:2.2.6.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-autoconfigure:2.2.6.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-logging:2.2.6.release.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-to-slf4j:2.12.1.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-api:2.12.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:jul-to-slf4j:1.7.30.classpath"/>
+    <path refid="library.maven:_jakarta.annotation:jakarta.annotation-api:1.3.5.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.2.5.release.classpath"/>
+    <path refid="library.maven:_org.yaml:snakeyaml:1.25.classpath"/>
+    <path refid="library.maven:_com.h2database:h2:1.4.200.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.development-team-test">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.development-team-test">
+    <patternset refid="excluded.from.module.development-team-test"/>
+  </patternset>
+  
+  <path id="development-team-test.module.sourcepath">
+    <dirset dir="${module.development-team-test.basedir}">
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.development-team-test" depends="compile.module.development-team-test.production,compile.module.development-team-test.tests" description="Compile module development-team-test"/>
+  
+  <target name="compile.module.development-team-test.production" depends="register.custom.compilers" description="Compile module development-team-test; production classes">
+    <mkdir dir="${development-team-test.output.dir}"/>
+    <javac2 destdir="${development-team-test.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.development-team-test}/javac">
+      <compilerarg line="${compiler.args.development-team-test}"/>
+      <bootclasspath refid="development-team-test.module.bootclasspath"/>
+      <classpath refid="development-team-test.module.production.classpath"/>
+      <src refid="development-team-test.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.development-team-test"/>
+    </javac2>
+    
+    <copy todir="${development-team-test.output.dir}">
+      <fileset dir="${module.development-team-test.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.development-team-test.tests" depends="register.custom.compilers,compile.module.development-team-test.production" description="compile module development-team-test; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.development-team-test" description="cleanup module">
+    <delete dir="${development-team-test.output.dir}"/>
+    <delete dir="${development-team-test.testoutput.dir}"/>
+  </target>
+</project>
