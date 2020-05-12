@@ -21,7 +21,7 @@
       <module name="development-team-dao" target="8" />
       <module name="development-team-model" target="1.5" />
       <module name="development-team-rest-app" target="8" />
-      <module name="development-team-service" target="1.5" />
+      <module name="development-team-service" target="8" />
       <module name="development-team-service-api" target="1.5" />
       <module name="development-team-service-rest" target="1.8" />
       <module name="development-team-test" target="1.5" />

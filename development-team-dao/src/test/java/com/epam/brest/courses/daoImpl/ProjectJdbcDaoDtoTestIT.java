@@ -32,12 +32,12 @@ class ProjectJdbcDaoDtoTestIT {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectJdbcDaoDtoTestIT.class);
 
     @Autowired
-    ProjectJdbcDaoDtoImpl projectJdbcDaoDto;
+    private ProjectJdbcDaoDtoImpl projectJdbcDaoDto;
 
     @Autowired
-    ProjectJdbcDaoImpl projectJdbcDao;
+    private ProjectJdbcDaoImpl projectJdbcDao;
 
-    Projects project = new Projects();
+    private Projects project = new Projects();
 
     @Test
     void shouldFindBetweenDates() throws ParseException {

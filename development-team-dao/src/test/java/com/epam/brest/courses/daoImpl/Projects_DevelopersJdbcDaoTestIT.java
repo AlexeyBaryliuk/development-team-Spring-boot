@@ -33,15 +33,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class Projects_DevelopersJdbcDaoTestIT {
 
     @Autowired
-    DevelopersJdbcDaoImpl developersJdbcDao;
+    private DevelopersJdbcDaoImpl developersJdbcDao;
 
     @Autowired
-    ProjectJdbcDaoImpl projectJdbcDao;
+    private ProjectJdbcDaoImpl projectJdbcDao;
 
     @Autowired
-    Projects_DevelopersJdbcDaoImpl projects_developersJdbcDao;
+    private Projects_DevelopersJdbcDaoImpl projects_developersJdbcDao;
 
-    Projects project = new Projects();
+    private Projects project = new Projects();
 
     @Test
     void shouldSelectDevelopersFromProjects_Developers() {

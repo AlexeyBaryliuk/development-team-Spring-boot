@@ -2,11 +2,16 @@ package com.epam.brest.courses.service;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
+import com.epam.brest.courses.model.Projects_Developers;
+import com.epam.brest.courses.service.testConfig.TestConfig;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -16,24 +21,25 @@ import static com.epam.brest.courses.model.constants.DeveloperConstants.LASTNAME
 import static com.epam.brest.courses.model.constants.ProjectConstants.PROJECT_DESCRIPTION_SIZE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
+@SpringBootTest(classes={Projects_Developers.class, TestConfig.class} )
 @ExtendWith(SpringExtension.class)
+@TestPropertySource("classpath:sql-development-team.properties")
+@Sql({"classpath:create-db.sql", "classpath:insert-db.sql"})
+@ActiveProfiles("test")
 public class Projects_DevelopersServiceImplIT {
 
-    @Autowired
-    Developers developers;
+    private Developers developers = new Developers();
+
+    private Projects project = new Projects();
 
     @Autowired
-    Projects project;
+    private DevelopersServiceImpl developersService;
 
     @Autowired
-    DevelopersService developersService;
+    private ProjectsServiceImpl projectsService;
 
     @Autowired
-    ProjectsService projectsService;
-
-    @Autowired
-    Projects_DevelopersService projects_developersService;
+    private Projects_DevelopersServiceImpl projects_developersService;
 
     @Test
     void shouldSelectDevelopersFromProjects_Developers() {

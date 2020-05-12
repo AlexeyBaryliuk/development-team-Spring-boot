@@ -1,110 +1,14 @@
-18:50:29 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='UovUeuRmTwmPvwsDBvjzAaCqafOzIZYilrUqOwdflhMYMZhYQUzjGcOBDWvcTsjWqOODzTEVAXVdQMuShDrsizrFaUmaukhTqpkv', dateAdded=2020-05-06}
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='UovUeuRmTwmPvwsDBvjzAaCqafOzIZYilrUqOwdflhMYMZhYQUzjGcOBDWvcTsjWqOODzTEVAXVdQMuShDrsizrFaUmaukhTqpkv', dateAdded=2020-05-06}
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date 2020-05-06
-18:50:29 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Find by id - findById() projectId = 4
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - List of projects - size=:  1 
-18:50:29 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='rJwmrspPOJYtWRQutdUmlaRRZDFVRcAiQLWlHqWsgNoLrrjnzMUZwpRsztQjyixWyIfZPCDVxpfqFagJxJtkvpsDhjjgNswJPtcZ', dateAdded=2020-05-06}
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='rJwmrspPOJYtWRQutdUmlaRRZDFVRcAiQLWlHqWsgNoLrrjnzMUZwpRsztQjyixWyIfZPCDVxpfqFagJxJtkvpsDhjjgNswJPtcZ', dateAdded=2020-05-06}
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date 2020-05-06
-18:50:29 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Find by id - findById() projectId = 5
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - List of projects - size=:  1 
-18:50:29 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='aeHEiYyevNZvHPKmKWfsCyIpDMQoAEjCLztYKnyLHbHyndmkATgQHwHHahMBsKIsZBVGBxZSucXebtBQKRvxGNznmkwwRihilrZo', dateAdded=2020-05-06}
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='aeHEiYyevNZvHPKmKWfsCyIpDMQoAEjCLztYKnyLHbHyndmkATgQHwHHahMBsKIsZBVGBxZSucXebtBQKRvxGNznmkwwRihilrZo', dateAdded=2020-05-06}
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date 2020-05-06
-18:50:29 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Delete project - delete() projectId = 6
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Delete project by id 6
-18:50:29 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Find by id - findById() projectId = 6
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - List of projects - size=:  0 
-18:50:29 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='TextBeforeUpdate', dateAdded=2020-05-06}
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='TextBeforeUpdate', dateAdded=2020-05-06}
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date 2020-05-06
-18:50:29 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Find by id - findById() projectId = 7
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - List of projects - size=:  1 
-18:50:29 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Update project - update(): project = Project{projectId=7, description='TextAfterUpdate', dateAdded=2020-05-06}
-18:50:29 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date = :      2020-05-06
-18:50:29 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Find by id - findById() projectId = 7
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - List of projects - size=:  1 
-18:50:30 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Find all projects - findAll()
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - fidAll()
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='wuZYHUKjHZawyPmYVaSh', lastName='dAZUkTAzGwPtAiCrtBqF'}
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='wuZYHUKjHZawyPmYVaSh', lastName='dAZUkTAzGwPtAiCrtBqF'} 
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 9
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 9
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='kDVdjwavwfWnHUWWDmvu', lastName='tUylgsWkQIELjsAbRApH'}
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='kDVdjwavwfWnHUWWDmvu', lastName='tUylgsWkQIELjsAbRApH'} 
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 10
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 10
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='TNBVZppTBKtTeCjcoshz', lastName='SoUtcCbgMaOaMEizHZFy'}
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='TNBVZppTBKtTeCjcoshz', lastName='SoUtcCbgMaOaMEizHZFy'} 
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - delete() developerId = 11
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Delete developerId = 11
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 11
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 11
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='TjzotFYdBNBRjhozVPgP', lastName='fntUFDGWWXkRWBzYDdGA'}
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='TjzotFYdBNBRjhozVPgP', lastName='fntUFDGWWXkRWBzYDdGA'} 
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 12
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 12
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - update() developer = Developers{developerId=12, firstName='pfQalAymOXcFbTGyaBUA', lastName='FGFlcRgcZNAXoDTgXCmj'}
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Update developer = Developers{developerId=12, firstName='pfQalAymOXcFbTGyaBUA', lastName='FGFlcRgcZNAXoDTgXCmj'}
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Result = 1
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 12
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 12
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
-18:50:30 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='UPfNWpBMGfGnRQftgkuKmcYutbsLaKusPvQASWOFQmwoIgAWCdrAEPKhgMVsCxbgUULXbmcqCqNJyFMyeRLbQNZmmcfCDbevSZqN', dateAdded=2020-05-06}
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='UPfNWpBMGfGnRQftgkuKmcYutbsLaKusPvQASWOFQmwoIgAWCdrAEPKhgMVsCxbgUULXbmcqCqNJyFMyeRLbQNZmmcfCDbevSZqN', dateAdded=2020-05-06}
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date 2020-05-06
-18:50:30 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='OzIoyDhBmFFjawRCcbXlrRolrrXjHozsPYGsXjqYFoLRWftxudEmuMvjyWRdcjJIbTPXRVCWKyllLPjXRHDaatHnJIxlwNbsWTFe', dateAdded=2020-05-06}
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='OzIoyDhBmFFjawRCcbXlrRolrrXjHozsPYGsXjqYFoLRWftxudEmuMvjyWRdcjJIbTPXRVCWKyllLPjXRHDaatHnJIxlwNbsWTFe', dateAdded=2020-05-06}
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date 2020-05-06
-18:50:30 [main] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Find project between dates - findBetweenDates
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - findBetweenDates. DateStart = 2020-05-06 DateEnd = 2020-05-06
-18:50:30 [main] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='UvjNkVqPgXesmlNeCmQg', lastName='aYkPYWXNuqSZsULyJXdD'}
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='UvjNkVqPgXesmlNeCmQg', lastName='aYkPYWXNuqSZsULyJXdD'} 
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='UvjNkVqPgXesmlNeCmQg', lastName='aYkPYWXNuqSZsULyJXdD'}
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='UvjNkVqPgXesmlNeCmQg', lastName='aYkPYWXNuqSZsULyJXdD'} 
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-18:50:30 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='YKuElSiGGusmdXaDrgtyrZSLJQXEUMRLLaELGelJRjAEojDOfiwcZuNnsfpveseArUkQWkINghuqZblDSnlYyhoLsfWXiDSMFdiE', dateAdded=2020-05-06}
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='YKuElSiGGusmdXaDrgtyrZSLJQXEUMRLLaELGelJRjAEojDOfiwcZuNnsfpveseArUkQWkINghuqZblDSnlYyhoLsfWXiDSMFdiE', dateAdded=2020-05-06}
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date 2020-05-06
-18:50:30 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 10, Developer id = 13
-18:50:30 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 10. Developer id = 13
-18:50:30 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 10, Developer id = 14
-18:50:30 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 10. Developer id = 14
-18:50:30 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 10
-18:50:30 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 10
-18:50:30 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 2
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='cJcTlogQRdRWhuzsVgKo', lastName='hRZDuDenqFFRFJEAceye'}
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='cJcTlogQRdRWhuzsVgKo', lastName='hRZDuDenqFFRFJEAceye'} 
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-18:50:30 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='kafffdRBvlvermoUvavLQsKvBVCYJGoAZZvLgvkEKMoQvTwBfybESiOzVmLahISahKhldrBzcgUFEgurgOQyIzoyIOPfCUExqLQo', dateAdded=2020-05-06}
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='kafffdRBvlvermoUvavLQsKvBVCYJGoAZZvLgvkEKMoQvTwBfybESiOzVmLahISahKhldrBzcgUFEgurgOQyIzoyIOPfCUExqLQo', dateAdded=2020-05-06}
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date 2020-05-06
-18:50:30 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 11, Developer id = 15
-18:50:30 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 11. Developer id = 15
-18:50:30 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 11
-18:50:30 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 11
-18:50:30 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 1
-18:50:30 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE deleteDeveloperFromProject_Developers(). Developer id = 15
-18:50:30 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO deleteDeveloperFromProject_Developers(). Developer id = 15, Project id = 11
-18:50:30 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 11
-18:50:30 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 11
-18:50:30 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 0
-18:50:30 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='SnoXqmAHcVsRkvObLrnh', lastName='IiNpcRMrGsFlNfuSwOvP'}
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='SnoXqmAHcVsRkvObLrnh', lastName='IiNpcRMrGsFlNfuSwOvP'} 
-18:50:30 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-18:50:30 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='qxAJhZuIgWtlErKIEFPyYdczNzfzemJOKCoppKlmVKjWrDGbuIqzCHchISoziSqJMFbkuAQCtupvqBEuPosxhWdkrrrrBLfWvUIJ', dateAdded=2020-05-06}
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='qxAJhZuIgWtlErKIEFPyYdczNzfzemJOKCoppKlmVKjWrDGbuIqzCHchISoziSqJMFbkuAQCtupvqBEuPosxhWdkrrrrBLfWvUIJ', dateAdded=2020-05-06}
-18:50:30 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date 2020-05-06
-18:50:30 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 12, Developer id = 16
-18:50:30 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 12. Developer id = 16
-18:50:30 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 12
-18:50:30 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 12
-18:50:30 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 1
+20:16:53 [main] INFO  c.e.b.c.s.ProjectsDtoServiceImplIT - Starting ProjectsDtoServiceImplIT on alexey-Lenovo-ideapad-110-15ISK with PID 28817 (started by alexey in /home/alexey/IdeaProjects/Development-team-SpringBoot/development-team-Spring-boot/development-team-service)
+20:16:53 [main] DEBUG c.e.b.c.s.ProjectsDtoServiceImplIT - Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
+20:16:53 [main] INFO  c.e.b.c.s.ProjectsDtoServiceImplIT - The following profiles are active: test
+20:16:54 [main] INFO  c.e.b.c.s.ProjectsDtoServiceImplIT - Started ProjectsDtoServiceImplIT in 1.207 seconds (JVM running for 4.111)
+20:16:55 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='WrRcIABrHHcctVSbzTyamydyhkwhJatHxTBliEIBXtWGLDMwhJYRXNCFZhSfXxKRTAMFjiBzoRnFvzvAQKzUyzmbinkajPHGwBPa', dateAdded=2020-05-12}
+20:16:55 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='WrRcIABrHHcctVSbzTyamydyhkwhJatHxTBliEIBXtWGLDMwhJYRXNCFZhSfXxKRTAMFjiBzoRnFvzvAQKzUyzmbinkajPHGwBPa', dateAdded=2020-05-12}
+20:16:55 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date 2020-05-12
+20:16:55 [main] DEBUG c.e.b.c.s.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='UlwAvERlSHKgdIVIsxFMSeAcjZTPdIkpcoRbUFFJdZwYfgWPAXnoMKwKjOxSvgUWhSfdSgXtYXdXcSNvBVnGcNhSkKwvWRUcknEB', dateAdded=2020-05-12}
+20:16:55 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='UlwAvERlSHKgdIVIsxFMSeAcjZTPdIkpcoRbUFFJdZwYfgWPAXnoMKwKjOxSvgUWhSfdSgXtYXdXcSNvBVnGcNhSkKwvWRUcknEB', dateAdded=2020-05-12}
+20:16:55 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoImpl - Date 2020-05-12
+20:16:55 [main] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Find project between dates - findBetweenDates
+20:16:55 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - findBetweenDates. DateStart = 2020-05-12 DateEnd = 2020-05-12
+20:16:55 [main] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
+20:16:55 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()

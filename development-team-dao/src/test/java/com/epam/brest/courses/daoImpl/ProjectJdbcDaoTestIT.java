@@ -28,9 +28,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProjectJdbcDaoTestIT {
 
     @Autowired
-    ProjectJdbcDaoImpl projectsDao;
+    private ProjectJdbcDaoImpl projectsDao;
 
-    Projects project = new Projects();
+    private Projects project = new Projects();
 
     @Test
     void shouldGetAllProjects() {

@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DevelopersJdbcDaoTestIT {
 
     @Autowired
-    DevelopersJdbcDaoImpl developersJdbcDao;
+    private DevelopersJdbcDaoImpl developersJdbcDao;
 
     @Test
     void shouldFindAllDevelopers() {
