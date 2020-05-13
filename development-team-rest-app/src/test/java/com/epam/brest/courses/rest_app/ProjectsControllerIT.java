@@ -3,6 +3,7 @@ package com.epam.brest.courses.rest_app;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.rest_app.exception.ErrorResponse;
 import com.epam.brest.courses.rest_app.exception.CustomExceptionHandler;
+import com.epam.brest.courses.rest_app.testConfig.TestConfig;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.RandomStringUtils;
@@ -16,6 +17,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -33,8 +37,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
 @ExtendWith(SpringExtension.class)
+@SpringBootTest(classes={ProjectsController.class, TestConfig.class} )
+@TestPropertySource("classpath:sql-development-team.properties")
+@Sql({"classpath:schema.sql", "classpath:data.sql"})
+@ActiveProfiles("test")
 class ProjectsControllerIT {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsControllerIT.class);
@@ -47,7 +54,7 @@ class ProjectsControllerIT {
     @Autowired
     private CustomExceptionHandler customExceptionHandler;
 
-    ObjectMapper objectMapper = new ObjectMapper();
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     private MockMvc mockMvc;
 

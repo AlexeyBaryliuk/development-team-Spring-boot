@@ -1,7 +1,6 @@
 package com.epam.brest.courses.daoImpl;
 
 
-import com.epam.brest.courses.daoImpl.testConfiguration.TestConfig;
 import com.epam.brest.courses.model.Developers;
 import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;

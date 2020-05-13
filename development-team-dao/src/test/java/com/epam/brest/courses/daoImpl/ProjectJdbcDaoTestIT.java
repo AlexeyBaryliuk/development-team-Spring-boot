@@ -1,12 +1,11 @@
 package com.epam.brest.courses.daoImpl;
 
-import com.epam.brest.courses.daoImpl.testConfiguration.TestConfig;
+import com.epam.brest.courses.daoImpl.testConfig.TestConfig;
 import com.epam.brest.courses.model.Projects;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
@@ -23,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes={Projects.class, TestConfig.class} )
 @ExtendWith(SpringExtension.class)
 @TestPropertySource("classpath:sql-development-team.properties")
-@Sql({"classpath:create-db.sql", "classpath:insert-db.sql"})
+@Sql({"classpath:schema.sql", "classpath:data.sql"})
 @ActiveProfiles("test")
 class ProjectJdbcDaoTestIT {
 

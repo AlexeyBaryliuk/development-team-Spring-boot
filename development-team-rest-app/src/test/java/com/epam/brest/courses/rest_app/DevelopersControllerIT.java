@@ -2,6 +2,7 @@ package com.epam.brest.courses.rest_app;
 
 import com.epam.brest.courses.model.Developers;
 
+import com.epam.brest.courses.rest_app.testConfig.TestConfig;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.RandomStringUtils;
@@ -16,6 +17,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -31,8 +36,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+
+
 @ExtendWith(SpringExtension.class)
+@SpringBootTest(classes={DevelopersController.class, TestConfig.class} )
+@TestPropertySource("classpath:sql-development-team.properties")
+@Sql({"classpath:schema.sql", "classpath:data.sql"})
+@ActiveProfiles("test")
 class DevelopersControllerIT {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersControllerIT.class);
@@ -42,7 +52,8 @@ class DevelopersControllerIT {
     @Autowired
     private DevelopersController developersController;
 
-    ObjectMapper objectMapper = new ObjectMapper();
+    @Autowired
+    ObjectMapper objectMapper;
 
     MockMvcDevelopersService developersService = new MockMvcDevelopersService();
 
@@ -217,5 +228,6 @@ class DevelopersControllerIT {
                     developer.setDeveloperId(1);
             return developer;
         }
+
 }
 

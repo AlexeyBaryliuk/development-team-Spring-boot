@@ -61,7 +61,7 @@ class ProjectsDtoControllerExampleIT {
                 MockMvcRequestBuilders.get("/projectsDto/findAll")
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"))
+                .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].projectId", Matchers.is(0)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].description", Matchers.is("description0")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].dateAdded", Matchers.is(dateAdded)))

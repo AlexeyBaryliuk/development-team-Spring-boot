@@ -1,9 +1,0 @@
-29574 [qtp378327915-14] DEBUG c.e.b.c.r.ProjectsDtoController - findAll()
-29577 [qtp378327915-14] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
-29577 [qtp378327915-14] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()
-42079 [qtp378327915-16] DEBUG c.e.b.c.r.DevelopersController - findAll()
-42080 [qtp378327915-16] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
-42080 [qtp378327915-16] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
-59931 [qtp378327915-15] DEBUG c.e.b.c.r.ProjectsDtoController - findAll()
-59932 [qtp378327915-15] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
-59932 [qtp378327915-15] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()

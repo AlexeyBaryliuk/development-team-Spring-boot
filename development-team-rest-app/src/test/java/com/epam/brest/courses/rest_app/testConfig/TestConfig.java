@@ -1,10 +1,15 @@
-package com.epam.brest.courses.daoImpl.testConfiguration;
+package com.epam.brest.courses.rest_app.testConfig;
 
-import com.epam.brest.courses.dao.ProjectsJdbcDao;
 import com.epam.brest.courses.daoImpl.DevelopersJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoDtoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.Projects_DevelopersJdbcDaoImpl;
+import com.epam.brest.courses.rest_app.exception.CustomExceptionHandler;
+import com.epam.brest.courses.service.DevelopersServiceImpl;
+import com.epam.brest.courses.service.ProjectsDtoServiceImpl;
+import com.epam.brest.courses.service.ProjectsServiceImpl;
+import com.epam.brest.courses.service.Projects_DevelopersServiceImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -20,8 +25,27 @@ public class TestConfig {
     }
 
     @Bean
+    public DevelopersServiceImpl developersServiceImpl(){
+        return new DevelopersServiceImpl(developersJdbcDao());
+    }
+
+    @Bean
     public ProjectJdbcDaoImpl projectJdbcDao() {
         return new ProjectJdbcDaoImpl(namedParameterJdbcTemplate());
+    }
+
+    @Bean
+    public ProjectsServiceImpl projectsService(){
+        return new ProjectsServiceImpl(projectJdbcDao());
+    }
+
+    @Bean
+    public Projects_DevelopersJdbcDaoImpl projects_developersJdbcDao() {
+        return new Projects_DevelopersJdbcDaoImpl(namedParameterJdbcTemplate());}
+
+    @Bean
+    public Projects_DevelopersServiceImpl projects_developersService(){
+        return new Projects_DevelopersServiceImpl(projects_developersJdbcDao());
     }
 
     @Bean
@@ -29,8 +53,9 @@ public class TestConfig {
         return new ProjectJdbcDaoDtoImpl(namedParameterJdbcTemplate());}
 
     @Bean
-    public Projects_DevelopersJdbcDaoImpl projects_developersJdbcDao() {
-        return new Projects_DevelopersJdbcDaoImpl(namedParameterJdbcTemplate());}
+    public ProjectsDtoServiceImpl projectsDtoService(){
+        return new ProjectsDtoServiceImpl(projectJdbcDaoDto());
+    }
 
     @Bean
     public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
@@ -48,5 +73,13 @@ public class TestConfig {
         return  dataSource;
     }
 
-
+    @Bean
+    public ObjectMapper objectMapper(){
+        return new ObjectMapper();
+    }
+    @Bean
+    public CustomExceptionHandler customExceptionHandler(){
+        return new CustomExceptionHandler();
+    }
 }
+

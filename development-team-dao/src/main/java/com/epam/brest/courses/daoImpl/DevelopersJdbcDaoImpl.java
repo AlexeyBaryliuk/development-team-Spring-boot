@@ -4,6 +4,7 @@ import com.epam.brest.courses.dao.DevelopersJdbcDao;
 import com.epam.brest.courses.model.Developers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.support.DataAccessUtils;
@@ -23,7 +24,7 @@ import static com.epam.brest.courses.model.constants.DeveloperConstants.*;
 public class DevelopersJdbcDaoImpl implements DevelopersJdbcDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersJdbcDaoImpl.class);
-
+    @Autowired
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public DevelopersJdbcDaoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
