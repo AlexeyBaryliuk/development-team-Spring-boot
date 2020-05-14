@@ -15,7 +15,6 @@
 
 <dependencies>
 
-<!--Project,s dependencies.-->
     <dependency>
         <groupId>com.epam.brest.courses</groupId>
         <artifactId>development-team-model</artifactId>
@@ -34,11 +33,6 @@
     <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter</artifactId>
     </dependency>
 
     <dependency>

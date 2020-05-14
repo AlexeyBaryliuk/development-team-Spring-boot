@@ -1,12 +1,20 @@
 package com.epam.brest.courses.web_app;
 
 import com.epam.brest.courses.model.Developers;
+import com.epam.brest.courses.web_app.controllers.DevelopersController;
+import com.epam.brest.courses.web_app.testConfig.TestConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,15 +34,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 @ExtendWith(SpringExtension.class)
-@WebAppConfiguration
-@ContextConfiguration(locations = {"classpath:app-context-test.xml"})
-@Transactional
+@SpringBootTest(classes={TestConfig.class} )
+@AutoConfigureMockMvc
+@TestPropertySource("classpath:sql-development-team.properties")
+@Sql({"classpath:schema.sql", "classpath:data.sql"})
+@ActiveProfiles("test")
 class DevelopersControllerIT {
 
     private final String COMMON_DEVELOPERS_URL = "/developers";
 
     @Autowired
     private WebApplicationContext wac;
+
 
     private MockMvc mockMvc;
 

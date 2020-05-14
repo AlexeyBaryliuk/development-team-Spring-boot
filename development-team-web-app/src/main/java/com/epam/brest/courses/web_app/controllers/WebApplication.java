@@ -1,4 +1,4 @@
-package com.epam.brest.courses.web_app;
+package com.epam.brest.courses.web_app.controllers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.epam.brest.courses.web_app;
+package com.epam.brest.courses.web_app.controllers;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.service.DevelopersService;
@@ -26,6 +26,7 @@ public class DevelopersController {
 
     Developers developer = new Developers();
 
+    @Autowired
     private final DevelopersService developersService;
 
     public DevelopersController(DevelopersService developersService) {

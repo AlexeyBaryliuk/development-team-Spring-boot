@@ -1,21 +1,7 @@
-286529 [qtp60187547-27] DEBUG c.e.b.c.w.DevelopersController - addEmployee(Developers{developerId=null, firstName='ss', lastName='Lopatass'}, org.springframework.validation.BeanPropertyBindingResult: 0 errors)
-286538 [qtp60187547-27] DEBUG c.e.b.c.s.DevelopersServiceRest - create(Developers{developerId=null, firstName='ss', lastName='Lopatass'})
-286800 [qtp60187547-19] DEBUG c.e.b.c.w.DevelopersController - DCONTROLLER findAll()
-286800 [qtp60187547-19] DEBUG c.e.b.c.s.DevelopersServiceRest - findAll()
-295126 [qtp60187547-27] DEBUG c.e.b.c.web_app.ProjectsController - Find all projects
-295126 [qtp60187547-27] DEBUG c.e.b.c.s.ProjectsDtoServiceRest - countOfDevelopers()
-297010 [qtp60187547-19] DEBUG c.e.b.c.web_app.ProjectsController - CONTROLLER - gotoEditProjectsPage(3,{})
-297011 [qtp60187547-19] DEBUG c.e.b.c.s.ProjectsServiceRest - findById(3)
-297036 [qtp60187547-19] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - selectDevelopersFromProjects_Developers(3) 
-297049 [qtp60187547-19] DEBUG c.e.b.c.s.DevelopersServiceRest - findAll()
-306352 [qtp60187547-27] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - ______findByIdFromProjects_Developers(3, 9)
-306362 [qtp60187547-27] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - SERVICE REST*******addDeveloperToProjects_Developers(3, 9)
-306374 [qtp60187547-27] DEBUG c.e.b.c.web_app.ProjectsController - Developer with developerId = 9 added to projects_developers
-306374 [qtp60187547-27] DEBUG c.e.b.c.web_app.ProjectsController - CONTROLLER - gotoEditProjectsPage(3,{})
-306374 [qtp60187547-27] DEBUG c.e.b.c.s.ProjectsServiceRest - findById(3)
-306382 [qtp60187547-27] DEBUG c.e.b.c.s.Projects_DevelopersServiceRest - selectDevelopersFromProjects_Developers(3) 
-306395 [qtp60187547-27] DEBUG c.e.b.c.s.DevelopersServiceRest - findAll()
-309025 [qtp60187547-19] DEBUG c.e.b.c.web_app.ProjectsController - updateProject(Project{projectId=3, description='Create a web application based on Hibernate', dateAdded=2020-01-17}, org.springframework.validation.BeanPropertyBindingResult: 0 errors)
-309025 [qtp60187547-19] DEBUG c.e.b.c.s.ProjectsServiceRest - update(Project{projectId=3, description='Create a web application based on Hibernate', dateAdded=2020-01-17})
-309045 [qtp60187547-26] DEBUG c.e.b.c.web_app.ProjectsController - Find all projects
-309045 [qtp60187547-26] DEBUG c.e.b.c.s.ProjectsDtoServiceRest - countOfDevelopers()
+4173 [main] INFO  c.e.b.c.w.DevelopersControllerIT - Starting DevelopersControllerIT on alexey-Lenovo-ideapad-110-15ISK with PID 26679 (started by alexey in /home/alexey/IdeaProjects/Development-team-SpringBoot/development-team-Spring-boot/development-team-web-app)
+4320 [main] DEBUG c.e.b.c.w.DevelopersControllerIT - Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
+4320 [main] INFO  c.e.b.c.w.DevelopersControllerIT - The following profiles are active: test
+7293 [main] INFO  c.e.b.c.w.DevelopersControllerIT - Started DevelopersControllerIT in 4.722 seconds (JVM running for 10.729)
+9405 [main] DEBUG c.e.b.c.r.c.DevelopersController - findAll()
+9406 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
+9406 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
