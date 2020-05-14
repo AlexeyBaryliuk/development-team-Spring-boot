@@ -1,6 +1,7 @@
 package com.epam.brest.courses.rest_app;
 
 import com.epam.brest.courses.model.Projects;
+import com.epam.brest.courses.rest_app.controllers.ProjectsController;
 import com.epam.brest.courses.rest_app.exception.ErrorResponse;
 import com.epam.brest.courses.rest_app.exception.CustomExceptionHandler;
 import com.epam.brest.courses.rest_app.testConfig.TestConfig;

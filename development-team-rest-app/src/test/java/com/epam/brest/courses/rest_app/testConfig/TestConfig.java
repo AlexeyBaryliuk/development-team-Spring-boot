@@ -77,6 +77,7 @@ public class TestConfig {
     public ObjectMapper objectMapper(){
         return new ObjectMapper();
     }
+
     @Bean
     public CustomExceptionHandler customExceptionHandler(){
         return new CustomExceptionHandler();

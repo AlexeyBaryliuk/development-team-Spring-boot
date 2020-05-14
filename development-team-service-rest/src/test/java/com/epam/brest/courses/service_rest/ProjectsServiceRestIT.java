@@ -1,6 +1,7 @@
 package com.epam.brest.courses.service_rest;
 
 import com.epam.brest.courses.model.Projects;
+import com.epam.brest.courses.service_rest.testConfig.TestConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,10 +10,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.client.ExpectedCount;
 import org.springframework.test.web.client.MockRestServiceServer;
@@ -30,8 +31,8 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus;
 
+@SpringBootTest(classes={TestConfig.class} )
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath:app-context-test.xml"})
 class ProjectsServiceRestIT {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsServiceRestIT.class);
@@ -39,13 +40,15 @@ class ProjectsServiceRestIT {
     public static final String PROJECTS_URL = "http://localhost:8088/projects";
 
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
-    private MockRestServiceServer mockServer;
-
+    @Autowired
     private ObjectMapper mapper = new ObjectMapper();
 
-    ProjectsServiceRest projectsServiceRest;
+    @Autowired
+    private ProjectsServiceRest projectsServiceRest;
+
+    private MockRestServiceServer mockServer;
 
     @BeforeEach
     public void before() {
@@ -162,7 +165,7 @@ class ProjectsServiceRestIT {
         //given
         Integer id = 1;
 
-        mockServer.expect(ExpectedCount.once(), requestTo(new URI(PROJECTS_URL + id)))
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI(PROJECTS_URL + "/delete/" +  id)))
                 .andExpect(method(HttpMethod.DELETE))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)

@@ -4,6 +4,9 @@ import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.model.Projects_Developers;
 
+import com.epam.brest.courses.rest_app.controllers.DevelopersController;
+import com.epam.brest.courses.rest_app.controllers.ProjectsController;
+import com.epam.brest.courses.rest_app.controllers.Projects_DevelopersController;
 import com.epam.brest.courses.rest_app.testConfig.TestConfig;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;

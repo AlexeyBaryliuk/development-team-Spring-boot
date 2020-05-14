@@ -1,6 +1,7 @@
 package com.epam.brest.courses.rest_app;
 
 import com.epam.brest.courses.model.dto.ProjectsDto;
+import com.epam.brest.courses.rest_app.controllers.ProjectsDtoController;
 import com.epam.brest.courses.service.ProjectsDtoService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;

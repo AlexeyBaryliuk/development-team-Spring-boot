@@ -1,4 +1,4 @@
-package com.epam.brest.courses.rest_app;
+package com.epam.brest.courses.rest_app.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

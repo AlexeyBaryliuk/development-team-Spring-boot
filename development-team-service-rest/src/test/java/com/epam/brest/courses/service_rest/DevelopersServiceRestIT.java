@@ -1,25 +1,21 @@
 package com.epam.brest.courses.service_rest;
 
 import com.epam.brest.courses.model.Developers;
-import com.epam.brest.courses.model.Projects;
-import com.epam.brest.courses.service.DevelopersService;
+import com.epam.brest.courses.service_rest.testConfig.TestConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.client.ExpectedCount;
 import org.springframework.test.web.client.MockRestServiceServer;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
@@ -31,21 +27,22 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.*;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus;
 
+@SpringBootTest(classes={TestConfig.class} )
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath:app-context-test.xml"})
 class DevelopersServiceRestIT {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersServiceRestIT.class);
 
-    DevelopersServiceRest developersServiceRest;
+    private DevelopersServiceRest developersServiceRest;
 
     private final String DEVELOPEERS_URL = "http://localhost:8088/developers";
 
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
     private MockRestServiceServer mockServer;
 
+    @Autowired
     private ObjectMapper mapper = new ObjectMapper();
 
     @BeforeEach
@@ -155,7 +152,7 @@ class DevelopersServiceRestIT {
         //given
         Integer id = 1;
         Developers developer = create(id);
-        mockServer.expect(ExpectedCount.once(), requestTo(DEVELOPEERS_URL + id ))
+        mockServer.expect(ExpectedCount.once(), requestTo(DEVELOPEERS_URL + "/" + id ))
                 .andExpect(method(HttpMethod.DELETE))
                 .andRespond(withStatus(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
