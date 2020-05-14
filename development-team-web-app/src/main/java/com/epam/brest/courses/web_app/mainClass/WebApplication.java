@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"com.epam.brest.courses."})
+@ComponentScan({"com.epam.brest.courses.*"})
 public class WebApplication {
 
     public static void main(String[] args) {

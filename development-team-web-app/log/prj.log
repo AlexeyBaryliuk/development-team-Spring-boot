@@ -1,7 +1,0 @@
-15:42:46 [main] INFO  c.e.b.c.w.DevelopersControllerIT - Starting DevelopersControllerIT on alexey-Lenovo-ideapad-110-15ISK with PID 26679 (started by alexey in /home/alexey/IdeaProjects/Development-team-SpringBoot/development-team-Spring-boot/development-team-web-app)
-15:42:46 [main] DEBUG c.e.b.c.w.DevelopersControllerIT - Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
-15:42:46 [main] INFO  c.e.b.c.w.DevelopersControllerIT - The following profiles are active: test
-15:42:49 [main] INFO  c.e.b.c.w.DevelopersControllerIT - Started DevelopersControllerIT in 4.722 seconds (JVM running for 10.729)
-15:42:51 [main] DEBUG c.e.b.c.r.c.DevelopersController - findAll()
-15:42:51 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
-15:42:51 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll

@@ -7,11 +7,16 @@
         <groupId>com.epam.brest.courses</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>development-team-web-app</artifactId>
 
     <packaging>war</packaging>
+
+    <properties>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </properties>
 
     <dependencies>
 
@@ -60,21 +65,10 @@
             <artifactId>spring-boot-starter-json</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-log4j2</artifactId>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -86,84 +80,12 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.10.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.epam.brest.courses</groupId>
-            <artifactId>development-team-rest-app</artifactId>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>tomcat</id>
-            <activation>
-
-                <property>
-                    <name>DT</name>
-                    <value>tomcat</value>
-                </property>
-            </activation>
-            <properties>
-                <port>8080</port>
-                <point.projects>rest_app_DT/projects</point.projects>
-                <point.projectsDto>rest_app_DT/projectsDto</point.projectsDto>
-                <point.developers>rest_app_DT/developers</point.developers>
-                <point.projects_developers>rest_app_DT/projects_developers</point.projects_developers>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>jetty</id>
-            <activation>
-                <property>
-                    <name>DT</name>
-                    <value>jetty</value>
-                </property>
-            </activation>
-            <properties>
-                <port>8088</port>
-                <point.projects>jetty_rest/projects</point.projects>
-                <point.projectsDto>jetty_rest/projectsDto</point.projectsDto>
-                <point.developers>jetty_rest/developers</point.developers>
-                <point.projects_developers>jetty_rest/projects_developers</point.projects_developers>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>jettyPlugin</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-                <property>
-                    <name>DT</name>
-                    <value>jettyPlugin</value>
-                </property>
-            </activation>
-            <properties>
-                <port>8088</port>
-                <point.projects>projects</point.projects>
-                <point.projectsDto>projectsDto</point.projectsDto>
-                <point.developers>developers</point.developers>
-                <point.projects_developers>projects_developers</point.projects_developers>
-            </properties>
-        </profile>
-    </profiles>
-
     <build>
+
         <finalName>web_app_DT</finalName>
 
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-
-        </resources>
         <plugins>
             <!-- Embedded Jetty HTTP Server for testing web application -->
             <plugin>

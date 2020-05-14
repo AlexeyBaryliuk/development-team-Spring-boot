@@ -1,18 +1,15 @@
 package com.epam.brest.courses.web_app;
 
 import com.epam.brest.courses.model.Developers;
-import com.epam.brest.courses.web_app.controllers.DevelopersController;
-import com.epam.brest.courses.web_app.testConfig.TestConfig;
+import com.epam.brest.courses.web_app.config.testConfig.TestConfig;
+import com.epam.brest.courses.web_app.config.viewConfig.ViewConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -22,20 +19,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isA;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes={TestConfig.class} )
-@AutoConfigureMockMvc
+@SpringBootTest(classes={TestConfig.class, ViewConfig.class} )
 @TestPropertySource("classpath:sql-development-team.properties")
 @Sql({"classpath:schema.sql", "classpath:data.sql"})
 @ActiveProfiles("test")
