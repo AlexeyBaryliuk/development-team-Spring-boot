@@ -1,94 +1,94 @@
-4121 [main] INFO  c.e.b.c.s.DevelopersServiceImplIT - Starting DevelopersServiceImplIT on alexey-Lenovo-ideapad-110-15ISK with PID 18544 (started by alexey in /home/alexey/IdeaProjects/Development-team-SpringBoot/development-team-Spring-boot/development-team-service)
-4157 [main] DEBUG c.e.b.c.s.DevelopersServiceImplIT - Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
-4157 [main] INFO  c.e.b.c.s.DevelopersServiceImplIT - The following profiles are active: test
-5896 [main] INFO  c.e.b.c.s.DevelopersServiceImplIT - Started DevelopersServiceImplIT in 2.667 seconds (JVM running for 9.1)
-14436 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='ijdnZmNVvwXChWwpkitR', lastName='CzrKqJqVrHAkBeciEqGR'}
-14477 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='ijdnZmNVvwXChWwpkitR', lastName='CzrKqJqVrHAkBeciEqGR'} 
-15442 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-15580 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 9
-15581 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 9
-16358 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='SoyPGKvfUADdQmQGODQC', lastName='QoNUDJivNmYdDGCPXgXe'}
-16359 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='SoyPGKvfUADdQmQGODQC', lastName='QoNUDJivNmYdDGCPXgXe'} 
-16363 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-16363 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 9
-16364 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 9
-16467 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='NqNIlucJLqfwlcKGDwjN', lastName='zNIlFWAfBiAwOVIAnMnY'}
-16468 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='NqNIlucJLqfwlcKGDwjN', lastName='zNIlFWAfBiAwOVIAnMnY'} 
-16472 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-16473 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - delete() developerId = 9
-16473 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Delete developerId = 9
-16510 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 9
-16510 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 9
-16669 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='iZxPjBrFLTkvPPYBlqPX', lastName='MZIHcmOoUtYXAezLDNXw'}
-16670 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='iZxPjBrFLTkvPPYBlqPX', lastName='MZIHcmOoUtYXAezLDNXw'} 
-16673 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-16674 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 9
-16674 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 9
-16678 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - update() developer = Developers{developerId=9, firstName='UxAkNRETaFbtTYHrKczs', lastName='PLktwsTWCaGqABlrENWm'}
-16679 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Update developer = Developers{developerId=9, firstName='UxAkNRETaFbtTYHrKczs', lastName='PLktwsTWCaGqABlrENWm'}
-16684 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Result = 1
-16685 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 9
-16685 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 9
-16812 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
-16813 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
-17985 [main] INFO  c.e.b.c.s.ProjectsDtoServiceImplIT - Starting ProjectsDtoServiceImplIT on alexey-Lenovo-ideapad-110-15ISK with PID 18544 (started by alexey in /home/alexey/IdeaProjects/Development-team-SpringBoot/development-team-Spring-boot/development-team-service)
-17986 [main] DEBUG c.e.b.c.s.ProjectsDtoServiceImplIT - Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
-17986 [main] INFO  c.e.b.c.s.ProjectsDtoServiceImplIT - The following profiles are active: test
-20452 [main] INFO  c.e.b.c.s.ProjectsDtoServiceImplIT - Started ProjectsDtoServiceImplIT in 2.623 seconds (JVM running for 23.655)
-20519 [main] DEBUG c.e.b.c.service.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='UsIAWkgAeFAWGIovAVXrZcfSHHxEiEfcYDJAGISmZrneviarTXqUnHTRROdRrSlZAlVlQbJOxbRHSJcslnnzYdmFoFpkDOMytuAT', dateAdded=2020-05-14}
-21043 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='UsIAWkgAeFAWGIovAVXrZcfSHHxEiEfcYDJAGISmZrneviarTXqUnHTRROdRrSlZAlVlQbJOxbRHSJcslnnzYdmFoFpkDOMytuAT', dateAdded=2020-05-14}
-21331 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Date 2020-05-14
-21332 [main] DEBUG c.e.b.c.service.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='ZLclauPJmVWipJEicgxqdUojVdgurGpgRjlGFcIMazxkKBRwXcLFpCYUAyTLHdmMAVrPpLxploAQtwTSoNIyFtzyacqqOLFkUJbg', dateAdded=2020-05-14}
-21342 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='ZLclauPJmVWipJEicgxqdUojVdgurGpgRjlGFcIMazxkKBRwXcLFpCYUAyTLHdmMAVrPpLxploAQtwTSoNIyFtzyacqqOLFkUJbg', dateAdded=2020-05-14}
-21352 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Date 2020-05-14
-21353 [main] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Find project between dates - findBetweenDates
-21354 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - findBetweenDates. DateStart = 2020-05-14 DateEnd = 2020-05-14
-21650 [main] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
-21651 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()
-21831 [main] INFO  c.e.b.c.s.Projects_DevelopersServiceImplIT - Starting Projects_DevelopersServiceImplIT on alexey-Lenovo-ideapad-110-15ISK with PID 18544 (started by alexey in /home/alexey/IdeaProjects/Development-team-SpringBoot/development-team-Spring-boot/development-team-service)
-21833 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImplIT - Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
-21834 [main] INFO  c.e.b.c.s.Projects_DevelopersServiceImplIT - The following profiles are active: test
-22038 [main] INFO  c.e.b.c.s.Projects_DevelopersServiceImplIT - Started Projects_DevelopersServiceImplIT in 0.307 seconds (JVM running for 25.242)
-22134 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='ExPTUvofRJiMVLeAQXNF', lastName='hCSktlAJVTZsnTzbzYUd'}
-22134 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='ExPTUvofRJiMVLeAQXNF', lastName='hCSktlAJVTZsnTzbzYUd'} 
-22136 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-22141 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='ExPTUvofRJiMVLeAQXNF', lastName='hCSktlAJVTZsnTzbzYUd'}
-22142 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='ExPTUvofRJiMVLeAQXNF', lastName='hCSktlAJVTZsnTzbzYUd'} 
-22144 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-22144 [main] DEBUG c.e.b.c.service.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='VIiMHJhgJMzDQPfiRlUYRBMrGUIQeRNtvyQDLXRFoADJeGbOSuNbjggbaizDxIVBymBkeUYuaKrnlbyfceyVnYWqUykdISxWuZLR', dateAdded=2020-05-14}
-22147 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='VIiMHJhgJMzDQPfiRlUYRBMrGUIQeRNtvyQDLXRFoADJeGbOSuNbjggbaizDxIVBymBkeUYuaKrnlbyfceyVnYWqUykdISxWuZLR', dateAdded=2020-05-14}
-22150 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Date 2020-05-14
-22150 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 4, Developer id = 9
-22151 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 4. Developer id = 9
-22153 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 4, Developer id = 10
-22153 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 4. Developer id = 10
-22155 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 4
-22155 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 4
-22219 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 2
-22335 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='apeKUiJVbbIvVnCKwpDk', lastName='RGwrmyyAUtOxQFBDMlFd'}
-22335 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='apeKUiJVbbIvVnCKwpDk', lastName='RGwrmyyAUtOxQFBDMlFd'} 
-22339 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-22339 [main] DEBUG c.e.b.c.service.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='EfzIDjixrDGinOacvNcXvCyYhqomAXFwDyndYGcTITmUfBVNcSXsVPhEzflIwlblmfZhFQwXCStRgWtjdaMlGOGruRymIOINrJSI', dateAdded=2020-05-14}
-22341 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='EfzIDjixrDGinOacvNcXvCyYhqomAXFwDyndYGcTITmUfBVNcSXsVPhEzflIwlblmfZhFQwXCStRgWtjdaMlGOGruRymIOINrJSI', dateAdded=2020-05-14}
-22344 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Date 2020-05-14
-22345 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 4, Developer id = 9
-22345 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 4. Developer id = 9
-22347 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 4
-22347 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 4
-22352 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 1
-22352 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE deleteDeveloperFromProject_Developers(). Developer id = 9
-22357 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO deleteDeveloperFromProject_Developers(). Developer id = 9, Project id = 4
-22364 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 4
-22365 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 4
-22367 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 0
-22498 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='UxpKOCWBgxWuagrUAnzv', lastName='IMEZYCnpuzywiNmEZRwH'}
-22498 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='UxpKOCWBgxWuagrUAnzv', lastName='IMEZYCnpuzywiNmEZRwH'} 
-22503 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
-22505 [main] DEBUG c.e.b.c.service.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='szUsaAHkuwekyOrOVYZAWhaKNrqZclCrnFJDwkzOZFqiwqXLeknjjSnsSezlRzqLxeqsfAGGksItqThVTgvuwgWWKlXuUTvJbMsg', dateAdded=2020-05-14}
-22510 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='szUsaAHkuwekyOrOVYZAWhaKNrqZclCrnFJDwkzOZFqiwqXLeknjjSnsSezlRzqLxeqsfAGGksItqThVTgvuwgWWKlXuUTvJbMsg', dateAdded=2020-05-14}
-22519 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Date 2020-05-14
-22519 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 4, Developer id = 9
-22519 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 4. Developer id = 9
-22525 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 4
-22526 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 4
-22535 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 1
+3653 [main] INFO  c.e.b.c.s.DevelopersServiceImplIT - Starting DevelopersServiceImplIT on alexey-Lenovo-ideapad-110-15ISK with PID 16293 (started by alexey in /home/alexey/IdeaProjects/Development-team-SpringBoot/development-team-Spring-boot/development-team-service)
+3658 [main] DEBUG c.e.b.c.s.DevelopersServiceImplIT - Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
+3659 [main] INFO  c.e.b.c.s.DevelopersServiceImplIT - The following profiles are active: test
+5068 [main] INFO  c.e.b.c.s.DevelopersServiceImplIT - Started DevelopersServiceImplIT in 2.591 seconds (JVM running for 7.056)
+8933 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='SPaBNpEkfgbZMoGyxZGX', lastName='XCcGbNTTQDSmVtHyFVsc'}
+8943 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='SPaBNpEkfgbZMoGyxZGX', lastName='XCcGbNTTQDSmVtHyFVsc'} 
+9093 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
+9096 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 9
+9097 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 9
+9464 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='exQvHTYbgQorotNoRjix', lastName='CZpuSDOXBsYoYQHuFnTZ'}
+9464 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='exQvHTYbgQorotNoRjix', lastName='CZpuSDOXBsYoYQHuFnTZ'} 
+9472 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
+9472 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 9
+9473 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 9
+9716 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='yoNKIYcYJSAQGKlYxrdw', lastName='jCiSKfxrhiaqkzTUquhF'}
+9717 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='yoNKIYcYJSAQGKlYxrdw', lastName='jCiSKfxrhiaqkzTUquhF'} 
+9727 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
+9727 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - delete() developerId = 9
+9728 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Delete developerId = 9
+9746 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 9
+9746 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 9
+9915 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='iXyiZuoTywwnqvDOctoZ', lastName='wXoboinSQYDvoWwCDLJn'}
+9917 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='iXyiZuoTywwnqvDOctoZ', lastName='wXoboinSQYDvoWwCDLJn'} 
+9923 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
+9926 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 9
+9926 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 9
+9930 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - update() developer = Developers{developerId=9, firstName='rfzNZqFFhWChAyEEjMGO', lastName='YeReLbhKFmOMnXLqNDqk'}
+9930 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Update developer = Developers{developerId=9, firstName='rfzNZqFFhWChAyEEjMGO', lastName='YeReLbhKFmOMnXLqNDqk'}
+9958 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Result = 1
+9958 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findById developerId = 9
+9958 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindById developerId = 9
+10135 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
+10135 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
+10511 [main] INFO  c.e.b.c.s.ProjectsDtoServiceImplIT - Starting ProjectsDtoServiceImplIT on alexey-Lenovo-ideapad-110-15ISK with PID 16293 (started by alexey in /home/alexey/IdeaProjects/Development-team-SpringBoot/development-team-Spring-boot/development-team-service)
+10511 [main] DEBUG c.e.b.c.s.ProjectsDtoServiceImplIT - Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
+10512 [main] INFO  c.e.b.c.s.ProjectsDtoServiceImplIT - The following profiles are active: test
+10898 [main] INFO  c.e.b.c.s.ProjectsDtoServiceImplIT - Started ProjectsDtoServiceImplIT in 0.606 seconds (JVM running for 12.885)
+11033 [main] DEBUG c.e.b.c.service.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='gWkFdSaNstSjOEcqhdDTerDzgSGYXTpOccVzMriqmtSdZKeELQCCsfUNfiXAuZqqaiEgxhlssmoLAjCEbvFMIhrvOcfioTZeHxmn', dateAdded=2020-05-15}
+11052 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='gWkFdSaNstSjOEcqhdDTerDzgSGYXTpOccVzMriqmtSdZKeELQCCsfUNfiXAuZqqaiEgxhlssmoLAjCEbvFMIhrvOcfioTZeHxmn', dateAdded=2020-05-15}
+11062 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Date 2020-05-15
+11062 [main] DEBUG c.e.b.c.service.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='lMAjIwLBlwvrfcclYstYJbkPKPkZvZaBwIktCJRQfNVDSZjPReCZgwSWOVVUOaVdNBqcUNqwdGxNhYTaOMEwmEeIHiophYFheIeB', dateAdded=2020-05-15}
+11077 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='lMAjIwLBlwvrfcclYstYJbkPKPkZvZaBwIktCJRQfNVDSZjPReCZgwSWOVVUOaVdNBqcUNqwdGxNhYTaOMEwmEeIHiophYFheIeB', dateAdded=2020-05-15}
+11081 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Date 2020-05-15
+11082 [main] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Find project between dates - findBetweenDates
+11082 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - findBetweenDates. DateStart = 2020-05-15 DateEnd = 2020-05-15
+11155 [main] DEBUG c.e.b.c.s.ProjectsDtoServiceImpl - Count of developers - countOfDevelopers()
+11155 [main] DEBUG c.e.b.c.d.ProjectJdbcDaoDtoImpl - CountOfDevelopers()
+11273 [main] INFO  c.e.b.c.s.Projects_DevelopersServiceImplIT - Starting Projects_DevelopersServiceImplIT on alexey-Lenovo-ideapad-110-15ISK with PID 16293 (started by alexey in /home/alexey/IdeaProjects/Development-team-SpringBoot/development-team-Spring-boot/development-team-service)
+11273 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImplIT - Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
+11274 [main] INFO  c.e.b.c.s.Projects_DevelopersServiceImplIT - The following profiles are active: test
+11354 [main] INFO  c.e.b.c.s.Projects_DevelopersServiceImplIT - Started Projects_DevelopersServiceImplIT in 0.147 seconds (JVM running for 13.341)
+11398 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='ErilUFoeiwXWIFEMplik', lastName='pgexozFjwKdIGRoCJMsW'}
+11398 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='ErilUFoeiwXWIFEMplik', lastName='pgexozFjwKdIGRoCJMsW'} 
+11400 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
+11400 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='ErilUFoeiwXWIFEMplik', lastName='pgexozFjwKdIGRoCJMsW'}
+11400 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='ErilUFoeiwXWIFEMplik', lastName='pgexozFjwKdIGRoCJMsW'} 
+11401 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
+11402 [main] DEBUG c.e.b.c.service.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='aRyNxWYeZnWlQwBbGbqYMLjrMzmvyVSIhKHZoyWbARvvqSrPepLFQmIwITtnSAmRQpRzJzhhQhSigWcTNNMZdlXzRnmCKrBDXPUZ', dateAdded=2020-05-15}
+11403 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='aRyNxWYeZnWlQwBbGbqYMLjrMzmvyVSIhKHZoyWbARvvqSrPepLFQmIwITtnSAmRQpRzJzhhQhSigWcTNNMZdlXzRnmCKrBDXPUZ', dateAdded=2020-05-15}
+11405 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Date 2020-05-15
+11405 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 4, Developer id = 9
+11405 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 4. Developer id = 9
+11407 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 4, Developer id = 10
+11407 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 4. Developer id = 10
+11409 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 4
+11409 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 4
+11413 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 2
+11459 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='fGkGkoWUjwjGYNSMNvEQ', lastName='MqhIgHAHYVbGEcmkfGzn'}
+11459 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='fGkGkoWUjwjGYNSMNvEQ', lastName='MqhIgHAHYVbGEcmkfGzn'} 
+11461 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
+11462 [main] DEBUG c.e.b.c.service.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='SGZTTdYwmPGMBHmhjvMZOSgoAQfWdMzdJHgOjmukXkDcKGXOXpJsrjRHzMwhmwhmGwuHLRurFYmbVtqBDCDNKEbdGWdsZsgOCSvn', dateAdded=2020-05-15}
+11464 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='SGZTTdYwmPGMBHmhjvMZOSgoAQfWdMzdJHgOjmukXkDcKGXOXpJsrjRHzMwhmwhmGwuHLRurFYmbVtqBDCDNKEbdGWdsZsgOCSvn', dateAdded=2020-05-15}
+11466 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Date 2020-05-15
+11466 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 4, Developer id = 9
+11466 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 4. Developer id = 9
+11468 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 4
+11468 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 4
+11472 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 1
+11472 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE deleteDeveloperFromProject_Developers(). Developer id = 9
+11472 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO deleteDeveloperFromProject_Developers(). Developer id = 9, Project id = 4
+11475 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 4
+11475 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 4
+11477 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 0
+11521 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - create() developer = Developers{developerId=null, firstName='TRKlrexbIKYiyaBbssBC', lastName='iYqStvQLyjscopuYCjzX'}
+11521 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Create developer = Developers{developerId=null, firstName='TRKlrexbIKYiyaBbssBC', lastName='iYqStvQLyjscopuYCjzX'} 
+11523 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - Res = 1 
+11524 [main] DEBUG c.e.b.c.service.ProjectsServiceImpl - Create project - create(): project = Project{projectId=null, description='HBMiaOHYwtDcYJUaASQcwvLbMPFXuPrrLTEpDnaGLFkqzEKzFZEfKWjcQMfyzPNMOPsRRBWrbkgFhoVCCCwJqfxlcqvBFFYDHKYq', dateAdded=2020-05-15}
+11526 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Create new project Project{projectId=null, description='HBMiaOHYwtDcYJUaASQcwvLbMPFXuPrrLTEpDnaGLFkqzEKzFZEfKWjcQMfyzPNMOPsRRBWrbkgFhoVCCCwJqfxlcqvBFFYDHKYq', dateAdded=2020-05-15}
+11528 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Date 2020-05-15
+11528 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE addDeveloperToProjects_Developers(). Project id = 4, Developer id = 9
+11528 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO addDeveloperToProjects_Developers() Project id = 4. Developer id = 9
+11529 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - SERVICE selectDevelopersFromProjects_Developers(). Project id = 4
+11530 [main] DEBUG c.e.b.c.d.Projects_DevelopersJdbcDaoImpl - DAO SelectDeveloperFromProjects_Developers(). Project id = 4
+11535 [main] DEBUG c.e.b.c.s.Projects_DevelopersServiceImpl - Developer's list size = 1

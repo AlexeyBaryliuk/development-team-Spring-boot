@@ -18,7 +18,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -32,15 +31,22 @@ public class ProjectsController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsController.class);
 
+    @Autowired
     private final ProjectsDtoService projectsDtoService;
 
+    @Autowired
     private final ProjectsService projectsService;
 
+    @Autowired
     private final DevelopersService developersService;
 
+    @Autowired
     private final Projects_DevelopersService projects_developersService;
 
-    public ProjectsController(ProjectsDtoService projectsDtoService, ProjectsService projectsService, DevelopersService developersService, Projects_DevelopersService projects_developersService) {
+    public ProjectsController(ProjectsDtoService projectsDtoService
+                            , ProjectsService projectsService
+                            , DevelopersService developersService
+                            , Projects_DevelopersService projects_developersService) {
         this.projectsDtoService = projectsDtoService;
         this.projectsService = projectsService;
         this.developersService = developersService;

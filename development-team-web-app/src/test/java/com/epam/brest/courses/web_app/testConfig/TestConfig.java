@@ -1,14 +1,14 @@
-package com.epam.brest.courses.web_app.config.testConfig;
+package com.epam.brest.courses.web_app.testConfig;
 
 import com.epam.brest.courses.daoImpl.DevelopersJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoDtoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.Projects_DevelopersJdbcDaoImpl;
-import com.epam.brest.courses.web_app.controllers.DevelopersController;
 import com.epam.brest.courses.service.DevelopersServiceImpl;
 import com.epam.brest.courses.service.ProjectsDtoServiceImpl;
 import com.epam.brest.courses.service.ProjectsServiceImpl;
 import com.epam.brest.courses.service.Projects_DevelopersServiceImpl;
+import com.epam.brest.courses.web_app.controllers.DevelopersController;
 import com.epam.brest.courses.web_app.controllers.HelloController;
 import com.epam.brest.courses.web_app.controllers.ProjectsController;
 import com.epam.brest.courses.web_app.validators.DevelopersValidator;
@@ -17,14 +17,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
-import org.springframework.format.Formatter;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 @TestConfiguration
 public class TestConfig {

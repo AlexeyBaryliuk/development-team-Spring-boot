@@ -1,7 +1,7 @@
-1798 [main] INFO  c.e.b.c.w.ProjectsControllerIT - Starting ProjectsControllerIT on alexey-Lenovo-ideapad-110-15ISK with PID 15841 (started by alexey in /home/alexey/IdeaProjects/Development-team-SpringBoot/development-team-Spring-boot/development-team-web-app)
-1957 [main] DEBUG c.e.b.c.w.ProjectsControllerIT - Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
-1958 [main] INFO  c.e.b.c.w.ProjectsControllerIT - The following profiles are active: test
-3807 [main] INFO  c.e.b.c.w.ProjectsControllerIT - Started ProjectsControllerIT in 2.56 seconds (JVM running for 5.369)
-5264 [main] DEBUG c.e.b.c.w.c.ProjectsController - updateProject(Project{projectId=1, description='test', dateAdded=2020-05-14}, org.springframework.validation.BeanPropertyBindingResult: 0 errors)
-5266 [main] DEBUG c.e.b.c.service.ProjectsServiceImpl - Update project - update(): project = Project{projectId=1, description='test', dateAdded=2020-05-14}
-5266 [main] DEBUG c.e.b.c.daoImpl.ProjectJdbcDaoImpl - Date = :      2020-05-14
+3610 [main] INFO  c.e.b.c.w.DevelopersControllerIT - Starting DevelopersControllerIT on alexey-Lenovo-ideapad-110-15ISK with PID 14813 (started by alexey in /home/alexey/IdeaProjects/Development-team-SpringBoot/development-team-Spring-boot/development-team-web-app)
+3710 [main] DEBUG c.e.b.c.w.DevelopersControllerIT - Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
+3711 [main] INFO  c.e.b.c.w.DevelopersControllerIT - The following profiles are active: test
+8215 [main] INFO  c.e.b.c.w.DevelopersControllerIT - Started DevelopersControllerIT in 5.891 seconds (JVM running for 13.02)
+12321 [main] DEBUG c.e.b.c.w.c.DevelopersController - DCONTROLLER findAll()
+12321 [main] DEBUG c.e.b.c.s.DevelopersServiceImpl - findAll()
+12321 [main] DEBUG c.e.b.c.d.DevelopersJdbcDaoImpl - FindAll
