@@ -1,4 +1,0 @@
-113333 [qtp60187547-17] DEBUG c.e.b.c.web_app.ProjectsController - Find all projects
-117100 [qtp60187547-17] DEBUG c.e.b.c.s.ProjectsDtoServiceRest - countOfDevelopers()
-146249 [qtp60187547-26] DEBUG c.e.b.c.w.DevelopersController - DCONTROLLER findAll()
-146250 [qtp60187547-26] DEBUG c.e.b.c.s.DevelopersServiceRest - findAll()
