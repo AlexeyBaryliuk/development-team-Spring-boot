@@ -24,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @TestPropertySource("classpath:sql-development-team.properties")
 @Sql({"classpath:schema.sql", "classpath:data.sql"})
-@ActiveProfiles("test")
 class ProjectsDtoServiceImplIT {
 
     @Autowired

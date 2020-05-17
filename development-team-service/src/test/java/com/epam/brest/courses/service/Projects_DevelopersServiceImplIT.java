@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SpringExtension.class)
 @TestPropertySource("classpath:sql-development-team.properties")
 @Sql({"classpath:schema.sql", "classpath:data.sql"})
-@ActiveProfiles("test")
 public class Projects_DevelopersServiceImplIT {
 
     private Developers developers = new Developers();

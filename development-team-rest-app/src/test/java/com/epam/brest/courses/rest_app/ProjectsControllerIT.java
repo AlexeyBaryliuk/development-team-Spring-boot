@@ -42,7 +42,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes={ProjectsController.class, TestConfig.class} )
 @TestPropertySource("classpath:sql-development-team.properties")
 @Sql({"classpath:schema.sql", "classpath:data.sql"})
-@ActiveProfiles("test")
 class ProjectsControllerIT {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsControllerIT.class);

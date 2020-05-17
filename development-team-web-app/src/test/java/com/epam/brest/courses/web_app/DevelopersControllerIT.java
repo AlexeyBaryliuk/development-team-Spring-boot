@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes={TestConfig.class, ViewConfig.class} )
 @TestPropertySource("classpath:sql-development-team.properties")
 @Sql({"classpath:schema.sql", "classpath:data.sql"})
-@ActiveProfiles("test")
 class DevelopersControllerIT {
 
     private final String COMMON_DEVELOPERS_URL = "/developers";

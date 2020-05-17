@@ -1,6 +1,6 @@
 package com.epam.brest.courses.daoImpl;
 
-import com.epam.brest.courses.daoImpl.testConfig.TestConfig;
+import com.epam.brest.courses.daoImpl.config.TestConfig;
 import com.epam.brest.courses.model.Developers;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @TestPropertySource("classpath:sql-development-team.properties")
 @Sql({"classpath:schema.sql", "classpath:data.sql"})
-@ActiveProfiles("test")
+@ActiveProfiles("mySql")
 class DevelopersJdbcDaoTestIT {
 
     @Autowired

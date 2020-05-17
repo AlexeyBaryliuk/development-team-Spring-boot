@@ -50,7 +50,7 @@ public class ProjectJdbcDaoImpl implements ProjectsJdbcDao {
     private String sqlCountOfDescription;
 
 
-    MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+    private MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 
     @Override
     public List<Projects> findAll() {

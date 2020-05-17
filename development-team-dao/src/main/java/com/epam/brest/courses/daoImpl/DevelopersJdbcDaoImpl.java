@@ -31,7 +31,8 @@ public class DevelopersJdbcDaoImpl implements DevelopersJdbcDao {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-    MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+    private MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+
     GeneratedKeyHolderFactory keyHolderFactory = new GeneratedKeyHolderFactory();
 
     @Value("${DEV.sqlGetAllDevelopers}")
@@ -78,8 +79,8 @@ public class DevelopersJdbcDaoImpl implements DevelopersJdbcDao {
         KeyHolder keyHolder = keyHolderFactory.newKeyHolder();
 
         Integer res = namedParameterJdbcTemplate.update(sqlAdd, parameterSource, keyHolder);
-        LOGGER.debug("Res = {} ", res);
-        return  (Integer) keyHolder.getKey();
+        LOGGER.debug("Result = {} ", res);
+        return  keyHolder.getKey().intValue();
     }
 
     @Override

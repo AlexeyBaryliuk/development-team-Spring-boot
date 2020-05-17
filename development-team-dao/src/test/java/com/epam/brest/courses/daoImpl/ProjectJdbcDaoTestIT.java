@@ -1,6 +1,6 @@
 package com.epam.brest.courses.daoImpl;
 
-import com.epam.brest.courses.daoImpl.testConfig.TestConfig;
+import com.epam.brest.courses.daoImpl.config.TestConfig;
 import com.epam.brest.courses.model.Projects;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @TestPropertySource("classpath:sql-development-team.properties")
 @Sql({"classpath:schema.sql", "classpath:data.sql"})
-@ActiveProfiles("test")
+@ActiveProfiles("mySql")
 class ProjectJdbcDaoTestIT {
 
     @Autowired
@@ -60,8 +60,8 @@ class ProjectJdbcDaoTestIT {
         Projects projectTest = project;
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         LocalDate checkDate = projectTest.getDateAdded();
-        Integer id =projectsDao.create(projectTest);
-        System.out.println(projectsDao.findById(id).get().getDateAdded());
+
+        Integer id = projectsDao.create(projectTest);
         Optional<Projects> optionalProjects = projectsDao.findById(id);
             assertTrue(optionalProjects.isPresent());
 
@@ -74,7 +74,7 @@ class ProjectJdbcDaoTestIT {
 
         assertEquals(1, result.intValue());
         assertEquals( checkDate, optionalUpdateProjects.get().getDateAdded());
-        assertSame(optionalProjects.get().getDescription(), optionalUpdateProjects.get().getDescription());
+        assertEquals(optionalProjects.get().getDescription(), optionalUpdateProjects.get().getDescription());
     }
 
     @Test

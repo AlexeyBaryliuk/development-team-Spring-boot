@@ -49,7 +49,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                         , TestConfig.class} )
 @TestPropertySource("classpath:sql-development-team.properties")
 @Sql({"classpath:schema.sql", "classpath:data.sql"})
-@ActiveProfiles("test")
 class Projects_DevelopersControllerIT {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Projects_DevelopersControllerIT.class);
@@ -65,7 +64,8 @@ class Projects_DevelopersControllerIT {
     @Autowired
     private DevelopersController developersController;
 
-    ObjectMapper objectMapper = new ObjectMapper()
+    @Autowired
+    private ObjectMapper objectMapper = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
 
@@ -75,11 +75,11 @@ class Projects_DevelopersControllerIT {
 
     private MockMvc mockMvcDeveloper;
 
-    MockMvcProjects_DevelopersService projects_developersService = new MockMvcProjects_DevelopersService();
+    private MockMvcProjects_DevelopersService projects_developersService = new MockMvcProjects_DevelopersService();
 
-    MockMvcProjectsServicePD projectsService = new MockMvcProjectsServicePD();
+    private MockMvcProjectsServicePD projectsService = new MockMvcProjectsServicePD();
 
-    MockMvcDevelopersServicePD developersService = new MockMvcDevelopersServicePD();
+    private MockMvcDevelopersServicePD developersService = new MockMvcDevelopersServicePD();
 
     @BeforeEach
     private void before() {

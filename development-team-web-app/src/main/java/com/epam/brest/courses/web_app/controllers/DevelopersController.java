@@ -24,7 +24,7 @@ public class DevelopersController {
     @Autowired
     private DevelopersValidator developersValidator;
 
-    Developers developer = new Developers();
+    private Developers developer = new Developers();
 
     @Autowired
     private final DevelopersService developersService;

@@ -89,27 +89,26 @@ public class DevelopersMockTest {
     }
 
 
-    @Test
-    public void shouldCreateNewDeveloper(){
-
-        Developers developer = newDeveloper();
-        developer.setDeveloperId(null);
-        String sql = "something";
-        ReflectionTestUtils.setField(developersJdbcDao,"sqlAdd", sql);
-
-        KeyHolder keyHolder = mock(GeneratedKeyHolder.class);
-
-        when(namedParameterJdbcTemplate.update(anyString(), any(MapSqlParameterSource.class)
-                ,any(KeyHolder.class))).thenReturn(0);
-
-        when((keyHolder.getKey())).thenReturn(1 );
-        LOGGER.debug("Id------ = {} ", keyHolder.getKey());
-
-        developersJdbcDao.create(developer);
-
-        assertEquals(1, keyHolder.getKey());
-
-        }
+//    @Test
+//    public void shouldCreateNewDeveloper(){
+//
+//        Developers developer = newDeveloper();
+//        String sql = "something";
+//        ReflectionTestUtils.setField(developersJdbcDao,"sqlAdd", sql);
+//
+//        KeyHolder keyHolder = mock(GeneratedKeyHolder.class);
+//
+//        when(namedParameterJdbcTemplate.update(anyString(), any(MapSqlParameterSource.class)
+//                ,any(KeyHolder.class))).thenReturn(0);
+//
+//        when((keyHolder.getKey())).thenReturn(1 );
+//        LOGGER.debug("Id------ = {} ", keyHolder.getKey());
+//
+//        developersJdbcDao.create(developer);
+//
+//        assertEquals(1, keyHolder.getKey());
+//
+//        }
 
     @Test
     public void shouldDeleteDeveloper(){
@@ -128,7 +127,6 @@ public class DevelopersMockTest {
     private static Developers newDeveloper(){
 
         Developers developer = new Developers();
-        developer.setDeveloperId(1);
         developer.setFirstName("Jon");
         developer.setLastName("Connor");
         return developer;
