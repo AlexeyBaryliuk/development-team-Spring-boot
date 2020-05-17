@@ -56,8 +56,8 @@ public class Projects_DevelopersJdbcDaoTestIT {
 
         List<Developers> developersList = projects_developersJdbcDao.selectDevelopersFromProjects_Developers(projectId);
         assertEquals(2, developersList.size());
-        assertEquals(0, resultFirst.intValue());
-        assertEquals(0, resultSecond.intValue());
+        assertEquals(1, resultFirst.intValue());
+        assertEquals(1, resultSecond.intValue());
 
     }
 
@@ -73,7 +73,7 @@ public class Projects_DevelopersJdbcDaoTestIT {
 
         List<Developers> developersList = projects_developersJdbcDao.selectDevelopersFromProjects_Developers(projectId);
         assertEquals(1, developersList.size());
-        assertEquals(0, result.intValue());
+        assertEquals(1, result.intValue());
     }
 
     @Test
@@ -88,7 +88,7 @@ public class Projects_DevelopersJdbcDaoTestIT {
 
         List<Developers> developersList = projects_developersJdbcDao.selectDevelopersFromProjects_Developers(projectId);
         assertEquals(1, developersList.size());
-        assertEquals(0, resultFirst.intValue());
+        assertEquals(1, resultFirst.intValue());
 
         Integer resultAfterDelete = projects_developersJdbcDao.deleteDeveloperFromProject_Developers(projectId, developerId);
         List<Developers> developersListAfterDelete = projects_developersJdbcDao.selectDevelopersFromProjects_Developers(projectId);

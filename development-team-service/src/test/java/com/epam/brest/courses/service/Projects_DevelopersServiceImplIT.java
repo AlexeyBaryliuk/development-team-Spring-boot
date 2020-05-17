@@ -25,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SpringExtension.class)
 @TestPropertySource("classpath:sql-development-team.properties")
 @Sql({"classpath:schema.sql", "classpath:data.sql"})
+@ActiveProfiles("mySql")
 public class Projects_DevelopersServiceImplIT {
 
     private Developers developers = new Developers();
@@ -55,8 +56,8 @@ public class Projects_DevelopersServiceImplIT {
         Integer secondResult = projects_developersService.addDeveloperToProjects_Developers(projectId, secondDeveloperId);
         List<Developers> developersList = projects_developersService.selectDevelopersFromProjects_Developers(projectId);
         assertEquals(2, developersList.size());
-        assertEquals(0, firstResult.intValue());
-        assertEquals(0, secondResult.intValue());
+        assertEquals(1, firstResult.intValue());
+        assertEquals(1, secondResult.intValue());
     }
 
     @Test
@@ -72,7 +73,7 @@ public class Projects_DevelopersServiceImplIT {
 
         List<Developers> developersList = projects_developersService.selectDevelopersFromProjects_Developers(projectId);
         assertEquals(1, developersList.size());
-        assertEquals(0, result.intValue());
+        assertEquals(1, result.intValue());
     }
 
     @Test
@@ -88,7 +89,7 @@ public class Projects_DevelopersServiceImplIT {
         Integer result = projects_developersService.addDeveloperToProjects_Developers(projectId, developerId);
         List<Developers> developersList = projects_developersService.selectDevelopersFromProjects_Developers(projectId);
         assertEquals(1, developersList.size());
-        assertEquals(0, result.intValue());
+        assertEquals(1, result.intValue());
 
         Integer resultAfterDelete = projects_developersService.deleteDeveloperFromProject_Developers(projectId, developerId);
         List<Developers> developersListAfterDelete = projects_developersService.selectDevelopersFromProjects_Developers(projectId);
