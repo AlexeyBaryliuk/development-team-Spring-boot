@@ -59,6 +59,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <argLine>-Dspring.profiles.active=mySql</argLine>
+                </configuration>
             </plugin>
         </plugins>
     </build>

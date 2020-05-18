@@ -70,6 +70,30 @@
 
     <build>
         <finalName>rest_app_DT</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
+    <profiles>
 
+        <profile>
+            <id>h2</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <activatedProperties>h2</activatedProperties>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>mySql</id>
+            <properties>
+                <activatedProperties>mySql</activatedProperties>
+            </properties>
+        </profile>
+    </profiles>
 </project>
