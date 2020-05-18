@@ -33,10 +33,8 @@ Setup java 8 and Maven, see [enviroment_setup.md](README/enviroment_setup.md "cl
   
       
 ## Build project 
-1. Setup application using tomcat server [using_tomcat.md](README/using_tomcat.md "click")
 
-2. Setup application using jetty server [using_jetty.md](README/using_jetty.md "click")
-3. Setup application using jetty plugin [using_jetty_plugin.md](README/using_jetty_plugin.md "click")
+ Setup application using profiles [using_profiles.md](README/using_profiles.md "click")
 
 ## Rest server
 
