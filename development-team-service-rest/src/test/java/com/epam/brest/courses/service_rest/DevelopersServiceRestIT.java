@@ -169,9 +169,10 @@ class DevelopersServiceRestIT {
 
     private Developers create(int index){
 
-        Developers developer = new Developers().setDeveloperId(index)
-                                               .setFirstName("F" + index)
-                                               .setLastName("L" + index);
+        Developers developer = new Developers();
+        developer.setDeveloperId(index);
+        developer.setFirstName("F" + index);
+        developer.setLastName("L" + index);
         return developer;
     }
 }

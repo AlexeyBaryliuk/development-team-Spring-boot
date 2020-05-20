@@ -86,7 +86,8 @@ class ProjectsDtoControllerIT {
 
         LocalDate dateStart = LocalDate.now().minusDays(1);
         LocalDate dateEnd = LocalDate.now().plusDays(1);
-        Projects projects = new Projects().setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
+        Projects projects = new Projects();
+        projects.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
 
         Integer id = projectsService.create(projects);
         List<ProjectsDto> projectsDtoList = projectsDtoService.findBetweenDates(dateStart,dateEnd);

@@ -102,20 +102,20 @@ class Projects_DevelopersControllerIT {
     void selectDevelopersFromProjects_Developers() throws Exception {
 
         LOGGER.debug("selectDevelopersFromProjects_Developers()");
-        Projects project = new Projects()
-                .setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
+        Projects project = new Projects();
+                project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         Integer projectId = projectsService.create(project);
         assertNotNull(projectId);
 
-        Developers developer = new Developers()
-                .setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE))
-                .setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
+        Developers developer = new Developers();
+                developer.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
+                developer.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         Integer developerId = developersService.create(developer);
         assertNotNull(developerId);
 
             int result = projects_developersService.addDeveloperToProjects_Developers(projectId,developerId);
 
-            assertEquals(0,result);
+            assertEquals(1,result);
 
             List<Developers> developersList = projects_developersService
                                                              .selectDevelopersFromProjects_Developers(projectId);
@@ -131,34 +131,34 @@ class Projects_DevelopersControllerIT {
     void addDeveloperToProjects_Developers() throws Exception {
 
         LOGGER.debug("addDeveloperToProjects_Developers()");
-        Projects project = new Projects()
-                .setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
+        Projects project = new Projects();
+                project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         Integer projectId = projectsService.create(project);
         assertNotNull(projectId);
 
-        Developers developer = new Developers()
-                .setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE))
-                .setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
+        Developers developer = new Developers();
+                developer.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
+                developer.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         Integer developerId = developersService.create(developer);
         assertNotNull(developerId);
 
         int result = projects_developersService.addDeveloperToProjects_Developers(projectId,developerId);
 
-        assertEquals(0,result);
+        assertEquals(1,result);
     }
 
     @Test
     void deleteDeveloperFromProject_Developers() throws Exception {
 
         LOGGER.debug("deleteDeveloperFromProject_Developers()");
-        Projects project = new Projects()
-                .setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
+        Projects project = new Projects();
+                project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         Integer projectId = projectsService.create(project);
         assertNotNull(projectId);
 
-        Developers developer = new Developers()
-                .setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE))
-                .setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
+        Developers developer = new Developers();
+                developer.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
+                developer.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         Integer developerId = developersService.create(developer);
         assertNotNull(developerId);
         projects_developersService.addDeveloperToProjects_Developers(projectId,developerId);
@@ -173,19 +173,19 @@ class Projects_DevelopersControllerIT {
     void findByIdFromProjects_Developers() throws Exception {
 
         LOGGER.debug("findByIdFromProjects_Developers()");
-        Projects project = new Projects()
-                .setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
+        Projects project = new Projects();
+                project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         Integer projectId = projectsService.create(project);
         assertNotNull(projectId);
 
-        Developers developer = new Developers()
-                .setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE))
-                .setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
+        Developers developer = new Developers();
+                developer.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
+                developer.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         Integer developerId = developersService.create(developer);
         assertNotNull(developerId);
 
         int result = projects_developersService.addDeveloperToProjects_Developers(projectId,developerId);
-        assertEquals(0,result);
+        assertEquals(1,result);
 
         Optional<Projects_Developers> optionalDevelopers = projects_developersService.findByIdFromProjects_Developers(projectId, developerId);
         assertTrue(optionalDevelopers.isPresent());

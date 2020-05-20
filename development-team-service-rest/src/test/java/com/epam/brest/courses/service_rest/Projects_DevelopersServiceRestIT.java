@@ -143,17 +143,18 @@ class Projects_DevelopersServiceRestIT {
 
     private Developers createDevelopers(int index){
 
-        Developers developer = new Developers().setDeveloperId(index)
-                .setFirstName("F" + index)
-                .setLastName("L" + index);
+        Developers developer = new Developers();
+                developer.setDeveloperId(index);
+                developer.setFirstName("F" + index);
+                developer.setLastName("L" + index);
         return developer;
     }
 
     private Projects_Developers createProjects_Developers(int index){
 
-        Projects_Developers projects_developers = new Projects_Developers()
-                .setProjectId(index + 1)
-                .setDeveloperId(index + 2);
+        Projects_Developers projects_developers = new Projects_Developers();
+        projects_developers.setProjectId(index + 1);
+        projects_developers.setDeveloperId(index + 2);
 
         return projects_developers;
     }

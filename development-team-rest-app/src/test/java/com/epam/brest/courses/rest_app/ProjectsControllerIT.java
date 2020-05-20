@@ -81,8 +81,8 @@ class ProjectsControllerIT {
     void shouldFindById() throws Exception {
 
         // given
-        Projects project = new Projects()
-                .setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
+        Projects project = new Projects();
+                project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         Integer id = projectsService.create(project);
         assertNotNull(id);
 
@@ -108,8 +108,8 @@ class ProjectsControllerIT {
     @Test
     void shouldCreateProject() throws Exception {
 
-        Projects project = new Projects()
-                .setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
+        Projects project = new Projects();
+               project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         Integer id = projectsService.create(project);
         assertNotNull(id);
 
@@ -136,8 +136,8 @@ class ProjectsControllerIT {
     void shouldUpdateProject() throws Exception {
 
         // given
-        Projects project = new Projects()
-                .setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
+        Projects project = new Projects();
+               project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         Integer id = projectsService.create(project);
         assertNotNull(id);
 
@@ -159,8 +159,8 @@ class ProjectsControllerIT {
     void shouldDeleteProject() throws Exception {
 
         // given
-        Projects project = new Projects()
-                .setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
+        Projects project = new Projects();
+                project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         Integer id = projectsService.create(project);
         assertNotNull(id);
 
@@ -188,13 +188,13 @@ class ProjectsControllerIT {
     public void shouldFailOnCreateProjectWithDuplicateDescription() throws Exception {
 
         LOGGER.debug("shouldFailOnCreateProjectWithDuplicateDescription()");
-        Projects project = new Projects()
-                .setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
+        Projects project = new Projects();
+                project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         Integer id = projectsService.create(project);
         assertNotNull(id);
 
-        Projects projectNew = new Projects()
-                .setDescription(project.getDescription());
+        Projects projectNew = new Projects();
+                projectNew.setDescription(project.getDescription());
 
         MockHttpServletResponse response =
                 mockMvc.perform(post(PROJECTS_ENDPOINT)

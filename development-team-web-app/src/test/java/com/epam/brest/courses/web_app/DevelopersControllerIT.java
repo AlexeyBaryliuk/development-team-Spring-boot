@@ -156,10 +156,10 @@ class DevelopersControllerIT {
 
     private Developers create(int index){
 
-        Developers developer = new Developers()
-                .setDeveloperId(index)
-                .setLastName("LastName" + index)
-                .setFirstName("FirstName" + index);
+        Developers developer = new Developers();
+                developer.setDeveloperId(index);
+                developer.setLastName("LastName" + index);
+                developer.setFirstName("FirstName" + index);
         return developer;
     }
 }

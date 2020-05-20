@@ -127,9 +127,9 @@ class ProjectsControllerIT {
     @Test
     public void shouldUpdateProjectAfterEdit() throws Exception {
 
-        Projects project = new Projects()
-                .setProjectId(1)
-                .setDescription("test");
+        Projects project = new Projects();
+                project.setProjectId(1);
+                project.setDescription("test");
 
         mockMvc.perform(
                 MockMvcRequestBuilders.post(COMMON_PROJECTS_URL + "/1")
@@ -146,9 +146,9 @@ class ProjectsControllerIT {
     @Test
     public void shouldRejectUpdateDepartmentOnLargeDepartmentName() throws Exception {
 
-        Projects project = new Projects()
-                .setProjectId(1)
-                .setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE + 1));
+        Projects project = new Projects();
+                project.setProjectId(1);
+                project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE + 1));
 
 
         mockMvc.perform(
