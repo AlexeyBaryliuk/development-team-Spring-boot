@@ -44,14 +44,14 @@ class ProjectsServiceImplIT {
     }
 
     @Test
-    void shouldFindById() {
+    void shouldfindByDeveloperId() {
 
         project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         String description = project.getDescription();
         LocalDate testDate = project.getDateAdded();
         Integer projectId = projectsService.create(project);
 
-        Optional<Projects> optionalProjects = projectsService.findById(projectId);
+        Optional<Projects> optionalProjects = projectsService.findByDeveloperId(projectId);
         assertTrue(optionalProjects.isPresent());
         assertEquals(testDate,optionalProjects.get().getDateAdded());
         assertEquals(description,optionalProjects.get().getDescription());
@@ -65,12 +65,12 @@ class ProjectsServiceImplIT {
         LocalDate testDate = project.getDateAdded();
         Integer projectId = projectsService.create(project);
 
-        Optional<Projects> projectBeforeUpdate = projectsService.findById(projectId);
+        Optional<Projects> projectBeforeUpdate = projectsService.findByDeveloperId(projectId);
         assertTrue(projectBeforeUpdate.isPresent());
         projectBeforeUpdate.get().setDescription("TextAfterUpdate");
 
         projectsService.update(projectBeforeUpdate.get());
-        Optional<Projects> projectAfterUpdate = projectsService.findById(projectId);
+        Optional<Projects> projectAfterUpdate = projectsService.findByDeveloperId(projectId);
         assertTrue(projectAfterUpdate.isPresent());
         assertNotEquals(description,projectAfterUpdate.get().getDescription());
         assertEquals("TextAfterUpdate",projectAfterUpdate.get().getDescription());
@@ -84,7 +84,7 @@ class ProjectsServiceImplIT {
         String description = project.getDescription();
         Integer projectId = projectsService.create(project);
 
-        Optional<Projects> optionalProjects = projectsService.findById(projectId);
+        Optional<Projects> optionalProjects = projectsService.findByDeveloperId(projectId);
         assertTrue(optionalProjects.isPresent());
         assertEquals(description,optionalProjects.get().getDescription());
     }
@@ -97,7 +97,7 @@ class ProjectsServiceImplIT {
         Integer projectId = projectsService.create(project);
 
         projectsService.delete(projectId);
-        Optional<Projects> optionalProjects = projectsService.findById(projectId);
+        Optional<Projects> optionalProjects = projectsService.findByDeveloperId(projectId);
         assertFalse(optionalProjects.isPresent());
 
 

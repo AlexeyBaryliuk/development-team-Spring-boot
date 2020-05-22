@@ -90,7 +90,7 @@ class DevelopersServiceRestIT {
                 );
 
         // when
-        Optional<Developers> optionalDevelopers = developersServiceRest.findById(id);
+        Optional<Developers> optionalDevelopers = developersServiceRest.findByDeveloperId(id);
 
         // then
         mockServer.verify();

@@ -84,7 +84,7 @@ class DevelopersControllerIT {
         Integer id = developersService.create(developer);
 
         // when
-        Optional<Developers> optionalDeveloper = developersService.findById(id);
+        Optional<Developers> optionalDeveloper = developersService.findByDeveloperId(id);
 
         // then
         assertTrue(optionalDeveloper.isPresent());
@@ -103,7 +103,7 @@ class DevelopersControllerIT {
         Integer id = developersService.create(developer);
 
         //then
-        Optional<Developers> optionalAfterCreate = developersService.findById(id);
+        Optional<Developers> optionalAfterCreate = developersService.findByDeveloperId(id);
         assertNotNull(id);
         assertTrue(optionalAfterCreate.isPresent());
         assertEquals(optionalAfterCreate.get().getFirstName(),developer.getFirstName());
@@ -116,7 +116,7 @@ class DevelopersControllerIT {
         // given
         Developers developer = newDeveloper();
         Integer id = developersService.create(developer);
-        Optional<Developers> optional = developersService.findById(id);
+        Optional<Developers> optional = developersService.findByDeveloperId(id);
         optional.get().setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
         optional.get().setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
 
@@ -124,7 +124,7 @@ class DevelopersControllerIT {
         Integer result = developersService.update(optional.get());
 
         //then
-        Optional<Developers> optionalAfterUpdate = developersService.findById(id);
+        Optional<Developers> optionalAfterUpdate = developersService.findByDeveloperId(id);
 
         assertEquals(optionalAfterUpdate.get().getDeveloperId(),id);
         assertTrue(optionalAfterUpdate.isPresent());
@@ -182,9 +182,9 @@ class DevelopersControllerIT {
             }
 
 
-            public Optional<Developers> findById(Integer developerId) throws Exception {
+            public Optional<Developers> findByDeveloperId(Integer developerId) throws Exception {
 
-                LOGGER.debug("findById({})", developerId);
+                LOGGER.debug("findByDeveloperId({})", developerId);
                 MockHttpServletResponse response = mockMvc.perform(get(DEVELOPERS_ENDPOINT + "/" + developerId)
                         .accept(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isOk())

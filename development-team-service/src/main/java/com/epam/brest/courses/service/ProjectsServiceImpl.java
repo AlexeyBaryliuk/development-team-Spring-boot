@@ -32,10 +32,10 @@ public class ProjectsServiceImpl implements ProjectsService {
     }
 
     @Override
-    public Optional<Projects> findById(Integer projectId) {
+    public Optional<Projects> findByDeveloperId(Integer projectId) {
 
-        LOGGER.debug("Find by id - findById() projectId = {}", projectId);
-        return projectsJdbcDao.findById(projectId);
+        LOGGER.debug("Find by id - findByDeveloperId() projectId = {}", projectId);
+        return projectsJdbcDao.findByDeveloperId(projectId);
     }
 
     @Override

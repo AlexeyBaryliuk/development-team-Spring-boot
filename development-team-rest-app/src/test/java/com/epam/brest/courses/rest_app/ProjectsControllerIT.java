@@ -78,7 +78,7 @@ class ProjectsControllerIT {
     }
 
     @Test
-    void shouldFindById() throws Exception {
+    void shouldfindByDeveloperId() throws Exception {
 
         // given
         Projects project = new Projects();
@@ -86,7 +86,7 @@ class ProjectsControllerIT {
         Integer id = projectsService.create(project);
         assertNotNull(id);
 
-        Optional<Projects> projectOptional = projectsService.findById(id);
+        Optional<Projects> projectOptional = projectsService.findByDeveloperId(id);
         assertTrue(projectOptional.isPresent());
 
         projectOptional.get().
@@ -98,7 +98,7 @@ class ProjectsControllerIT {
         // then
         assertTrue(1 == result);
 
-        Optional<Projects> updatedProjectOptional = projectsService.findById(id);
+        Optional<Projects> updatedProjectOptional = projectsService.findByDeveloperId(id);
         assertTrue(updatedProjectOptional.isPresent());
         assertEquals(updatedProjectOptional.get().getProjectId(), id);
         assertEquals(updatedProjectOptional.get().getDescription(),projectOptional.get().getDescription());
@@ -125,7 +125,7 @@ class ProjectsControllerIT {
         Integer id = projectsService.createByDescription(description);
 
         // then
-        Optional<Projects> projectsOptionalAfterAdded = projectsService.findById(id);
+        Optional<Projects> projectsOptionalAfterAdded = projectsService.findByDeveloperId(id);
 
         assertTrue(projectsOptionalAfterAdded.isPresent());
         assertEquals(id,projectsOptionalAfterAdded.get().getProjectId());
@@ -141,13 +141,13 @@ class ProjectsControllerIT {
         Integer id = projectsService.create(project);
         assertNotNull(id);
 
-        Optional<Projects> projectsOptional = projectsService.findById(id);
+        Optional<Projects> projectsOptional = projectsService.findByDeveloperId(id);
         assertTrue(projectsOptional.isPresent());
         projectsOptional.get().setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
 
         // when
         Integer result = projectsService.update(projectsOptional.get());
-        Optional<Projects> projectsOptionalAfterUpdate = projectsService.findById(id);
+        Optional<Projects> projectsOptionalAfterUpdate = projectsService.findByDeveloperId(id);
         assertTrue(projectsOptionalAfterUpdate.isPresent());
 
         // then
@@ -255,9 +255,9 @@ class ProjectsControllerIT {
             return objectMapper.readValue(response.getContentAsString(), Integer.class);
         }
 
-        public Optional<Projects> findById(Integer projectId) throws Exception {
+        public Optional<Projects> findByDeveloperId(Integer projectId) throws Exception {
 
-            LOGGER.debug("findById({})", projectId);
+            LOGGER.debug("findByDeveloperId({})", projectId);
             MockHttpServletResponse response = mockMvc.perform(get(PROJECTS_ENDPOINT + "/" + projectId)
                     .accept(MediaType.APPLICATION_JSON)
             ).andExpect(status().isOk())

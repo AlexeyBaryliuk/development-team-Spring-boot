@@ -60,9 +60,9 @@ public class DevelopersJdbcDaoImpl implements DevelopersJdbcDao {
     }
 
     @Override
-    public Optional<Developers> findById(Integer developerId) {
+    public Optional<Developers> findByDeveloperId(Integer developerId) {
 
-        LOGGER.debug("FindById developerId = {}", developerId);
+        LOGGER.debug("findByDeveloperIddeveloperId = {}", developerId);
         parameterSource.addValue(DEVELOPER_ID, developerId);
         List<Developers> developersList = namedParameterJdbcTemplate
                 .query(sqlGetDeveloperById,parameterSource,new BeanPropertyRowMapper<>(Developers.class));

@@ -22,7 +22,7 @@ public interface DevelopersJdbcDao {
      * @param developerId developer's id.
      * @return developer.
      */
-    Optional<Developers> findById(Integer developerId);
+    Optional<Developers> findByDeveloperId(Integer developerId);
 
     /**
      * Persist new developer.

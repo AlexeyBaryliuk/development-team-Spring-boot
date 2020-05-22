@@ -84,7 +84,7 @@ public class DevelopersMockTest {
         when(namedParameterJdbcTemplate.query(anyString(), any(MapSqlParameterSource.class)
                 ,any(BeanPropertyRowMapper.class))).thenReturn(developersList);
 
-        Optional<Developers> optionalDeveloper = developersJdbcDao.findById(1);
+        Optional<Developers> optionalDeveloper = developersJdbcDao.findByDeveloperId(1);
 
         assertEquals("Jon", optionalDeveloper.get().getFirstName());
         assertEquals("Connor", optionalDeveloper.get().getLastName());

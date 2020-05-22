@@ -41,7 +41,7 @@ class DevelopersJdbcDaoTestIT {
        Developers developer =newDeveloper();
 
         Integer developerId = developersJdbcDao.create(developer);
-        Optional<Developers> optionalDeveloper = developersJdbcDao.findById(developerId);
+        Optional<Developers> optionalDeveloper = developersJdbcDao.findByDeveloperId(developerId);
 
         assertTrue(optionalDeveloper.isPresent());
         assertEquals(optionalDeveloper.get().getDeveloperId(), developerId);
@@ -56,7 +56,7 @@ class DevelopersJdbcDaoTestIT {
         Integer id = developersJdbcDao.create(developer);
         assertTrue(id > 0);
 
-        Optional<Developers> optionalDevelopers = developersJdbcDao.findById(id);
+        Optional<Developers> optionalDevelopers = developersJdbcDao.findByDeveloperId(id);
         assertEquals(developer.getLastName(),optionalDevelopers.get().getLastName());
         assertEquals(developer.getFirstName(), optionalDevelopers.get().getFirstName());
     }
@@ -69,7 +69,7 @@ class DevelopersJdbcDaoTestIT {
         String beforeUpdateFirstName = developer.getFirstName();
 
         Integer id = developersJdbcDao.create(developer);
-        Optional<Developers> optionalDevelopers = developersJdbcDao.findById(id);
+        Optional<Developers> optionalDevelopers = developersJdbcDao.findByDeveloperId(id);
 
             String afterUpdateLastName = "TestLastName";
             optionalDevelopers.get().setLastName(afterUpdateLastName);
@@ -91,7 +91,7 @@ class DevelopersJdbcDaoTestIT {
         Integer result = developersJdbcDao.delete(id);
 
         assertEquals(1, result.intValue());
-        Optional<Developers> optionalDevelopers = developersJdbcDao.findById(id);
+        Optional<Developers> optionalDevelopers = developersJdbcDao.findByDeveloperId(id);
         assertFalse(optionalDevelopers.isPresent());
 
     }

@@ -40,7 +40,7 @@ class DevelopersServiceImplIT {
     }
 
     @Test
-    void shouldFindById() {
+    void shouldfindByDeveloperId() {
 
         developers.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         String lastName = developers.getLastName();
@@ -49,7 +49,7 @@ class DevelopersServiceImplIT {
 
         Integer developerId = developersService.create(developers);
 
-        Optional<Developers> optionalDevelopers = developersService.findById(developerId);
+        Optional<Developers> optionalDevelopers = developersService.findByDeveloperId(developerId);
         assertTrue(optionalDevelopers.isPresent());
         assertEquals(lastName,optionalDevelopers.get().getLastName());
         assertEquals(firstName,optionalDevelopers.get().getFirstName());
@@ -65,7 +65,7 @@ class DevelopersServiceImplIT {
 
         Integer developerId = developersService.create(developers);
 
-        Optional<Developers> optionalDevelopers = developersService.findById(developerId);
+        Optional<Developers> optionalDevelopers = developersService.findByDeveloperId(developerId);
         assertTrue(optionalDevelopers.isPresent());
         assertEquals(lastName,optionalDevelopers.get().getLastName());
         assertEquals(firstName,optionalDevelopers.get().getFirstName());
@@ -80,14 +80,14 @@ class DevelopersServiceImplIT {
             String firstName = developers.getLastName();
 
         Integer developerId = developersService.create(developers);
-        Optional<Developers> optionalDevelopers = developersService.findById(developerId);
+        Optional<Developers> optionalDevelopers = developersService.findByDeveloperId(developerId);
 
         optionalDevelopers.get().setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         optionalDevelopers.get().setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
 
         int result = developersService.update(optionalDevelopers.get());
             assertEquals(1, result);
-        Optional<Developers> optionalDevelopersAfterUpdate = developersService.findById(developerId);
+        Optional<Developers> optionalDevelopersAfterUpdate = developersService.findByDeveloperId(developerId);
 
             assertTrue(optionalDevelopersAfterUpdate.isPresent());
             assertNotEquals(lastName,optionalDevelopersAfterUpdate.get().getLastName());
@@ -105,7 +105,7 @@ class DevelopersServiceImplIT {
         int result = developersService.delete(developerId);
         assertEquals(1, result);
 
-        Optional<Developers> optionalDevelopers = developersService.findById(developerId);
+        Optional<Developers> optionalDevelopers = developersService.findByDeveloperId(developerId);
         assertFalse(optionalDevelopers.isPresent());
     }
 

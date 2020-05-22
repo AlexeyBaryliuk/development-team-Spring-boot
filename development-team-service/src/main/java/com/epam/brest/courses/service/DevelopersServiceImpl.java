@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
+
 public class DevelopersServiceImpl implements DevelopersService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersServiceImpl.class);
@@ -31,10 +32,10 @@ public class DevelopersServiceImpl implements DevelopersService {
     }
 
     @Override
-    public Optional<Developers> findById(Integer developerId) {
+    public Optional<Developers> findByDeveloperId(Integer developerId) {
 
-        LOGGER.debug("findById developerId = {}", developerId);
-        return developersJdbcDao.findById(developerId);
+        LOGGER.debug("findByDeveloperIddeveloperId = {}", developerId);
+        return developersJdbcDao.findByDeveloperId(developerId);
     }
 
     @Override

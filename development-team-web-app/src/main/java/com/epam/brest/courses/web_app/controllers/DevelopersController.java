@@ -46,7 +46,7 @@ public class DevelopersController {
     public String gotoEditDevelopersPage(@PathVariable Integer developerId, Model model) {
 
         LOGGER.debug("DCONTROLLER - gotoEditDevelopersPage");
-        Optional<Developers> optionalDevelopers = developersService.findById(developerId);
+        Optional<Developers> optionalDevelopers = developersService.findByDeveloperId(developerId);
 
         if (optionalDevelopers.isPresent()) {
             model.addAttribute("isNew", false);

@@ -33,9 +33,9 @@ public class ProjectsServiceRest implements ProjectsService {
     }
 
     @Override
-    public Optional<Projects> findById(Integer projectId) {
+    public Optional<Projects> findByDeveloperId(Integer projectId) {
 
-        LOGGER.debug("findById({})", projectId);
+        LOGGER.debug("findByDeveloperId({})", projectId);
         ResponseEntity<Projects> responseEntity =
                 restTemplate.getForEntity(url + "/" + projectId, Projects.class);
         return Optional.ofNullable(responseEntity.getBody());

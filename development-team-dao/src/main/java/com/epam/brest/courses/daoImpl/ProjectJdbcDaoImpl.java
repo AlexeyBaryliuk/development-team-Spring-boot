@@ -64,7 +64,7 @@ public class ProjectJdbcDaoImpl implements ProjectsJdbcDao {
 
 
     @Override
-    public Optional<Projects> findById(Integer projectId) {
+    public Optional<Projects> findByDeveloperId(Integer projectId) {
 
         parameterSource.addValue(PROJECT_ID, projectId);
 

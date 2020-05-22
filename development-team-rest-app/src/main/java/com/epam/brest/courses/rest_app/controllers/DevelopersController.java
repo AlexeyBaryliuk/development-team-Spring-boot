@@ -52,10 +52,10 @@ public class DevelopersController {
      * @return Errorrespons.
      */
     @GetMapping("/{developerId}")
-    public ResponseEntity<Developers> findById(@PathVariable Integer developerId){
+    public ResponseEntity<Developers> findByDeveloperId(@PathVariable Integer developerId){
 
-        LOGGER.debug("findById({})", developerId);
-        Optional<Developers> optionalDeveloper = developersService.findById(developerId);
+        LOGGER.debug("findByDeveloperId({})", developerId);
+        Optional<Developers> optionalDeveloper = developersService.findByDeveloperId(developerId);
 
         return optionalDeveloper.isPresent()
                 ?new ResponseEntity<>(optionalDeveloper.get(),HttpStatus.OK)

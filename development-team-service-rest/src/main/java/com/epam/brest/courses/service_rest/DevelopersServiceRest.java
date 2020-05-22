@@ -34,9 +34,9 @@ public class DevelopersServiceRest implements DevelopersService {
     }
 
     @Override
-    public Optional<Developers> findById(Integer developerId) {
+    public Optional<Developers> findByDeveloperId(Integer developerId) {
 
-        LOGGER.debug("findById({})", developerId);
+        LOGGER.debug("findByDeveloperId({})", developerId);
 
         ResponseEntity<Developers> responseEntity = restTemplate.getForEntity(url + "/" + developerId, Developers.class);
 

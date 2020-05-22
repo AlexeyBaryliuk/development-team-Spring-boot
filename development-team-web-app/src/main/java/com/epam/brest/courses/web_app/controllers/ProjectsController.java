@@ -106,7 +106,7 @@ public class ProjectsController {
         }
 
         LOGGER.debug("CONTROLLER - gotoEditProjectsPage({},{})", projectId, model);
-        Optional<Projects> optionalProjects = projectsService.findById(projectId);
+        Optional<Projects> optionalProjects = projectsService.findByDeveloperId(projectId);
         if (optionalProjects.isPresent()) {
             model.addAttribute("project", optionalProjects.get());
             model.addAttribute("developers", projects_developersService.selectDevelopersFromProjects_Developers(projectId));

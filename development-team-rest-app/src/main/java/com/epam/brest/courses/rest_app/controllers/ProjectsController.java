@@ -47,10 +47,10 @@ public class ProjectsController {
      * @return Project.
      */
     @GetMapping(value = "/{projectId}")
-    public Projects findById(@PathVariable Integer projectId) {
+    public Projects findByDeveloperId(@PathVariable Integer projectId) {
 
         LOGGER.debug("findById");
-        return projectsService.findById(projectId).orElseThrow(() -> new ProjectsNotFoundException(projectId));
+        return projectsService.findByDeveloperId(projectId).orElseThrow(() -> new ProjectsNotFoundException(projectId));
     }
 
     /**
