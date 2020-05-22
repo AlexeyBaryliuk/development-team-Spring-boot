@@ -1,6 +1,6 @@
 package com.epam.brest.courses.daoImpl;
 
-import com.epam.brest.courses.dao.DevelopersJdbcDao;
+import com.epam.brest.courses.dao.DevelopersDao;
 import com.epam.brest.courses.model.Developers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ import static com.epam.brest.courses.model.constants.DeveloperConstants.*;
 
 @Component
 @PropertySource("classpath:sql-development-team.properties")
-public class DevelopersJdbcDaoImpl implements DevelopersJdbcDao {
+public class DevelopersJdbcDaoImpl implements DevelopersDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersJdbcDaoImpl.class);
     @Autowired

@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(SpringExtension.class)
 @TestPropertySource("classpath:sql-development-team.properties")
 @Sql({"classpath:schema.sql", "classpath:data.sql"})
-public class Projects_DevelopersJdbcDaoTestIT {
+public class Projects_DevelopersDaoTestIT {
 
     @Autowired
     private DevelopersJdbcDaoImpl developersJdbcDao;

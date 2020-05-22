@@ -1,6 +1,6 @@
 package com.epam.brest.courses.daoImpl;
 
-import com.epam.brest.courses.dao.ProjectsJdbcDaoDto;
+import com.epam.brest.courses.dao.ProjectsDaoDto;
 import com.epam.brest.courses.model.dto.ProjectsDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @Component
 @PropertySource("classpath:sql-development-team.properties")
-public class ProjectJdbcDaoDtoImpl implements ProjectsJdbcDaoDto {
+public class ProjectJdbcDaoDtoImpl implements ProjectsDaoDto {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectJdbcDaoDtoImpl.class);
 

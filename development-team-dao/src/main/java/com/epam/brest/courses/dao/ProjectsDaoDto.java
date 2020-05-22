@@ -6,9 +6,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * ProjectsJdbcDaoDto interface.
+ * ProjectsDaoDto interface.
  */
-public interface ProjectsJdbcDaoDto {
+public interface ProjectsDaoDto {
 
     /**
      * Find all projects between two dates.
@@ -26,3 +26,4 @@ public interface ProjectsJdbcDaoDto {
      */
     List<ProjectsDto> countOfDevelopers();
 }
+

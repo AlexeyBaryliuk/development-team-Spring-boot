@@ -1,6 +1,6 @@
 package com.epam.brest.courses.service;
 
-import com.epam.brest.courses.dao.ProjectsJdbcDao;
+import com.epam.brest.courses.dao.ProjectsDao;
 import com.epam.brest.courses.model.Projects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +16,10 @@ public class ProjectsServiceImpl implements ProjectsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsServiceImpl.class);
 
-    private final ProjectsJdbcDao projectsJdbcDao;
+    private final ProjectsDao ProjectsDao;
 
-    public ProjectsServiceImpl(ProjectsJdbcDao projectsJdbcDao) {
-        this.projectsJdbcDao = projectsJdbcDao;
+    public ProjectsServiceImpl(ProjectsDao ProjectsDao) {
+        this.ProjectsDao = ProjectsDao;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class ProjectsServiceImpl implements ProjectsService {
     public List<Projects> findAll() {
 
         LOGGER.debug("Find all projects - findAll()");
-        List<Projects> projectsList = projectsJdbcDao.findAll();
+        List<Projects> projectsList = ProjectsDao.findAll();
         return projectsList;
     }
 
@@ -35,27 +35,27 @@ public class ProjectsServiceImpl implements ProjectsService {
     public Optional<Projects> findByDeveloperId(Integer projectId) {
 
         LOGGER.debug("Find by id - findByDeveloperId() projectId = {}", projectId);
-        return projectsJdbcDao.findByProjectId(projectId);
+        return ProjectsDao.findByProjectId(projectId);
     }
 
     @Override
     public Integer update(Projects project) {
 
         LOGGER.debug("Update project - update(): project = {}",project);
-        return projectsJdbcDao.update(project);
+        return ProjectsDao.update(project);
     }
 
     @Override
     public Integer save(Projects project) {
 
         LOGGER.debug("Create project - save(): project = {}",project);
-        return projectsJdbcDao.save(project);
+        return ProjectsDao.save(project);
     }
 
     @Override
     public Integer delete(Integer projectId) {
 
         LOGGER.debug("Delete project - delete() projectId = {}",projectId);
-        return projectsJdbcDao.deleteByProjectId(projectId);
+        return ProjectsDao.deleteByProjectId(projectId);
     }
 }

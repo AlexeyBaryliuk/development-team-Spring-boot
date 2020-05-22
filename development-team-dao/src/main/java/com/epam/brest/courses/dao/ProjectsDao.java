@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * ProjectsJdbcDao interface.
+ * ProjectsDao interface.
  */
-public interface ProjectsJdbcDao {
+public interface ProjectsDao {
 
     /**
      * Find all projects.

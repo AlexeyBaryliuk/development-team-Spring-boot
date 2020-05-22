@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * DevelopersJdbcDao interface.
+ * DevelopersDao interface.
  */
-public interface DevelopersJdbcDao {
+public interface DevelopersDao {
 
     /**
      * Find all developers.

@@ -1,6 +1,6 @@
 package com.epam.brest.courses.service;
 
-import com.epam.brest.courses.dao.DevelopersJdbcDao;
+import com.epam.brest.courses.dao.DevelopersDao;
 import com.epam.brest.courses.model.Developers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,10 +17,10 @@ public class DevelopersServiceImpl implements DevelopersService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersServiceImpl.class);
 
-    private final DevelopersJdbcDao developersJdbcDao;
+    private final DevelopersDao developersDao;
 
-    public DevelopersServiceImpl(DevelopersJdbcDao developersJdbcDao) {
-        this.developersJdbcDao = developersJdbcDao;
+    public DevelopersServiceImpl(DevelopersDao developersDao) {
+        this.developersDao = developersDao;
     }
 
     @Override
@@ -28,35 +28,35 @@ public class DevelopersServiceImpl implements DevelopersService {
     public List<Developers> findAll() {
 
         LOGGER.debug("findAll()");
-        return developersJdbcDao.findAll();
+        return developersDao.findAll();
     }
 
     @Override
     public Optional<Developers> findByDeveloperId(Integer developerId) {
 
         LOGGER.debug("findByDeveloperIddeveloperId = {}", developerId);
-        return developersJdbcDao.findByDeveloperId(developerId);
+        return developersDao.findByDeveloperId(developerId);
     }
 
     @Override
     public Integer save(Developers developer) {
 
         LOGGER.debug("save() developer = {}", developer);
-        return developersJdbcDao.save(developer);
+        return developersDao.save(developer);
     }
 
     @Override
     public Integer update(Developers developer) {
 
         LOGGER.debug("update() developer = {}", developer);
-        return developersJdbcDao.update(developer);
+        return developersDao.update(developer);
     }
 
     @Override
     public Integer deleteByDeveloperId(Integer developerId) {
 
         LOGGER.debug("delete() developerId = {}", developerId );
-        return developersJdbcDao.deleteByDeveloperId(developerId);
+        return developersDao.deleteByDeveloperId(developerId);
     }
 
 }

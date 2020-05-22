@@ -9,7 +9,7 @@ import java.util.Optional;
 /**
  * Projects_DevelopersDao interface.
  */
-public interface Projects_DevelopersJdbcDao {
+public interface Projects_DevelopersDao {
     /**
      * Select all developers from project by projectId.
      *

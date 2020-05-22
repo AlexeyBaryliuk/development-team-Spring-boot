@@ -1,6 +1,6 @@
 package com.epam.brest.courses.service;
 
-import com.epam.brest.courses.dao.ProjectsJdbcDaoDto;
+import com.epam.brest.courses.dao.ProjectsDaoDto;
 import com.epam.brest.courses.model.dto.ProjectsDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,17 +16,17 @@ public class ProjectsDtoServiceImpl implements ProjectsDtoService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsDtoServiceImpl.class);
 
-    private final ProjectsJdbcDaoDto projectsJdbcDaoDto;
+    private final ProjectsDaoDto ProjectsDaoDto;
 
-    public ProjectsDtoServiceImpl(ProjectsJdbcDaoDto projectsJdbcDaoDto) {
-        this.projectsJdbcDaoDto = projectsJdbcDaoDto;
+    public ProjectsDtoServiceImpl(ProjectsDaoDto ProjectsDaoDto) {
+        this.ProjectsDaoDto = ProjectsDaoDto;
     }
 
     @Override
     public List<ProjectsDto> findBetweenDates(LocalDate dateStart, LocalDate dateEnd) {
 
         LOGGER.debug("Find project between dates - findBetweenDates");
-        return projectsJdbcDaoDto.findAllByDateAddedBetween(dateStart,dateEnd);
+        return ProjectsDaoDto.findAllByDateAddedBetween(dateStart,dateEnd);
     }
 
     @Override
@@ -34,6 +34,6 @@ public class ProjectsDtoServiceImpl implements ProjectsDtoService {
 
         LOGGER.debug("Count of developers - countOfDevelopers()");
 
-        return projectsJdbcDaoDto.countOfDevelopers();
+        return ProjectsDaoDto.countOfDevelopers();
     }
 }
