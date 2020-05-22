@@ -55,9 +55,9 @@ public class ProjectsServiceRest implements ProjectsService {
     }
 
     @Override
-    public Integer create(Projects project) {
+    public Integer save(Projects project) {
 
-       LOGGER.debug("create({})", project);
+       LOGGER.debug("save({})", project);
        ResponseEntity responseEntity = restTemplate.postForEntity(url, project,Integer.class);
 
         return (Integer) responseEntity.getBody();

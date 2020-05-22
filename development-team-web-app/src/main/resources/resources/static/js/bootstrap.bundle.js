@@ -77,7 +77,7 @@
   }
 
   function _inheritsLoose(subClass, superClass) {
-    subClass.prototype = Object.create(superClass.prototype);
+    subClass.prototype = Object.save(superClass.prototype);
     subClass.prototype.constructor = subClass;
     subClass.__proto__ = superClass;
   }
@@ -2529,7 +2529,7 @@
     // the other ones will call `onUpdate` callback
     if (!this.state.isCreated) {
       this.state.isCreated = true;
-      this.options.onCreate(data);
+      this.options.onsave(data);
     } else {
       this.options.onUpdate(data);
     }
@@ -4005,7 +4005,7 @@
      * Access Popper.js instance with `data.instance`.
      * @prop {onCreate}
      */
-    onCreate: function onCreate() {},
+    onCreate: function onsave() {},
 
     /**
      * Callback called when the popper is updated. This callback is not called
@@ -5842,7 +5842,7 @@
             boundariesElement: this.config.boundary
           }
         },
-        onCreate: function onCreate(data) {
+        onCreate: function onsave(data) {
           if (data.originalPlacement !== data.placement) {
             _this3._handlePopperPlacementChange(data);
           }

@@ -101,7 +101,7 @@ class DevelopersControllerIT {
     @Test
     public void shouldUpdateEmployeeAfterEdit() throws Exception {
 
-        Developers developer = create(1);
+        Developers developer = save(1);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.post(COMMON_DEVELOPERS_URL + "/1")
@@ -130,7 +130,7 @@ class DevelopersControllerIT {
     @Test
     public void shouldAddNewDeveloper() throws Exception {
 
-        Developers developer = create(1);
+        Developers developer = save(1);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.post(COMMON_DEVELOPERS_URL + "/developer")
@@ -154,7 +154,7 @@ class DevelopersControllerIT {
                 .andExpect(redirectedUrl(COMMON_DEVELOPERS_URL));
     }
 
-    private Developers create(int index){
+    private Developers save(int index){
 
         Developers developer = new Developers();
                 developer.setDeveloperId(index);

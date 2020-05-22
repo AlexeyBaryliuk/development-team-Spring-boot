@@ -107,7 +107,7 @@ public class DevelopersController {
         if (result.hasErrors()) {
             return "developer";
         } else {
-            this.developersService.create(developer);
+            this.developersService.save(developer);
             return "redirect:/developers";
         }
     }
@@ -116,7 +116,7 @@ public class DevelopersController {
     public String delete(@PathVariable Integer developerId, Model model){
 
         LOGGER.debug("DCONTROLLER - delete() DeveloperId = {}. Model = {}", developerId, model);
-        developersService.delete(developerId);
+        developersService.deleteByDeveloperId(developerId);
         return"redirect:/developers";
     }
 }

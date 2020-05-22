@@ -81,7 +81,7 @@ class DevelopersControllerIT {
         // given
         Developers developer = newDeveloper();
 
-        Integer id = developersService.create(developer);
+        Integer id = developersService.save(developer);
 
         // when
         Optional<Developers> optionalDeveloper = developersService.findByDeveloperId(id);
@@ -100,7 +100,7 @@ class DevelopersControllerIT {
         Developers developer = newDeveloper();
 
         //when
-        Integer id = developersService.create(developer);
+        Integer id = developersService.save(developer);
 
         //then
         Optional<Developers> optionalAfterCreate = developersService.findByDeveloperId(id);
@@ -115,7 +115,7 @@ class DevelopersControllerIT {
 
         // given
         Developers developer = newDeveloper();
-        Integer id = developersService.create(developer);
+        Integer id = developersService.save(developer);
         Optional<Developers> optional = developersService.findByDeveloperId(id);
         optional.get().setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
         optional.get().setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
@@ -138,7 +138,7 @@ class DevelopersControllerIT {
 
         // given
         Developers developer = newDeveloper();
-        Integer id = developersService.create(developer);
+        Integer id = developersService.save(developer);
         List<Developers> developersListBefore = developersService.findAll();
 
         //when
@@ -166,9 +166,9 @@ class DevelopersControllerIT {
                 });
             }
 
-            public Integer create(Developers developer) throws Exception {
+            public Integer save(Developers developer) throws Exception {
 
-                LOGGER.debug("create({})", developer);
+                LOGGER.debug("save({})", developer);
                 String json = objectMapper.writeValueAsString(developer);
                 MockHttpServletResponse response =
                         mockMvc.perform(post(DEVELOPERS_ENDPOINT)

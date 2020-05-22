@@ -30,7 +30,7 @@ public interface DevelopersService {
      * @param developer developer.
      * @return persisted developer's id.
      */
-    Integer create(Developers developer);
+    Integer save(Developers developer);
 
     /**
      * Update developer.
@@ -46,6 +46,6 @@ public interface DevelopersService {
      * @param developerId developer's id.
      * @return number of updated records in the database.
      */
-    Integer delete (Integer developerId);
+    Integer deleteByDeveloperId(Integer developerId);
 }
 

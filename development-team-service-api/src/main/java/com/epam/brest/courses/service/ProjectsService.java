@@ -39,7 +39,7 @@ public interface ProjectsService {
      * @param project project.
      * @return persisted project's id.
      */
-    Integer create(Projects project);
+    Integer save(Projects project);
 
     /**
      * Delete project.

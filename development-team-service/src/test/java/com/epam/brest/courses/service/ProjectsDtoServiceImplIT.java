@@ -45,12 +45,12 @@ class ProjectsDtoServiceImplIT {
 
         Projects projectStart = project;
         projectStart.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer idStart = projectsService.create(projectStart);
+        Integer idStart = projectsService.save(projectStart);
         assertTrue(idStart > 0);
 
         Projects projectEnd = project;
         projectEnd.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer idEnd = projectsService.create(projectEnd);
+        Integer idEnd = projectsService.save(projectEnd);
         assertTrue(idEnd > 0);
 
         List<ProjectsDto> projectsList = projectsDtoService.findBetweenDates(dateStart,dateEnd);

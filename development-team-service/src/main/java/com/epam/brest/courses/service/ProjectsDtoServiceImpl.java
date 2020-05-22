@@ -26,7 +26,7 @@ public class ProjectsDtoServiceImpl implements ProjectsDtoService {
     public List<ProjectsDto> findBetweenDates(LocalDate dateStart, LocalDate dateEnd) {
 
         LOGGER.debug("Find project between dates - findBetweenDates");
-        return projectsJdbcDaoDto.findBetweenDates(dateStart,dateEnd);
+        return projectsJdbcDaoDto.findAllByDateAddedBetween(dateStart,dateEnd);
     }
 
     @Override

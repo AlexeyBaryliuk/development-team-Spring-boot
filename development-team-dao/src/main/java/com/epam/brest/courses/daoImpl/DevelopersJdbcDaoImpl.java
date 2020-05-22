@@ -70,7 +70,7 @@ public class DevelopersJdbcDaoImpl implements DevelopersJdbcDao {
     }
 
     @Override
-    public Integer create(Developers developer) {
+    public Integer save(Developers developer) {
 
         LOGGER.debug("Create developer = {} ", developer);
         parameterSource.addValue(LASTNAME, developer.getLastName());
@@ -97,7 +97,7 @@ public class DevelopersJdbcDaoImpl implements DevelopersJdbcDao {
     }
 
     @Override
-    public Integer delete(Integer developerId) {
+    public Integer deleteByDeveloperId(Integer developerId) {
 
         LOGGER.debug("Delete developerId = {}", developerId);
         parameterSource.addValue(DEVELOPER_ID, developerId);

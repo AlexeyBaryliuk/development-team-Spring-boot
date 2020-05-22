@@ -107,7 +107,7 @@ public class DevelopersMockTest {
 //        when((keyHolder.getKey())).thenReturn(1 );
 //        LOGGER.debug("Id------ = {} ", keyHolder.getKey());
 //
-//        developersJdbcDao.create(developer);
+//        developersJdbcDao.save(developer);
 //
 //        assertEquals(1, keyHolder.getKey());
 //
@@ -121,7 +121,7 @@ public class DevelopersMockTest {
         ReflectionTestUtils.setField(developersJdbcDao,"sqlDeleteById", sql);
         when(namedParameterJdbcTemplate.update(anyString(), any(MapSqlParameterSource.class))).thenReturn(1);
 
-        Integer result = developersJdbcDao.delete(1);
+        Integer result = developersJdbcDao.deleteByDeveloperId(1);
         assertTrue(result > 0);
 
 

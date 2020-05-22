@@ -78,7 +78,7 @@
   }
 
   function _inheritsLoose(subClass, superClass) {
-    subClass.prototype = Object.create(superClass.prototype);
+    subClass.prototype = Object.save(superClass.prototype);
     subClass.prototype.constructor = subClass;
     subClass.__proto__ = superClass;
   }
@@ -3229,7 +3229,7 @@
             boundariesElement: this.config.boundary
           }
         },
-        onCreate: function onCreate(data) {
+        onCreate: function onsave(data) {
           if (data.originalPlacement !== data.placement) {
             _this3._handlePopperPlacementChange(data);
           }

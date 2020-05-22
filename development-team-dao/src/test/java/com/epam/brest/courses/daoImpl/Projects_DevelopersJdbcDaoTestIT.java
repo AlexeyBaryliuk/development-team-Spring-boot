@@ -44,11 +44,11 @@ public class Projects_DevelopersJdbcDaoTestIT {
     void shouldSelectDevelopersFromProjects_Developers() {
 
         Developers developer = newDeveloper();
-        Integer firstDeveloperId = developersJdbcDao.create(developer);
-        Integer secondDeveloperId = developersJdbcDao.create(developer);
+        Integer firstDeveloperId = developersJdbcDao.save(developer);
+        Integer secondDeveloperId = developersJdbcDao.save(developer);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectJdbcDao.create(newProject);
+        Integer projectId = projectJdbcDao.save(newProject);
         Integer resultFirst = projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId, firstDeveloperId);
         Integer resultSecond = projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId, secondDeveloperId);
 
@@ -63,10 +63,10 @@ public class Projects_DevelopersJdbcDaoTestIT {
     void shoulAddDeveloperToProjects_Developers() {
 
         Developers developer = newDeveloper();
-        Integer developerId = developersJdbcDao.create(developer);
+        Integer developerId = developersJdbcDao.save(developer);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectJdbcDao.create(newProject);
+        Integer projectId = projectJdbcDao.save(newProject);
         Integer result = projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId, developerId);
 
         List<Developers> developersList = projects_developersJdbcDao.selectDevelopersFromProjects_Developers(projectId);
@@ -78,10 +78,10 @@ public class Projects_DevelopersJdbcDaoTestIT {
     void shoulDeleteDeveloperFromProject_Developers() {
 
         Developers developer = newDeveloper();
-        Integer developerId = developersJdbcDao.create(developer);
+        Integer developerId = developersJdbcDao.save(developer);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectJdbcDao.create(newProject);
+        Integer projectId = projectJdbcDao.save(newProject);
         Integer resultFirst = projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId, developerId);
 
         List<Developers> developersList = projects_developersJdbcDao.selectDevelopersFromProjects_Developers(projectId);
@@ -98,10 +98,10 @@ public class Projects_DevelopersJdbcDaoTestIT {
     void shouldFindByIdFromProjects_Developers(){
 
         Developers developer = newDeveloper();
-        Integer developerId = developersJdbcDao.create(developer);
+        Integer developerId = developersJdbcDao.save(developer);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectJdbcDao.create(newProject);
+        Integer projectId = projectJdbcDao.save(newProject);
         projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId,developerId);
         Optional<Projects_Developers> listFromProjects_Developers = projects_developersJdbcDao
                 .findByIdFromProjects_Developers(projectId,developerId);

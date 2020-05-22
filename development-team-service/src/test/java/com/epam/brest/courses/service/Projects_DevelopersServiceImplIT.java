@@ -45,12 +45,12 @@ public class Projects_DevelopersServiceImplIT {
 
         developers.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         developers.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
-        Integer firstDeveloperId = developersService.create(developers);
-        Integer secondDeveloperId = developersService.create(developers);
+        Integer firstDeveloperId = developersService.save(developers);
+        Integer secondDeveloperId = developersService.save(developers);
 
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectsService.create(newProject);
+        Integer projectId = projectsService.save(newProject);
         Integer firstResult = projects_developersService.addDeveloperToProjects_Developers(projectId, firstDeveloperId);
         Integer secondResult = projects_developersService.addDeveloperToProjects_Developers(projectId, secondDeveloperId);
         List<Developers> developersList = projects_developersService.selectDevelopersFromProjects_Developers(projectId);
@@ -64,10 +64,10 @@ public class Projects_DevelopersServiceImplIT {
 
         developers.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         developers.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
-        Integer developerId = developersService.create(developers);
+        Integer developerId = developersService.save(developers);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectsService.create(newProject);
+        Integer projectId = projectsService.save(newProject);
         Integer result = projects_developersService.addDeveloperToProjects_Developers(projectId, developerId);
 
         List<Developers> developersList = projects_developersService.selectDevelopersFromProjects_Developers(projectId);
@@ -80,10 +80,10 @@ public class Projects_DevelopersServiceImplIT {
 
         developers.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         developers.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
-        Integer developerId = developersService.create(developers);
+        Integer developerId = developersService.save(developers);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectsService.create(newProject);
+        Integer projectId = projectsService.save(newProject);
 
         Integer result = projects_developersService.addDeveloperToProjects_Developers(projectId, developerId);
         List<Developers> developersList = projects_developersService.selectDevelopersFromProjects_Developers(projectId);

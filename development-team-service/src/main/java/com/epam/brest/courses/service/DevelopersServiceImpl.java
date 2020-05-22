@@ -39,10 +39,10 @@ public class DevelopersServiceImpl implements DevelopersService {
     }
 
     @Override
-    public Integer create(Developers developer) {
+    public Integer save(Developers developer) {
 
-        LOGGER.debug("create() developer = {}", developer);
-        return developersJdbcDao.create(developer);
+        LOGGER.debug("save() developer = {}", developer);
+        return developersJdbcDao.save(developer);
     }
 
     @Override
@@ -53,10 +53,10 @@ public class DevelopersServiceImpl implements DevelopersService {
     }
 
     @Override
-    public Integer delete(Integer developerId) {
+    public Integer deleteByDeveloperId(Integer developerId) {
 
         LOGGER.debug("delete() developerId = {}", developerId );
-        return developersJdbcDao.delete(developerId);
+        return developersJdbcDao.deleteByDeveloperId(developerId);
     }
 
 }

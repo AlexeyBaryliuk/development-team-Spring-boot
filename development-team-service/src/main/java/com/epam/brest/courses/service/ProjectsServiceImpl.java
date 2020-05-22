@@ -35,7 +35,7 @@ public class ProjectsServiceImpl implements ProjectsService {
     public Optional<Projects> findByDeveloperId(Integer projectId) {
 
         LOGGER.debug("Find by id - findByDeveloperId() projectId = {}", projectId);
-        return projectsJdbcDao.findByDeveloperId(projectId);
+        return projectsJdbcDao.findByProjectId(projectId);
     }
 
     @Override
@@ -46,16 +46,16 @@ public class ProjectsServiceImpl implements ProjectsService {
     }
 
     @Override
-    public Integer create(Projects project) {
+    public Integer save(Projects project) {
 
-        LOGGER.debug("Create project - create(): project = {}",project);
-        return projectsJdbcDao.create(project);
+        LOGGER.debug("Create project - save(): project = {}",project);
+        return projectsJdbcDao.save(project);
     }
 
     @Override
     public Integer delete(Integer projectId) {
 
         LOGGER.debug("Delete project - delete() projectId = {}",projectId);
-        return projectsJdbcDao.delete(projectId);
+        return projectsJdbcDao.deleteByProjectId(projectId);
     }
 }

@@ -64,7 +64,7 @@ public class ProjectsController {
         Projects project = new Projects();
         LOGGER.debug("Add project {}", description);
         project.setDescription(description);
-        return projectsService.create(project);
+        return projectsService.save(project);
     }
 
     /**
@@ -77,7 +77,7 @@ public class ProjectsController {
 
         LOGGER.debug("Add project {}", project);
 
-        return projectsService.create(project);
+        return projectsService.save(project);
     }
 
     /**

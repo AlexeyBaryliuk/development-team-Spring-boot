@@ -36,7 +36,7 @@ public class ProjectJdbcDaoDtoImpl implements ProjectsJdbcDaoDto {
     private String countOfDevelopers;
 
     @Override
-    public List<ProjectsDto> findBetweenDates(LocalDate dateStart, LocalDate dateEnd) {
+    public List<ProjectsDto> findAllByDateAddedBetween(LocalDate dateStart, LocalDate dateEnd) {
 
     LOGGER.debug("findBetweenDates. DateStart = {} DateEnd = {}", dateStart,dateEnd);
 

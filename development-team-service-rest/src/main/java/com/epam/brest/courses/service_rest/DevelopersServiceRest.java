@@ -44,9 +44,9 @@ public class DevelopersServiceRest implements DevelopersService {
     }
 
     @Override
-    public Integer create(Developers developer) {
+    public Integer save(Developers developer) {
 
-        LOGGER.debug("create({})", developer);
+        LOGGER.debug("save({})", developer);
 
         ResponseEntity responseEntity = restTemplate.postForEntity(url, developer, Integer.class);
 
@@ -67,7 +67,7 @@ public class DevelopersServiceRest implements DevelopersService {
     }
 
     @Override
-    public Integer delete(Integer developerId) {
+    public Integer deleteByDeveloperId(Integer developerId) {
 
         LOGGER.debug("delete()");
         HttpHeaders headers = new HttpHeaders();

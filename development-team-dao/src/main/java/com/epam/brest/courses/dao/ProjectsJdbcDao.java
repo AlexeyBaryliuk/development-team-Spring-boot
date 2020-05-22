@@ -22,7 +22,7 @@ public interface ProjectsJdbcDao {
      * @param projectId project's id.
      * @return project.
      */
-    Optional<Projects> findByDeveloperId(Integer projectId);
+    Optional<Projects> findByProjectId(Integer projectId);
 
     /**
      * Update project.
@@ -38,7 +38,7 @@ public interface ProjectsJdbcDao {
      * @param project project.
      * @return persisted project's id.
      */
-    Integer create(Projects project);
+    Integer save(Projects project);
 
     /**
      * Delete project.
@@ -46,5 +46,5 @@ public interface ProjectsJdbcDao {
      * @param projectId project's id.
      * @return number of updated records in the database.
      */
-    Integer delete(Integer projectId);
+    Integer deleteByProjectId(Integer projectId);
 }

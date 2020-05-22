@@ -64,7 +64,7 @@ public class ProjectJdbcDaoImpl implements ProjectsJdbcDao {
 
 
     @Override
-    public Optional<Projects> findByDeveloperId(Integer projectId) {
+    public Optional<Projects> findByProjectId(Integer projectId) {
 
         parameterSource.addValue(PROJECT_ID, projectId);
 
@@ -96,7 +96,7 @@ public class ProjectJdbcDaoImpl implements ProjectsJdbcDao {
     }
 
     @Override
-    public Integer create(Projects project) {
+    public Integer save(Projects project) {
 
         if (!isNameUnique(project)) {
             throw new IllegalArgumentException("Project with same description already exist.");
@@ -112,7 +112,7 @@ public class ProjectJdbcDaoImpl implements ProjectsJdbcDao {
     }
 
     @Override
-    public Integer delete(Integer projectId) {
+    public Integer deleteByProjectId(Integer projectId) {
 
         LOGGER.debug("Delete project by id {}", projectId);
         parameterSource.addValue(PROJECT_ID, projectId);

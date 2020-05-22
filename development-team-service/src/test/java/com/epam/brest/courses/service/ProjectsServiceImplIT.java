@@ -49,7 +49,7 @@ class ProjectsServiceImplIT {
         project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         String description = project.getDescription();
         LocalDate testDate = project.getDateAdded();
-        Integer projectId = projectsService.create(project);
+        Integer projectId = projectsService.save(project);
 
         Optional<Projects> optionalProjects = projectsService.findByDeveloperId(projectId);
         assertTrue(optionalProjects.isPresent());
@@ -63,7 +63,7 @@ class ProjectsServiceImplIT {
         project.setDescription("TextBeforeUpdate");
         String description = project.getDescription();
         LocalDate testDate = project.getDateAdded();
-        Integer projectId = projectsService.create(project);
+        Integer projectId = projectsService.save(project);
 
         Optional<Projects> projectBeforeUpdate = projectsService.findByDeveloperId(projectId);
         assertTrue(projectBeforeUpdate.isPresent());
@@ -78,11 +78,11 @@ class ProjectsServiceImplIT {
     }
 
     @Test
-    void shouldCreate() {
+    void shouldsave() {
 
         project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         String description = project.getDescription();
-        Integer projectId = projectsService.create(project);
+        Integer projectId = projectsService.save(project);
 
         Optional<Projects> optionalProjects = projectsService.findByDeveloperId(projectId);
         assertTrue(optionalProjects.isPresent());
@@ -94,7 +94,7 @@ class ProjectsServiceImplIT {
 
         project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         String description = project.getDescription();
-        Integer projectId = projectsService.create(project);
+        Integer projectId = projectsService.save(project);
 
         projectsService.delete(projectId);
         Optional<Projects> optionalProjects = projectsService.findByDeveloperId(projectId);

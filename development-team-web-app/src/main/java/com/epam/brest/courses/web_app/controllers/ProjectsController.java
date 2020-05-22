@@ -173,7 +173,7 @@ public class ProjectsController {
             return "projectAdd";
         } else {
             try {
-                this.projectsService.create(project);
+                this.projectsService.save(project);
             }
                 catch (IllegalArgumentException ie){
                     result.rejectValue("description", "projectDescription.exist");

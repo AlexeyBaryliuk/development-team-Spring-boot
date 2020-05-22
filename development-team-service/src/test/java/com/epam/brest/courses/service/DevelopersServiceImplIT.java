@@ -47,7 +47,7 @@ class DevelopersServiceImplIT {
             developers.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
             String firstName = developers.getFirstName();
 
-        Integer developerId = developersService.create(developers);
+        Integer developerId = developersService.save(developers);
 
         Optional<Developers> optionalDevelopers = developersService.findByDeveloperId(developerId);
         assertTrue(optionalDevelopers.isPresent());
@@ -56,14 +56,14 @@ class DevelopersServiceImplIT {
     }
 
     @Test
-    void shouldCreate() {
+    void shouldsave() {
 
         developers.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         String lastName = developers.getLastName();
         developers.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
         String firstName = developers.getFirstName();
 
-        Integer developerId = developersService.create(developers);
+        Integer developerId = developersService.save(developers);
 
         Optional<Developers> optionalDevelopers = developersService.findByDeveloperId(developerId);
         assertTrue(optionalDevelopers.isPresent());
@@ -79,7 +79,7 @@ class DevelopersServiceImplIT {
             developers.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
             String firstName = developers.getLastName();
 
-        Integer developerId = developersService.create(developers);
+        Integer developerId = developersService.save(developers);
         Optional<Developers> optionalDevelopers = developersService.findByDeveloperId(developerId);
 
         optionalDevelopers.get().setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
@@ -100,9 +100,9 @@ class DevelopersServiceImplIT {
         developers.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         developers.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
 
-        Integer developerId = developersService.create(developers);
+        Integer developerId = developersService.save(developers);
 
-        int result = developersService.delete(developerId);
+        int result = developersService.deleteByDeveloperId(developerId);
         assertEquals(1, result);
 
         Optional<Developers> optionalDevelopers = developersService.findByDeveloperId(developerId);

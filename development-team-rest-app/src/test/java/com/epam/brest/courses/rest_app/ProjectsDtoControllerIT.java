@@ -89,7 +89,7 @@ class ProjectsDtoControllerIT {
         Projects projects = new Projects();
         projects.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
 
-        Integer id = projectsService.create(projects);
+        Integer id = projectsService.save(projects);
         List<ProjectsDto> projectsDtoList = projectsDtoService.findBetweenDates(dateStart,dateEnd);
 
         assertTrue(projectsDtoList.size() == 1);
@@ -141,9 +141,9 @@ class ProjectsDtoControllerIT {
     }
 
     class MockMvcProjectsService{
-        public Integer create(Projects project) throws Exception {
+        public Integer save(Projects project) throws Exception {
 
-            LOGGER.debug(" create({})", project);
+            LOGGER.debug(" save({})", project);
             String json = objectMapper.writeValueAsString(project);
             MockHttpServletResponse response =
                     mockMvcProjects.perform(post("/projects")

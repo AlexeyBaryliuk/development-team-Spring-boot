@@ -64,7 +64,7 @@ class ProjectsDtoServiceRestIT {
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(mapper.writeValueAsString(Arrays.asList(create(0), create(1))))
+                        .body(mapper.writeValueAsString(Arrays.asList(save(0), save(1))))
                 );
         //when
         List<ProjectsDto> projectsDtoList = projectsDtoServiceRest.findBetweenDates(dateStart,dateEnd);
@@ -82,7 +82,7 @@ class ProjectsDtoServiceRestIT {
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(mapper.writeValueAsString(Arrays.asList(create(0), create(1))))
+                        .body(mapper.writeValueAsString(Arrays.asList(save(0), save(1))))
                 );
         //when
         List<ProjectsDto> projectsDtoList = projectsDtoServiceRest.countOfDevelopers();
@@ -91,7 +91,7 @@ class ProjectsDtoServiceRestIT {
         assertTrue(projectsDtoList.size() > 0);
     }
 
-    private ProjectsDto create(int index){
+    private ProjectsDto save(int index){
 
         ProjectsDto projectsDto = new ProjectsDto();
         projectsDto.setProjectId(index);

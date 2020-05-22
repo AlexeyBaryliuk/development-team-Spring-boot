@@ -17,7 +17,7 @@ public interface ProjectsJdbcDaoDto {
      * @param dateEnd
      * @return project's list.
      */
-    List<ProjectsDto> findBetweenDates(LocalDate dateStart, LocalDate dateEnd);
+    List<ProjectsDto> findAllByDateAddedBetween(LocalDate dateStart, LocalDate dateEnd);
 
     /**
      * Count of developers

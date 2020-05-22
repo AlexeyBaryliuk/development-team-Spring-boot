@@ -42,8 +42,8 @@ class ProjectJdbcDaoTestIT {
 
         Projects projectTest = project;
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer id = projectsDao.create(projectTest);
-        Optional<Projects> projectOptional = projectsDao.findByDeveloperId(id);
+        Integer id = projectsDao.save(projectTest);
+        Optional<Projects> projectOptional = projectsDao.findByProjectId(id);
 
         assertTrue(projectOptional.isPresent());
         assertNotNull(projectOptional.get().getDescription());
@@ -59,15 +59,15 @@ class ProjectJdbcDaoTestIT {
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         LocalDate checkDate = projectTest.getDateAdded();
 
-        Integer id = projectsDao.create(projectTest);
-        Optional<Projects> optionalProjects = projectsDao.findByDeveloperId(id);
+        Integer id = projectsDao.save(projectTest);
+        Optional<Projects> optionalProjects = projectsDao.findByProjectId(id);
             assertTrue(optionalProjects.isPresent());
 
         optionalProjects.get().setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
 
         Integer result = projectsDao.update(optionalProjects.get());
 
-        Optional<Projects> optionalUpdateProjects = projectsDao.findByDeveloperId(id);
+        Optional<Projects> optionalUpdateProjects = projectsDao.findByProjectId(id);
             assertTrue(optionalUpdateProjects.isPresent());
 
         assertEquals(1, result.intValue());
@@ -82,11 +82,11 @@ class ProjectJdbcDaoTestIT {
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         LocalDate date = projectTest.getDateAdded();
         String description = projectTest.getDescription();
-        Integer id = projectsDao.create(projectTest);
-        assertEquals(description, projectsDao.findByDeveloperId(id).get().getDescription());
+        Integer id = projectsDao.save(projectTest);
+        assertEquals(description, projectsDao.findByProjectId(id).get().getDescription());
 
-        assertEquals(date, projectsDao.findByDeveloperId(id).get().getDateAdded());
-        System.out.println("DateAdded_________________________" + projectsDao.findByDeveloperId(id).get().getDateAdded());
+        assertEquals(date, projectsDao.findByProjectId(id).get().getDateAdded());
+        System.out.println("DateAdded_________________________" + projectsDao.findByProjectId(id).get().getDateAdded());
         assertNotNull(id);
     }
 
@@ -95,10 +95,10 @@ class ProjectJdbcDaoTestIT {
 
         Projects projectTest = project;
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer id = projectsDao.create(projectTest);
-        assertTrue(projectsDao.findByDeveloperId(id).isPresent());
-        projectsDao.delete(id);
-        assertFalse(projectsDao.findByDeveloperId(id).isPresent());
+        Integer id = projectsDao.save(projectTest);
+        assertTrue(projectsDao.findByProjectId(id).isPresent());
+        projectsDao.deleteByProjectId(id);
+        assertFalse(projectsDao.findByProjectId(id).isPresent());
     }
 
 }
