@@ -104,7 +104,7 @@ public class DevelopersController {
 
         LOGGER.debug("delete({})", developerId);
 
-        Integer result = developersService.delete(developerId);
+        Integer result = developersService.deleteByDeveloperId(developerId);
 
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
