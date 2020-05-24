@@ -9,7 +9,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -101,7 +100,7 @@ class DevelopersControllerIT {
     @Test
     public void shouldUpdateEmployeeAfterEdit() throws Exception {
 
-        Developers developer = save(1);
+        Developers developer = create(1);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.post(COMMON_DEVELOPERS_URL + "/1")
@@ -130,7 +129,7 @@ class DevelopersControllerIT {
     @Test
     public void shouldAddNewDeveloper() throws Exception {
 
-        Developers developer = save(1);
+        Developers developer = create(1);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.post(COMMON_DEVELOPERS_URL + "/developer")
@@ -154,7 +153,7 @@ class DevelopersControllerIT {
                 .andExpect(redirectedUrl(COMMON_DEVELOPERS_URL));
     }
 
-    private Developers save(int index){
+    private Developers create(int index){
 
         Developers developer = new Developers();
                 developer.setDeveloperId(index);

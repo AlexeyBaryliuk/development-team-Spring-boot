@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -47,7 +46,7 @@ class DevelopersServiceImplIT {
             developers.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
             String firstName = developers.getFirstName();
 
-        Integer developerId = developersService.save(developers);
+        Integer developerId = developersService.create(developers);
 
         Optional<Developers> optionalDevelopers = developersService.findByDeveloperId(developerId);
         assertTrue(optionalDevelopers.isPresent());
@@ -56,14 +55,14 @@ class DevelopersServiceImplIT {
     }
 
     @Test
-    void shouldsave() {
+    void shouldcreate() {
 
         developers.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         String lastName = developers.getLastName();
         developers.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
         String firstName = developers.getFirstName();
 
-        Integer developerId = developersService.save(developers);
+        Integer developerId = developersService.create(developers);
 
         Optional<Developers> optionalDevelopers = developersService.findByDeveloperId(developerId);
         assertTrue(optionalDevelopers.isPresent());
@@ -79,7 +78,7 @@ class DevelopersServiceImplIT {
             developers.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
             String firstName = developers.getLastName();
 
-        Integer developerId = developersService.save(developers);
+        Integer developerId = developersService.create(developers);
         Optional<Developers> optionalDevelopers = developersService.findByDeveloperId(developerId);
 
         optionalDevelopers.get().setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
@@ -100,7 +99,7 @@ class DevelopersServiceImplIT {
         developers.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         developers.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
 
-        Integer developerId = developersService.save(developers);
+        Integer developerId = developersService.create(developers);
 
         int result = developersService.deleteByDeveloperId(developerId);
         assertEquals(1, result);

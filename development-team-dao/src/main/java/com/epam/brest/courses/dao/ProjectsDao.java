@@ -38,7 +38,7 @@ public interface ProjectsDao {
      * @param project project.
      * @return persisted project's id.
      */
-    Integer save(Projects project);
+    Integer create(Projects project);
 
     /**
      * Delete project.

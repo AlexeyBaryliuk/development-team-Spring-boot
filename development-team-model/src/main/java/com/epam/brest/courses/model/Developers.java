@@ -10,13 +10,10 @@ import java.util.Set;
  * Developers.
  */
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
-@Getter
-@ToString
+@Data
 @Table(name = "developers")
 public class Developers {
+
 
     /**
      * Developer's id.
@@ -37,6 +34,6 @@ public class Developers {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "developers",fetch= FetchType.LAZY)
-    private Set<Projects> projects;
+    Set<Projects> projects;
 
 }

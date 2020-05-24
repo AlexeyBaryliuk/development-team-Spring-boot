@@ -44,9 +44,9 @@ public class DevelopersServiceRest implements DevelopersService {
     }
 
     @Override
-    public Integer save(Developers developer) {
+    public Integer create(Developers developer) {
 
-        LOGGER.debug("save({})", developer);
+        LOGGER.debug("create({})", developer);
 
         ResponseEntity responseEntity = restTemplate.postForEntity(url, developer, Integer.class);
 

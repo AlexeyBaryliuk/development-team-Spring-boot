@@ -53,6 +53,11 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
@@ -76,6 +81,13 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
     </build>
     <profiles>
 
@@ -93,6 +105,22 @@
             <id>mySql</id>
             <properties>
                 <activatedProperties>mySql</activatedProperties>
+            </properties>
+        </profile>
+        <profile>
+            <id>jpa</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <activatedProperties>jpa</activatedProperties>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>jdbc</id>
+            <properties>
+                <activatedProperties>jdbc</activatedProperties>
             </properties>
         </profile>
     </profiles>

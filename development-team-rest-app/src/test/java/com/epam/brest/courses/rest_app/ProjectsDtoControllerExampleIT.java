@@ -56,7 +56,7 @@ class ProjectsDtoControllerExampleIT {
         String dateAdded = localDate.format(formatter);
 
         LOGGER.debug("DateAdded = {}", dateAdded);
-        Mockito.when(projectsDtoService.countOfDevelopers()).thenReturn(Arrays.asList(save(0), save(1)));
+        Mockito.when(projectsDtoService.countOfDevelopers()).thenReturn(Arrays.asList(create(0), create(1)));
 
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/projectsDto/findAll")
@@ -76,7 +76,7 @@ class ProjectsDtoControllerExampleIT {
         Mockito.verify(projectsDtoService).countOfDevelopers();
     }
 
-    private ProjectsDto save(int index){
+    private ProjectsDto create(int index){
 
         ProjectsDto projectsDto = new ProjectsDto();
         projectsDto.setProjectId(index);

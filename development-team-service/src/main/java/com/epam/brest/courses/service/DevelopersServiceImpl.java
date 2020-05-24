@@ -4,6 +4,7 @@ import com.epam.brest.courses.dao.DevelopersDao;
 import com.epam.brest.courses.model.Developers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ public class DevelopersServiceImpl implements DevelopersService {
 
     private final DevelopersDao developersDao;
 
+    @Autowired
     public DevelopersServiceImpl(DevelopersDao developersDao) {
         this.developersDao = developersDao;
     }
@@ -39,10 +41,10 @@ public class DevelopersServiceImpl implements DevelopersService {
     }
 
     @Override
-    public Integer save(Developers developer) {
+    public Integer create(Developers developer) {
 
-        LOGGER.debug("save() developer = {}", developer);
-        return developersDao.save(developer);
+        LOGGER.debug("create() developer = {}", developer);
+        return developersDao.create(developer);
     }
 
     @Override

@@ -18,7 +18,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -81,7 +80,7 @@ class DevelopersControllerIT {
         // given
         Developers developer = newDeveloper();
 
-        Integer id = developersService.save(developer);
+        Integer id = developersService.create(developer);
 
         // when
         Optional<Developers> optionalDeveloper = developersService.findByDeveloperId(id);
@@ -100,7 +99,7 @@ class DevelopersControllerIT {
         Developers developer = newDeveloper();
 
         //when
-        Integer id = developersService.save(developer);
+        Integer id = developersService.create(developer);
 
         //then
         Optional<Developers> optionalAfterCreate = developersService.findByDeveloperId(id);
@@ -115,7 +114,7 @@ class DevelopersControllerIT {
 
         // given
         Developers developer = newDeveloper();
-        Integer id = developersService.save(developer);
+        Integer id = developersService.create(developer);
         Optional<Developers> optional = developersService.findByDeveloperId(id);
         optional.get().setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
         optional.get().setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
@@ -138,7 +137,7 @@ class DevelopersControllerIT {
 
         // given
         Developers developer = newDeveloper();
-        Integer id = developersService.save(developer);
+        Integer id = developersService.create(developer);
         List<Developers> developersListBefore = developersService.findAll();
 
         //when
@@ -166,9 +165,9 @@ class DevelopersControllerIT {
                 });
             }
 
-            public Integer save(Developers developer) throws Exception {
+            public Integer create(Developers developer) throws Exception {
 
-                LOGGER.debug("save({})", developer);
+                LOGGER.debug("create({})", developer);
                 String json = objectMapper.writeValueAsString(developer);
                 MockHttpServletResponse response =
                         mockMvc.perform(post(DEVELOPERS_ENDPOINT)

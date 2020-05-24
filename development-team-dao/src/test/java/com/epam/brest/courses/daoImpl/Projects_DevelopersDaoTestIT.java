@@ -1,6 +1,9 @@
 package com.epam.brest.courses.daoImpl;
 
 
+import com.epam.brest.courses.dao.DevelopersDao;
+import com.epam.brest.courses.dao.ProjectsDao;
+import com.epam.brest.courses.dao.Projects_DevelopersDao;
 import com.epam.brest.courses.daoImpl.config.TestConfig;
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
@@ -30,13 +33,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class Projects_DevelopersDaoTestIT {
 
     @Autowired
-    private DevelopersJdbcDaoImpl developersJdbcDao;
+    private DevelopersDao developersJdbcDao;
 
     @Autowired
-    private ProjectJdbcDaoImpl projectJdbcDao;
+    private ProjectsDao projectJdbcDao;
 
     @Autowired
-    private Projects_DevelopersJdbcDaoImpl projects_developersJdbcDao;
+    private Projects_DevelopersDao projects_developersJdbcDao;
 
     private Projects project = new Projects();
 
@@ -44,11 +47,11 @@ public class Projects_DevelopersDaoTestIT {
     void shouldSelectDevelopersFromProjects_Developers() {
 
         Developers developer = newDeveloper();
-        Integer firstDeveloperId = developersJdbcDao.save(developer);
-        Integer secondDeveloperId = developersJdbcDao.save(developer);
+        Integer firstDeveloperId = developersJdbcDao.create(developer);
+        Integer secondDeveloperId = developersJdbcDao.create(developer);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectJdbcDao.save(newProject);
+        Integer projectId = projectJdbcDao.create(newProject);
         Integer resultFirst = projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId, firstDeveloperId);
         Integer resultSecond = projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId, secondDeveloperId);
 
@@ -63,10 +66,10 @@ public class Projects_DevelopersDaoTestIT {
     void shoulAddDeveloperToProjects_Developers() {
 
         Developers developer = newDeveloper();
-        Integer developerId = developersJdbcDao.save(developer);
+        Integer developerId = developersJdbcDao.create(developer);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectJdbcDao.save(newProject);
+        Integer projectId = projectJdbcDao.create(newProject);
         Integer result = projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId, developerId);
 
         List<Developers> developersList = projects_developersJdbcDao.selectDevelopersFromProjects_Developers(projectId);
@@ -78,10 +81,10 @@ public class Projects_DevelopersDaoTestIT {
     void shoulDeleteDeveloperFromProject_Developers() {
 
         Developers developer = newDeveloper();
-        Integer developerId = developersJdbcDao.save(developer);
+        Integer developerId = developersJdbcDao.create(developer);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectJdbcDao.save(newProject);
+        Integer projectId = projectJdbcDao.create(newProject);
         Integer resultFirst = projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId, developerId);
 
         List<Developers> developersList = projects_developersJdbcDao.selectDevelopersFromProjects_Developers(projectId);
@@ -98,10 +101,10 @@ public class Projects_DevelopersDaoTestIT {
     void shouldFindByIdFromProjects_Developers(){
 
         Developers developer = newDeveloper();
-        Integer developerId = developersJdbcDao.save(developer);
+        Integer developerId = developersJdbcDao.create(developer);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectJdbcDao.save(newProject);
+        Integer projectId = projectJdbcDao.create(newProject);
         projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId,developerId);
         Optional<Projects_Developers> listFromProjects_Developers = projects_developersJdbcDao
                 .findByIdFromProjects_Developers(projectId,developerId);

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -21,6 +22,7 @@ import static com.epam.brest.courses.model.constants.DeveloperConstants.*;
 
 @Component
 @PropertySource("classpath:sql-development-team.properties")
+@Profile("jdbc")
 public class DevelopersJdbcDaoImpl implements DevelopersDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersJdbcDaoImpl.class);
@@ -70,7 +72,7 @@ public class DevelopersJdbcDaoImpl implements DevelopersDao {
     }
 
     @Override
-    public Integer save(Developers developer) {
+    public Integer create(Developers developer) {
 
         LOGGER.debug("Create developer = {} ", developer);
         parameterSource.addValue(LASTNAME, developer.getLastName());

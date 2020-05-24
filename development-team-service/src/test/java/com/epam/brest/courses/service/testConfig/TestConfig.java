@@ -1,13 +1,14 @@
 package com.epam.brest.courses.service.testConfig;
 
+import com.epam.brest.courses.dao.DevelopersDao;
+import com.epam.brest.courses.dao.ProjectsDao;
+import com.epam.brest.courses.dao.ProjectsDaoDto;
+import com.epam.brest.courses.dao.Projects_DevelopersDao;
 import com.epam.brest.courses.daoImpl.DevelopersJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoDtoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.Projects_DevelopersJdbcDaoImpl;
-import com.epam.brest.courses.service.DevelopersServiceImpl;
-import com.epam.brest.courses.service.ProjectsDtoServiceImpl;
-import com.epam.brest.courses.service.ProjectsServiceImpl;
-import com.epam.brest.courses.service.Projects_DevelopersServiceImpl;
+import com.epam.brest.courses.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -22,40 +23,40 @@ public class TestConfig {
     private DriverManagerDataSource dataSource;
 
     @Bean
-    public DevelopersJdbcDaoImpl developersJdbcDao() {
+    public DevelopersDao developersJdbcDao() {
         return new DevelopersJdbcDaoImpl(namedParameterJdbcTemplate());
     }
 
     @Bean
-    public DevelopersServiceImpl developersServiceImpl(){
+    public DevelopersService developersServiceImpl(){
         return new DevelopersServiceImpl(developersJdbcDao());
     }
 
     @Bean
-    public ProjectJdbcDaoImpl projectJdbcDao() {
+    public ProjectsDao projectJdbcDao() {
         return new ProjectJdbcDaoImpl(namedParameterJdbcTemplate());
     }
 
     @Bean
-    public ProjectsServiceImpl projectsService(){
+    public ProjectsService projectsService(){
         return new ProjectsServiceImpl(projectJdbcDao());
     }
 
     @Bean
-    public Projects_DevelopersJdbcDaoImpl projects_developersJdbcDao() {
+    public Projects_DevelopersDao projects_developersJdbcDao() {
         return new Projects_DevelopersJdbcDaoImpl(namedParameterJdbcTemplate());}
 
     @Bean
-    public Projects_DevelopersServiceImpl projects_developersService(){
+    public Projects_DevelopersService projects_developersService(){
         return new Projects_DevelopersServiceImpl(projects_developersJdbcDao());
     }
 
     @Bean
-    public ProjectJdbcDaoDtoImpl projectJdbcDaoDto() {
+    public ProjectsDaoDto projectJdbcDaoDto() {
         return new ProjectJdbcDaoDtoImpl(namedParameterJdbcTemplate());}
 
     @Bean
-    public ProjectsDtoServiceImpl projectsDtoService(){
+    public ProjectsDtoService projectsDtoService(){
         return new ProjectsDtoServiceImpl(projectJdbcDaoDto());
     }
 

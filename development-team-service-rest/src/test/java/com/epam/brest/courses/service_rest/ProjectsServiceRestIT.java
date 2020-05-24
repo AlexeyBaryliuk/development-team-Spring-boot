@@ -65,7 +65,7 @@ class ProjectsServiceRestIT {
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(mapper.writeValueAsString(Arrays.asList(save(0), save(1))))
+                        .body(mapper.writeValueAsString(Arrays.asList(create(0), create(1))))
                 );
 
         // when
@@ -83,7 +83,7 @@ class ProjectsServiceRestIT {
         LOGGER.debug("shouldFindProjectById() ");
         // given
         Integer id = 1;
-        Projects project = save(id);
+        Projects project = create(id);
 
         mockServer.expect(ExpectedCount.once(), requestTo(new URI(PROJECTS_URL + "/" + id)))
                 .andExpect(method(HttpMethod.GET))
@@ -107,7 +107,7 @@ class ProjectsServiceRestIT {
 
         // given
         Integer id = 1;
-        Projects project = save(id);
+        Projects project = create(id);
 
         mockServer.expect(ExpectedCount.once(), requestTo(new URI(PROJECTS_URL)))
                 .andExpect(method(HttpMethod.PUT))
@@ -143,7 +143,7 @@ class ProjectsServiceRestIT {
 
         // given
         Integer id = 1;
-        Projects project = save(id);
+        Projects project = create(id);
 
         mockServer.expect(ExpectedCount.once(), requestTo(new URI(PROJECTS_URL)))
                 .andExpect(method(HttpMethod.POST))
@@ -152,7 +152,7 @@ class ProjectsServiceRestIT {
                         .body(mapper.writeValueAsString(id))
                 );
         //when
-        Integer projectId = projectsServiceRest.save(project);
+        Integer projectId = projectsServiceRest.create(project);
 
         // then
         mockServer.verify();
@@ -179,7 +179,7 @@ class ProjectsServiceRestIT {
         assertEquals(result,1);
     }
 
-    private Projects save(int index){
+    private Projects create(int index){
 
         Projects projects = new Projects();
         projects.setProjectId(index);

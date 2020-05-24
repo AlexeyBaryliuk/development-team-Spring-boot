@@ -8,9 +8,11 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
-
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -19,6 +21,7 @@ import java.util.Set;
 /**
  * Projects.
  */
+@Entity
 @Setter
 @Getter
 @ToString
@@ -39,6 +42,8 @@ public class Projects {
     /**
      * Project id.
      */
+    @Id
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Integer projectId;
 
     /**
@@ -74,6 +79,6 @@ public class Projects {
 @JoinTable(name="projects_developers",
         joinColumns=@JoinColumn(name="projectId"),
         inverseJoinColumns = @JoinColumn(name="developerId"))
-private Set<Developers> developers;
+Set<Developers> developers;
 
 }

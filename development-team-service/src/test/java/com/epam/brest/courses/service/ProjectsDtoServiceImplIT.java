@@ -1,6 +1,5 @@
 package com.epam.brest.courses.service;
 
-import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.model.dto.ProjectsDto;
 import com.epam.brest.courses.service.testConfig.TestConfig;
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -45,15 +43,15 @@ class ProjectsDtoServiceImplIT {
 
         Projects projectStart = project;
         projectStart.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer idStart = projectsService.save(projectStart);
+        Integer idStart = projectsService.create(projectStart);
         assertTrue(idStart > 0);
 
         Projects projectEnd = project;
         projectEnd.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer idEnd = projectsService.save(projectEnd);
+        Integer idEnd = projectsService.create(projectEnd);
         assertTrue(idEnd > 0);
 
-        List<ProjectsDto> projectsList = projectsDtoService.findBetweenDates(dateStart,dateEnd);
+        List<ProjectsDto> projectsList = projectsDtoService.findAllByDateAddedBetween(dateStart,dateEnd);
         assertTrue(projectsList.size() > 0);
 
     }

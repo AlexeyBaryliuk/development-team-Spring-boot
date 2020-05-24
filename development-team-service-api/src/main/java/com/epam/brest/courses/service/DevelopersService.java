@@ -30,7 +30,7 @@ public interface DevelopersService {
      * @param developer developer.
      * @return persisted developer's id.
      */
-    Integer save(Developers developer);
+    Integer create(Developers developer);
 
     /**
      * Update developer.

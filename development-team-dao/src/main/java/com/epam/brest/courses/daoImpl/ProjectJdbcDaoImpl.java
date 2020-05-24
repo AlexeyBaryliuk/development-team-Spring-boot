@@ -5,6 +5,7 @@ import com.epam.brest.courses.model.Projects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -21,6 +22,7 @@ import static com.epam.brest.courses.model.constants.ProjectConstants.*;
 
 @Component
 @PropertySource("classpath:sql-development-team.properties")
+@Profile("jdbc")
 public class ProjectJdbcDaoImpl implements ProjectsDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectJdbcDaoImpl.class);
@@ -96,7 +98,7 @@ public class ProjectJdbcDaoImpl implements ProjectsDao {
     }
 
     @Override
-    public Integer save(Projects project) {
+    public Integer create(Projects project) {
 
         if (!isNameUnique(project)) {
             throw new IllegalArgumentException("Project with same description already exist.");

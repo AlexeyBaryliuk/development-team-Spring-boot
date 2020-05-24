@@ -46,10 +46,10 @@ public class ProjectsServiceImpl implements ProjectsService {
     }
 
     @Override
-    public Integer save(Projects project) {
+    public Integer create(Projects project) {
 
-        LOGGER.debug("Create project - save(): project = {}",project);
-        return ProjectsDao.save(project);
+        LOGGER.debug("Create project - create(): project = {}",project);
+        return ProjectsDao.create(project);
     }
 
     @Override

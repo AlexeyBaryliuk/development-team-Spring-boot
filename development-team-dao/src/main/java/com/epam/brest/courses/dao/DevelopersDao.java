@@ -1,6 +1,8 @@
 package com.epam.brest.courses.dao;
 
+
 import com.epam.brest.courses.model.Developers;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +32,7 @@ public interface DevelopersDao {
      * @param developer developer.
      * @return persisted developer's id.
      */
-    Integer save(Developers developer);
+    Integer create(Developers developer);
 
     /**
      * Update developer.

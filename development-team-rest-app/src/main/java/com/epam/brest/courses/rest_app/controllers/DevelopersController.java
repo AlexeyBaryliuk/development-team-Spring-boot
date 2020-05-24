@@ -71,11 +71,11 @@ public class DevelopersController {
      * @return Developer's id.
      */
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public Integer save(@RequestBody Developers developer){
+    public Integer create(@RequestBody Developers developer){
 
-        LOGGER.debug("save() Developer {}", developer);
+        LOGGER.debug("create() Developer {}", developer);
 
-        return developersService.save(developer);
+        return developersService.create(developer);
     }
 
 

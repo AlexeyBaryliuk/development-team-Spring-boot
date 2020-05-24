@@ -1,5 +1,9 @@
 package com.epam.brest.courses.daoImpl.config;
 
+import com.epam.brest.courses.dao.DevelopersDao;
+import com.epam.brest.courses.dao.ProjectsDao;
+import com.epam.brest.courses.dao.ProjectsDaoDto;
+import com.epam.brest.courses.dao.Projects_DevelopersDao;
 import com.epam.brest.courses.daoImpl.DevelopersJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoDtoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl;
@@ -18,21 +22,21 @@ public class TestConfig {
     private DriverManagerDataSource dataSource;
 
     @Bean
-    public DevelopersJdbcDaoImpl developersJdbcDao() {
+    public DevelopersDao developersJdbcDao() {
         return new DevelopersJdbcDaoImpl(namedParameterJdbcTemplate());
     }
 
     @Bean
-    public ProjectJdbcDaoImpl projectJdbcDao() {
+    public ProjectsDao projectJdbcDao() {
         return new ProjectJdbcDaoImpl(namedParameterJdbcTemplate());
     }
 
     @Bean
-    public ProjectJdbcDaoDtoImpl projectJdbcDaoDto() {
+    public ProjectsDaoDto projectJdbcDaoDto() {
         return new ProjectJdbcDaoDtoImpl(namedParameterJdbcTemplate());}
 
     @Bean
-    public Projects_DevelopersJdbcDaoImpl projects_developersJdbcDao() {
+    public Projects_DevelopersDao projects_developersJdbcDao() {
         return new Projects_DevelopersJdbcDaoImpl(namedParameterJdbcTemplate());}
 
     @Bean

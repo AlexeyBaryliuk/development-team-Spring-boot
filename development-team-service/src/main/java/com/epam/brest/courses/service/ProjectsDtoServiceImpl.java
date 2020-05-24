@@ -4,6 +4,7 @@ import com.epam.brest.courses.dao.ProjectsDaoDto;
 import com.epam.brest.courses.model.dto.ProjectsDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +24,7 @@ public class ProjectsDtoServiceImpl implements ProjectsDtoService {
     }
 
     @Override
-    public List<ProjectsDto> findBetweenDates(LocalDate dateStart, LocalDate dateEnd) {
+    public List<ProjectsDto> findAllByDateAddedBetween(LocalDate dateStart, LocalDate dateEnd) {
 
         LOGGER.debug("Find project between dates - findBetweenDates");
         return ProjectsDaoDto.findAllByDateAddedBetween(dateStart,dateEnd);
@@ -33,7 +34,7 @@ public class ProjectsDtoServiceImpl implements ProjectsDtoService {
     public List<ProjectsDto> countOfDevelopers() {
 
         LOGGER.debug("Count of developers - countOfDevelopers()");
-
         return ProjectsDaoDto.countOfDevelopers();
     }
+
 }

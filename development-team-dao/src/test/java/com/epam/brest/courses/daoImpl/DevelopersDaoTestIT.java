@@ -1,5 +1,6 @@
 package com.epam.brest.courses.daoImpl;
 
+import com.epam.brest.courses.dao.DevelopersDao;
 import com.epam.brest.courses.daoImpl.config.TestConfig;
 import com.epam.brest.courses.model.Developers;
 import org.apache.commons.lang.RandomStringUtils;
@@ -26,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DevelopersDaoTestIT {
 
     @Autowired
-    private DevelopersJdbcDaoImpl developersJdbcDao;
+    private DevelopersDao developersJdbcDao;
 
     @Test
     void shouldFindAllDevelopers() {
@@ -40,7 +41,7 @@ class DevelopersDaoTestIT {
 
        Developers developer =newDeveloper();
 
-        Integer developerId = developersJdbcDao.save(developer);
+        Integer developerId = developersJdbcDao.create(developer);
         Optional<Developers> optionalDeveloper = developersJdbcDao.findByDeveloperId(developerId);
 
         assertTrue(optionalDeveloper.isPresent());
@@ -53,7 +54,7 @@ class DevelopersDaoTestIT {
     void shouldCreateDeveloper() {
 
         Developers developer = newDeveloper();
-        Integer id = developersJdbcDao.save(developer);
+        Integer id = developersJdbcDao.create(developer);
         assertTrue(id > 0);
 
         Optional<Developers> optionalDevelopers = developersJdbcDao.findByDeveloperId(id);
@@ -68,7 +69,7 @@ class DevelopersDaoTestIT {
         String beforeUpdateLastName = developer.getLastName();
         String beforeUpdateFirstName = developer.getFirstName();
 
-        Integer id = developersJdbcDao.save(developer);
+        Integer id = developersJdbcDao.create(developer);
         Optional<Developers> optionalDevelopers = developersJdbcDao.findByDeveloperId(id);
 
             String afterUpdateLastName = "TestLastName";
@@ -87,7 +88,7 @@ class DevelopersDaoTestIT {
     void shouldDeleteDeveloper() {
 
         Developers developer = newDeveloper();
-        Integer id = developersJdbcDao.save(developer);
+        Integer id = developersJdbcDao.create(developer);
         Integer result = developersJdbcDao.deleteByDeveloperId(id);
 
         assertEquals(1, result.intValue());

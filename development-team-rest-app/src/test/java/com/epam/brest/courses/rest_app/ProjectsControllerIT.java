@@ -83,7 +83,7 @@ class ProjectsControllerIT {
         // given
         Projects project = new Projects();
                 project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer id = projectsService.save(project);
+        Integer id = projectsService.create(project);
         assertNotNull(id);
 
         Optional<Projects> projectOptional = projectsService.findByDeveloperId(id);
@@ -110,7 +110,7 @@ class ProjectsControllerIT {
 
         Projects project = new Projects();
                project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer id = projectsService.save(project);
+        Integer id = projectsService.create(project);
         assertNotNull(id);
 
     }
@@ -138,7 +138,7 @@ class ProjectsControllerIT {
         // given
         Projects project = new Projects();
                project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer id = projectsService.save(project);
+        Integer id = projectsService.create(project);
         assertNotNull(id);
 
         Optional<Projects> projectsOptional = projectsService.findByDeveloperId(id);
@@ -161,7 +161,7 @@ class ProjectsControllerIT {
         // given
         Projects project = new Projects();
                 project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer id = projectsService.save(project);
+        Integer id = projectsService.create(project);
         assertNotNull(id);
 
         //when
@@ -190,7 +190,7 @@ class ProjectsControllerIT {
         LOGGER.debug("shouldFailOnCreateProjectWithDuplicateDescription()");
         Projects project = new Projects();
                 project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer id = projectsService.save(project);
+        Integer id = projectsService.create(project);
         assertNotNull(id);
 
         Projects projectNew = new Projects();
@@ -226,9 +226,9 @@ class ProjectsControllerIT {
         }
 
 
-        public Integer save(Projects project) throws Exception {
+        public Integer create(Projects project) throws Exception {
 
-            LOGGER.debug("save({})", project);
+            LOGGER.debug("create({})", project);
             String json = objectMapper.writeValueAsString(project);
             MockHttpServletResponse response =
                     mockMvc.perform(post(PROJECTS_ENDPOINT)

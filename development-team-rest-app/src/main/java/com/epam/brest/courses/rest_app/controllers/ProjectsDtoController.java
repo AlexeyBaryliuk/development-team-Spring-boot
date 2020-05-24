@@ -39,7 +39,7 @@ public class ProjectsDtoController {
                                                    ,@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd) {
 
         LOGGER.debug("findBetwenDates({},{})", dateStart, dateEnd);
-        return projectsDtoService.findBetweenDates(dateStart, dateEnd);
+        return projectsDtoService.findAllByDateAddedBetween(dateStart, dateEnd);
 
     }
 

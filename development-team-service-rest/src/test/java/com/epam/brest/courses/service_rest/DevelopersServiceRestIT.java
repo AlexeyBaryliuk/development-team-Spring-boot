@@ -63,7 +63,7 @@ class DevelopersServiceRestIT {
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(mapper.writeValueAsString(Arrays.asList(save(0), save(1))))
+                        .body(mapper.writeValueAsString(Arrays.asList(create(0), create(1))))
                 );
         //when
         List<Developers> developersList = developersServiceRest.findAll();
@@ -80,7 +80,7 @@ class DevelopersServiceRestIT {
         LOGGER.debug("shouldFindDeveloperById()");
         // given
         Integer id = 1;
-        Developers developer = save(id);
+        Developers developer = create(id);
 
         mockServer.expect(ExpectedCount.once(), requestTo(new URI(DEVELOPEERS_URL + "/" + id)))
                 .andExpect(method(HttpMethod.GET))
@@ -105,7 +105,7 @@ class DevelopersServiceRestIT {
 
         LOGGER.debug("shouldCreateDeveloper()");
         Integer id = 1;
-        Developers developer = save(id);
+        Developers developer = create(id);
         //given
         mockServer.expect(ExpectedCount.once(),requestTo(new URI(DEVELOPEERS_URL)))
                 .andExpect(method(HttpMethod.POST))
@@ -115,7 +115,7 @@ class DevelopersServiceRestIT {
 
 
         //when
-        Integer developerId = developersServiceRest.save(developer);
+        Integer developerId = developersServiceRest.create(developer);
 
         //then
         mockServer.verify();
@@ -130,7 +130,7 @@ class DevelopersServiceRestIT {
         LOGGER.debug("shouldUpdateDeveloper()");
         //given
         Integer id = 1;
-        Developers developer = save(id);
+        Developers developer = create(id);
         mockServer.expect(ExpectedCount.once(),requestTo(DEVELOPEERS_URL))
                 .andExpect(method(HttpMethod.PUT))
                 .andRespond(withStatus(HttpStatus.OK)
@@ -151,7 +151,7 @@ class DevelopersServiceRestIT {
         LOGGER.debug("shouldDeleteDeveloper()");
         //given
         Integer id = 1;
-        Developers developer = save(id);
+        Developers developer = create(id);
         mockServer.expect(ExpectedCount.once(), requestTo(DEVELOPEERS_URL + "/" + id ))
                 .andExpect(method(HttpMethod.DELETE))
                 .andRespond(withStatus(HttpStatus.OK)
@@ -167,7 +167,7 @@ class DevelopersServiceRestIT {
 
     }
 
-    private Developers save(int index){
+    private Developers create(int index){
 
         Developers developer = new Developers();
         developer.setDeveloperId(index);

@@ -9,11 +9,16 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
  * POJO Projects for model.
  */
+
+
+@Entity
+@Table(name = "projectsDto")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -26,6 +31,8 @@ public class ProjectsDto {
     /**
      * Project id.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer projectId;
 
     /**

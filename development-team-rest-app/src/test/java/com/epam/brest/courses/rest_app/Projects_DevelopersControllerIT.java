@@ -22,7 +22,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -104,13 +103,13 @@ class Projects_DevelopersControllerIT {
         LOGGER.debug("selectDevelopersFromProjects_Developers()");
         Projects project = new Projects();
                 project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectsService.save(project);
+        Integer projectId = projectsService.create(project);
         assertNotNull(projectId);
 
         Developers developer = new Developers();
                 developer.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
                 developer.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
-        Integer developerId = developersService.save(developer);
+        Integer developerId = developersService.create(developer);
         assertNotNull(developerId);
 
             int result = projects_developersService.addDeveloperToProjects_Developers(projectId,developerId);
@@ -133,13 +132,13 @@ class Projects_DevelopersControllerIT {
         LOGGER.debug("addDeveloperToProjects_Developers()");
         Projects project = new Projects();
                 project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectsService.save(project);
+        Integer projectId = projectsService.create(project);
         assertNotNull(projectId);
 
         Developers developer = new Developers();
                 developer.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
                 developer.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
-        Integer developerId = developersService.save(developer);
+        Integer developerId = developersService.create(developer);
         assertNotNull(developerId);
 
         int result = projects_developersService.addDeveloperToProjects_Developers(projectId,developerId);
@@ -153,13 +152,13 @@ class Projects_DevelopersControllerIT {
         LOGGER.debug("deleteDeveloperFromProject_Developers()");
         Projects project = new Projects();
                 project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectsService.save(project);
+        Integer projectId = projectsService.create(project);
         assertNotNull(projectId);
 
         Developers developer = new Developers();
                 developer.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
                 developer.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
-        Integer developerId = developersService.save(developer);
+        Integer developerId = developersService.create(developer);
         assertNotNull(developerId);
         projects_developersService.addDeveloperToProjects_Developers(projectId,developerId);
 
@@ -175,13 +174,13 @@ class Projects_DevelopersControllerIT {
         LOGGER.debug("findByIdFromProjects_Developers()");
         Projects project = new Projects();
                 project.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectsService.save(project);
+        Integer projectId = projectsService.create(project);
         assertNotNull(projectId);
 
         Developers developer = new Developers();
                 developer.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
                 developer.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
-        Integer developerId = developersService.save(developer);
+        Integer developerId = developersService.create(developer);
         assertNotNull(developerId);
 
         int result = projects_developersService.addDeveloperToProjects_Developers(projectId,developerId);
@@ -244,9 +243,9 @@ class Projects_DevelopersControllerIT {
 
     class MockMvcProjectsServicePD {
 
-        public Integer save(Projects project) throws Exception {
+        public Integer create(Projects project) throws Exception {
 
-            LOGGER.debug("MOCK_MVC from method save({})", project);
+            LOGGER.debug("MOCK_MVC from method create({})", project);
             String json = objectMapper.writeValueAsString(project);
             MockHttpServletResponse response =
                     mockMvcProject.perform(post(PROJECTS_ENDPOINT)
@@ -263,9 +262,9 @@ class Projects_DevelopersControllerIT {
 
     class MockMvcDevelopersServicePD {
 
-        public Integer save(Developers developer) throws Exception {
+        public Integer create(Developers developer) throws Exception {
 
-            LOGGER.debug("save({})", developer);
+            LOGGER.debug("create({})", developer);
             String json = objectMapper.writeValueAsString(developer);
             MockHttpServletResponse response =
                     mockMvcDeveloper.perform(post(DEVELOPERS_ENDPOINT)

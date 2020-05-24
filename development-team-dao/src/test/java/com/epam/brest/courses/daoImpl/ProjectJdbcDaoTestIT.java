@@ -1,5 +1,6 @@
 package com.epam.brest.courses.daoImpl;
 
+import com.epam.brest.courses.dao.ProjectsDao;
 import com.epam.brest.courses.daoImpl.config.TestConfig;
 import com.epam.brest.courses.model.Projects;
 import org.apache.commons.lang.RandomStringUtils;
@@ -25,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProjectJdbcDaoTestIT {
 
     @Autowired
-    private ProjectJdbcDaoImpl projectsDao;
+    private ProjectsDao projectsDao;
 
     private Projects project = new Projects();
 
@@ -42,7 +43,7 @@ class ProjectJdbcDaoTestIT {
 
         Projects projectTest = project;
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer id = projectsDao.save(projectTest);
+        Integer id = projectsDao.create(projectTest);
         Optional<Projects> projectOptional = projectsDao.findByProjectId(id);
 
         assertTrue(projectOptional.isPresent());
@@ -59,7 +60,7 @@ class ProjectJdbcDaoTestIT {
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         LocalDate checkDate = projectTest.getDateAdded();
 
-        Integer id = projectsDao.save(projectTest);
+        Integer id = projectsDao.create(projectTest);
         Optional<Projects> optionalProjects = projectsDao.findByProjectId(id);
             assertTrue(optionalProjects.isPresent());
 
@@ -82,7 +83,7 @@ class ProjectJdbcDaoTestIT {
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         LocalDate date = projectTest.getDateAdded();
         String description = projectTest.getDescription();
-        Integer id = projectsDao.save(projectTest);
+        Integer id = projectsDao.create(projectTest);
         assertEquals(description, projectsDao.findByProjectId(id).get().getDescription());
 
         assertEquals(date, projectsDao.findByProjectId(id).get().getDateAdded());
@@ -95,7 +96,7 @@ class ProjectJdbcDaoTestIT {
 
         Projects projectTest = project;
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer id = projectsDao.save(projectTest);
+        Integer id = projectsDao.create(projectTest);
         assertTrue(projectsDao.findByProjectId(id).isPresent());
         projectsDao.deleteByProjectId(id);
         assertFalse(projectsDao.findByProjectId(id).isPresent());

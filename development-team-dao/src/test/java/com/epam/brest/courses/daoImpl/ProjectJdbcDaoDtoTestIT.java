@@ -1,5 +1,7 @@
 package com.epam.brest.courses.daoImpl;
 
+import com.epam.brest.courses.dao.ProjectsDao;
+import com.epam.brest.courses.dao.ProjectsDaoDto;
 import com.epam.brest.courses.daoImpl.config.TestConfig;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.model.dto.ProjectsDto;
@@ -11,7 +13,6 @@ import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -31,10 +32,10 @@ class ProjectJdbcDaoDtoTestIT {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectJdbcDaoDtoTestIT.class);
 
     @Autowired
-    private ProjectJdbcDaoDtoImpl projectJdbcDaoDto;
+    private ProjectsDaoDto projectJdbcDaoDto;
 
     @Autowired
-    private ProjectJdbcDaoImpl projectJdbcDao;
+    private ProjectsDao projectJdbcDao;
 
     private Projects project = new Projects();
 
@@ -48,12 +49,12 @@ class ProjectJdbcDaoDtoTestIT {
 
         Projects projectStart = project;
         projectStart.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer idStart = projectJdbcDao.save(projectStart);
+        Integer idStart = projectJdbcDao.create(projectStart);
             assertTrue(idStart > 0);
 
         Projects projectEnd = project;
         projectEnd.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer idEnd = projectJdbcDao.save(projectEnd);
+        Integer idEnd = projectJdbcDao.create(projectEnd);
             assertTrue(idEnd > 0);
 
         List<ProjectsDto> projectsList = projectJdbcDaoDto.findAllByDateAddedBetween(dateStart,dateEnd);
