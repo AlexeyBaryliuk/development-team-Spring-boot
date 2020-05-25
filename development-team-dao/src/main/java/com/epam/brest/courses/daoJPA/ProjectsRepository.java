@@ -31,7 +31,7 @@ public interface ProjectsRepository extends JpaRepository<Projects, Integer>, Pr
      * @return number of updated records in the database.
      */
     @Modifying
-    @Query(value="UPDATE projects SET description=:pro.description, dateAdded = :pro.dateAdded WHERE projectId = :pro.projectId",
+    @Query(value="UPDATE projects SET description=:#{#pro.description}, dateAdded = :#{#pro.dateAdded} WHERE projectId = :#{#pro.projectId}",
             nativeQuery = true)
     Integer update (@Param("pro") Projects project);
 

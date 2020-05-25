@@ -1,7 +1,6 @@
 package com.epam.brest.courses.daoJPA;
 
 import com.epam.brest.courses.dao.ProjectsDaoDto;
-import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.model.dto.ProjectsDto;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;

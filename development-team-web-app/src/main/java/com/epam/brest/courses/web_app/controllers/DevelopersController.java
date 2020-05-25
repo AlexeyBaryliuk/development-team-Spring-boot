@@ -38,7 +38,8 @@ public class DevelopersController {
 
         LOGGER.debug("DCONTROLLER findAll()");
         List<Developers> developersList = developersService.findAll();
-        model.addAttribute("developers", developersList);
+        LOGGER.debug("__________________________findAll() = :{}",developersList);
+        model.addAttribute("developers", developersService.findAll());
         return "developers";
     }
 

@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.UrlTemplateResolver;
 
 @Configuration
 public class ViewConfig implements WebMvcConfigurer {
@@ -30,6 +31,7 @@ public class ViewConfig implements WebMvcConfigurer {
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.addTemplateResolver(new UrlTemplateResolver());
         templateEngine.setTemplateResolver(templateResolver());
         templateEngine.setTemplateEngineMessageSource(messageSource());
         return templateEngine;

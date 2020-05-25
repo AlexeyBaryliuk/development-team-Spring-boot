@@ -83,6 +83,7 @@ public class ProjectsController {
          LOGGER.debug("Find all projects");
 
          List<ProjectsDto> projectsDtoList = projectsDtoService.countOfDevelopers();
+         LOGGER.debug("__________________________findAll() PPPP= :{}", projectsDtoList);
          model.addAttribute("projects", projectsDtoList );
     }
 

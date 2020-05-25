@@ -29,8 +29,8 @@ public class DevelopersServiceRest implements DevelopersService {
     public List<Developers> findAll() {
 
         LOGGER.debug("findAll()");
-        ResponseEntity responseEntity = restTemplate.getForEntity(url,List.class);
-        return (List<Developers>) responseEntity.getBody();
+        ResponseEntity<List> responseEntity = restTemplate.getForEntity(url,List.class);
+        return  responseEntity.getBody();
     }
 
     @Override

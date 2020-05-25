@@ -69,8 +69,8 @@
                         </thead>
                         <tbody>
                         <tr th:each="developer : ${developers}">
-                            <td th:text="${developer.firstName}">Ivan</td>
-                            <td th:text="${developer.lastName}">Ivanov</td>
+                            <td th:text="${developer.firstName}">1</td>
+                            <td th:text="${developer.lastName}">2019-03-12</td>
                             <td class="text-right">
                                 <a href="developer.html"
                                    th:href="@{|/developers/${developer.developerId}|}"

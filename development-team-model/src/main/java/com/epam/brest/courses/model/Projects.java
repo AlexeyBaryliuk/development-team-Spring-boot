@@ -74,11 +74,11 @@ public class Projects {
         return dateAdded;
     }
 
-@JsonIgnore
-@ManyToMany(fetch = FetchType.LAZY)
-@JoinTable(name="projects_developers",
-        joinColumns=@JoinColumn(name="projectId"),
-        inverseJoinColumns = @JoinColumn(name="developerId"))
-Set<Developers> developers;
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="projects_developers",
+            joinColumns=@JoinColumn(name="projectId"),
+            inverseJoinColumns = @JoinColumn(name="developerId"))
+    Set<Developers> developers;
 
 }
