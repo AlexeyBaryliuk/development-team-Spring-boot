@@ -54,6 +54,6 @@ public class ProjectJdbcDaoDtoImpl implements ProjectsDaoDto {
 
         LOGGER.debug("CountOfDevelopers()");
         return namedParameterJdbcTemplate.query(countOfDevelopers
-                ,new BeanPropertyRowMapper<>().newInstance(ProjectsDto.class));
+                ,new BeanPropertyRowMapper<>(ProjectsDto.class));
     }
 }

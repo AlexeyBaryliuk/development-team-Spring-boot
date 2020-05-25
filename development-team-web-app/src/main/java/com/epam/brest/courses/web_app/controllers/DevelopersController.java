@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -37,8 +36,6 @@ public class DevelopersController {
     public String findAll(Model model){
 
         LOGGER.debug("DCONTROLLER findAll()");
-        List<Developers> developersList = developersService.findAll();
-        LOGGER.debug("__________________________findAll() = :{}",developersList);
         model.addAttribute("developers", developersService.findAll());
         return "developers";
     }

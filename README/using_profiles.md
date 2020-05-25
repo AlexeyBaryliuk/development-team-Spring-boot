@@ -1,46 +1,79 @@
-# Using h2 profile
 
-Goto Project folder and execute  
+## Start REST layer
+
+# Using JPA profile
     
-1.Start Rest using h2 profile:
-
+1.Start Rest using JPA profile:
+    JPA profile starts by default.
+    Goto Project folder and execute.  
 ```
 cd development-team-rest-app
-mvn clean install -P h2
+mvn clean install
 
 ```
-2.Start Web using h2 profile:
-   
+2.Start tests using mySql or H2 profiles:
+   Changing the pom value in < argline >
 ```
-cd development-team-web-app
-mvn clean install -P h2
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <argLine>-Dspring.profiles.active=mySql</argLine>
+                </configuration>
+            </plugin>
 ```
 
 3.The application is available at
 ```
-http://localhost:8080/projects
+http://localhost:8088/projects
 ```
 
 
-# Using mySql profile
-
-Goto Project folder and execute  
+# Using JDBC profile
     
-1.Start Rest using mySql profile:
-
+1.Start Rest using JDBC profile:
+Goto Project folder and execute  
+  
 ```
 cd development-team-rest-app
-mvn clean install -P h2
+mvn clean install -P jdbc
 
 ```
-2.Start Web using mySql profile:
-   
+2.Start tests using mySql or H2 profiles:
+   Changing the pom value in < argline >
 ```
-cd development-team-web-app
-mvn clean install -P h2
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <argLine>-Dspring.profiles.active=mySql</argLine>
+                </configuration>
+            </plugin>
 ```
 
 3.The application is available at
 ```
-http://localhost:8080/projects
+http://localhost:8088/projects
+```
+
+## Start WEB layer
+
+1.Goto Project folder and execute  
+  
+```
+cd development-team-web-app
+mvn clean install 
+```
+
+2.Start tests using mySql or H2 profiles:
+
+   Changing the pom value in < argline >
+```
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <argLine>-Dspring.profiles.active=mySql</argLine>
+                </configuration>
+            </plugin>
 ```

@@ -8,10 +8,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -22,10 +19,7 @@ import java.util.Set;
  * Projects.
  */
 @Entity
-@Setter
-@Getter
-@ToString
-@AllArgsConstructor
+@Data
 @Table(name = "projects")
 @SuppressFBWarnings(value = { "EI_EXPOSE_REP", "EI_EXPOSE_REP2" }
                     , justification = "I prefer to suppress these FindBugs warnings")
