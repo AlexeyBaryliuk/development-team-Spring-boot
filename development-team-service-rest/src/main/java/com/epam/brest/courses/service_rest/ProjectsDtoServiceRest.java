@@ -27,20 +27,19 @@ public class ProjectsDtoServiceRest implements ProjectsDtoService {
     }
 
     @Override
-    public List<ProjectsDto> findBetweenDates(LocalDate dateStart, LocalDate dateEnd) {
+    public List<ProjectsDto> findAllByDateAddedBetween(LocalDate dateStart, LocalDate dateEnd) {
+            LOGGER.debug("findBetweenDates({}, {}})",dateStart,  dateEnd);
 
-        LOGGER.debug("findBetweenDates({}, {}})",dateStart,  dateEnd);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
+                    .queryParam("dateStart", dateStart)
+                    .queryParam("dateEnd", dateEnd);
+            HttpEntity<?> entity = new HttpEntity<>(headers);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
-                .queryParam("dateStart", dateStart)
-                .queryParam("dateEnd", dateEnd);
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-
-        ResponseEntity<List> response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, entity, List.class);
-        return  response.getBody();
-    }
+            ResponseEntity<List> response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, entity, List.class);
+            return  response.getBody();
+        }
 
     @Override
     public List<ProjectsDto> countOfDevelopers() {

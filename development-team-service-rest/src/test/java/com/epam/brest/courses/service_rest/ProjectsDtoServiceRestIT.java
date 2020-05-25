@@ -67,7 +67,7 @@ class ProjectsDtoServiceRestIT {
                         .body(mapper.writeValueAsString(Arrays.asList(create(0), create(1))))
                 );
         //when
-        List<ProjectsDto> projectsDtoList = projectsDtoServiceRest.findBetweenDates(dateStart,dateEnd);
+        List<ProjectsDto> projectsDtoList = projectsDtoServiceRest.findAllByDateAddedBetween(dateStart,dateEnd);
 
         //then
         assertTrue(projectsDtoList.size() == 2);

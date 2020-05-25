@@ -74,7 +74,7 @@ public class ProjectsController {
      if (dateStart!= null && dateEnd != null){
 
          LOGGER.debug("Find projects between dates. Date start = {}, Date End = {}", dateStart, dateEnd);
-         List<ProjectsDto> projectsDtoListBetween = projectsDtoService.findBetweenDates(dateStart, dateEnd);
+         List<ProjectsDto> projectsDtoListBetween = projectsDtoService.findAllByDateAddedBetween(dateStart, dateEnd);
                  LOGGER.debug("______________________ {}", projectsDtoListBetween);
          model.addAttribute("projects", projectsDtoListBetween);
     }
