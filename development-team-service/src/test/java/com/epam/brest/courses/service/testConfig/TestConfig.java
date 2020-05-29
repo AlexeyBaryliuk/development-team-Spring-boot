@@ -9,6 +9,7 @@ import com.epam.brest.courses.daoImpl.ProjectJdbcDaoDtoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.Projects_DevelopersJdbcDaoImpl;
 import com.epam.brest.courses.service.*;
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -63,6 +64,14 @@ public class TestConfig {
     @Bean
     public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
         return new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:db/changelog/db.liquibase-changeLog.master.xml");
+        liquibase.setDataSource(dataSource);
+        return liquibase;
     }
 
     @Bean

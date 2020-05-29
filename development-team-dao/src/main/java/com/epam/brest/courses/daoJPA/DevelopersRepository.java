@@ -9,15 +9,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 @Profile("jpa")
 public interface DevelopersRepository extends JpaRepository<Developers, Integer>, DevelopersDao {
 
-    @Query(value="SELECT developerId, firstName, lastName FROM developers d ORDER BY d.developerId",
-            nativeQuery = true)
-    List<Developers> findAll();
     /**
      * Persist new developer.
      *

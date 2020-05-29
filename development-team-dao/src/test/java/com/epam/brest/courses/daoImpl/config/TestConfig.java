@@ -8,6 +8,7 @@ import com.epam.brest.courses.daoImpl.DevelopersJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoDtoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.Projects_DevelopersJdbcDaoImpl;
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -45,6 +46,14 @@ public class TestConfig {
     }
 
     @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:db/changelog/db.liquibase-changeLog.master.xml");
+        liquibase.setDataSource(dataSource);
+        return liquibase;
+    }
+
+    @Bean
     @Profile("h2")
     public DriverManagerDataSource dataSourceh2() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -54,6 +63,7 @@ public class TestConfig {
         dataSource.setPassword("");
         return  dataSource;
     }
+
 
     @Bean
     @Profile("mySql")

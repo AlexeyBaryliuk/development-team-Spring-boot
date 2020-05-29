@@ -14,7 +14,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -29,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest(classes={Projects_Developers.class, TestConfig.class} )
 @ExtendWith(SpringExtension.class)
 @TestPropertySource("classpath:sql-development-team.properties")
-@Sql({"classpath:schema.sql", "classpath:data.sql"})
 public class Projects_DevelopersDaoTestIT {
 
     @Autowired
@@ -103,6 +101,7 @@ public class Projects_DevelopersDaoTestIT {
         Developers developer = newDeveloper();
         Integer developerId = developersJdbcDao.create(developer);
         Projects newProject = project;
+
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         Integer projectId = projectJdbcDao.create(newProject);
         projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId,developerId);
@@ -110,7 +109,7 @@ public class Projects_DevelopersDaoTestIT {
                 .findByIdFromProjects_Developers(projectId,developerId);
 
         assertTrue(listFromProjects_Developers.isPresent());
-//        assertEquals(projectId, developerFromProjects_Developers.get().getDeveloperId());
+        assertEquals(projectId, listFromProjects_Developers.get().getProjectId());
 
     }
 

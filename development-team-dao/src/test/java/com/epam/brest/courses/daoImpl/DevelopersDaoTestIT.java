@@ -23,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes={Developers.class, TestConfig.class} )
 @ExtendWith(SpringExtension.class)
 @TestPropertySource("classpath:sql-development-team.properties")
-@Sql({"classpath:schema.sql", "classpath:data.sql"})
 class DevelopersDaoTestIT {
 
     @Autowired

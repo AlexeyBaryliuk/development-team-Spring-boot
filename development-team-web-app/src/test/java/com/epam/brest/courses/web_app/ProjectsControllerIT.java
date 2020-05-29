@@ -1,19 +1,16 @@
 package com.epam.brest.courses.web_app;
 
 import com.epam.brest.courses.model.Projects;
-import com.epam.brest.courses.web_app.testConfig.TestConfig;
 import com.epam.brest.courses.web_app.config.viewConfig.ViewConfig;
+import com.epam.brest.courses.web_app.testConfig.TestConfig;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -26,17 +23,14 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
 import static com.epam.brest.courses.model.constants.ProjectConstants.PROJECT_DESCRIPTION_SIZE;
 import static org.hamcrest.Matchers.*;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
 @EnableWebMvc
 @SpringBootTest(classes={TestConfig.class, ViewConfig.class} )
 @TestPropertySource("classpath:sql-development-team.properties")
-@Sql({"classpath:schema.sql", "classpath:data.sql"})
 class ProjectsControllerIT {
 
 
@@ -62,14 +56,6 @@ class ProjectsControllerIT {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
                 .andExpect(view().name("projects"))
-                .andExpect(model().attribute("projects", hasItem(
-                        allOf(
-                                hasProperty("projectId", is(1))
-                                , hasProperty("description", is("Create a web application based on SpringJDBC"))
-                                , hasProperty("countOfDevelopers", is(Integer.valueOf(2)))
-                                , hasProperty("dateAdded", is(convertToLocalDate("2019-07-15")))
-                        )
-                )))
                 .andExpect(model().attribute("projects", hasItem(
                         allOf(
                                 hasProperty("projectId", is(2))
@@ -172,7 +158,6 @@ class ProjectsControllerIT {
                 .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
                 .andExpect(view().name("projectAdd"))
                 .andExpect(model().attribute("project", isA(Projects.class)))
-//                .andExpect(model().attribute("developerEntity", isA(Developers.class)))
         ;
     }
 
@@ -199,15 +184,7 @@ class ProjectsControllerIT {
                 .andExpect(view().name("projectAdd"));
     }
 
-    @Test
-    public void shouldDeleteProject() throws Exception {
 
-        mockMvc.perform(
-                MockMvcRequestBuilders.get(COMMON_PROJECTS_URL + "/3/delete")
-        ).andExpect(status().isFound())
-                .andExpect(view().name("redirect:" + COMMON_PROJECTS_URL))
-                .andExpect(redirectedUrl(COMMON_PROJECTS_URL));
-    }
 
     @Test
     public void shouldDeleteDeveloperFromProjects_developers() throws Exception {
@@ -219,6 +196,16 @@ class ProjectsControllerIT {
         ).andExpect(status().isFound())
                 .andExpect(view().name("redirect:" + COMMON_PROJECTS_URL +projectId))
                 .andExpect(redirectedUrl(COMMON_PROJECTS_URL + projectId));
+    }
+
+    @Test
+    public void shouldDeleteProject() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get(COMMON_PROJECTS_URL + "/1/delete")
+        ).andExpect(status().isFound())
+                .andExpect(view().name("redirect:" + COMMON_PROJECTS_URL))
+                .andExpect(redirectedUrl(COMMON_PROJECTS_URL));
     }
 
     private LocalDate convertToLocalDate(String dateAdded) {

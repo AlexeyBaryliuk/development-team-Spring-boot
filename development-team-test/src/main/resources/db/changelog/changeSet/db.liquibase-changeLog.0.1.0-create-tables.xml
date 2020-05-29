@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet  id="1"  author="Aliaksei" >
+        <sqlFile path="db/changelog/changeSet/changeSet_sql/V1__drop-if-exists.sql"/>
+    </changeSet>
+
+    <changeSet  id="2"  author="Aliaksei" >
+        <sqlFile path="db/changelog/changeSet/changeSet_sql/V2__create-developers.sql"/>
+    </changeSet>
+
+    <changeSet  id="3"  author="Aliaksei" >
+        <sqlFile path="db/changelog/changeSet/changeSet_sql/V3__create-projects.sql"/>
+    </changeSet>
+
+    <changeSet  id="4"  author="Aliaksei" >
+        <sqlFile path="db/changelog/changeSet/changeSet_sql/V4__create-projects-developers.sql"/>
+    </changeSet>
+
+    <changeSet  id="8"  author="Aliaksei" >
+        <sqlFile path="db/changelog/changeSet/changeSet_sql/V8__create-projectDto.sql"/>
+    </changeSet>
+
+</databaseChangeLog>
+

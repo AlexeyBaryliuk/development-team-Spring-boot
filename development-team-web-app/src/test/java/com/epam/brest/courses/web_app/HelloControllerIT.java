@@ -19,7 +19,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes={TestConfig.class, ViewConfig.class} )
-@ActiveProfiles("test")
 class HelloControllerIT {
 
     @Autowired
