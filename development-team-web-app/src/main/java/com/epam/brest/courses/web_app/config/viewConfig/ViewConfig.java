@@ -39,9 +39,12 @@ public class ViewConfig implements WebMvcConfigurer {
 
     @Bean
     public ViewResolver viewResolver() {
+
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
+        viewResolver.setContentType("text/html;charset=UTF-8");
         viewResolver.setCharacterEncoding("UTF-8");
+
         return viewResolver;
     }
     @Bean

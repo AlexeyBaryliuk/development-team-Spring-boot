@@ -110,7 +110,6 @@ public class TestConfig {
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setChangeLog("classpath:db/changelog/db.liquibase-changeLog.master.xml");
         liquibase.setDataSource(dataSource);
-        liquibase.setDropFirst(true);
         return liquibase;
     }
 
