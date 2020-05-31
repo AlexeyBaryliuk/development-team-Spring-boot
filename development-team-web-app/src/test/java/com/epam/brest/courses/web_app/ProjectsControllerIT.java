@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -31,6 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @EnableWebMvc
 @SpringBootTest(classes={TestConfig.class, ViewConfig.class} )
 @TestPropertySource("classpath:sql-development-team.properties")
+@Sql({"classpath:testDB/schema.sql", "classpath:testDB/data.sql"})
 class ProjectsControllerIT {
 
 
@@ -115,7 +117,7 @@ class ProjectsControllerIT {
 
         Projects project = new Projects();
                 project.setProjectId(1);
-                project.setDescription("test");
+                project.setDescription("testDB");
 
         mockMvc.perform(
                 MockMvcRequestBuilders.post(COMMON_PROJECTS_URL + "/1")
@@ -168,7 +170,7 @@ class ProjectsControllerIT {
         mockMvc.perform(
                 MockMvcRequestBuilders.post(COMMON_PROJECTS_URL + "/add")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("description", "test")
+                        .param("description", "testDB")
         ).andExpect(status().isFound())
                 .andExpect(redirectedUrl(COMMON_PROJECTS_URL));
     }

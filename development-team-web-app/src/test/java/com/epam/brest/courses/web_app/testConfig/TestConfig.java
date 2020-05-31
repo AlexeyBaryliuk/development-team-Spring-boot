@@ -14,18 +14,12 @@ import com.epam.brest.courses.web_app.controllers.ProjectsController;
 import com.epam.brest.courses.web_app.validators.DevelopersValidator;
 import com.epam.brest.courses.web_app.validators.ProjectsValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
-import javax.activation.DataSource;
 
 
 @TestConfiguration
@@ -38,7 +32,6 @@ public class TestConfig {
     public HelloController helloController(){
         return new HelloController();
     }
-
     @Bean
     public DevelopersController developersController(){
         return new DevelopersController(developersServiceImpl());
@@ -47,9 +40,9 @@ public class TestConfig {
     @Bean
     public ProjectsController projectsController(){
         return new ProjectsController(projectsDtoService()
-                                    , projectsService()
-                                    , developersServiceImpl()
-                                    , projects_developersService());
+                , projectsService()
+                , developersServiceImpl()
+                , projects_developersService());
     }
 
 
@@ -106,14 +99,6 @@ public class TestConfig {
     }
 
     @Bean
-    public SpringLiquibase liquibase() {
-        SpringLiquibase liquibase = new SpringLiquibase();
-        liquibase.setChangeLog("classpath:db/changelog/db.liquibase-changeLog.master.xml");
-        liquibase.setDataSource(dataSource);
-        return liquibase;
-    }
-
-    @Bean
     @Profile("h2")
     public DriverManagerDataSource dataSourceh2() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -135,4 +120,3 @@ public class TestConfig {
         return  dataSource;
     }
 }
-

@@ -28,11 +28,6 @@
 
         <dependency>
             <groupId>com.epam.brest.courses</groupId>
-            <artifactId>development-team-test</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.epam.brest.courses</groupId>
             <artifactId>development-team-dao</artifactId>
         </dependency>
 
@@ -44,6 +39,11 @@
         <dependency>
             <groupId>com.epam.brest.courses</groupId>
             <artifactId>development-team-service</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>development-team-test</artifactId>
         </dependency>
 
         <dependency>

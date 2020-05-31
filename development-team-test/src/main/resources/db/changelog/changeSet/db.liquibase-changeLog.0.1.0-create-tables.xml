@@ -6,9 +6,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet  id="1"  author="Aliaksei" >
-        <sqlFile path="db/changelog/changeSet/changeSet_sql/V1__drop-if-exists.sql"/>
-    </changeSet>
 
     <changeSet  id="2"  author="Aliaksei" >
         <sqlFile path="db/changelog/changeSet/changeSet_sql/V2__create-developers.sql"/>

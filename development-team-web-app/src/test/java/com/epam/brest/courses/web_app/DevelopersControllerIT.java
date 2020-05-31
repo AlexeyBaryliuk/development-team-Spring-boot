@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -24,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes={TestConfig.class, ViewConfig.class} )
 @TestPropertySource("classpath:sql-development-team.properties")
+@Sql({"classpath:testDB/schema.sql", "classpath:testDB/data.sql"})
 class DevelopersControllerIT {
 
     private final String COMMON_DEVELOPERS_URL = "/developers";

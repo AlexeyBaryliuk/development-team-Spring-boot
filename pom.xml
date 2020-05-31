@@ -69,13 +69,6 @@
             </dependency>
 
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-configuration-processor</artifactId>
-                <version>${org.springframework.boot.version}</version>
-                <optional>true</optional>
-            </dependency>
-
-            <dependency>
                 <groupId>com.epam.brest.courses</groupId>
                 <artifactId>development-team-web-app</artifactId>
                 <version>${project.version}</version>
