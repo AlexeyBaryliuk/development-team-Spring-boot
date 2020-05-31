@@ -11,7 +11,13 @@ cd development-team-rest-app
 mvn clean install
 
 ```
-2.Start tests using mySql or H2 profiles:
+2.Start Rest using mySql or h2 profiles:
+Changing the application.properties:
+```
+spring.profiles.include= <mySql or h2>
+```
+
+3.Start tests using mySql or H2 profiles:
    Changing the pom value in < argline >
 ```
             <plugin>
@@ -23,7 +29,7 @@ mvn clean install
             </plugin>
 ```
 
-3.The application is available at
+4.The application is available at
 ```
 http://localhost:8088/projects
 ```
@@ -39,7 +45,13 @@ cd development-team-rest-app
 mvn clean install -P jdbc
 
 ```
-2.Start tests using mySql or H2 profiles:
+2.Start Rest using mySql or h2 profiles:
+Changing the application.properties:
+```
+spring.profiles.include= <mySql or h2>
+```
+
+3.Start tests using mySql or H2 profiles:
    Changing the pom value in < argline >
 ```
             <plugin>
@@ -51,10 +63,11 @@ mvn clean install -P jdbc
             </plugin>
 ```
 
-3.The application is available at
+4.The application is available at
 ```
 http://localhost:8088/projects
 ```
+
 
 ## Start WEB layer
 
