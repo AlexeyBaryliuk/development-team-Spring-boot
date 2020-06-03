@@ -2,6 +2,7 @@ package com.epam.brest.courses.daoImpl;
 
 import com.epam.brest.courses.dao.ProjectsDao;
 import com.epam.brest.courses.daoImpl.config.TestConfig;
+import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.Test;
@@ -98,6 +99,16 @@ class ProjectJdbcDaoTestIT {
         assertTrue(projectsDao.findByProjectId(id).isPresent());
         projectsDao.deleteByProjectId(id);
         assertFalse(projectsDao.findByProjectId(id).isPresent());
+    }
+
+    @Test
+    void shouldGetCountOfProjects() {
+
+        List<Projects> developersList = projectsDao.findAll();
+        Integer countOfRow = projectsDao.countOfRow();
+
+        assertEquals(developersList.size(),countOfRow);
+
     }
 
 }

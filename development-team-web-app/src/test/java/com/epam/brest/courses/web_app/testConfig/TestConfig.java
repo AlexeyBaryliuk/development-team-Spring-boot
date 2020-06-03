@@ -14,6 +14,7 @@ import com.epam.brest.courses.web_app.controllers.ProjectsController;
 import com.epam.brest.courses.web_app.validators.DevelopersValidator;
 import com.epam.brest.courses.web_app.validators.ProjectsValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -96,6 +97,14 @@ public class TestConfig {
     @Bean
     public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
         return new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:db/changelog/db.liquibase-changeLog.master.xml");
+        liquibase.setDataSource(dataSource);
+        return liquibase;
     }
 
     @Bean

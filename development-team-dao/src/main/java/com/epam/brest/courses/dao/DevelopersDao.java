@@ -50,5 +50,11 @@ public interface DevelopersDao {
      */
     Integer deleteByDeveloperId(Integer developerId);
 
+    /**
+     * Select count of row.
+     *
+     * @return Count Of row.
+     */
+    Integer countOfRow();
 }
 

@@ -18,7 +18,4 @@
         <sqlFile path="db/changelog/changeSet/changeSet_sql/V7__insert-projects-developers-test-data.sql"/>
     </changeSet>
 
-<!--    <changeSet  id="9"  author="Aliaksei" runAlways="false">-->
-<!--        <sqlFile path="db/changelog/changeSet/changeSet_sql/V9__insert-developers-test-data.sql"/>-->
-<!--    </changeSet>-->
 </databaseChangeLog>

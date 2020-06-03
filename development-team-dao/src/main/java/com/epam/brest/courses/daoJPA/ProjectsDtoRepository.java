@@ -37,4 +37,6 @@ public interface ProjectsDtoRepository extends JpaRepository<ProjectsDto, Intege
             "COUNT(developerId) AS CountOfDevelopers FROM projects p LEFT JOIN projects_developers  pd " +
             "ON p.projectId = pd.projectId GROUP BY p.projectId", nativeQuery = true)
     List<ProjectsDto> countOfDevelopers();
+
+
 }

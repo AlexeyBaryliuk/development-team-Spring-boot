@@ -8,13 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +57,9 @@ public class DevelopersJdbcDaoImpl implements DevelopersDao {
 
     @Value("${DEV.sqlDeleteById}")
     private String sqlDeleteById;
+
+    @Value("${DEV.sqlCountOfRow}")
+    private String sqlCountOfRow;
 
     @Override
     public List<Developers> findAll() {
@@ -105,6 +114,21 @@ public class DevelopersJdbcDaoImpl implements DevelopersDao {
         parameterSource.addValue(DEVELOPER_ID, developerId);
        Integer result =  namedParameterJdbcTemplate.update(sqlDeleteById,parameterSource);
 
+        return result;
+    }
+
+    @Override
+    public Integer countOfRow() {
+
+        LOGGER.debug("Count of row ");
+        Integer result = namedParameterJdbcTemplate.query(sqlCountOfRow, new ResultSetExtractor<Integer>() {
+            @Override
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                rs.next();
+                Integer count = rs.getInt("Count");
+                return count;
+            }
+        });
         return result;
     }
 }

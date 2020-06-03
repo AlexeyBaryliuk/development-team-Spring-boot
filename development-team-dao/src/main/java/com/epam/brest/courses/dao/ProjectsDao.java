@@ -47,4 +47,11 @@ public interface ProjectsDao {
      * @return number of updated records in the database.
      */
     Integer deleteByProjectId(Integer projectId);
+
+    /**
+     * Select count of row.
+     *
+     * @return Count Of row.
+     */
+    Integer countOfRow();
 }

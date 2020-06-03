@@ -7,6 +7,10 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
 
+    <changeSet  id="1"  author="Aliaksei">
+        <sqlFile path="db/changelog/changeSet/changeSet_sql/V1__drop.sql"/>
+    </changeSet>
+
     <changeSet  id="2"  author="Aliaksei" >
         <sqlFile path="db/changelog/changeSet/changeSet_sql/V2__create-developers.sql"/>
     </changeSet>
@@ -20,7 +24,7 @@
     </changeSet>
 
     <changeSet  id="8"  author="Aliaksei" >
-        <sqlFile path="db/changelog/changeSet/changeSet_sql/V8__create-projectDto.sql"/>
+        <sqlFile path="db/changelog/changeSet/changeSet_sql/V8__create-projectsDto.sql"/>
     </changeSet>
 
 </databaseChangeLog>

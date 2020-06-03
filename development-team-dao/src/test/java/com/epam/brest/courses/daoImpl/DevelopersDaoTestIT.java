@@ -96,6 +96,22 @@ class DevelopersDaoTestIT {
 
     }
 
+    @Test
+    void shouldGetCountOfDevelopers() {
+
+        Developers developer = newDeveloper();
+        Integer id = developersJdbcDao.create(developer);
+        Optional<Developers> result = developersJdbcDao.findByDeveloperId(id);
+
+        assertEquals(id, result.get().getDeveloperId());
+
+        List<Developers> developersList = developersJdbcDao.findAll();
+        Integer countOfRow = developersJdbcDao.countOfRow();
+
+        assertEquals(developersList.size(),countOfRow);
+
+    }
+
     private static Developers newDeveloper(){
         Developers developer = new Developers();
         String firstName = RandomStringUtils.randomAlphabetic(LASTNAME_SIZE);

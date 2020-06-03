@@ -7,14 +7,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +55,8 @@ public class ProjectJdbcDaoImpl implements ProjectsDao {
     @Value("${PRO.sqlCountOfDescription}")
     private String sqlCountOfDescription;
 
+    @Value("${PRO.sqlCountOfRow}")
+    private String sqlCountOfRow;
 
     private MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 
@@ -120,6 +126,21 @@ public class ProjectJdbcDaoImpl implements ProjectsDao {
         parameterSource.addValue(PROJECT_ID, projectId);
 
     return namedParameterJdbcTemplate.update(sqlDeleteById,parameterSource);
+    }
+
+    @Override
+    public Integer countOfRow() {
+
+        LOGGER.debug("Count of row ");
+        Integer result = namedParameterJdbcTemplate.query(sqlCountOfRow, new ResultSetExtractor<Integer>() {
+            @Override
+            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                rs.next();
+                Integer count = rs.getInt("Count");
+                return count;
+            }
+        });
+        return result;
     }
 
 }

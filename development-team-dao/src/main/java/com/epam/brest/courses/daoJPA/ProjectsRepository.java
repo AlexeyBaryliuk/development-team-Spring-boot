@@ -35,4 +35,13 @@ public interface ProjectsRepository extends JpaRepository<Projects, Integer>, Pr
             nativeQuery = true)
     Integer update (@Param("pro") Projects project);
 
+    /**
+     * Get count of projects.
+     *
+     * @return Count of projects.
+     */
+    @Query(value="SELECT count(*) AS Count FROM projects",
+            nativeQuery = true)
+    Integer countOfRow();
+
 }

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="../../static/css/font-awesome.min.css"
+          th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet"
+          href="../../static/css/bootstrap.css"
+          th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet"
+          href="../../static/css/style.css"
+          th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <title>Test</title>
+</head>
+<body>
+
+<header>
+
+    <nav id="main-header"
+         class="py-1 mb-3 navbar navbar-expand-sm navbar-light bg-light text-dark">
+        <ul class="navbar-nav float-lg-left"/>
+        <span class="navbar-brand text-uppercase mr-auto">Change test data</span>
+    </nav>
+</header>
+
+<section id="project">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="change">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="developersForm">
+
+
+                                <div class="form-group">
+                                    <label class="form-control-label"
+                                           for="field_locationList">Choose location</label>
+                                    <select class="form-control"
+                                            id="field_locationList"
+                                            th:field="*{developerId}">
+                                        <option th:each="location : ${locationList}"
+                                                value="0" th:value="${location.name}">en</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="d-flex justify-content-end">
+                                    <a href="fakeData.html"
+                                       th:onclick="@{document.forms['developersForm'].submit(); return false;}"
+                                       class="btn btn-primary"
+                                       title="Add to project"
+                                       data-toggle="tooltip"
+                                       data-placement="top">
+                                        <i class="d-none d-sm-inline fa fa-save"></i> Add</a>
+                                </div>
+                            </form>
+
+                            <table class="table table-striped" >
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>Location</th>
+
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="location : ${locationList}">
+                                    <td th:text="${location.name}">5</td>
+                                    <td class="text-right">
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<footer>
+    <hr/>
+    <p class="text-center">&copy; 2020</p>
+</footer>
+
+<div class="modal fade" id="deleteDialog" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header alert-danger">
+                <h5 class="modal-title" id="exampleModalLabel">Delete developer from project</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Please confirm delete
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a id="deleteUrl" href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../static/js/jquery-3.4.1.slim.min.js"
+        th:src="@{/js/jquery-3.4.1.slim.min.js}"></script>
+<script src="../../static/js/popper.min.js"
+        th:src="@{/js/popper.min.js}"></script>
+<script src="../../static/js/bootstrap.min.js"
+        th:src="@{/js/bootstrap.min.js}"></script>
+
+<script>
+    $('#deleteDialog').on('show.bs.modal', function (event) {
+        var target = $(event.relatedTarget)
+        $(this).find('.modal-body').text('Please confirm delete developer from project: "' + target.data('devid') + '"')
+        document.getElementById('deleteUrl').href = '/projects/' + target.data('proid')+'/' + target.data('devid') + '/delete';
+    })
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+</body>
+</html>

@@ -32,7 +32,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @EnableWebMvc
 @SpringBootTest(classes={TestConfig.class, ViewConfig.class} )
 @TestPropertySource("classpath:sql-development-team.properties")
-@Sql({"classpath:testDB/schema.sql", "classpath:testDB/data.sql"})
 class ProjectsControllerIT {
 
 

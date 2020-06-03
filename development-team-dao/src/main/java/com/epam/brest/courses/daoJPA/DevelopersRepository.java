@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 @Profile("jpa")
 public interface DevelopersRepository extends JpaRepository<Developers, Integer>, DevelopersDao {
 
+
     /**
      * Persist new developer.
      *
@@ -34,4 +35,12 @@ public interface DevelopersRepository extends JpaRepository<Developers, Integer>
             nativeQuery = true)
     Integer update (@Param("dev")Developers developer);
 
+    /**
+     * Get count of developers.
+     *
+     * @return Count of developers.
+     */
+    @Query(value="SELECT count(*) AS Count FROM developers",
+            nativeQuery = true)
+    Integer countOfRow();
 }
