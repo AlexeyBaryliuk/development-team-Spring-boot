@@ -24,6 +24,11 @@ public class TestConfig {
     private DriverManagerDataSource dataSource;
 
     @Bean
+    public FakerService fakerService(){
+        return new FakerServiceImpl();
+    }
+
+    @Bean
     public DevelopersDao developersJdbcDao() {
         return new DevelopersJdbcDaoImpl(namedParameterJdbcTemplate());
     }
