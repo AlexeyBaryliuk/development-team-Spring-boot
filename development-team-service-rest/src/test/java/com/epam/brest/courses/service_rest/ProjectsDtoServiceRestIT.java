@@ -60,7 +60,9 @@ class ProjectsDtoServiceRestIT {
     //given
         LocalDate dateStart = LocalDate.now().minusDays(1);
         LocalDate dateEnd = LocalDate.now().plusDays(1);
-        mockServer.expect(ExpectedCount.once(), requestTo(new URI(PROJECTS_DTO_URL + "?dateStart=" + dateStart + "&dateEnd=" + dateEnd)))
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI(PROJECTS_DTO_URL
+                                                                    + "?dateStart=" + dateStart
+                                                                    + "&dateEnd=" + dateEnd)))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)

@@ -41,7 +41,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                         , ProjectsDtoController.class
                         , TestConfig.class} )
 @TestPropertySource("classpath:sql-development-team.properties")
-//@Sql({"classpath:schema.sql", "classpath:data.sql"})
 class ProjectsDtoControllerIT {
 
 
@@ -114,7 +113,9 @@ class ProjectsDtoControllerIT {
 
             LOGGER.debug("PROJECTS_DTO TEST findBetweenDates({}, {})", dateStart, dateEnd);
 
-            MockHttpServletResponse response = mockMvcProjectsDto.perform(get(PROJECTS_ENDPOINT +"?dateStart="+dateStart+"&dateEnd="+dateEnd)
+            MockHttpServletResponse response = mockMvcProjectsDto.perform(get(PROJECTS_ENDPOINT
+                                                                                    +"?dateStart=" + dateStart
+                                                                                    +"&dateEnd=" + dateEnd)
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON)
             ).andExpect(status().isOk())

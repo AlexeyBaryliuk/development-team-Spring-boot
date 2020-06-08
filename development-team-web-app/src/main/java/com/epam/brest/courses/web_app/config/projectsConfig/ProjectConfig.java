@@ -1,9 +1,6 @@
 package com.epam.brest.courses.web_app.config.projectsConfig;
 
-import com.epam.brest.courses.service_rest.DevelopersServiceRest;
-import com.epam.brest.courses.service_rest.ProjectsDtoServiceRest;
-import com.epam.brest.courses.service_rest.ProjectsServiceRest;
-import com.epam.brest.courses.service_rest.Projects_DevelopersServiceRest;
+import com.epam.brest.courses.service_rest.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +30,19 @@ public class ProjectConfig {
     @Value("${point.projects_developers}")
     private String projects_developers;
 
+    @Value("${point.faker}")
+    private String faker;
+
     private StringBuilder newUrl;
+
+    @Bean
+    @Primary
+    public FakerServiceRest fakerServiceRest() {
+
+        newUrl= new StringBuilder();
+        String developersUrl = newUrl.append(startUrl).append(faker).toString();
+        return new FakerServiceRest(developersUrl,restTemplate());
+    }
 
     @Bean
     @Primary

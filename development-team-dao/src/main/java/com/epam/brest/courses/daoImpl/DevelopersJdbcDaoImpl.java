@@ -2,6 +2,7 @@ package com.epam.brest.courses.daoImpl;
 
 import com.epam.brest.courses.dao.DevelopersDao;
 import com.epam.brest.courses.model.Developers;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +12,12 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -29,6 +28,7 @@ import static com.epam.brest.courses.model.constants.DeveloperConstants.*;
 @Component
 @PropertySource("classpath:sql-development-team.properties")
 @Profile("jdbc")
+@SuppressFBWarnings("SIC_INNER_SHOULD_BE_STATIC_ANON")
 public class DevelopersJdbcDaoImpl implements DevelopersDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersJdbcDaoImpl.class);

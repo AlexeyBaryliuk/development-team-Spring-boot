@@ -7,23 +7,23 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
 
-    <changeSet  id="1"  author="Aliaksei">
+    <changeSet  id="1"  author="Aliaksei" runAlways="true">
         <sqlFile path="db/changelog/changeSet/changeSet_sql/V1__drop.sql"/>
     </changeSet>
 
-    <changeSet  id="2"  author="Aliaksei" >
+    <changeSet  id="2"  author="Aliaksei" runAlways="true">
         <sqlFile path="db/changelog/changeSet/changeSet_sql/V2__create-developers.sql"/>
     </changeSet>
 
-    <changeSet  id="3"  author="Aliaksei" >
+    <changeSet  id="3"  author="Aliaksei" runAlways="true">
         <sqlFile path="db/changelog/changeSet/changeSet_sql/V3__create-projects.sql"/>
     </changeSet>
 
-    <changeSet  id="4"  author="Aliaksei" >
+    <changeSet  id="4"  author="Aliaksei" runAlways="true">
         <sqlFile path="db/changelog/changeSet/changeSet_sql/V4__create-projects-developers.sql"/>
     </changeSet>
 
-    <changeSet  id="8"  author="Aliaksei" >
+    <changeSet  id="8"  author="Aliaksei" runAlways="true">
         <sqlFile path="db/changelog/changeSet/changeSet_sql/V8__create-projectsDto.sql"/>
     </changeSet>
 

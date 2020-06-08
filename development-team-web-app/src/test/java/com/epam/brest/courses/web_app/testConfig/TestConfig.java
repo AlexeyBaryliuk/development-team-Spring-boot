@@ -4,11 +4,9 @@ import com.epam.brest.courses.daoImpl.DevelopersJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoDtoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.Projects_DevelopersJdbcDaoImpl;
-import com.epam.brest.courses.service.DevelopersServiceImpl;
-import com.epam.brest.courses.service.ProjectsDtoServiceImpl;
-import com.epam.brest.courses.service.ProjectsServiceImpl;
-import com.epam.brest.courses.service.Projects_DevelopersServiceImpl;
+import com.epam.brest.courses.service.*;
 import com.epam.brest.courses.web_app.controllers.DevelopersController;
+import com.epam.brest.courses.web_app.controllers.FakerController;
 import com.epam.brest.courses.web_app.controllers.HelloController;
 import com.epam.brest.courses.web_app.controllers.ProjectsController;
 import com.epam.brest.courses.web_app.validators.DevelopersValidator;
@@ -30,9 +28,15 @@ public class TestConfig {
     private DriverManagerDataSource dataSource;
 
     @Bean
+    public FakerController fakeController(){
+        return new FakerController(fakerService());
+    }
+
+    @Bean
     public HelloController helloController(){
         return new HelloController();
     }
+
     @Bean
     public DevelopersController developersController(){
         return new DevelopersController(developersServiceImpl());
@@ -47,6 +51,10 @@ public class TestConfig {
     }
 
 
+    @Bean
+    public FakerService fakerService(){
+        return new FakerServiceImpl();
+    }
     @Bean
     public DevelopersJdbcDaoImpl developersJdbcDao() {
         return new DevelopersJdbcDaoImpl(namedParameterJdbcTemplate());

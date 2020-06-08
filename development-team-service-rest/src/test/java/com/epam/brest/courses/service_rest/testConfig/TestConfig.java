@@ -1,9 +1,6 @@
 package com.epam.brest.courses.service_rest.testConfig;
 
-import com.epam.brest.courses.service_rest.DevelopersServiceRest;
-import com.epam.brest.courses.service_rest.ProjectsDtoServiceRest;
-import com.epam.brest.courses.service_rest.ProjectsServiceRest;
-import com.epam.brest.courses.service_rest.Projects_DevelopersServiceRest;
+import com.epam.brest.courses.service_rest.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +22,9 @@ public class TestConfig {
 
     @Bean
     public ProjectsServiceRest projectsServiceRest(){ return new ProjectsServiceRest(anyString,restTemplate());}
+
+    @Bean
+    public FakerServiceRest fakerServiceRest(){ return new FakerServiceRest(anyString,restTemplate());}
 
     @Bean
     public RestTemplate restTemplate(){ return new RestTemplate();}

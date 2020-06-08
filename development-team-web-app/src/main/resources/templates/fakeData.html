@@ -13,7 +13,7 @@
           href="../../static/css/style.css"
           th:href="@{/css/style.css}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <title>Test</title>
+    <title>Change test data</title>
 </head>
 <body>
 
@@ -27,18 +27,6 @@
 </header>
 
 <section id="project">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <section id="change">
         <div class="container-fluid">
@@ -46,49 +34,31 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <form id="developersForm">
+                            <div class="panel-heading clearfix">
+                                <form class="col-md-auto">
+                                    <div class="input-group-btn">
+                                        <label class="form-control-label"
+                                               for="changeJS">Choose locale</label>
+                                        <select id="changeJS" th:field="*{locationList}">
+                                            <option value="" th:each="i : ${#numbers.sequence(0, locationList.size()-1)}"
+                                                             th:value="${locationList.get(i)}" th:text="${locationList.get(i)}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input  type="text" name="number" id="number" placeholder="Number of change" class="form-control my-sm-1"/>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-6">
+                                                <a id="changePro" href="#" class="btn btn-danger"  >Change projects test data</a>
+                                            </div>
 
-
-                                <div class="form-group">
-                                    <label class="form-control-label"
-                                           for="field_locationList">Choose location</label>
-                                    <select class="form-control"
-                                            id="field_locationList"
-                                            th:field="*{developerId}">
-                                        <option th:each="location : ${locationList}"
-                                                value="0" th:value="${location.name}">en</option>
-
-                                    </select>
-                                </div>
-
-                                <div class="d-flex justify-content-end">
-                                    <a href="fakeData.html"
-                                       th:onclick="@{document.forms['developersForm'].submit(); return false;}"
-                                       class="btn btn-primary"
-                                       title="Add to project"
-                                       data-toggle="tooltip"
-                                       data-placement="top">
-                                        <i class="d-none d-sm-inline fa fa-save"></i> Add</a>
-                                </div>
-                            </form>
-
-                            <table class="table table-striped" >
-                                <thead class="thead-dark">
-                                <tr>
-                                    <th>Location</th>
-
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="location : ${locationList}">
-                                    <td th:text="${location.name}">5</td>
-                                    <td class="text-right">
-
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                            <div class="col-6">
+                                                <a id="changeDev" href="#" class="btn btn-danger"  >Change developers test data</a>
+                                            </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -101,26 +71,7 @@
     <p class="text-center">&copy; 2020</p>
 </footer>
 
-<div class="modal fade" id="deleteDialog" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header alert-danger">
-                <h5 class="modal-title" id="exampleModalLabel">Delete developer from project</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Please confirm delete
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a id="deleteUrl" href="#" class="btn btn-danger">Delete</a>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <script src="../../static/js/jquery-3.4.1.slim.min.js"
         th:src="@{/js/jquery-3.4.1.slim.min.js}"></script>
@@ -129,15 +80,22 @@
 <script src="../../static/js/bootstrap.min.js"
         th:src="@{/js/bootstrap.min.js}"></script>
 
+
 <script>
-    $('#deleteDialog').on('show.bs.modal', function (event) {
-        var target = $(event.relatedTarget)
-        $(this).find('.modal-body').text('Please confirm delete developer from project: "' + target.data('devid') + '"')
-        document.getElementById('deleteUrl').href = '/projects/' + target.data('proid')+'/' + target.data('devid') + '/delete';
-    })
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
+
+$(document).ready(()=>{
+    $("#changePro").click(()=>{
+        var number = document.getElementById('number').value;
+        var locale = document.getElementById('changeJS').value;
+       document.getElementById('changePro').href = 'changeTestData/projects?locale=' + locale +'&' + 'number=' + number ;
+    });
+    $("#changeDev").click(()=>{
+        var number = document.getElementById('number').value;
+        var locale = document.getElementById('changeJS').value;
+       document.getElementById('changeDev').href = 'changeTestData/developers?locale=' + locale +'&' + 'number=' + number ;
+    });
+});
 </script>
+
 </body>
 </html>

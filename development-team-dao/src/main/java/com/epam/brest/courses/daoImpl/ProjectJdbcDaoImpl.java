@@ -2,6 +2,7 @@ package com.epam.brest.courses.daoImpl;
 
 import com.epam.brest.courses.dao.ProjectsDao;
 import com.epam.brest.courses.model.Projects;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +28,7 @@ import static com.epam.brest.courses.model.constants.ProjectConstants.*;
 @Component
 @PropertySource("classpath:sql-development-team.properties")
 @Profile("jdbc")
+@SuppressFBWarnings("SIC_INNER_SHOULD_BE_STATIC_ANON")
 public class ProjectJdbcDaoImpl implements ProjectsDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectJdbcDaoImpl.class);

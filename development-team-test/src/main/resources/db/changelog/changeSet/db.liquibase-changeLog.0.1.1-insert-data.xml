@@ -6,15 +6,15 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet  id="5"  author="Aliaksei" >
+    <changeSet  id="5"  author="Aliaksei" runAlways="true">
         <sqlFile path="db/changelog/changeSet/changeSet_sql/V5__insert-projects-test-data.sql"/>
     </changeSet>
 
-    <changeSet  id="6"  author="Aliaksei" >
+    <changeSet  id="6"  author="Aliaksei" runAlways="true">
         <sqlFile path="db/changelog/changeSet/changeSet_sql/V6__insert-developers-test-data.sql"/>
     </changeSet>
 
-    <changeSet  id="7"  author="Aliaksei" >
+    <changeSet  id="7"  author="Aliaksei" runAlways="true">
         <sqlFile path="db/changelog/changeSet/changeSet_sql/V7__insert-projects-developers-test-data.sql"/>
     </changeSet>
 

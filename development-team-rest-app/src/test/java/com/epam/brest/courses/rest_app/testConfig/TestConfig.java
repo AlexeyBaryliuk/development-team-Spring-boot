@@ -5,14 +5,9 @@ import com.epam.brest.courses.daoImpl.ProjectJdbcDaoDtoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.Projects_DevelopersJdbcDaoImpl;
 import com.epam.brest.courses.rest_app.exception.CustomExceptionHandler;
-import com.epam.brest.courses.service.DevelopersServiceImpl;
-import com.epam.brest.courses.service.ProjectsDtoServiceImpl;
-import com.epam.brest.courses.service.ProjectsServiceImpl;
-import com.epam.brest.courses.service.Projects_DevelopersServiceImpl;
+import com.epam.brest.courses.service.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
@@ -24,6 +19,11 @@ public class TestConfig {
 
     @Autowired
     private DriverManagerDataSource dataSource;
+
+    @Bean
+    public FakerService fakerService(){
+        return new FakerServiceImpl();
+    }
 
     @Bean
     public DevelopersJdbcDaoImpl developersJdbcDao() {
