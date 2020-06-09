@@ -22,7 +22,7 @@ public class FakeController {
         this.fakerService = fakerService;
     }
 
-    @GetMapping(value = "/developers" )
+    @GetMapping(value = "/developers")
     public String changeDevelopersTestData(@RequestParam(value = "locale", required = false) String locale,
                                            @RequestParam(value = "number", required = false) Integer numOfChanges) {
 

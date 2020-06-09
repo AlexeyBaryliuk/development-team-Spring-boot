@@ -36,7 +36,7 @@ class FakerServiceImplIT {
 
         Integer numOfChanges = 2;
         Integer countBeforeChanges = developersDao.findAll().size();
-        fakerService.changeDevelopersTestsData("en", numOfChanges);
+        fakerService.changeDevelopersTestsData("ru", numOfChanges);
         Integer countAfterChanges = developersDao.countOfRow();
 
         assertEquals(countAfterChanges, countBeforeChanges*numOfChanges);

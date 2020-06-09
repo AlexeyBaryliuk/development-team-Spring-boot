@@ -112,6 +112,7 @@
                 <activatedProperties>mySql</activatedProperties>
             </properties>
         </profile>
+
         <profile>
             <id>jpa</id>
             <activation>

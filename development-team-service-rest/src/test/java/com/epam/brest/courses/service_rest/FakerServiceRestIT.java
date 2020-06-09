@@ -1,7 +1,5 @@
 package com.epam.brest.courses.service_rest;
 
-import com.epam.brest.courses.model.Projects;
-import com.epam.brest.courses.model.dto.ProjectsDto;
 import com.epam.brest.courses.service_rest.testConfig.TestConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,11 +20,10 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus;
@@ -37,7 +34,7 @@ class FakerServiceRestIT {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FakerServiceRestIT.class);
 
-    public static final String FAKER_URL = "http://localhost:8088/changeTestData/projects";
+    public static final String FAKER_URL = "http://localhost:8088/changeTestData";
 
     @Autowired
     private ProjectsServiceRest projectsServiceRest;
@@ -60,14 +57,14 @@ class FakerServiceRestIT {
     }
 
     @Test
-    void shouldChangeProjectsTestData() throws URISyntaxException, JsonProcessingException {
+    void shouldChangeProjectsTestData() throws URISyntaxException {
 
         LOGGER.debug("shouldChangeProjectsTestData()");
         //given
         String locale = "ru";
         Integer numberOfChange = 2;
         mockServer.expect(ExpectedCount.once(), requestTo(new URI(FAKER_URL
-                + "?locale=" + locale
+                + "/projects?locale=" + locale
                 + "&number=" + numberOfChange)))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
@@ -78,9 +75,38 @@ class FakerServiceRestIT {
         //when
        fakerServiceRest.changeProjectsTestData(locale, numberOfChange);
 
+
     }
 
     @Test
-    void changeDevelopersTestsData() {
+    void changeDevelopersTestsData() throws URISyntaxException {
+        LOGGER.debug("shouldChangeDevelopersTestData()");
+        //given
+        String locale = "ru";
+        Integer numberOfChange = 2;
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI(FAKER_URL
+                + "/developers?locale=" + locale
+                + "&number=" + numberOfChange)))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                );
+
+
+        //when
+        fakerServiceRest.changeDevelopersTestsData(locale, numberOfChange);
+
+    }
+    @Test
+    void findAllLocalForFaker() throws URISyntaxException, JsonProcessingException {
+
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI(FAKER_URL)))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString(Arrays.asList("ru", "en")))
+                );
+        List<String> localList = fakerServiceRest.findAllFakerLocale();
+        assertTrue(localList.size() > 0);
     }
 }

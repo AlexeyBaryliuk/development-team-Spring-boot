@@ -10,9 +10,8 @@ import com.github.javafaker.service.RandomService;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -24,6 +23,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Service
+@Transactional
 @SuppressFBWarnings(value = "DLS_DEAD_LOCAL_STORE")
 public class FakerServiceImpl implements FakerService {
 
@@ -83,7 +83,7 @@ public class FakerServiceImpl implements FakerService {
 
         List<String> list = new ArrayList<>();
 
-        String filename="src/main/resources/localeForFaker.txt";
+        String filename="localeForFaker.txt";
         Path pathToFile = Paths.get(filename);
         try {
            list  = Files.readAllLines(pathToFile.toAbsolutePath(), Charset.defaultCharset());
@@ -114,10 +114,15 @@ public class FakerServiceImpl implements FakerService {
     }
 
     public String creatFakeText(Locale locale){
-
+        String fakeText;
         FakeValuesService fakeValuesService = new FakeValuesService(
                 locale, new RandomService());
-        String fakeText = fakeValuesService.regexify("[a-z1-9]{40}");
+        if (locale.toString().equals("ru")){
+            fakeText = fakeValuesService.regexify("[а-ц1-9]{40}");
+        }
+        else {
+            fakeText = fakeValuesService.regexify("[a-f1-9]{40}");
+        }
 
         return fakeText;
     }

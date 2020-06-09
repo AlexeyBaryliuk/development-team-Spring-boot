@@ -1,6 +1,7 @@
 package com.epam.brest.courses.service_rest;
 
 import com.epam.brest.courses.model.Developers;
+import com.epam.brest.courses.service.DevelopersService;
 import com.epam.brest.courses.service_rest.testConfig.TestConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +34,7 @@ class DevelopersServiceRestIT {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersServiceRestIT.class);
 
-    private DevelopersServiceRest developersServiceRest;
+    private DevelopersService developersServiceRest;
 
     private final String DEVELOPEERS_URL = "http://localhost:8088/developers";
 

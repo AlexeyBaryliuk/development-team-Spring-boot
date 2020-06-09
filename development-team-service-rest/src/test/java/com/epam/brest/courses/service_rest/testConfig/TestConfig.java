@@ -1,5 +1,9 @@
 package com.epam.brest.courses.service_rest.testConfig;
 
+import com.epam.brest.courses.service.DevelopersService;
+import com.epam.brest.courses.service.FakerService;
+import com.epam.brest.courses.service.ProjectsDtoService;
+import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.service_rest.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
@@ -15,16 +19,16 @@ public class TestConfig {
     public Projects_DevelopersServiceRest projects_developersServiceRest(){ return new Projects_DevelopersServiceRest(anyString,restTemplate());}
 
     @Bean
-    public DevelopersServiceRest developersServiceRest(){ return new DevelopersServiceRest(anyString,restTemplate());}
+    public DevelopersService developersServiceRest(){ return new DevelopersServiceRest(anyString,restTemplate());}
 
     @Bean
-    public ProjectsDtoServiceRest projectsDtoServiceRest(){ return new ProjectsDtoServiceRest(anyString,restTemplate());}
+    public ProjectsDtoService projectsDtoServiceRest(){ return new ProjectsDtoServiceRest(anyString,restTemplate());}
 
     @Bean
-    public ProjectsServiceRest projectsServiceRest(){ return new ProjectsServiceRest(anyString,restTemplate());}
+    public ProjectsService projectsServiceRest(){ return new ProjectsServiceRest(anyString,restTemplate());}
 
     @Bean
-    public FakerServiceRest fakerServiceRest(){ return new FakerServiceRest(anyString,restTemplate());}
+    public FakerService fakerServiceRest(){ return new FakerServiceRest(anyString,restTemplate());}
 
     @Bean
     public RestTemplate restTemplate(){ return new RestTemplate();}

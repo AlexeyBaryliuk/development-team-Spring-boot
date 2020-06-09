@@ -2,7 +2,6 @@ package com.epam.brest.courses.rest_app;
 
 import com.epam.brest.courses.dao.DevelopersDao;
 import com.epam.brest.courses.dao.ProjectsDao;
-import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.rest_app.controllers.FakeController;
 import com.epam.brest.courses.rest_app.testConfig.TestConfig;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -65,9 +64,9 @@ class FakeControllerIT {
     @Test
     void shouldChangeProjectsTestData() throws Exception {
         Integer numOfChanges = 2;
-        Integer countBeforeChanges = projectsDao.findAll().size();
+        Integer countBeforeChanges = projectsDao.countOfRow();
 
-        fakeService.changeProjectsTestData("en", numOfChanges);
+        fakeService.changeProjectsTestData("ru", numOfChanges);
 
         Integer countAfterChanges = projectsDao.countOfRow();
 
@@ -90,8 +89,8 @@ class FakeControllerIT {
     void shouldChangeDevelopersTestData() throws Exception {
 
         Integer numOfChanges = 2;
-        Integer countBeforeChanges = developersDao.findAll().size();
-        fakeService.changeDevelopersTestData("en", numOfChanges);
+        Integer countBeforeChanges = developersDao.countOfRow();
+        fakeService.changeDevelopersTestData("ru", numOfChanges);
         Integer countAfterChanges = developersDao.countOfRow();
 
         assertEquals(countAfterChanges, countBeforeChanges*numOfChanges);
