@@ -36,6 +36,10 @@ Setup java 8 and Maven, see [enviroment_setup.md](README/enviroment_setup.md "cl
 
  Setup application using profiles [using_profiles.md](README/using_profiles.md "click")
 
+## Create fakeTestData using Faker
+
+ Create fake data using Faker class [fake_data.md](README/fake_data.md "click")
+
 ## Rest server
 
 ## Available REST endpoints  
