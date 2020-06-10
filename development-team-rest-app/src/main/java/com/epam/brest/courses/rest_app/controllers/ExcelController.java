@@ -19,8 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping
-@SuppressFBWarnings(value = {"OS_OPEN_STREAM_EXCEPTION_PATH"
-                            ,"RV_RETURN_VALUE_IGNORED_BAD_PRACTICE"})
+@SuppressFBWarnings(value = {"RV_RETURN_VALUE_IGNORED_BAD_PRACTICE"})
 public class ExcelController {
 
     Logger LOGGER = LoggerFactory.getLogger(ExcelController.class);
@@ -47,8 +46,8 @@ public class ExcelController {
         boolean isFlag = excelService.createProjectExcel(projects, context,request, response);
 
         if (isFlag){
-            String fullPath = request.getServletContext().getRealPath("/resources/" + "projectss" + ".xls");
-            fileDownload(fullPath,response,"projectss.xls");
+            String fullPath = request.getServletContext().getRealPath("/resources/" + "projects" + ".xls");
+            fileDownload(fullPath,response,"projects.xls");
         }
     }
 
@@ -74,6 +73,7 @@ public class ExcelController {
                     outputStream.write(buffer, 0, bytesRead);
                 }
 
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -85,7 +85,6 @@ public class ExcelController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
                 file.delete();
             }
 

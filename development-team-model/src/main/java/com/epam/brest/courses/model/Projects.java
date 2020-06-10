@@ -13,13 +13,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Projects.
  */
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @Table(name = "projects")
 @SuppressFBWarnings(value = { "EI_EXPOSE_REP", "EI_EXPOSE_REP2" }
                     , justification = "I prefer to suppress these FindBugs warnings")
@@ -75,4 +78,18 @@ public class Projects {
             inverseJoinColumns = @JoinColumn(name="developerId"))
     Set<Developers> developers;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Projects projects = (Projects) o;
+        return projectId.equals(projects.projectId) &&
+                Objects.equals(description, projects.description) &&
+                Objects.equals(dateAdded, projects.dateAdded);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(projectId, description, dateAdded);
+    }
 }

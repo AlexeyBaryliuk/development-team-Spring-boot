@@ -27,7 +27,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <spring-boot.version> 2.2.6.RELEASE </spring-boot.version>
-        <excel.version>3.15</excel.version>
+        <excel.version>4.1.2</excel.version>
     </properties>
 
     <dependencyManagement>
@@ -218,6 +218,7 @@
                 <version>3.0.1</version>
                 <scope>provided</scope>
             </dependency>
+
 <!--            Read and write from excel-->
 
             <dependency>
