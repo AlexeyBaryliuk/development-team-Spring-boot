@@ -54,6 +54,8 @@ public class Projects {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateAdded;
 
+    private String fileType;
+
     /**
      * Returns <code>Integer</code> representation of this projectId.
      *
@@ -74,5 +76,6 @@ public class Projects {
             joinColumns=@JoinColumn(name="projectId"),
             inverseJoinColumns = @JoinColumn(name="developerId"))
     Set<Developers> developers;
+
 
 }
