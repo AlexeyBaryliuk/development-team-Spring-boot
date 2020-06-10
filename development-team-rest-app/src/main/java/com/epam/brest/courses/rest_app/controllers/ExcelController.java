@@ -1,6 +1,8 @@
 package com.epam.brest.courses.rest_app.controllers;
 
+import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
+import com.epam.brest.courses.service.DevelopersService;
 import com.epam.brest.courses.service.ExcelService;
 import com.epam.brest.courses.service.ProjectsService;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -33,13 +35,19 @@ public class ExcelController {
     @Autowired
     private final ProjectsService projectsService;
 
-    public ExcelController(ExcelService excelService, ProjectsService projectsService) {
+    @Autowired
+    private final DevelopersService developersService;
+
+    public ExcelController(ExcelService excelService
+                            , ProjectsService projectsService
+                            , DevelopersService developersService) {
         this.excelService = excelService;
         this.projectsService = projectsService;
+        this.developersService = developersService;
     }
 
-    @GetMapping("/createExcel")
-    public void createExcel(HttpServletRequest request, HttpServletResponse response){
+    @GetMapping("/createProjectsExcel")
+    public void createProjectsExcel(HttpServletRequest request, HttpServletResponse response){
 
         List<Projects> projects = projectsService.findAll();
 
@@ -48,6 +56,19 @@ public class ExcelController {
         if (isFlag){
             String fullPath = request.getServletContext().getRealPath("/resources/" + "projects" + ".xls");
             fileDownload(fullPath,response,"projects.xls");
+        }
+    }
+
+    @GetMapping("/createDevelopersExcel")
+    public void createDevelopersExcel(HttpServletRequest request, HttpServletResponse response){
+
+        List<Developers> developers = developersService.findAll();
+
+        boolean isFlag = excelService.createDeveloperExcel(developers, context,request, response);
+
+        if (isFlag){
+            String fullPath = request.getServletContext().getRealPath("/resources/" + "developers" + ".xls");
+            fileDownload(fullPath,response,"developers.xls");
         }
     }
 
@@ -78,7 +99,6 @@ public class ExcelController {
                 e.printStackTrace();
             }
             finally {
-
                 try {
                     inputStream.close();
                     outputStream.close();
@@ -87,7 +107,6 @@ public class ExcelController {
                 }
                 file.delete();
             }
-
         }
     }
 }

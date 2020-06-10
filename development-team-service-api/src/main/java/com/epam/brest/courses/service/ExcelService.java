@@ -1,5 +1,6 @@
 package com.epam.brest.courses.service;
 
+import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 
 import javax.servlet.ServletContext;
@@ -17,5 +18,10 @@ public interface ExcelService {
     boolean createProjectExcel(List<Projects> projects
             , ServletContext context
             , HttpServletRequest httpServletRequest
-            , HttpServletResponse response  );
+            , HttpServletResponse response );
+
+    boolean createDeveloperExcel(List<Developers> developers
+            , ServletContext context
+            , HttpServletRequest request
+            , HttpServletResponse response);
 }
