@@ -12,7 +12,7 @@ import java.util.List;
  * Read and write data from excel.
  *
  */
-public interface ExcelService {
+public interface ExcelWriteService {
 
 
     boolean createProjectExcel(List<Projects> projects

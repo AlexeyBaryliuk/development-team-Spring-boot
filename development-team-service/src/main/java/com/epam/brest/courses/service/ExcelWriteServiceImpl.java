@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 @Transactional
 @SuppressFBWarnings(value = "DLS_DEAD_LOCAL_STORE")
-public class ExcelServiceImpl implements ExcelService {
+public class ExcelWriteServiceImpl implements ExcelWriteService {
 
     @Override
     public boolean createProjectExcel(List<Projects> projects

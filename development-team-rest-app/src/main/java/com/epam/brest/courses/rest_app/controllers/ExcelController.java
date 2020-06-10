@@ -3,7 +3,7 @@ package com.epam.brest.courses.rest_app.controllers;
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.service.DevelopersService;
-import com.epam.brest.courses.service.ExcelService;
+import com.epam.brest.courses.service.ExcelWriteService;
 import com.epam.brest.courses.service.ProjectsService;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
@@ -30,7 +30,7 @@ public class ExcelController {
     private ServletContext context;
 
     @Autowired
-    private final ExcelService excelService;
+    private final ExcelWriteService excelWriteService;
 
     @Autowired
     private final ProjectsService projectsService;
@@ -38,10 +38,10 @@ public class ExcelController {
     @Autowired
     private final DevelopersService developersService;
 
-    public ExcelController(ExcelService excelService
+    public ExcelController(ExcelWriteService excelWriteService
                             , ProjectsService projectsService
                             , DevelopersService developersService) {
-        this.excelService = excelService;
+        this.excelWriteService = excelWriteService;
         this.projectsService = projectsService;
         this.developersService = developersService;
     }
@@ -51,7 +51,7 @@ public class ExcelController {
 
         List<Projects> projects = projectsService.findAll();
 
-        boolean isFlag = excelService.createProjectExcel(projects, context,request, response);
+        boolean isFlag = excelWriteService.createProjectExcel(projects, context,request, response);
 
         if (isFlag){
             String fullPath = request.getServletContext().getRealPath("/resources/" + "projects" + ".xls");
@@ -64,7 +64,7 @@ public class ExcelController {
 
         List<Developers> developers = developersService.findAll();
 
-        boolean isFlag = excelService.createDeveloperExcel(developers, context,request, response);
+        boolean isFlag = excelWriteService.createDeveloperExcel(developers, context,request, response);
 
         if (isFlag){
             String fullPath = request.getServletContext().getRealPath("/resources/" + "developers" + ".xls");
