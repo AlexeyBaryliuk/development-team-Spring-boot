@@ -24,6 +24,16 @@ public class TestConfig {
     private DriverManagerDataSource dataSource;
 
     @Bean
+    public ExcelFileImportService excelFileImportService(){
+        return new ExcelFileImportServiceImpl();
+    }
+
+    @Bean
+    public ExcelFileExportService excelFileExportService(){
+        return new ExcelFileExportServiceImpl();
+    }
+
+    @Bean
     public FakerService fakerService(){
         return new FakerServiceImpl();
     }

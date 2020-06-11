@@ -10,9 +10,12 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -56,6 +59,9 @@ public class Projects {
 
     private String fileType;
 
+    @Transient
+    private MultipartFile multipartFile;
+
     /**
      * Returns <code>Integer</code> representation of this projectId.
      *
@@ -77,5 +83,18 @@ public class Projects {
             inverseJoinColumns = @JoinColumn(name="developerId"))
     Set<Developers> developers;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Projects projects = (Projects) o;
+        return projectId.equals(projects.projectId) &&
+                Objects.equals(description, projects.description) &&
+                Objects.equals(dateAdded, projects.dateAdded);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(projectId, description, dateAdded);
+    }
 }

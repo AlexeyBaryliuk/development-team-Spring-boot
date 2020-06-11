@@ -1,5 +1,6 @@
 package com.epam.brest.courses.service;
 
+import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -41,15 +42,14 @@ public class ExcelFileImportServiceImpl implements ExcelFileImportService {
         }
         return isFlag;
     }
-
-    private boolean readProjectsDataFromExcel(MultipartFile file) {
+    @Override
+    public boolean readProjectsDataFromExcel(MultipartFile file) {
 
         Workbook workbook = getWorkbook(file);
 
         Sheet sheet = workbook.getSheetAt(0);
         Iterator<Row> rows = sheet.iterator();
         rows.next();
-
         while (rows.hasNext()){
             Row row = rows.next();
             Projects project = new Projects();
@@ -57,10 +57,10 @@ public class ExcelFileImportServiceImpl implements ExcelFileImportService {
                 project.setProjectId((int) row.getCell(0).getNumericCellValue());
             }
             if (row.getCell(1).getCellType() == CellType.STRING){
-                project.setDescription(row.getCell(0).getStringCellValue());
+                project.setDescription(row.getCell(1).getStringCellValue());
             }
             if (row.getCell(2).getCellType() == CellType.STRING){
-                String dateAdded = row.getCell(0).getStringCellValue();
+                String dateAdded = row.getCell(2).getStringCellValue();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 formatter = formatter.withLocale( Locale.ENGLISH );
                 LocalDate date = LocalDate.parse(dateAdded, formatter);
@@ -68,6 +68,32 @@ public class ExcelFileImportServiceImpl implements ExcelFileImportService {
             }
             project.setFileType(FilenameUtils.getExtension(file.getOriginalFilename()));
             projectsService.create(project);
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean readDevelopersDataFromExcel(MultipartFile file) {
+        Workbook workbook = getWorkbook(file);
+
+        Sheet sheet = workbook.getSheetAt(0);
+        Iterator<Row> rows = sheet.iterator();
+        rows.next();
+        while (rows.hasNext()){
+            Row row = rows.next();
+            Developers developer = new Developers();
+            if (row.getCell(0).getCellType() == CellType.NUMERIC){
+                developer.setDeveloperId((int) row.getCell(0).getNumericCellValue());
+            }
+            if (row.getCell(1).getCellType() == CellType.STRING){
+                developer.setFirstName(row.getCell(1).getStringCellValue());
+            }
+            if (row.getCell(2).getCellType() == CellType.STRING){
+                developer.setLastName(row.getCell(2).getStringCellValue());
+            }
+            developer.setFileType(FilenameUtils.getExtension(file.getOriginalFilename()));
+            developersService.create(developer);
         }
 
         return true;
