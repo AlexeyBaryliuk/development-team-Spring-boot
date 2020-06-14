@@ -75,27 +75,15 @@
 
 <script src="../../static/js/jquery-3.4.1.slim.min.js"
         th:src="@{/js/jquery-3.4.1.slim.min.js}"></script>
+
 <script src="../../static/js/popper.min.js"
         th:src="@{/js/popper.min.js}"></script>
+
 <script src="../../static/js/bootstrap.min.js"
         th:src="@{/js/bootstrap.min.js}"></script>
 
-
-<script>
-
-$(document).ready(()=>{
-    $("#changePro").click(()=>{
-        var number = document.getElementById('number').value;
-        var locale = document.getElementById('changeJS').value;
-       document.getElementById('changePro').href = 'changeTestData/projects?locale=' + locale +'&' + 'number=' + number ;
-    });
-    $("#changeDev").click(()=>{
-        var number = document.getElementById('number').value;
-        var locale = document.getElementById('changeJS').value;
-       document.getElementById('changeDev').href = 'changeTestData/developers?locale=' + locale +'&' + 'number=' + number ;
-    });
-});
-</script>
+<script src="../../static/js/projectJS/fakeDataJS.js"
+        th:src="@{/js/projectJS/fakeDataJS.js}"></script>
 
 </body>
 </html>

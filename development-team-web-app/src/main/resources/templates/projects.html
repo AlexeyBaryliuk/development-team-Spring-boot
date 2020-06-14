@@ -2,29 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet"
-          href="../../static/css/font-awesome.min.css"
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link href="../../static/css/font-awesome.min.css"
+          rel="stylesheet"
           th:href="@{/css/font-awesome.min.css}">
-    <link rel="stylesheet"
-          href="../../static/css/bootstrap.css"
+    <link href="../../static/css/bootstrap.css"
+          rel="stylesheet"
           th:href="@{/css/bootstrap.css}">
-    <link rel="stylesheet"
-          href="../../static/css/style.css"
+    <link href="../../static/css/style.css"
+          rel="stylesheet"
           th:href="@{/css/style.css}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <title>Projects</title>
 </head>
 <body>
 
 <header>
     <nav class="pl-2 navbar navbar-expand-sm navbar-dark bg-dark text-light  p-0">
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+        <button class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a href="/" class="navbar-brand"><img src="../../static/img/logo.svg"
-                                              th:src="@{/img/logo.svg}"
-                                              height="32" width="32" alt="HR"></a>
+        <a class="navbar-brand" href="/"><img alt="HR"
+                                              height="32"
+                                              src="../../static/img/logo.svg" th:src="@{/img/logo.svg}" width="32"></a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <a class="nav-item nav-link active"
@@ -36,30 +36,46 @@
             </ul>
         </div>
     </nav>
-    <nav id="main-header"
-         class="py-1 mb-3 navbar navbar-expand-sm navbar-light bg-light text-dark">
+    <nav class="py-1 mb-3 navbar navbar-expand-sm navbar-light bg-light text-dark"
+         id="main-header">
         <span class="navbar-brand text-uppercase mr-auto">Projects</span>
         <ul class="navbar-nav float-right">
             <li class="nav-item">
-                <a href="project.html"
-                   th:href="@{/projects/add}"
-                   class="btn btn-light"
-                   title="Add project"
+                <a class="btn btn-light"
+                   data-placement="bottom"
                    data-toggle="tooltip"
-                   data-placement="bottom">
+                   href="project.html"
+                   th:href="@{/projects/add}"
+                   title="Add project">
                     <i class="fa fa-plus"></i>
                     <span class="d-none d-sm-inline">Add</span></a>
             </li>
             <li class="nav-item">
-                <a href="projects.html"
-                   th:href="@{|/projects|}"
-                   class="btn btn-light"
-                   title="Add project"
+                <a class="btn btn-light"
+                   data-placement="bottom"
                    data-toggle="tooltip"
-                   data-placement="bottom">
+                   href="projects.html"
+                   th:href="@{|/projects|}"
+                   title="Add project">
                     <i class="fa fa-refresh"></i>
                     <span class="d-none d-sm-inline">Refresh</span></a>
-           </li>
+            </li>
+            <li class="nav-item">
+                    <select class="selectpicker btn btn-outline-secondary"id="excel">
+                        <option selected>Excel</option>
+                        <option data-url="http://localhost:8080/download/projects.xlsx" value="1">download from xlsx</option>
+                        <option data-url="http://localhost:8080/import/projects.xlsx" value="2">save in xlsx</option>
+                    </select>
+                <form action="" th:action =  @{/download/projects.xlsx}
+                      th:object = ${developer}
+                      method="post"
+                      enctype="multipart/form-data">
+                    <div class="form-group" id="input-box">
+                        <input id="input" type="file" class="form-control" name="file" th:fild = "*{file}">
+                        <button id="button-input" type="submit" class="btn btn-primary" > send file </button>
+                    </div>
+                </form>
+            </li>
         </ul>
     </nav>
 </header>
@@ -71,17 +87,19 @@
                     <div class="container">
                         <form class="form-inline">
                             <label class="col-sm-auto col-md-auto" for="dateStart">Filter from</label>
-                            <input type="date" class="form-control my-sm-1"
-                                   id="dateStart" name="dateStart" placeholder="Date" required="">
+                            <input class="form-control my-sm-1" id="dateStart"
+                                   name="dateStart" placeholder="Date" required="" type="date">
 
                             <label class="col-sm-auto col-md-auto" for="dateEnd">to</label>
-                            <input type="date" class="form-control my-sm-1" id="dateEnd" name="dateEnd" placeholder="Date" required="" >
+                            <input class="form-control my-sm-1" id="dateEnd" name="dateEnd" placeholder="Date"
+                                   required="" type="date">
                             <div class="btn btn-light"
-                                 title="Find project"
+                                 data-placement="bottom"
                                  data-toggle="tooltip"
-                                 data-placement="bottom">
+                                 title="Find project">
                                 <i class="fa fa-eye"></i>
-                                <button class="d-none d-sm-inline">Find</button> </div>
+                                <button class="d-none d-sm-inline">Find</button>
+                            </div>
 
                         </form>
                     </div>
@@ -100,31 +118,31 @@
                             <td th:text="${project.dateAdded}">2019-03-12</td>
                             <td th:text="${project.countOfDevelopers}">0</td>
                             <td class="text-right">
-                                <a href="project.html"
-                                   th:href="@{|/projects/${project.projectId}|}"
-                                   class="btn-sm btn-outline-secondary"
-                                   title="Edit project"
+                                <a class="btn-sm btn-outline-secondary"
+                                   data-placement="top"
                                    data-toggle="tooltip"
-                                   data-placement="top">
+                                   href="project.html"
+                                   th:href="@{|/projects/${project.projectId}|}"
+                                   title="Edit project">
                                     <i class="fa fa-pencil"></i> <span
                                         class="d-none d-md-inline">Edit</span></a>
-                                <span data-toggle="modal"
-                                      data-target="#deleteDialog"
+                                <span data-target="#deleteDialog"
+                                      data-toggle="modal"
                                       th:attr="data-id=${project.projectId},data-date=${project.dateAdded}">
-                                <a href="#" class="btn-sm btn-outline-secondary"
-                                   title="delete project"
+                                <a class="btn-sm btn-outline-secondary" data-placement="top"
                                    data-toggle="tooltip"
-                                   data-placement="top">
+                                   href="#"
+                                   title="delete project">
                                     <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>
                                 </span>
-                                <span data-toggle="modal"
-                                      data-target="#descriptionProject"
+                                <span data-target="#descriptionProject"
+                                      data-toggle="modal"
                                       th:attr="data-desc=${project.description}">
-                                <a href="#"
-                                   class="btn-sm btn-outline-secondary"
-                                   title="Description"
+                                <a class="btn-sm btn-outline-secondary"
+                                   data-placement="bottom"
                                    data-toggle="modal"
-                                   data-placement="bottom">
+                                   href="#"
+                                   title="Description">
                                     <i class="fa fa-eye"></i>
                                     <span class="d-none d-sm-inline">Description</span></a>
                                 </span>
@@ -133,128 +151,22 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4 class="modal-title">Description</h4>
-                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <button class="close" data-dismiss="modal" type="button">×</button>
                                             </div>
                                             <div class="modal-body">
                                                 Modal body..
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                                <button class="btn btn-info" data-dismiss="modal" type="button">Close
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </td>
                         </tr>
-<!--                        <tr th:remove="all">-->
-<!--                            <td>&nbsp;&nbsp;Accounting</td>-->
-<!--                            <td>2500</td>-->
-<!--                            <td class="text-right">-->
-<!--                                <a href="department.html"-->
-<!--                                   th:href="@{/department}"-->
-<!--                                   class="btn-sm btn-outline-secondary"-->
-<!--                                   title="Edit department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-pencil"></i> <span-->
-<!--                                        class="d-none d-md-inline">Edit</span></a>-->
-<!--                                <span data-toggle="modal" data-target="#deleteDialog">-->
-<!--                                <a href="#" class="btn-sm btn-outline-secondary"-->
-<!--                                   title="delete department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>-->
-<!--                                </span>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-<!--                        <tr th:remove="all">-->
-<!--                            <td>&nbsp;&nbsp;Development</td>-->
-<!--                            <td>1150</td>-->
-<!--                            <td class="text-right">-->
-<!--                                <a href="department.html"-->
-<!--                                   th:href="@{/department}"-->
-<!--                                   class="btn-sm btn-outline-secondary"-->
-<!--                                   title="Edit department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-pencil"></i> <span-->
-<!--                                        class="d-none d-md-inline">Edit</span></a>-->
-<!--                                <span data-toggle="modal" data-target="#deleteDialog">-->
-<!--                                <a href="#" class="btn-sm btn-outline-secondary"-->
-<!--                                   title="delete department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>-->
-<!--                                </span>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-<!--                        <tr th:remove="all">-->
-<!--                            <td>&nbsp;&nbsp;&nbsp;&nbsp;Java</td>-->
-<!--                            <td>1500</td>-->
-<!--                            <td class="text-right">-->
-<!--                                <a href="department.html"-->
-<!--                                   th:href="@{/department}"-->
-<!--                                   class="btn-sm btn-outline-secondary"-->
-<!--                                   title="Edit department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-pencil"></i> <span-->
-<!--                                        class="d-none d-md-inline">Edit</span></a>-->
-<!--                                <span data-toggle="modal" data-target="#deleteDialog">-->
-<!--                                <a href="#" class="btn-sm btn-outline-secondary"-->
-<!--                                   title="delete department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>-->
-<!--                                </span>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-<!--                        <tr th:remove="all">-->
-<!--                            <td>&nbsp;&nbsp;&nbsp;&nbsp;Testing</td>-->
-<!--                            <td>1100</td>-->
-<!--                            <td class="text-right">-->
-<!--                                <a href="department.html"-->
-<!--                                   th:href="@{/department}"-->
-<!--                                   class="btn-sm btn-outline-secondary"-->
-<!--                                   title="Edit department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-pencil"></i> <span-->
-<!--                                        class="d-none d-md-inline">Edit</span></a>-->
-<!--                                <span data-toggle="modal" data-target="#deleteDialog">-->
-<!--                                <a href="#" class="btn-sm btn-outline-secondary"-->
-<!--                                   title="delete department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>-->
-<!--                                </span>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-<!--                        <tr th:remove="all">-->
-<!--                            <td>&nbsp;&nbsp;People management</td>-->
-<!--                            <td>800</td>-->
-<!--                            <td class="text-right">-->
-<!--                                <a href="department.html"-->
-<!--                                   th:href="@{/department}"-->
-<!--                                   class="btn-sm btn-outline-secondary"-->
-<!--                                   title="Edit department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-pencil"></i> <span-->
-<!--                                        class="d-none d-md-inline">Edit</span></a>-->
-<!--                                <span data-toggle="modal" data-target="#deleteDialog">-->
-<!--                                <a href="#" class="btn-sm btn-outline-secondary"-->
-<!--                                   title="delete department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>-->
-<!--                                </span>-->
-<!--                            </td>-->
-<!--                        </tr>-->
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
@@ -267,13 +179,13 @@
 </footer>
 
 <!-- Confirm delete Modal -->
-<div class="modal fade" id="deleteDialog" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="deleteDialog"
+     role="dialog" tabindex="-1">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header alert-danger">
                 <h5 class="modal-title" id="exampleModalLabel">Delete project</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -281,8 +193,8 @@
                 Please confirm delete
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a id="deleteUrl" href="#" class="btn btn-danger">Delete</a>
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+                <a class="btn btn-danger" href="#" id="deleteUrl">Delete</a>
             </div>
         </div>
     </div>
@@ -294,24 +206,9 @@
         th:src="@{/js/popper.min.js}"></script>
 <script src="../../static/js/bootstrap.min.js"
         th:src="@{/js/bootstrap.min.js}"></script>
-<script>
-    $('#deleteDialog').on('show.bs.modal', function (event) {
-        var target = $(event.relatedTarget)
-        $(this).find('.modal-body').text('Please confirm delete project: "' + target.data('id') + '"')
-        document.getElementById('deleteUrl').href = 'projects/' + target.data('id') + '/delete';
-    })
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
-<script>
-    $('#descriptionProject').on('show.bs.modal', function (event) {
-        var target = $(event.relatedTarget)
-        $(this).find('.modal-body').text('"' + target.data('desc') + '"')
-    })
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
+<script src="../../static/js/projectJS/projectsJS.js"
+        th:src="@{/js/projectJS/projectsJS.js}"></script>
+
+
 </body>
 </html>
