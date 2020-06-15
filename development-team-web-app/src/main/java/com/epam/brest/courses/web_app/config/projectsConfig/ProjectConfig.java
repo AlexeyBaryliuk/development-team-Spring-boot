@@ -1,5 +1,6 @@
 package com.epam.brest.courses.web_app.config.projectsConfig;
 
+import com.epam.brest.courses.service.ExcelFileImportService;
 import com.epam.brest.courses.service_rest.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -43,6 +44,13 @@ public class ProjectConfig {
 
     @Bean
     @Primary
+    public ExcelFileImportService excelFileImportService(){
+
+        return new ExcelFileImportServiceRest(startUrl,restTemplate());
+    }
+
+    @Bean
+    @Primary
     public DevelopersServiceRest developersServiceRest() {
 
          newUrl= new StringBuilder();
@@ -81,7 +89,6 @@ public class ProjectConfig {
     @Bean
     public RestTemplate restTemplate(){
         RestTemplate restTemplate = new RestTemplate();
-
         return restTemplate;
     }
 }

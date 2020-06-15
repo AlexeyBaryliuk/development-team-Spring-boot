@@ -3,6 +3,7 @@ package com.epam.brest.courses.web_app;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.web_app.config.viewConfig.ViewConfig;
 import com.epam.brest.courses.web_app.testConfig.TestConfig;
+import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -19,8 +21,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -82,6 +87,16 @@ class ProjectsControllerIT {
         LocalDate dateStart = LocalDate.now().minusMonths(5);
         LocalDate dateEnd = LocalDate.now().plusDays(1);
 
+        Projects project = new Projects();
+
+//        File file = new File("/home/alexey/Загрузки/projects.xlsx");
+//        FileInputStream input = new FileInputStream(file);
+//        MultipartFile multipartFileNew = new MockMultipartFile("file"
+//                , file.getName()
+//                , "text/plain"
+//                , IOUtils.toByteArray(input));
+//
+//        project.setMultipartFile(multipartFileNew);
         mockMvc.perform(
                 MockMvcRequestBuilders.get(COMMON_PROJECTS_URL)
                         .param("dateStart", dateStart.toString())
@@ -91,6 +106,7 @@ class ProjectsControllerIT {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
                 .andExpect(view().name("projects"))
+                .andExpect(model().attribute("projectExcel", isA(Projects.class)))
                 .andExpect(model().attribute("projects", hasItem(
                         allOf(
                                 hasProperty("projectId", is(3))

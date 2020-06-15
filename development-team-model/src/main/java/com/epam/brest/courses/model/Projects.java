@@ -62,15 +62,6 @@ public class Projects {
     @Transient
     private MultipartFile multipartFile;
 
-    /**
-     * Returns <code>Integer</code> representation of this projectId.
-     *
-     * @return projectId Project Id.
-     */
-    public Integer getProjectId() {
-        return projectId;
-    }
-
     @JsonFormat(pattern = "yyyy-MM-dd")
     public LocalDate getDateAdded() {
         return dateAdded;

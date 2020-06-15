@@ -71,6 +71,7 @@ public class ProjectsController {
                                  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd,
                                  Model model){
 
+        model.addAttribute("projectExcel",new Projects());
      if (dateStart!= null && dateEnd != null){
 
          LOGGER.debug("Find projects between dates. Date start = {}, Date End = {}", dateStart, dateEnd);
@@ -85,6 +86,7 @@ public class ProjectsController {
          List<ProjectsDto> projectsDtoList = projectsDtoService.countOfDevelopers();
          LOGGER.debug("__________________________findAll() PPPP= :{}", projectsDtoList);
          model.addAttribute("projects", projectsDtoList );
+
     }
 
   return "projects";

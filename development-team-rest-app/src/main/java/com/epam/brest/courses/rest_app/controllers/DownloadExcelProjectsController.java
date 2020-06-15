@@ -38,7 +38,7 @@ public class DownloadExcelProjectsController {
     @Autowired
     private DevelopersService developersService;
 
-    @GetMapping("/download/projects.xlsx")
+    @GetMapping("/projectsDownload")
     public void downloadExcelProjects(HttpServletResponse response) throws IOException {
 
         response.setContentType("application/octet-stream");
@@ -47,7 +47,7 @@ public class DownloadExcelProjectsController {
         IOUtils.copy(stream, response.getOutputStream());
     }
 
-    @GetMapping("/download/developers.xlsx")
+    @GetMapping("/developersDownload")
     public void downloadExcelDevelopers(HttpServletResponse response) throws IOException {
 
         response.setContentType("application/octet-stream");
@@ -56,28 +56,27 @@ public class DownloadExcelProjectsController {
         IOUtils.copy(stream, response.getOutputStream());
     }
 
-    @GetMapping("/import/projects.xlsx")
+    @GetMapping(value = "/import/projects.xlsx")
     public String importExcelProjects(Projects project) throws IOException {
 
         if(project == null){
-            project = new Projects();
+           project = new Projects();
 
         File file = new File("/home/alexey/Загрузки/projects.xlsx");
         FileInputStream input = new FileInputStream(file);
-        MultipartFile multipartFile = new MockMultipartFile("file"
+        MultipartFile multipartFileNew = new MockMultipartFile("file"
                 , file.getName()
                 , "text/plain"
                 , IOUtils.toByteArray(input));
 
-        project.setMultipartFile(multipartFile);
+        project.setMultipartFile(multipartFileNew);
         }
-
 
          excelFileImportService.saveDataFromUploadFile(project.getMultipartFile());
          return "Import was successful";
     }
 
-    @GetMapping("/import/developers.xlsx")
+    @GetMapping("/developersImport")
     public String importExcelDevelopers(Developers developer) throws IOException {
 
         if(developer == null){

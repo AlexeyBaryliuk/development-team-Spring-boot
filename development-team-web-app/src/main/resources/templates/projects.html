@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
@@ -61,24 +61,34 @@
                     <span class="d-none d-sm-inline">Refresh</span></a>
             </li>
             <li class="nav-item">
-                    <select class="selectpicker btn btn-outline-secondary"id="excel">
-                        <option selected>Excel</option>
-                        <option data-url="http://localhost:8080/download/projects.xlsx" value="1">download from xlsx</option>
-                        <option data-url="http://localhost:8080/import/projects.xlsx" value="2">save in xlsx</option>
-                    </select>
-                <form action="" th:action =  @{/download/projects.xlsx}
-                      th:object = ${developer}
-                      method="post"
-                      enctype="multipart/form-data">
-                    <div class="form-group" id="input-box">
-                        <input id="input" type="file" class="form-control" name="file" th:fild = "*{file}">
-                        <button id="button-input" type="submit" class="btn btn-primary" > send file </button>
-                    </div>
-                </form>
+                <select class="selectpicker btn btn-outline-secondary"id="excel">
+                     <option selected>Excel</option>
+                     <option data-url="http://localhost:8080/download" value="1">download from xlsx</option>
+                     <option value="2">save in xlsx</option>
+                 </select>
             </li>
         </ul>
     </nav>
 </header>
+<section>
+    <form class="form-inline" action="" th:action =  "@{/import}"
+          th:object = "${projectExcel}"
+          method="post"
+          enctype="multipart/form-data">
+        <div  id="input-box">
+            <div class="col-sm-auto col-md-auto">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input id="input" type="file" class="form-control" name="file" th:fild = "*{multipartFile}">
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
 <section id="projects">
     <div class="container-fluid">
         <div class="row">
