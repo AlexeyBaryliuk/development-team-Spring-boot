@@ -1,7 +1,7 @@
 package com.epam.brest.courses.web_app.controllers;
 
 import com.epam.brest.courses.model.Projects;
-import com.epam.brest.courses.service.ExcelFileImportService;
+import com.epam.brest.courses.service.excel.ExcelFileImportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,16 +28,25 @@ public class ExcelController {
         this.excelFileImportServiceRest = excelFileImportServiceRest;
     }
 
-    @PostMapping("/import")
-    public String importFile(@ModelAttribute   Projects project
+    @PostMapping("/projects/import")
+    public String projectsImportFile(@ModelAttribute   Projects project
                             , @RequestParam("file") MultipartFile file){
 
         LOGGER.debug("importFile({})", file.getSize());
         project.setMultipartFile(file);
-        excelFileImportServiceRest.saveDataFromUploadFile(project.getMultipartFile());
+        excelFileImportServiceRest.saveProjectsDataFromUploadFile(project.getMultipartFile());
         return "redirect:/projects";
     }
 
+    @PostMapping("/developers/import")
+    public String developersImportFile(@ModelAttribute   Projects project
+            , @RequestParam("file") MultipartFile file){
+
+        LOGGER.debug("importFile({})", file.getSize());
+        project.setMultipartFile(file);
+        excelFileImportServiceRest.saveDevelopersDataFromUploadFile(project.getMultipartFile());
+        return "redirect:/developers";
+    }
 
 
 }

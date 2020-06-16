@@ -2,7 +2,7 @@ package com.epam.brest.courses.service_rest;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
-import com.epam.brest.courses.service.ExcelFileExportService;
+import com.epam.brest.courses.service.excel.ExcelFileExportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

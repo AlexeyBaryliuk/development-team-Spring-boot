@@ -37,6 +37,7 @@ public class Developers {
     @ManyToMany(mappedBy = "developers",fetch= FetchType.LAZY)
     Set<Projects> projects;
 
+    @Transient
     private String fileType;
 
     @Transient

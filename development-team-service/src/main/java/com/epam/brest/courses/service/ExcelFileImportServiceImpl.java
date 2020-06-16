@@ -2,6 +2,8 @@ package com.epam.brest.courses.service;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
+import com.epam.brest.courses.service.excel.ExcelFileImportService;
+import com.epam.brest.courses.service.excel.ExcelReadDataFromFile;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.CellType;
@@ -22,7 +24,7 @@ import java.util.Locale;
 
 @Service
 @Transactional
-public class ExcelFileImportServiceImpl implements ExcelFileImportService {
+public class ExcelFileImportServiceImpl implements ExcelFileImportService, ExcelReadDataFromFile {
 
     @Autowired
     private DevelopersService developersService;
@@ -31,10 +33,10 @@ public class ExcelFileImportServiceImpl implements ExcelFileImportService {
     private ProjectsService projectsService;
 
     @Override
-    public boolean saveDataFromUploadFile(MultipartFile file) {
+    public boolean saveProjectsDataFromUploadFile(MultipartFile file) {
 
         boolean isFlag = false;
-
+        System.out.println("_________________________________________{}" + file.getOriginalFilename());
         String exstension = FilenameUtils.getExtension(file.getOriginalFilename());
 
         if (exstension.equalsIgnoreCase("xls") || exstension.equalsIgnoreCase("xlsx")){
@@ -42,6 +44,20 @@ public class ExcelFileImportServiceImpl implements ExcelFileImportService {
         }
         return isFlag;
     }
+
+    @Override
+    public boolean saveDevelopersDataFromUploadFile(MultipartFile file) {
+
+        boolean isFlag = false;
+        System.out.println("_________________________________________{}" + file.getOriginalFilename());
+        String exstension = FilenameUtils.getExtension(file.getOriginalFilename());
+
+        if (exstension.equalsIgnoreCase("xls") || exstension.equalsIgnoreCase("xlsx")){
+            isFlag = readDevelopersDataFromExcel(file);
+        }
+        return isFlag;
+    }
+
     @Override
     public boolean readProjectsDataFromExcel(MultipartFile file) {
 

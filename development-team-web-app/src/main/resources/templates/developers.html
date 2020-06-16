@@ -50,9 +50,36 @@
                     <i class="fa fa-plus"></i> <span
                         class="d-none d-sm-inline">Add</span></a>
             </li>
+
+            <li class="nav-item">
+                <select class="selectpicker btn btn-outline-secondary"id="excel">
+                    <option selected>Excel</option>
+                    <option data-url="http://localhost:8080/developers/download" value="1">download from xlsx</option>
+                    <option value="2">save in xlsx</option>
+                </select>
+            </li>
         </ul>
     </nav>
 </header>
+<section>
+    <form class="form-inline" action="" th:action =  "@{/developers/import}"
+          th:object = "${developerExcel}"
+          method="post"
+          enctype="multipart/form-data">
+        <div  id="input-box">
+            <div class="col-sm-auto col-md-auto">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input id="input" type="file" class="form-control" name="file" th:fild = "*{multipartFile}">
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
 
 <section id="developers">
     <div class="container-fluid">
@@ -132,15 +159,10 @@
         th:src="@{/js/popper.min.js}"></script>
 <script src="../../static/js/bootstrap.min.js"
         th:src="@{/js/bootstrap.min.js}"></script>
-<script>
-    $('#deleteDialog').on('show.bs.modal', function (event) {
-        var target = $(event.relatedTarget)
-        $(this).find('.modal-body').text('Please confirm delete developer: "' + target.data('name') + '"')
-        document.getElementById('deleteUrl').href = 'developers/' + target.data('id') + '/delete';
-    })
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
+<script src="../../static/js/developerJS/developersJS.js"
+        th:src="@{/js/developerJS/developersJS.js}"></script>
+<script src="../../static/js/commonJS/commonJS.js"
+        th:src="@{/js/commonJS/commonJS.js}"></script>
+
 </body>
 </html>

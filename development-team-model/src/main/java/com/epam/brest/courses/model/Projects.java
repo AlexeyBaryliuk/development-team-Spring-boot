@@ -8,10 +8,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import lombok.*;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
-
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -57,6 +56,7 @@ public class Projects {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateAdded;
 
+    @Transient
     private String fileType;
 
     @Transient

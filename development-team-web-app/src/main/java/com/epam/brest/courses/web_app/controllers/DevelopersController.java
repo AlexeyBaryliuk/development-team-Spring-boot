@@ -36,6 +36,7 @@ public class DevelopersController {
     public String findAll(Model model){
 
         LOGGER.debug("DCONTROLLER findAll()");
+        model.addAttribute("developerExcel", new Developers());
         model.addAttribute("developers", developersService.findAll());
         return "developers";
     }

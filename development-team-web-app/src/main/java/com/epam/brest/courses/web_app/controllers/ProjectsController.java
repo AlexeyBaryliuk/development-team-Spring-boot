@@ -72,6 +72,7 @@ public class ProjectsController {
                                  Model model){
 
         model.addAttribute("projectExcel",new Projects());
+
      if (dateStart!= null && dateEnd != null){
 
          LOGGER.debug("Find projects between dates. Date start = {}, Date End = {}", dateStart, dateEnd);
@@ -99,8 +100,9 @@ public class ProjectsController {
      */
     @GetMapping(value = "/{projectId}")
     public final String gotoEditProjectsPage(@PathVariable Integer projectId
-                                            ,@RequestParam(required = false) Integer developerId
-                                            , Model model) {
+                                             , @ModelAttribute("projectExcel")
+                                               @RequestParam(required = false) Integer developerId
+                                             , Model model) {
 
         if (developerId != null && !projects_developersService.findByIdFromProjects_Developers(projectId, developerId).isPresent()) {
 
@@ -109,6 +111,7 @@ public class ProjectsController {
         }
 
         LOGGER.debug("CONTROLLER - gotoEditProjectsPage({},{})", projectId, model);
+
         Optional<Projects> optionalProjects = projectsService.findByDeveloperId(projectId);
         if (optionalProjects.isPresent()) {
             model.addAttribute("project", optionalProjects.get());

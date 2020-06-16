@@ -1,7 +1,7 @@
 package com.epam.brest.courses.service_rest;
 
 
-import com.epam.brest.courses.service.ExcelFileImportService;
+import com.epam.brest.courses.service.excel.ExcelFileImportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
@@ -25,25 +25,28 @@ public class ExcelFileImportServiceRest implements ExcelFileImportService {
     }
 
     @Override
-    public boolean saveDataFromUploadFile(MultipartFile multipartFile) {
+    public boolean saveProjectsDataFromUploadFile(MultipartFile multipartFile) {
 
         LOGGER.debug("saveDataFromUploadFile({})",multipartFile.toString());
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Collections.singletonList(MediaType.TEXT_PLAIN));
+        headers.setAccept(Collections.singletonList(MediaType.MULTIPART_FORM_DATA));
         HttpEntity <MultipartFile> entity = new HttpEntity<>(multipartFile, headers);
-        ResponseEntity<Boolean> result = restTemplate.exchange(url + "/projectsImport", HttpMethod.POST, entity, Boolean.class);
+        ResponseEntity<Boolean> result = restTemplate.getForEntity(url + "/projectsImport", Boolean.class, entity);
         return result.getBody();
 
     }
 
     @Override
-    public boolean readProjectsDataFromExcel(MultipartFile file) {
-        return false;
-    }
+    public boolean saveDevelopersDataFromUploadFile(MultipartFile multipartFile) {
 
-    @Override
-    public boolean readDevelopersDataFromExcel(MultipartFile file) {
-        return false;
+        LOGGER.debug("saveDataFromUploadFile({})",multipartFile.toString());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.MULTIPART_FORM_DATA));
+        HttpEntity <MultipartFile> entity = new HttpEntity<>(multipartFile, headers);
+        ResponseEntity<Boolean> result = restTemplate.getForEntity(url + "/developersImport", Boolean.class, entity);
+        return result.getBody();
+
     }
 }

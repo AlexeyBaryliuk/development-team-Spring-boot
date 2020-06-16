@@ -9,6 +9,8 @@ import com.epam.brest.courses.daoImpl.ProjectJdbcDaoDtoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.Projects_DevelopersJdbcDaoImpl;
 import com.epam.brest.courses.service.*;
+import com.epam.brest.courses.service.excel.ExcelFileExportService;
+import com.epam.brest.courses.service.excel.ExcelFileImportService;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;

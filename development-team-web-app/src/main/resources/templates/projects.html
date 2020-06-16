@@ -63,7 +63,7 @@
             <li class="nav-item">
                 <select class="selectpicker btn btn-outline-secondary"id="excel">
                      <option selected>Excel</option>
-                     <option data-url="http://localhost:8080/download" value="1">download from xlsx</option>
+                     <option data-url="http://localhost:8080/projects/download" value="1">download from xlsx</option>
                      <option value="2">save in xlsx</option>
                  </select>
             </li>
@@ -71,7 +71,7 @@
     </nav>
 </header>
 <section>
-    <form class="form-inline" action="" th:action =  "@{/import}"
+    <form class="form-inline" action="" th:action =  "@{/projects/import}"
           th:object = "${projectExcel}"
           method="post"
           enctype="multipart/form-data">
@@ -218,7 +218,8 @@
         th:src="@{/js/bootstrap.min.js}"></script>
 <script src="../../static/js/projectJS/projectsJS.js"
         th:src="@{/js/projectJS/projectsJS.js}"></script>
-
+<script src="../../static/js/commonJS/commonJS.js"
+        th:src="@{/js/commonJS/commonJS.js}"></script>
 
 </body>
 </html>

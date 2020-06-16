@@ -1,6 +1,6 @@
 package com.epam.brest.courses.web_app.config.projectsConfig;
 
-import com.epam.brest.courses.service.ExcelFileImportService;
+import com.epam.brest.courses.service.excel.ExcelFileImportService;
 import com.epam.brest.courses.service_rest.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

@@ -1,10 +1,8 @@
-package com.epam.brest.courses.service;
+package com.epam.brest.courses.service.excel;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public interface ExcelFileImportService {
-
-    boolean saveDataFromUploadFile(MultipartFile multipartFile);
+public interface ExcelReadDataFromFile {
 
     boolean readProjectsDataFromExcel(MultipartFile file);
 

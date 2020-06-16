@@ -1,6 +1,7 @@
 package com.epam.brest.courses.web_app;
 
 import com.epam.brest.courses.model.Developers;
+import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.web_app.config.viewConfig.ViewConfig;
 import com.epam.brest.courses.web_app.testConfig.TestConfig;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,6 +49,7 @@ class DevelopersControllerIT {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
                 .andExpect(view().name("developers"))
+                .andExpect(model().attribute("developerExcel", isA(Developers.class)))
                 .andExpect(model().attribute("developers", hasItem(
                         allOf(
                                 hasProperty("developerId", is(1)),

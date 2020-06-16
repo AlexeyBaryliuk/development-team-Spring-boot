@@ -3,14 +3,17 @@ package com.epam.brest.courses.rest_app.controllers;
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.service.DevelopersService;
-import com.epam.brest.courses.service.ExcelFileExportService;
-import com.epam.brest.courses.service.ExcelFileImportService;
+import com.epam.brest.courses.service.excel.ExcelFileExportService;
+import com.epam.brest.courses.service.excel.ExcelFileImportService;
 import com.epam.brest.courses.service.ProjectsService;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.compress.utils.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,8 +26,10 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping
-@SuppressFBWarnings(value = {"DLS_DEAD_LOCAL_STORE","DMI_HARDCODED_ABSOLUTE_FILENAME"})
+@SuppressFBWarnings(value = {"DLS_DEAD_LOCAL_STORE","DMI_HARDCODED_ABSOLUTE_FILENAME", "UC_USELESS_OBJECT"})
 public class DownloadExcelProjectsController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DownloadExcelProjectsController.class);
 
     @Autowired
     private ExcelFileExportService excelFileExportService;
@@ -56,13 +61,16 @@ public class DownloadExcelProjectsController {
         IOUtils.copy(stream, response.getOutputStream());
     }
 
-    @GetMapping(value = "/import/projects.xlsx")
-    public String importExcelProjects(Projects project) throws IOException {
+    @GetMapping(value = "/projectsImport")
+    public boolean importExcelProjects(@RequestBody MultipartFile multipartFile) throws IOException {
 
-        if(project == null){
-           project = new Projects();
+        LOGGER.debug("MultipartFile for projects = {}", multipartFile);
+        if (multipartFile == null) {
+
+            Projects project = new Projects();
 
         File file = new File("/home/alexey/Загрузки/projects.xlsx");
+
         FileInputStream input = new FileInputStream(file);
         MultipartFile multipartFileNew = new MockMultipartFile("file"
                 , file.getName()
@@ -70,29 +78,32 @@ public class DownloadExcelProjectsController {
                 , IOUtils.toByteArray(input));
 
         project.setMultipartFile(multipartFileNew);
-        }
+        multipartFile =  project.getMultipartFile();
 
-         excelFileImportService.saveDataFromUploadFile(project.getMultipartFile());
-         return "Import was successful";
+        }
+         boolean isFlag = excelFileImportService.saveProjectsDataFromUploadFile(multipartFile);
+         return isFlag;
     }
 
     @GetMapping("/developersImport")
-    public String importExcelDevelopers(Developers developer) throws IOException {
+    public boolean importExcelDevelopers(@RequestBody MultipartFile multipartFile) throws IOException {
 
-        if(developer == null){
-           developer = new Developers();
-            File file = new File("/home/alexey/Загрузки/projects.xlsx");
+        LOGGER.debug("MultipartFile for developers = {}", multipartFile);
+        if(multipartFile == null){
+           Developers developer = new Developers();
+
+            File file = new File("/home/alexey/Загрузки/developers.xlsx");
         FileInputStream input = new FileInputStream(file);
-        MultipartFile multipartFile = new MockMultipartFile("file"
+        multipartFile = new MockMultipartFile("file"
                 , file.getName()
                 ,"text/plain"
                 , IOUtils.toByteArray(input));
 
         developer.setMultipartFile(multipartFile);
-
         }
-        excelFileImportService.saveDataFromUploadFile(developer.getMultipartFile());
-        return "Import was successful";
+
+        boolean isFlag = excelFileImportService.saveDevelopersDataFromUploadFile(multipartFile);
+        return isFlag;
     }
 
 }

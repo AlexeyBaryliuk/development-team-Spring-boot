@@ -1,4 +1,4 @@
-package com.epam.brest.courses.service;
+package com.epam.brest.courses.service.excel;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
