@@ -1,5 +1,6 @@
 
 $("#excel").on('change', function(){
+var select = document.querySelector("#excel")
     if($(this).val() == 1){
         $("#input-box").show();
     } else if($(this).val() == 2){
@@ -8,9 +9,9 @@ $("#excel").on('change', function(){
         window.location.href = option.data("url");
 
     }else{
-        $("#input-box").hide();
+        $("#excel").hide();
     }
-
+ select.selectedIndex = 0;
 });
 
 $(document).on('change', '#input', function() {

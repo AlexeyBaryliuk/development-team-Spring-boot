@@ -1,9 +1,9 @@
 package com.epam.brest.courses.web_app;
 
 import com.epam.brest.courses.model.Projects;
+import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.web_app.config.viewConfig.ViewConfig;
 import com.epam.brest.courses.web_app.testConfig.TestConfig;
-import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,9 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -21,11 +19,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -44,6 +39,9 @@ class ProjectsControllerIT {
 
     @Autowired
     private WebApplicationContext wac;
+
+    @Autowired
+    private ProjectsService projectsService;
 
     private MockMvc mockMvc;
 
@@ -88,15 +86,12 @@ class ProjectsControllerIT {
         LocalDate dateEnd = LocalDate.now().plusDays(1);
 
         Projects project = new Projects();
+        project.setDescription("Test");
 
-//        File file = new File("/home/alexey/Загрузки/projects.xlsx");
-//        FileInputStream input = new FileInputStream(file);
-//        MultipartFile multipartFileNew = new MockMultipartFile("file"
-//                , file.getName()
-//                , "text/plain"
-//                , IOUtils.toByteArray(input));
-//
-//        project.setMultipartFile(multipartFileNew);
+        Integer id = projectsService.create(project);
+        String description = project.getDescription();
+        LocalDate dateAdded = project.getDateAdded();
+
         mockMvc.perform(
                 MockMvcRequestBuilders.get(COMMON_PROJECTS_URL)
                         .param("dateStart", dateStart.toString())
@@ -109,10 +104,10 @@ class ProjectsControllerIT {
                 .andExpect(model().attribute("projectExcel", isA(Projects.class)))
                 .andExpect(model().attribute("projects", hasItem(
                         allOf(
-                                hasProperty("projectId", is(3))
-                                , hasProperty("description", is("Create a web application based on Hibernate"))
-                                , hasProperty("countOfDevelopers", is(Integer.valueOf(1)))
-                                , hasProperty("dateAdded", is(convertToLocalDate("2020-01-17")))
+                                hasProperty("projectId", is(id))
+                                , hasProperty("description", is(description))
+                                , hasProperty("countOfDevelopers", is(Integer.valueOf(0)))
+                                , hasProperty("dateAdded", is(dateAdded))
                         )
                 )));
     }
