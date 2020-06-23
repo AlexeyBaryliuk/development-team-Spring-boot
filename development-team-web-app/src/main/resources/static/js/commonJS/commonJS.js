@@ -3,13 +3,12 @@ $("#excel").on('change', function(){
 var select = document.querySelector("#excel")
     if($(this).val() == 1){
         $("#input-box").show();
+        $("#button-box").hide();
     } else if($(this).val() == 2){
         $("#input-box").hide();
-        var option = $(this).find('option:selected');
-        window.location.href = option.data("url");
-
-    }else{
-        $("#excel").hide();
+        $("#button-box").show();
+//        var option = $(this).find('option:selected');
+//        window.location.href = option.data("url");
     }
  select.selectedIndex = 0;
 });

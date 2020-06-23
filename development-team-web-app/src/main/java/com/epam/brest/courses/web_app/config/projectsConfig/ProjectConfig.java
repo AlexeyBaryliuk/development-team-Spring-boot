@@ -1,5 +1,7 @@
 package com.epam.brest.courses.web_app.config.projectsConfig;
 
+import com.epam.brest.courses.service.ExcelFileExportServiceImpl;
+import com.epam.brest.courses.service.excel.ExcelFileExportService;
 import com.epam.brest.courses.service.excel.ExcelFileImportService;
 import com.epam.brest.courses.service_rest.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +34,12 @@ public class ProjectConfig {
     private String faker;
 
     private StringBuilder newUrl;
+
+    @Bean
+    public ExcelFileExportService getExcelFileExportService(){
+
+        return new ExcelFileExportServiceRest(startUrl, restTemplate());
+    }
 
     @Bean
     @Primary

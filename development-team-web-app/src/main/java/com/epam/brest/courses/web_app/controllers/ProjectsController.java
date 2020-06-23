@@ -44,19 +44,19 @@ public class ProjectsController {
     private final Projects_DevelopersService projects_developersService;
 
     public ProjectsController(ProjectsDtoService projectsDtoService
-                            , ProjectsService projectsService
-                            , DevelopersService developersService
-                            , Projects_DevelopersService projects_developersService) {
+            , ProjectsService projectsService
+            , DevelopersService developersService
+            , Projects_DevelopersService projects_developersService) {
         this.projectsDtoService = projectsDtoService;
         this.projectsService = projectsService;
         this.developersService = developersService;
         this.projects_developersService = projects_developersService;
     }
 
-        @Autowired
-        ProjectsValidator projectsValidator;
+    @Autowired
+    ProjectsValidator projectsValidator;
 
-        Developers developer = new Developers();
+    Developers developer = new Developers();
 
     /**
      * Goto projects list page.
@@ -65,33 +65,35 @@ public class ProjectsController {
      */
     @GetMapping
     public final String projects(
-                                 @RequestParam (value = "dateStart", required = false)
-                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateStart,
-                                 @RequestParam (value = "dateEnd", required = false)
-                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd,
-                                 Model model){
+            @RequestParam(value = "dateStart", required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateStart,
+            @RequestParam(value = "dateEnd", required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd,
+            Model model) {
 
-        model.addAttribute("projectExcel",new Projects());
+        model.addAttribute("projectExcel", new Projects());
 
-     if (dateStart!= null && dateEnd != null){
+        if (dateStart != null && dateEnd != null) {
 
-         LOGGER.debug("Find projects between dates. Date start = {}, Date End = {}", dateStart, dateEnd);
-         List<ProjectsDto> projectsDtoListBetween = projectsDtoService.findAllByDateAddedBetween(dateStart, dateEnd);
-                 LOGGER.debug("______________________ {}", projectsDtoListBetween);
-         model.addAttribute("projects", projectsDtoListBetween);
+            LOGGER.debug("Find projects between dates. Date start = {}, Date End = {}", dateStart, dateEnd);
+            List<ProjectsDto> projectsDtoListBetween = projectsDtoService.findAllByDateAddedBetween(dateStart, dateEnd);
+            LOGGER.debug("______________________ {}", projectsDtoListBetween);
+
+            model.addAttribute("projects", projectsDtoListBetween);
+
+        } else {
+
+            LOGGER.debug("Find all projects");
+
+            List<ProjectsDto> projectsDtoList = projectsDtoService.countOfDevelopers();
+            LOGGER.debug("__________________________findAll() PPPP= :{}", projectsDtoList);
+
+            model.addAttribute("projects", projectsDtoList);
+
+        }
+
+        return "projects";
     }
-    else{
-
-         LOGGER.debug("Find all projects");
-
-         List<ProjectsDto> projectsDtoList = projectsDtoService.countOfDevelopers();
-         LOGGER.debug("__________________________findAll() PPPP= :{}", projectsDtoList);
-         model.addAttribute("projects", projectsDtoList );
-
-    }
-
-  return "projects";
-}
 
     /**
      * Goto edit project's page.
@@ -100,9 +102,9 @@ public class ProjectsController {
      */
     @GetMapping(value = "/{projectId}")
     public final String gotoEditProjectsPage(@PathVariable Integer projectId
-                                             , @ModelAttribute("projectExcel")
-                                               @RequestParam(required = false) Integer developerId
-                                             , Model model) {
+            , @ModelAttribute("projectExcel")
+                                                 @RequestParam(required = false) Integer developerId
+            , Model model) {
 
         if (developerId != null && !projects_developersService.findByIdFromProjects_Developers(projectId, developerId).isPresent()) {
 
@@ -129,12 +131,12 @@ public class ProjectsController {
      * Update department.
      *
      * @param project project with filled data.
-     * @param result     binding result
+     * @param result  binding result
      * @return view name
      */
     @PostMapping(value = "/{id}")
     public String updateProject(@ModelAttribute("project") @Valid Projects project,
-                                BindingResult result, Model model){
+                                BindingResult result, Model model) {
 
         model.addAttribute("developerEntity", developer);
         LOGGER.debug("updateProject({}, {})", project, result);
@@ -164,13 +166,13 @@ public class ProjectsController {
      * Persist new project into persistence storage.
      *
      * @param project new project with filled data.
-     * @param result     binding result.
+     * @param result  binding result.
      * @return view name
      */
     @PostMapping(value = "/add")
     public String addProject(@ModelAttribute("project")
                              @Valid Projects project,
-                             BindingResult result,Model model) {
+                             BindingResult result, Model model) {
 
         LOGGER.debug("addProject{}, {})", project, result);
         projectsValidator.validate(project, result);
@@ -180,11 +182,10 @@ public class ProjectsController {
         } else {
             try {
                 this.projectsService.create(project);
+            } catch (IllegalArgumentException ie) {
+                result.rejectValue("description", "projectDescription.exist");
+                return "projectAdd";
             }
-                catch (IllegalArgumentException ie){
-                    result.rejectValue("description", "projectDescription.exist");
-                    return "projectAdd";
-                }
 
             return "redirect:/projects";
         }
@@ -210,13 +211,13 @@ public class ProjectsController {
      * @return view name
      */
     @GetMapping(value = "/{projectId}/{developerId}/delete")
-    public final String deleteDeveloperFromProjects_developers( @PathVariable Integer projectId
-                                                               ,@PathVariable Integer developerId
-                                                               ,Model model) {
+    public final String deleteDeveloperFromProjects_developers(@PathVariable Integer projectId
+            , @PathVariable Integer developerId
+            , Model model) {
 
         LOGGER.debug("delete({},{}{})", projectId, developerId, model);
-        projects_developersService.deleteDeveloperFromProject_Developers(projectId,developerId);
+        projects_developersService.deleteDeveloperFromProject_Developers(projectId, developerId);
         return "redirect:/projects/" + projectId;
     }
-
 }
+
