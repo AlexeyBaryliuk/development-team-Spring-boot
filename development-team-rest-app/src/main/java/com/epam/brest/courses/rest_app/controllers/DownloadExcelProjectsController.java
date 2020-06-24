@@ -3,15 +3,14 @@ package com.epam.brest.courses.rest_app.controllers;
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.service.DevelopersService;
+import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.service.excel.ExcelFileExportService;
 import com.epam.brest.courses.service.excel.ExcelFileImportService;
-import com.epam.brest.courses.service.ProjectsService;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.compress.utils.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
@@ -22,9 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 @RestController
 @RequestMapping
@@ -46,24 +46,23 @@ public class DownloadExcelProjectsController {
     private DevelopersService developersService;
 
     @GetMapping("/projectsDownload")
-    public byte[] downloadExcelProjects(HttpServletResponse response, @RequestBody List<Projects > projects) throws IOException {
-
-            LOGGER.debug("++++++++++++++++++{}", projects);
+    public ResponseEntity<byte[]> downloadExcelProjects() throws IOException {
 
         ByteArrayInputStream stream = excelFileExportService.exportProjectsToExcel(projectsService.findAll());
 
-        return IOUtils.toByteArray(stream);
+        return  ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(IOUtils.toByteArray(stream));
     }
 
     @GetMapping("/developersDownload")
-    public void downloadExcelDevelopers(HttpServletResponse response
-            , @RequestBody String str) throws IOException {
+    public  ResponseEntity<byte[]>  downloadExcelDevelopers(HttpServletResponse response) throws IOException {
 
-        LOGGER.debug("++++++++++++++++++{}", str);
-        response.setContentType("application/octet-stream");
-        response.setHeader("Content-Disposition", "attachment; filename = developers.xlsx");
         ByteArrayInputStream stream = excelFileExportService.exportDevelopersToExcel(developersService.findAll());
-        IOUtils.copy(stream, response.getOutputStream());
+
+        return  ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(IOUtils.toByteArray(stream));
     }
 
     @GetMapping(value = "/projectsImport")

@@ -64,26 +64,13 @@
                 <select class="selectpicker btn btn-outline-secondary"id="excel">
                      <option selected>Excel</option>
                      <option value="1">download from xlsx</option>
-                     <option value="2">save in xlsx</option>
+                     <option data-url="http://localhost:8080/projects/download"value="2">save in xlsx</option>
                  </select>
             </li>
         </ul>
     </nav>
 </header>
 <section>
-    <form class="form-inline" action="#" th:action =  "@{/projects/download}"
-          th:object = "${form}"
-          method="get">
-        <div  id="button-box">
-            <div class="col-sm-auto col-md-auto">
-                <div class="input-group">
-                    <div class="input-group-append">
-                        <input type="submit" id="submitButton" th:value="Save">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
     <form class="form-inline" action="" th:action =  "@{/projects/import}"
           th:object = "${projectExcel}"
           method="post"

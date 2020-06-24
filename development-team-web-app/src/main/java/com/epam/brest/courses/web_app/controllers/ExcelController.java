@@ -2,7 +2,7 @@ package com.epam.brest.courses.web_app.controllers;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
-import com.epam.brest.courses.service.ProjectsDtoService;
+import com.epam.brest.courses.service.DevelopersService;
 import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.service.excel.ExcelFileExportService;
 import com.epam.brest.courses.service.excel.ExcelFileImportService;
@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,7 +34,7 @@ public class ExcelController {
     private ProjectsService projectsService;
 
     @Autowired
-    private ProjectsDtoService projectsDtoService;
+    private DevelopersService developersService;
 
     @Autowired
     private final ExcelFileImportService excelFileImportServiceRest;
@@ -68,11 +67,9 @@ public class ExcelController {
     }
 
     @GetMapping("/projects/download")
-    public void projectsDownload(HttpServletResponse response
-            , Model model) throws IOException {
+    public void projectsDownload(HttpServletResponse response) throws IOException {
 
-
-        LOGGER.debug("))))))))))))))))))))))))))))))((((((((((((((((((((((");
+        LOGGER.debug("projectsDownload()");
 
         response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition", "attachment; filename = projects.xlsx");
@@ -80,7 +77,18 @@ public class ExcelController {
         IOUtils.copy(stream, response.getOutputStream());
 
     }
+    @GetMapping("/developers/download")
+    public void developersDownload(HttpServletResponse response) throws IOException {
 
+
+        LOGGER.debug("developersDownload()");
+
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-Disposition", "attachment; filename = developers.xlsx");
+        ByteArrayInputStream stream = exportService.exportDevelopersToExcel(developersService.findAll());
+        IOUtils.copy(stream, response.getOutputStream());
+
+    }
 
 
 }
