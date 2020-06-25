@@ -23,7 +23,7 @@ public interface ProjectsService {
      * @param projectId project's id.
      * @return project.
      */
-    Optional<Projects> findByDeveloperId(Integer projectId);
+    Optional<Projects> findByProjectId(Integer projectId);
 
     /**
      * Update project.

@@ -2,8 +2,6 @@ package com.epam.brest.courses.rest_app.controllers;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
-import com.epam.brest.courses.service.DevelopersService;
-import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.service.excel.ExcelFileExportService;
 import com.epam.brest.courses.service.excel.ExcelFileImportService;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -14,17 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping
@@ -39,26 +34,20 @@ public class DownloadExcelProjectsController {
     @Autowired
     private ExcelFileImportService excelFileImportService;
 
-    @Autowired
-    private ProjectsService projectsService;
+    @PostMapping(value = "/projectsDownload" , consumes = "application/json")
+    public ResponseEntity<byte[]> downloadExcelProjects(@RequestBody List<Projects> projectsList) throws IOException {
 
-    @Autowired
-    private DevelopersService developersService;
-
-    @GetMapping("/projectsDownload")
-    public ResponseEntity<byte[]> downloadExcelProjects() throws IOException {
-
-        ByteArrayInputStream stream = excelFileExportService.exportProjectsToExcel(projectsService.findAll());
+        ByteArrayInputStream stream = excelFileExportService.exportProjectsToExcel(projectsList);
 
         return  ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(IOUtils.toByteArray(stream));
     }
 
-    @GetMapping("/developersDownload")
-    public  ResponseEntity<byte[]>  downloadExcelDevelopers(HttpServletResponse response) throws IOException {
+    @PostMapping(value = "/developersDownload", consumes = "application/json")
+    public  ResponseEntity<byte[]>  downloadExcelDevelopers(@RequestBody List<Developers> developersList) throws IOException {
 
-        ByteArrayInputStream stream = excelFileExportService.exportDevelopersToExcel(developersService.findAll());
+        ByteArrayInputStream stream = excelFileExportService.exportDevelopersToExcel(developersList);
 
         return  ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
@@ -69,20 +58,21 @@ public class DownloadExcelProjectsController {
     public boolean importExcelProjects(@RequestBody MultipartFile multipartFile) throws IOException {
 
         LOGGER.debug("MultipartFile for projects = {}", multipartFile);
+
         if (multipartFile == null) {
 
-            Projects project = new Projects();
+        Projects project = new Projects();
 
         File file = new File("/home/alexey/Загрузки/projects.xlsx");
 
         FileInputStream input = new FileInputStream(file);
-        MultipartFile multipartFileNew = new MockMultipartFile("file"
+        multipartFile = new MockMultipartFile("file"
                 , file.getName()
                 , "text/plain"
                 , IOUtils.toByteArray(input));
 
-        project.setMultipartFile(multipartFileNew);
-        multipartFile =  project.getMultipartFile();
+        project.setMultipartFile(multipartFile);
+//        multipartFile =  project.getMultipartFile();
 
         }
          boolean isFlag = excelFileImportService.saveProjectsDataFromUploadFile(multipartFile);

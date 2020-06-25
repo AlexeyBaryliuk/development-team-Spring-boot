@@ -2,10 +2,13 @@ package com.epam.brest.courses.web_app.controllers;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
+import com.epam.brest.courses.model.dto.ProjectsDto;
 import com.epam.brest.courses.service.DevelopersService;
 import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.service.excel.ExcelFileExportService;
 import com.epam.brest.courses.service.excel.ExcelFileImportService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.compress.utils.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * ExcelController.
@@ -43,7 +49,8 @@ public class ExcelController {
         this.excelFileImportServiceRest = excelFileImportServiceRest;
     }
 
-
+    @Autowired
+    private ProjectsController projectsController;
 
     @PostMapping("/projects/import")
     public String projectsImportFile(@ModelAttribute ("projectExcel")  Projects project
@@ -69,11 +76,29 @@ public class ExcelController {
     @GetMapping("/projects/download")
     public void projectsDownload(HttpServletResponse response) throws IOException {
 
-        LOGGER.debug("projectsDownload()");
+        ObjectMapper mapper = new ObjectMapper();
+        List<ProjectsDto> projectsDtoList = projectsController.getProjectsDtoList();
+        LOGGER.debug("-------------------------projectsDownload() = {}", projectsDtoList);
+        List<Projects> projectsList = new ArrayList<>();
+
+        List<ProjectsDto> projectDtoListMapper = mapper.convertValue(
+                projectsDtoList,
+                new TypeReference<List<ProjectsDto>>(){}
+        );
+
+        for (int i = 0; i < projectsDtoList.size(); i++) {
+
+            Integer projectsDtoId = projectDtoListMapper.get(i).getProjectId();
+            LOGGER.debug("-------------------------projectsDtoId() = {}", projectsDtoId);
+
+            Optional<Projects> project = projectsService.findByProjectId(projectsDtoId);
+            project.ifPresent(projectsList::add);
+
+        }
 
         response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition", "attachment; filename = projects.xlsx");
-        ByteArrayInputStream stream = exportService.exportProjectsToExcel(projectsService.findAll());
+        ByteArrayInputStream stream = exportService.exportProjectsToExcel(projectsList);
         IOUtils.copy(stream, response.getOutputStream());
 
     }

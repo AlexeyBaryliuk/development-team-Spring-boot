@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,8 +57,13 @@ public class ProjectsController {
     @Autowired
     ProjectsValidator projectsValidator;
 
-    Developers developer = new Developers();
+    private  Developers developer = new Developers();
 
+    private List<ProjectsDto> projectsDtoList = new ArrayList<>();
+
+    public List<ProjectsDto> getProjectsDtoList(){
+        return this.projectsDtoList;
+    }
     /**
      * Goto projects list page.
      *
@@ -76,16 +82,16 @@ public class ProjectsController {
         if (dateStart != null && dateEnd != null) {
 
             LOGGER.debug("Find projects between dates. Date start = {}, Date End = {}", dateStart, dateEnd);
-            List<ProjectsDto> projectsDtoListBetween = projectsDtoService.findAllByDateAddedBetween(dateStart, dateEnd);
-            LOGGER.debug("______________________ {}", projectsDtoListBetween);
+            projectsDtoList = projectsDtoService.findAllByDateAddedBetween(dateStart, dateEnd);
+            LOGGER.debug("______________________ {}", projectsDtoList);
 
-            model.addAttribute("projects", projectsDtoListBetween);
+            model.addAttribute("projects", projectsDtoList);
 
         } else {
 
             LOGGER.debug("Find all projects");
 
-            List<ProjectsDto> projectsDtoList = projectsDtoService.countOfDevelopers();
+            projectsDtoList = projectsDtoService.countOfDevelopers();
             LOGGER.debug("__________________________findAll() PPPP= :{}", projectsDtoList);
 
             model.addAttribute("projects", projectsDtoList);
@@ -114,7 +120,7 @@ public class ProjectsController {
 
         LOGGER.debug("CONTROLLER - gotoEditProjectsPage({},{})", projectId, model);
 
-        Optional<Projects> optionalProjects = projectsService.findByDeveloperId(projectId);
+        Optional<Projects> optionalProjects = projectsService.findByProjectId(projectId);
         if (optionalProjects.isPresent()) {
             model.addAttribute("project", optionalProjects.get());
             model.addAttribute("developers", projects_developersService.selectDevelopersFromProjects_Developers(projectId));

@@ -93,7 +93,7 @@ class ProjectsServiceRestIT {
                 );
 
         // when
-        Optional<Projects> optionalProject = projectsServiceRest.findByDeveloperId(id);
+        Optional<Projects> optionalProject = projectsServiceRest.findByProjectId(id);
 
         // then
         mockServer.verify();
@@ -125,7 +125,7 @@ class ProjectsServiceRestIT {
 
         // when
         int result = projectsServiceRest.update(project);
-        Optional<Projects> updatedProjectOptional = projectsServiceRest.findByDeveloperId(id);
+        Optional<Projects> updatedProjectOptional = projectsServiceRest.findByProjectId(id);
 
         // then
         mockServer.verify();

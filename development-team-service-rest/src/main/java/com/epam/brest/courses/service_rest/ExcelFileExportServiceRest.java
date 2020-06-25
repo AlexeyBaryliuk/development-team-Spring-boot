@@ -13,11 +13,11 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
 
 public class ExcelFileExportServiceRest implements ExcelFileExportService {
 
@@ -37,11 +37,12 @@ public class ExcelFileExportServiceRest implements ExcelFileExportService {
         LOGGER.debug("exportProjectsToExcel({})", projectsList);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_OCTET_STREAM));
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_OCTET_STREAM));
+        HttpEntity<List<Projects>> entity = new HttpEntity<>(projectsList, headers);
 
         ResponseEntity<byte[]> response = restTemplate.exchange(url + "/projectsDownload",
-                GET,
-                new HttpEntity<>(headers),
+                POST,
+                entity,
                 byte[].class);
 
         return new ByteArrayInputStream(Objects.requireNonNull(response.getBody()));
@@ -53,11 +54,12 @@ public class ExcelFileExportServiceRest implements ExcelFileExportService {
         LOGGER.debug("exportProjectsToExcel({})", developersList);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_OCTET_STREAM));
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_OCTET_STREAM));
+        HttpEntity<List<Developers>> entity = new HttpEntity<>(developersList, headers);
 
         ResponseEntity<byte[]> response = restTemplate.exchange(url + "/developersDownload",
-                GET,
-                new HttpEntity<>(headers),
+                POST,
+                entity,
                 byte[].class);
 
         return new ByteArrayInputStream(Objects.requireNonNull(response.getBody()));

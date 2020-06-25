@@ -6,10 +6,13 @@ import com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.Projects_DevelopersJdbcDaoImpl;
 import com.epam.brest.courses.rest_app.exception.CustomExceptionHandler;
 import com.epam.brest.courses.service.*;
+import com.epam.brest.courses.service.excel.ExcelFileExportService;
+import com.epam.brest.courses.service.excel.ExcelFileImportService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -19,6 +22,16 @@ public class TestConfig {
 
     @Autowired
     private DriverManagerDataSource dataSource;
+
+    @Bean
+    public ExcelFileImportService fileImportService(){
+        return new ExcelFileImportServiceImpl();
+    }
+
+    @Bean
+    public ExcelFileExportService fileExportService(){
+        return new ExcelFileExportServiceImpl();
+    }
 
     @Bean
     public FakerService fakerService(){
@@ -70,6 +83,7 @@ public class TestConfig {
 
     @Bean
     @Profile("h2")
+    @Primary
     public DriverManagerDataSource dataSourceh2() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.h2.Driver");

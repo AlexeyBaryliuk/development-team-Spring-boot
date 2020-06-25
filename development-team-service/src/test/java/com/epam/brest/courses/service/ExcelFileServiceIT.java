@@ -17,9 +17,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-
 import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(classes={Developers.class, Projects.class, TestConfig.class} )
 @ExtendWith(SpringExtension.class)
