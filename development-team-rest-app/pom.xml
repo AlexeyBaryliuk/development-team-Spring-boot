@@ -105,33 +105,33 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-failsafe-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <argLine>-Dspring.profiles.active=h2</argLine>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <argLine>-Dspring.profiles.active=h2</argLine>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <profiles>
 
-        <profile>
-            <id>h2</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <activatedProperties>h2</activatedProperties>
-            </properties>
-        </profile>
+<!--        <profile>-->
+<!--            <id>h2</id>-->
+<!--            <activation>-->
+<!--                <activeByDefault>true</activeByDefault>-->
+<!--            </activation>-->
+<!--            <properties>-->
+<!--                <activatedProperties>h2</activatedProperties>-->
+<!--            </properties>-->
+<!--        </profile>-->
 
-        <profile>
-            <id>mySql</id>
-            <properties>
-                <activatedProperties>mySql</activatedProperties>
-            </properties>
-        </profile>
+<!--        <profile>-->
+<!--            <id>mySql</id>-->
+<!--            <properties>-->
+<!--                <activatedProperties>mySql</activatedProperties>-->
+<!--            </properties>-->
+<!--        </profile>-->
 
         <profile>
             <id>jpa</id>

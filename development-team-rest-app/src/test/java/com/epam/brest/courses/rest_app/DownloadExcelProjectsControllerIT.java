@@ -23,6 +23,8 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -43,7 +45,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes={DownloadExcelProjectsController.class, TestConfig.class} )
 @TestPropertySource("classpath:sql-development-team.properties")
-@ActiveProfiles("h2")
+@Sql({"classpath:schema.sql", "classpath:data.sql"})
 class DownloadExcelProjectsControllerIT {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DownloadExcelProjectsControllerIT.class);
@@ -95,29 +97,23 @@ class DownloadExcelProjectsControllerIT {
         assertTrue(byteArrayInputStream.read() > 0);
     }
 
-//    @Test
-//    void importExcelProjects() throws Exception {
-//
-////        Projects project = new Projects();
-//
-//        File file = new File("/home/alexey/Загрузки/projects.xlsx");
-//
-//        FileInputStream input = new FileInputStream(file);
-//        MultipartFile multipartFile = new MockMultipartFile("file"
-//                , file.getName()
-//                , "text/plain"
-//                , IOUtils.toByteArray(input));
-//
-////        project.setMultipartFile(multipartFile);
-//
-//    boolean isFlag = importService.saveProjectsDataFromUploadFile(multipartFile);
-//    assertTrue(isFlag);
-//    }
+    @Test
+    void importExcelProjects() throws Exception {
+
+        File file = new File("/home/alexey/Загрузки/projects.xlsx");
+
+        FileInputStream input = new FileInputStream(file);
+        MultipartFile multipartFile = new MockMultipartFile("file"
+                , file.getName()
+                , "text/plain"
+                , IOUtils.toByteArray(input));
+
+    boolean isFlag = importService.saveProjectsDataFromUploadFile(multipartFile);
+    assertTrue(isFlag);
+    }
 
     @Test
     void importExcelDevelopers() throws Exception {
-
-        Developers developer = new Developers();
 
         File file = new File("/home/alexey/Загрузки/developers.xlsx");
         FileInputStream input = new FileInputStream(file);
@@ -125,8 +121,6 @@ class DownloadExcelProjectsControllerIT {
                 , file.getName()
                 ,"text/plain"
                 , IOUtils.toByteArray(input));
-
-        developer.setMultipartFile(multipartFile);
 
     boolean isFlag = importService.saveDevelopersDataFromUploadFile(multipartFile);
     assertTrue(isFlag);

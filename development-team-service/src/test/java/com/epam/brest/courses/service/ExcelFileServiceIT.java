@@ -18,6 +18,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 @SpringBootTest(classes={Developers.class, Projects.class, TestConfig.class} )
 @ExtendWith(SpringExtension.class)
@@ -37,15 +38,15 @@ public class ExcelFileServiceIT {
     private DevelopersService developersService;
 
     @Test
-    public void shouldexportAndImportProjectsInExcel() throws IOException {
+    public void shouldExportAndImportProjectsInExcel() throws IOException {
 
         List<Projects> projectsList = projectsService.findAll();
 
         ByteArrayInputStream stream = excelFileExportService.exportProjectsToExcel(projectsList);
 
-        String expectedresult = IOUtils.toString(stream, StandardCharsets.UTF_8);
+        String expectedResult = IOUtils.toString(stream, StandardCharsets.UTF_8);
 
-        assertFalse(expectedresult.isEmpty());
+        assertTrue(!expectedResult.isEmpty());
 
     }
 
