@@ -61,8 +61,6 @@ public class DownloadExcelProjectsController {
 
         if (multipartFile == null) {
 
-        Projects project = new Projects();
-
         File file = new File("/home/alexey/Загрузки/projects.xlsx");
 
         FileInputStream input = new FileInputStream(file);
@@ -71,12 +69,8 @@ public class DownloadExcelProjectsController {
                 , "text/plain"
                 , IOUtils.toByteArray(input));
 
-        project.setMultipartFile(multipartFile);
-//        multipartFile =  project.getMultipartFile();
-
         }
-         boolean isFlag = excelFileImportService.saveProjectsDataFromUploadFile(multipartFile);
-         return isFlag;
+        return excelFileImportService.saveProjectsDataFromUploadFile(multipartFile);
     }
 
     @GetMapping("/developersImport")
@@ -84,7 +78,6 @@ public class DownloadExcelProjectsController {
 
         LOGGER.debug("MultipartFile for developers = {}", multipartFile);
         if(multipartFile == null){
-           Developers developer = new Developers();
 
             File file = new File("/home/alexey/Загрузки/developers.xlsx");
         FileInputStream input = new FileInputStream(file);
@@ -93,11 +86,9 @@ public class DownloadExcelProjectsController {
                 ,"text/plain"
                 , IOUtils.toByteArray(input));
 
-        developer.setMultipartFile(multipartFile);
         }
 
-        boolean isFlag = excelFileImportService.saveDevelopersDataFromUploadFile(multipartFile);
-        return isFlag;
+        return excelFileImportService.saveDevelopersDataFromUploadFile(multipartFile);
     }
 
 }

@@ -9,6 +9,7 @@ import com.epam.brest.courses.service.excel.ExcelFileExportService;
 import com.epam.brest.courses.service.excel.ExcelFileImportService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.compress.utils.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,7 @@ import java.util.Optional;
  */
 @Controller
 @RequestMapping
+@SuppressFBWarnings(value = "SIC_INNER_SHOULD_BE_STATIC_ANON")
 public class ExcelController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ExcelController.class);
@@ -78,7 +80,7 @@ public class ExcelController {
 
         ObjectMapper mapper = new ObjectMapper();
         List<ProjectsDto> projectsDtoList = projectsController.getProjectsDtoList();
-        LOGGER.debug("-------------------------projectsDownload() = {}", projectsDtoList);
+
         List<Projects> projectsList = new ArrayList<>();
 
         List<ProjectsDto> projectDtoListMapper = mapper.convertValue(
@@ -89,7 +91,6 @@ public class ExcelController {
         for (int i = 0; i < projectsDtoList.size(); i++) {
 
             Integer projectsDtoId = projectDtoListMapper.get(i).getProjectId();
-            LOGGER.debug("-------------------------projectsDtoId() = {}", projectsDtoId);
 
             Optional<Projects> project = projectsService.findByProjectId(projectsDtoId);
             project.ifPresent(projectsList::add);

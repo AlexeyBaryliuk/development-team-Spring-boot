@@ -4,6 +4,7 @@ import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.service.excel.ExcelFileImportService;
 import com.epam.brest.courses.service.excel.ExcelReadDataFromFile;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.CellType;
@@ -13,7 +14,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -23,7 +23,7 @@ import java.util.Iterator;
 import java.util.Locale;
 
 @Service
-@Transactional
+@SuppressFBWarnings(value = {"DLS_DEAD_LOCAL_STORE"})
 public class ExcelFileImportServiceImpl implements ExcelFileImportService, ExcelReadDataFromFile {
 
     @Autowired
@@ -46,6 +46,50 @@ public class ExcelFileImportServiceImpl implements ExcelFileImportService, Excel
     }
 
     @Override
+    public boolean readProjectsDataFromExcel(MultipartFile file) {
+
+        Workbook workbook = getWorkbook(file);
+        Integer num = 0;
+        Sheet sheet = workbook.getSheetAt(0);
+        Iterator<Row> rows = sheet.iterator();
+        rows.next();
+        while (rows.hasNext()){
+
+            Row row = rows.next();
+            Projects project = new Projects();
+            try {
+            if (row.getCell(0).getCellType() == CellType.NUMERIC){
+                project.setProjectId((int) row.getCell(0).getNumericCellValue());
+            }
+
+
+                if (row.getCell(1).getCellType() == CellType.STRING) {
+                    project.setDescription(row.getCell(1).getStringCellValue());
+                }
+
+
+            if (row.getCell(2).getCellType() == CellType.STRING){
+                String dateAdded = row.getCell(2).getStringCellValue();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                formatter = formatter.withLocale( Locale.ENGLISH );
+                LocalDate date = LocalDate.parse(dateAdded, formatter);
+                project.setDateAdded(date);
+            }
+            project.setFileType(FilenameUtils.getExtension(file.getOriginalFilename()));
+
+            projectsService.create(project);
+            }
+            catch (IllegalArgumentException ex){
+                project.setDescription("Project with same description already exist. Count of repeat = " + num);
+                num++;
+                projectsService.create(project);
+            }
+        }
+
+        return true;
+    }
+
+    @Override
     public boolean saveDevelopersDataFromUploadFile(MultipartFile file) {
 
         boolean isFlag = false;
@@ -57,38 +101,6 @@ public class ExcelFileImportServiceImpl implements ExcelFileImportService, Excel
         }
         return isFlag;
     }
-
-    @Override
-    public boolean readProjectsDataFromExcel(MultipartFile file) {
-
-        Workbook workbook = getWorkbook(file);
-
-        Sheet sheet = workbook.getSheetAt(0);
-        Iterator<Row> rows = sheet.iterator();
-        rows.next();
-        while (rows.hasNext()){
-            Row row = rows.next();
-            Projects project = new Projects();
-            if (row.getCell(0).getCellType() == CellType.NUMERIC){
-                project.setProjectId((int) row.getCell(0).getNumericCellValue());
-            }
-            if (row.getCell(1).getCellType() == CellType.STRING){
-                project.setDescription(row.getCell(1).getStringCellValue());
-            }
-            if (row.getCell(2).getCellType() == CellType.STRING){
-                String dateAdded = row.getCell(2).getStringCellValue();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                formatter = formatter.withLocale( Locale.ENGLISH );
-                LocalDate date = LocalDate.parse(dateAdded, formatter);
-                project.setDateAdded(date);
-            }
-            project.setFileType(FilenameUtils.getExtension(file.getOriginalFilename()));
-            projectsService.create(project);
-        }
-
-        return true;
-    }
-
     @Override
     public boolean readDevelopersDataFromExcel(MultipartFile file) {
         Workbook workbook = getWorkbook(file);
@@ -115,15 +127,15 @@ public class ExcelFileImportServiceImpl implements ExcelFileImportService, Excel
         return true;
     }
 
-    private Workbook getWorkbook(MultipartFile file) {
+    public Workbook getWorkbook(MultipartFile file) {
 
         Workbook workbook = null;
-        String exstension = FilenameUtils.getExtension(file.getOriginalFilename());
+        String extension = FilenameUtils.getExtension(file.getOriginalFilename());
         try {
-            if (exstension.equalsIgnoreCase("xls")) {
+            if (extension.equalsIgnoreCase("xls")) {
                 workbook = new HSSFWorkbook(file.getInputStream());
             }
-            else if(exstension.equalsIgnoreCase("xlsx")) {
+            else if(extension.equalsIgnoreCase("xlsx")) {
                 workbook = new XSSFWorkbook(file.getInputStream());
             }
         }catch (IOException e) {

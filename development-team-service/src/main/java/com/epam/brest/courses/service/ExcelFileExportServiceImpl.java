@@ -15,18 +15,17 @@ import java.util.List;
 @Service
 public class ExcelFileExportServiceImpl implements ExcelFileExportService {
 
+
     @Override
     public  ByteArrayInputStream exportProjectsToExcel(List<Projects> projectsList) {
-
-
+        Workbook projectsWorkbook = new XSSFWorkbook();
         try {
-            Workbook workbook = new XSSFWorkbook();
 
-            Sheet sheet = workbook.createSheet("projects");
+            Sheet sheet = projectsWorkbook.createSheet("projects");
 
             Row row = sheet.createRow(0);
 
-            CellStyle headerSellStyle = cellStyle(workbook, IndexedColors.SKY_BLUE);
+            CellStyle headerSellStyle = cellStyle(projectsWorkbook, IndexedColors.SKY_BLUE);
 
             Cell cell = row.createCell(0);
             cell.setCellValue("projectId");
@@ -43,7 +42,7 @@ public class ExcelFileExportServiceImpl implements ExcelFileExportService {
             for (int i = 0; i < projectsList.size(); i++) {
 
                 Row dataRow = sheet.createRow(i + 1);
-                CellStyle bodySellStyle = cellStyle(workbook, IndexedColors.WHITE);
+                CellStyle bodySellStyle = cellStyle(projectsWorkbook, IndexedColors.WHITE);
 
                 Cell bodyCell = dataRow.createCell(0);
                 bodyCell.setCellValue(projectsList.get(i).getProjectId());
@@ -62,7 +61,7 @@ public class ExcelFileExportServiceImpl implements ExcelFileExportService {
             sheet.autoSizeColumn(2);
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            workbook.write(outputStream);
+            projectsWorkbook.write(outputStream);
 
             return new ByteArrayInputStream(outputStream.toByteArray());
         } catch (IOException e) {
@@ -75,14 +74,14 @@ public class ExcelFileExportServiceImpl implements ExcelFileExportService {
     @Override
     public ByteArrayInputStream exportDevelopersToExcel(List<Developers> developersList) {
 
+        Workbook developersWorkbook = new XSSFWorkbook();
         try {
-            Workbook workbook = new XSSFWorkbook();
 
-            Sheet sheet = workbook.createSheet("developers");
+            Sheet sheet = developersWorkbook.createSheet("developers");
 
             Row row = sheet.createRow(0);
 
-            CellStyle headerSellStyle = cellStyle(workbook, IndexedColors.SKY_BLUE);
+            CellStyle headerSellStyle = cellStyle(developersWorkbook, IndexedColors.SKY_BLUE);
 
             Cell cell = row.createCell(0);
             cell.setCellValue("developerId");
@@ -99,7 +98,7 @@ public class ExcelFileExportServiceImpl implements ExcelFileExportService {
             for (int i = 0; i < developersList.size(); i++) {
 
                 Row dataRow = sheet.createRow(i + 1);
-                CellStyle bodySellStyle = cellStyle(workbook, IndexedColors.WHITE);
+                CellStyle bodySellStyle = cellStyle(developersWorkbook, IndexedColors.WHITE);
 
                 Cell bodyCell = dataRow.createCell(0);
                 bodyCell.setCellValue(developersList.get(i).getDeveloperId());
@@ -118,7 +117,7 @@ public class ExcelFileExportServiceImpl implements ExcelFileExportService {
             sheet.autoSizeColumn(2);
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            workbook.write(outputStream);
+            developersWorkbook.write(outputStream);
 
             return new ByteArrayInputStream(outputStream.toByteArray());
         } catch (IOException e) {
@@ -143,4 +142,5 @@ public class ExcelFileExportServiceImpl implements ExcelFileExportService {
 
         return sellStyle;
     }
+
 }

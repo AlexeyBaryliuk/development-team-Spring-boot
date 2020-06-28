@@ -81,9 +81,9 @@ class DownloadExcelProjectsControllerIT {
     void downloadExcelProjects() throws Exception {
 
        List<Projects> allProjects =  projectsService.findAll();
-       LOGGER.debug("All+++++++++++++++++++ = {}", allProjects);
+
         ByteArrayInputStream byteArrayInputStream = exportService.exportProjectsToExcel(allProjects);
-        LOGGER.debug("Byte+++++++++++++++++++ = {}", byteArrayInputStream.available());
+
         assertTrue(byteArrayInputStream.read() > 0);
     }
 
@@ -91,9 +91,9 @@ class DownloadExcelProjectsControllerIT {
     void downloadExcelDevelopers() throws Exception {
 
         List<Developers> allDevelopers =  developersService.findAll();
-        LOGGER.debug("All+++++++++++++++++++ = {}", allDevelopers);
+
         ByteArrayInputStream byteArrayInputStream = exportService.exportDevelopersToExcel(allDevelopers);
-        LOGGER.debug("Byte+++++++++++++++++++ = {}", byteArrayInputStream.available());
+
         assertTrue(byteArrayInputStream.read() > 0);
     }
 

@@ -34,7 +34,7 @@ public class ExcelFileExportServiceRest implements ExcelFileExportService {
 
     @Override
     public ByteArrayInputStream exportProjectsToExcel(List<Projects> projectsList) throws IOException {
-        LOGGER.debug("exportProjectsToExcel({})", projectsList);
+        LOGGER.debug("***************************************exportProjectsToExcel({})", projectsList);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_OCTET_STREAM));
