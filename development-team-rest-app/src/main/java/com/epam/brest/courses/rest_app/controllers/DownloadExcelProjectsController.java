@@ -11,13 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -54,41 +51,19 @@ public class DownloadExcelProjectsController {
                 .body(IOUtils.toByteArray(stream));
     }
 
-    @GetMapping(value = "/projectsImport")
-    public boolean importExcelProjects(@RequestBody MultipartFile multipartFile) throws IOException {
+    @PostMapping(value = "/projectsImport", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public boolean importExcelProjects(@RequestParam("file") MultipartFile multipartFile) throws IOException {
 
-        LOGGER.debug("MultipartFile for projects = {}", multipartFile);
+        LOGGER.debug("MultipartFile for projects = {}", multipartFile.getSize());
 
-        if (multipartFile == null) {
-
-        File file = new File("/home/alexey/Загрузки/projects.xlsx");
-
-        FileInputStream input = new FileInputStream(file);
-        multipartFile = new MockMultipartFile("file"
-                , file.getName()
-                , "text/plain"
-                , IOUtils.toByteArray(input));
-
-        }
         return excelFileImportService.saveProjectsDataFromUploadFile(multipartFile);
     }
 
-    @GetMapping("/developersImport")
-    public boolean importExcelDevelopers(@RequestBody MultipartFile multipartFile) throws IOException {
+    @PostMapping(value = "/developersImport", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public boolean importExcelDevelopers(@RequestParam("file") MultipartFile multipartFile) throws IOException {
 
-        LOGGER.debug("MultipartFile for developers = {}", multipartFile);
-        if(multipartFile == null){
-
-            File file = new File("/home/alexey/Загрузки/developers.xlsx");
-        FileInputStream input = new FileInputStream(file);
-        multipartFile = new MockMultipartFile("file"
-                , file.getName()
-                ,"text/plain"
-                , IOUtils.toByteArray(input));
-
-        }
+        LOGGER.debug("MultipartFile for developers = {}", multipartFile.getSize());
 
         return excelFileImportService.saveDevelopersDataFromUploadFile(multipartFile);
     }
-
 }

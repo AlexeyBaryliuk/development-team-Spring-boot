@@ -21,12 +21,11 @@ import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,7 +37,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -100,10 +99,10 @@ class DownloadExcelProjectsControllerIT {
     @Test
     void importExcelProjects() throws Exception {
 
-        File file = new File("/home/alexey/Загрузки/projects.xlsx");
+        File file = new File("excel/projects.xlsx");
 
         FileInputStream input = new FileInputStream(file);
-        MultipartFile multipartFile = new MockMultipartFile("file"
+        MockMultipartFile multipartFile = new MockMultipartFile("file"
                 , file.getName()
                 , "text/plain"
                 , IOUtils.toByteArray(input));
@@ -115,9 +114,9 @@ class DownloadExcelProjectsControllerIT {
     @Test
     void importExcelDevelopers() throws Exception {
 
-        File file = new File("/home/alexey/Загрузки/developers.xlsx");
+        File file = new File("excel/developers.xlsx");
         FileInputStream input = new FileInputStream(file);
-        MultipartFile multipartFile = new MockMultipartFile("file"
+        MockMultipartFile multipartFile = new MockMultipartFile("file"
                 , file.getName()
                 ,"text/plain"
                 , IOUtils.toByteArray(input));
@@ -165,38 +164,26 @@ class DownloadExcelProjectsControllerIT {
 
     class MockMvcImportService {
 
-        public Boolean saveDevelopersDataFromUploadFile(MultipartFile multipartFile) throws Exception {
+        public Boolean saveDevelopersDataFromUploadFile(MockMultipartFile multipartFile) throws Exception {
 
             LOGGER.debug("saveDevelopersDataFromUploadFile()");
 
-            MockHttpServletResponse response = mockMvc.perform(get(PROJECTS_EXCEL_ENDPOINT + "/developersImport")
-                    .contentType(MediaType.TEXT_PLAIN)
-                    .content(String.valueOf(multipartFile))
-                    .accept(MediaType.APPLICATION_JSON)
-            ).andExpect(status().isOk())
-                    .andReturn().getResponse();
+            ResultActions response = mockMvc.perform(multipart("/developersImport").file(multipartFile))
+                    .andExpect(status().isOk());
             assertNotNull(response);
 
-            LOGGER.debug("saveDevelopersDataFromUploadFile(file ={}) = {} Boolean",multipartFile.getSize(), response.getContentAsString());
-
-            return Boolean.valueOf(response.getContentAsString());
+            return Boolean.valueOf(response.andReturn().getResponse().getContentAsString());
         }
 
-        public Boolean saveProjectsDataFromUploadFile(MultipartFile multipartFile) throws Exception {
+        public Boolean saveProjectsDataFromUploadFile(MockMultipartFile multipartFile) throws Exception {
 
             LOGGER.debug("saveProjectsDataFromUploadFile()");
 
-            MockHttpServletResponse response = mockMvc.perform(get(PROJECTS_EXCEL_ENDPOINT + "/projectsImport")
-                    .contentType(MediaType.TEXT_PLAIN)
-                    .content(String.valueOf(multipartFile))
-                    .accept(MediaType.APPLICATION_JSON)
-            ).andExpect(status().isOk())
-                    .andReturn().getResponse();
+            ResultActions response = mockMvc.perform(multipart("/projectsImport").file(multipartFile))
+      .andExpect(status().isOk());
             assertNotNull(response);
 
-            LOGGER.debug("saveProjectsDataFromUploadFile(file ={}) = {} Boolean",multipartFile.getSize(), response.getContentAsString());
-
-            return Boolean.valueOf(response.getContentAsString());
+            return Boolean.valueOf(response.andReturn().getResponse().getContentAsString());
         }
 
     }

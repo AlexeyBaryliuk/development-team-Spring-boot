@@ -4,11 +4,15 @@ package com.epam.brest.courses.service_rest;
 import com.epam.brest.courses.service.excel.ExcelFileImportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.*;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.Collections;
 
 public class ExcelFileImportServiceRest implements ExcelFileImportService {
 
@@ -27,14 +31,20 @@ public class ExcelFileImportServiceRest implements ExcelFileImportService {
     @Override
     public boolean saveProjectsDataFromUploadFile(MultipartFile multipartFile) {
 
-        LOGGER.debug("saveDataFromUploadFile({})",multipartFile.toString());
+        LOGGER.debug("saveDataFromUploadFile({})",multipartFile.getSize());
 
+        Resource resource = multipartFile.getResource();
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Collections.singletonList(MediaType.MULTIPART_FORM_DATA));
-        HttpEntity <MultipartFile> entity = new HttpEntity<>(multipartFile, headers);
-        ResponseEntity<Boolean> result = restTemplate.getForEntity(url + "/projectsImport", Boolean.class, entity);
-        return result.getBody();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        MultiValueMap<String, Object> body
+                = new LinkedMultiValueMap<>();
+        body.add("file", resource);
 
+        HttpEntity<MultiValueMap<String, Object>> requestEntity
+                = new HttpEntity<>(body, headers);
+        ResponseEntity<Boolean> result = restTemplate.postForEntity(url + "/projectsImport", requestEntity, Boolean.class);
+
+        return result.getBody();
     }
 
     @Override
@@ -42,10 +52,17 @@ public class ExcelFileImportServiceRest implements ExcelFileImportService {
 
         LOGGER.debug("saveDataFromUploadFile({})",multipartFile.toString());
 
+        Resource resource = multipartFile.getResource();
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Collections.singletonList(MediaType.MULTIPART_FORM_DATA));
-        HttpEntity <MultipartFile> entity = new HttpEntity<>(multipartFile, headers);
-        ResponseEntity<Boolean> result = restTemplate.getForEntity(url + "/developersImport", Boolean.class, entity);
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        MultiValueMap<String, Object> body
+                = new LinkedMultiValueMap<>();
+        body.add("file", resource);
+
+        HttpEntity<MultiValueMap<String, Object>> requestEntity
+                = new HttpEntity<>(body, headers);
+        ResponseEntity<Boolean> result = restTemplate.postForEntity(url + "/developersImport", requestEntity, Boolean.class);
+
         return result.getBody();
 
     }
