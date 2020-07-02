@@ -1,9 +1,9 @@
-package com.epam.brest.courses.service;
+package com.epam.brest.courses.service.excel;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
-import com.epam.brest.courses.service.excel.ExcelFileImportService;
-import com.epam.brest.courses.service.excel.ExcelReadDataFromFile;
+import com.epam.brest.courses.service.DevelopersService;
+import com.epam.brest.courses.service.ProjectsService;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;

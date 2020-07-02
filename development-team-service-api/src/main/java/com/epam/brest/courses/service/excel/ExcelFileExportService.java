@@ -4,12 +4,14 @@ import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.List;
 
+/**
+ * ExcelFileExportService interface.
+ */
 public interface ExcelFileExportService {
 
-    ByteArrayInputStream exportProjectsToExcel(List<Projects> projectsList) throws IOException;
+    ByteArrayInputStream exportProjectsToExcel(List<Projects> projectsList);
 
     ByteArrayInputStream exportDevelopersToExcel(List<Developers> developersList);
 }

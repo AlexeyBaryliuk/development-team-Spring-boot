@@ -21,9 +21,9 @@ import java.util.List;
 @RestController
 @RequestMapping
 @SuppressFBWarnings(value = {"DLS_DEAD_LOCAL_STORE","DMI_HARDCODED_ABSOLUTE_FILENAME", "UC_USELESS_OBJECT"})
-public class DownloadExcelProjectsController {
+public class ExcelController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DownloadExcelProjectsController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExcelController.class);
 
     @Autowired
     private ExcelFileExportService excelFileExportService;

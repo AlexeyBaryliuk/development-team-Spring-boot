@@ -1,8 +1,7 @@
-package com.epam.brest.courses.service;
+package com.epam.brest.courses.service.excel;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
-import com.epam.brest.courses.service.excel.ExcelFileExportService;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;

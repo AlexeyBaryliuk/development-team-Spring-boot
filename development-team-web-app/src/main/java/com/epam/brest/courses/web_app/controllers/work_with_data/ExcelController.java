@@ -1,4 +1,4 @@
-package com.epam.brest.courses.web_app.controllers;
+package com.epam.brest.courses.web_app.controllers.work_with_data;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
@@ -7,6 +7,7 @@ import com.epam.brest.courses.service.DevelopersService;
 import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.service.excel.ExcelFileExportService;
 import com.epam.brest.courses.service.excel.ExcelFileImportService;
+import com.epam.brest.courses.web_app.controllers.ProjectsController;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -75,7 +76,7 @@ public class ExcelController {
         return "redirect:/developers";
     }
 
-    @GetMapping("/projects/download")
+    @GetMapping("/projects/download/excel")
     public void projectsDownload(HttpServletResponse response) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -103,7 +104,7 @@ public class ExcelController {
         IOUtils.copy(stream, response.getOutputStream());
 
     }
-    @GetMapping("/developers/download")
+    @GetMapping("/developers/download/excel")
     public void developersDownload(HttpServletResponse response) throws IOException {
 
 

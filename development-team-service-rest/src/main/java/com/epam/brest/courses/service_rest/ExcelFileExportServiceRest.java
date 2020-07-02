@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -33,7 +32,7 @@ public class ExcelFileExportServiceRest implements ExcelFileExportService {
     }
 
     @Override
-    public ByteArrayInputStream exportProjectsToExcel(List<Projects> projectsList) throws IOException {
+    public ByteArrayInputStream exportProjectsToExcel(List<Projects> projectsList)  {
         LOGGER.debug("***************************************exportProjectsToExcel({})", projectsList);
 
         HttpHeaders headers = new HttpHeaders();

@@ -3,7 +3,7 @@ package com.epam.brest.courses.rest_app;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
-import com.epam.brest.courses.rest_app.controllers.DownloadExcelProjectsController;
+import com.epam.brest.courses.rest_app.controllers.ExcelController;
 import com.epam.brest.courses.rest_app.testConfig.TestConfig;
 import com.epam.brest.courses.service.DevelopersService;
 import com.epam.brest.courses.service.ProjectsService;
@@ -28,7 +28,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -42,17 +41,17 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes={DownloadExcelProjectsController.class, TestConfig.class} )
+@SpringBootTest(classes={ExcelController.class, TestConfig.class} )
 @TestPropertySource("classpath:sql-development-team.properties")
 @Sql({"classpath:schema.sql", "classpath:data.sql"})
-class DownloadExcelProjectsControllerIT {
+class ExcelControllerIT {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DownloadExcelProjectsControllerIT.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExcelControllerIT.class);
 
     public static final String PROJECTS_EXCEL_ENDPOINT = "";
 
     @Autowired
-    private DownloadExcelProjectsController excelProjectsController;
+    private ExcelController excelProjectsController;
 
     @Autowired
     private ProjectsService projectsService;
