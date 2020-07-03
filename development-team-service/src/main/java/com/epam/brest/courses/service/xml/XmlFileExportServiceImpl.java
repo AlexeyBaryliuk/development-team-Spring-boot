@@ -2,9 +2,11 @@ package com.epam.brest.courses.service.xml;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
+
 import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -15,15 +17,18 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.List;
 
+@Service
 public class XmlFileExportServiceImpl implements XmlFileExportService{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(XmlFileExportServiceImpl.class);
+
+    private String PATH_TO_PROJECTS = "xml/projects.xml";
 
     @Override
     public void exportProjectsToXml(List<Projects> projectsList) throws IOException, XMLStreamException {
 
         LOGGER.debug("List of projects({})", projectsList);
-        String PATH_TO_PROJECTS = "projects.xml";
+
 
         File file = new File(PATH_TO_PROJECTS);
 

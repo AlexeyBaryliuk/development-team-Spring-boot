@@ -69,6 +69,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--            Read and write from excel-->
+        <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
         </dependency>
@@ -83,9 +89,10 @@
             <artifactId>commons-io</artifactId>
         </dependency>
 
+        <!--            Read and write from xml-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>txw2</artifactId>
         </dependency>
     </dependencies>
 

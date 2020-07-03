@@ -27,8 +27,8 @@ public class XmlController {
         this.xmlFileExportService = xmlFileExportService;
     }
 
-    @PostMapping(value = "/projects/download/xml" , consumes = "application/json")
-    public ResponseEntity downloadExcelProjects(@RequestBody List<Projects> projectsList) throws IOException, XMLStreamException {
+    @PostMapping(value = "/projects/export/xml" , consumes = "application/json")
+    public ResponseEntity exportExcelProjects(@RequestBody List<Projects> projectsList) throws IOException, XMLStreamException {
 
         LOGGER.debug("downloadExcelProjects({})", projectsList);
         xmlFileExportService.exportProjectsToXml(projectsList);
