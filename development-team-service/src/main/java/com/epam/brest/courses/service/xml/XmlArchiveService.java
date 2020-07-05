@@ -1,5 +1,6 @@
 package com.epam.brest.courses.service.xml;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 @Component
+@SuppressFBWarnings(value = "OS_OPEN_STREAM_EXCEPTION_PATH")
 public class XmlArchiveService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(XmlFileExportServiceImpl.class);
@@ -18,6 +20,7 @@ public class XmlArchiveService {
     public void zip(String source_dir, String zip_file) throws Exception
     {
 
+        LOGGER.debug("zip({}, {})", source_dir, zip_file);
 
         FileOutputStream fout = new FileOutputStream(zip_file);
         ZipOutputStream zout = new ZipOutputStream(fout);

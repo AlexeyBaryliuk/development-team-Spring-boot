@@ -1,9 +1,11 @@
 package com.epam.brest.courses.rest_app.controllers;
 
+import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.service.xml.XmlFileExportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,12 +30,20 @@ public class XmlController {
     }
 
     @PostMapping(value = "/projects/export/xml" , consumes = "application/json")
-    public ResponseEntity exportExcelProjects(@RequestBody List<Projects> projectsList) throws IOException, XMLStreamException {
+    public ResponseEntity exportProjectsToXml(@RequestBody List<Projects> projectsList) throws IOException, XMLStreamException {
 
-        LOGGER.debug("downloadExcelProjects({})", projectsList);
+        LOGGER.debug("exportProjectsToXml({})", projectsList);
         xmlFileExportService.exportProjectsToXml(projectsList);
 
         return  new ResponseEntity(HttpStatus.OK);
     }
 
+    @PostMapping(value = "/developers/export/xml" , consumes = "application/json")
+    public ResponseEntity exportDevelopersToXml(@RequestBody List<Developers> developersList) throws IOException, XMLStreamException {
+
+        LOGGER.debug("exportDevelopersToXml({})", developersList);
+        xmlFileExportService.exportDevelopersToXml(developersList);
+
+        return  new ResponseEntity(HttpStatus.OK);
+    }
 }

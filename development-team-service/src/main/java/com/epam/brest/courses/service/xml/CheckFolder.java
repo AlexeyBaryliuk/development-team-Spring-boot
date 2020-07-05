@@ -1,13 +1,15 @@
 package com.epam.brest.courses.service.xml;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 
 @Component
+@SuppressFBWarnings(value = "RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
 public class CheckFolder {
 
-    private final String SLASH_BACK      = "/";
+    private static final String SLASH_BACK      = "/";
     
     private void createDir(final String dir)
     {

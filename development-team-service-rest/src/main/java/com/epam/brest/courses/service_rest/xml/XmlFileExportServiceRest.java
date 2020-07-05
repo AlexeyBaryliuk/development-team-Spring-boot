@@ -34,12 +34,18 @@ public class XmlFileExportServiceRest implements XmlFileExportService {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<List<Projects>> entity = new HttpEntity<>(projectsList, headers);
-        restTemplate.exchange(url, HttpMethod.POST, entity, ResponseEntity.class);
+        restTemplate.exchange(url + "/projects/export/xml", HttpMethod.POST, entity, ResponseEntity.class);
 
     }
 
     @Override
     public void exportDevelopersToXml(List<Developers> developersList) {
+        LOGGER.debug("exportDevelopersToXml({})", developersList);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<List<Developers>> entity = new HttpEntity<>(developersList, headers);
+        restTemplate.exchange(url + "/developers/export/xml", HttpMethod.POST, entity, ResponseEntity.class);
 
     }
 }

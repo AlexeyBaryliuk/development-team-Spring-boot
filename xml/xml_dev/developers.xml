@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<developers>
+  <developer developerId="1">
+    <firstname>Ivan</firstname>
+    <lastname>Ivanov</lastname>
+  </developer>
+  <developer developerId="2">
+    <firstname>Petr</firstname>
+    <lastname>Petrov</lastname>
+  </developer>
+  <developer developerId="3">
+    <firstname>Sergey</firstname>
+    <lastname>Ivanov</lastname>
+  </developer>
+  <developer developerId="4">
+    <firstname>Mike</firstname>
+    <lastname>Djonson</lastname>
+  </developer>
+  <developer developerId="5">
+    <firstname>Artem</firstname>
+    <lastname>Lopata</lastname>
+  </developer>
+  <developer developerId="6">
+    <firstname>Astra</firstname>
+    <lastname>Mironova</lastname>
+  </developer>
+  <developer developerId="7">
+    <firstname>Zlata</firstname>
+    <lastname>Maximochkina</lastname>
+  </developer>
+  <developer developerId="8">
+    <firstname>Daria</firstname>
+    <lastname>Lihacheva</lastname>
+  </developer>
+  <developer developerId="9">
+    <firstname>Ivan</firstname>
+    <lastname>Ivanov</lastname>
+  </developer>
+  <developer developerId="10">
+    <firstname>Petr</firstname>
+    <lastname>Petrov</lastname>
+  </developer>
+  <developer developerId="11">
+    <firstname>Sergey</firstname>
+    <lastname>Ivanov</lastname>
+  </developer>
+  <developer developerId="12">
+    <firstname>Mike</firstname>
+    <lastname>Djonson</lastname>
+  </developer>
+  <developer developerId="13">
+    <firstname>Artem</firstname>
+    <lastname>Lopata</lastname>
+  </developer>
+  <developer developerId="14">
+    <firstname>Astra</firstname>
+    <lastname>Mironova</lastname>
+  </developer>
+  <developer developerId="15">
+    <firstname>Zlata</firstname>
+    <lastname>Maximochkina</lastname>
+  </developer>
+  <developer developerId="16">
+    <firstname>Daria</firstname>
+    <lastname>Lihacheva</lastname>
+  </developer>
+</developers>
