@@ -179,6 +179,23 @@ class ProjectsServiceRestIT {
         assertEquals(result,1);
     }
 
+    @Test
+    void shouldDeleteAllProjects() throws Exception {
+
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI(PROJECTS_URL + "/delete")))
+                .andExpect(method(HttpMethod.DELETE))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString("3"))
+                );
+        //when
+        int result = projectsServiceRest.deleteAllProjects();
+
+        // then
+        mockServer.verify();
+        assertEquals(result,3);
+    }
+
     private Projects create(int index){
 
         Projects projects = new Projects();

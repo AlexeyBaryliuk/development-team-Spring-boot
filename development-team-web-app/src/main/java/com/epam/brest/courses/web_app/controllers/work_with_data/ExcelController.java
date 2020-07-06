@@ -76,7 +76,7 @@ public class ExcelController {
         return "redirect:/developers";
     }
 
-    @GetMapping("/projects/download/excel")
+    @GetMapping("/projects/export/excel")
     public void projectsDownload(HttpServletResponse response) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -104,7 +104,7 @@ public class ExcelController {
         IOUtils.copy(stream, response.getOutputStream());
 
     }
-    @GetMapping("/developers/download/excel")
+    @GetMapping("/developers/export/excel")
     public void developersDownload(HttpServletResponse response) throws IOException {
 
 

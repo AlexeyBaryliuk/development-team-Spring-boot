@@ -54,7 +54,7 @@ public class ExcelController {
     @PostMapping(value = "/projectsImport", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public boolean importExcelProjects(@RequestParam("file") MultipartFile multipartFile) throws IOException {
 
-        LOGGER.debug("MultipartFile for projects = {}", multipartFile.getSize());
+        LOGGER.debug("MultipartFile for projects = {}", multipartFile.getOriginalFilename());
 
         return excelFileImportService.saveProjectsDataFromUploadFile(multipartFile);
     }

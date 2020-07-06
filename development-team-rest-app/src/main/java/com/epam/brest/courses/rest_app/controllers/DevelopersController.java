@@ -109,4 +109,18 @@ public class DevelopersController {
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
+    /**
+     * Delete all developers.
+     *
+     * @return ResponsEntity.
+     */
+    @DeleteMapping(value = "/delete", produces = "application/json")
+    public ResponseEntity<Integer> deleteAllDevelopers(){
+
+        LOGGER.debug("deleteAllDevelopers()");
+
+        Integer result = developersService.deleteAllDevelopers();
+
+        return new ResponseEntity<>(result,HttpStatus.OK);
+    }
 }

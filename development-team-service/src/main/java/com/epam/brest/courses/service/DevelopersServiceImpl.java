@@ -61,4 +61,11 @@ public class DevelopersServiceImpl implements DevelopersService {
         return developersDao.deleteByDeveloperId(developerId);
     }
 
+    @Override
+    public Integer deleteAllDevelopers() {
+
+        LOGGER.debug("deleteAll()" );
+        return developersDao.deleteAllDevelopers();
+    }
+
 }

@@ -74,4 +74,16 @@ public class ProjectsServiceRest implements ProjectsService {
                 restTemplate.exchange(url + "/delete/" +  projectId, HttpMethod.DELETE, entity, Integer.class);
         return result.getBody();
     }
+
+    @Override
+    public Integer deleteAllProjects() {
+
+        LOGGER.debug("deleteAllProjects()");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Projects> entity = new HttpEntity<>(headers);
+        ResponseEntity<Integer> result =
+                restTemplate.exchange(url + "/delete", HttpMethod.DELETE, entity, Integer.class);
+        return result.getBody();
+    }
 }

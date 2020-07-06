@@ -8,6 +8,7 @@ import com.epam.brest.courses.service.testConfig.TestConfig;
 import org.apache.commons.compress.utils.IOUtils;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
@@ -46,7 +47,7 @@ class ExcelFileImportServiceIT {
     @Test
     void shouldSaveProjectsDataFromUploadFile() throws IOException {
 
-        File file = new File("/home/alexey/Загрузки/projects.xlsx");
+        File file = new File("excel/projects.xlsx");
         MultipartFile multipartFile = createMultipartFile(file);
 
         boolean result = excelFileImportService.saveProjectsDataFromUploadFile(multipartFile);
@@ -57,19 +58,21 @@ class ExcelFileImportServiceIT {
     @Test
     void shouldReadProjectsDataFromExcel() throws IOException {
 
-        File file = new File("/home/alexey/Загрузки/projects.xlsx");
+        File file = new File("excel/projects.xlsx");
         MultipartFile multipartFile = createMultipartFile(file);
 
         boolean result = excelFileImportService.readProjectsDataFromExcel(multipartFile);
 
         assertTrue(result);
 
+        projectsService.deleteAllProjects();
+
     }
 
     @Test
     void shouldSaveDevelopersDataFromUploadFile() throws IOException {
 
-        File file = new File("/home/alexey/Загрузки/developers.xlsx");
+        File file = new File("excel/developers.xlsx");
         MultipartFile multipartFile = createMultipartFile(file);
 
         boolean result = excelFileImportService.saveDevelopersDataFromUploadFile(multipartFile);
@@ -80,7 +83,7 @@ class ExcelFileImportServiceIT {
     @Test
     void shouldReadDevelopersDataFromExcel() throws IOException {
 
-        File file = new File("/home/alexey/Загрузки/developers.xlsx");
+        File file = new File("excel/developers.xlsx");
         MultipartFile multipartFile = createMultipartFile(file);
 
         boolean result = excelFileImportService.readDevelopersDataFromExcel(multipartFile);
@@ -92,7 +95,7 @@ class ExcelFileImportServiceIT {
     @Test
     public void shouldReturnXSSFWorkbook() throws IOException {
 
-        File file = new File("/home/alexey/Загрузки/developers.xlsx");
+        File file = new File("excel/developers.xlsx");
         MultipartFile multipartFile = createMultipartFile(file);
 
         Workbook workbook = excelFileImportService.getWorkbook(multipartFile);

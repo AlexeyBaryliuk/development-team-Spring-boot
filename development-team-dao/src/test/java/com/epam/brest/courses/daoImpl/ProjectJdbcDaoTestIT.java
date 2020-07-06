@@ -78,7 +78,9 @@ class ProjectJdbcDaoTestIT {
     @Test
     void shouldCreateProject() {
 
+        Integer testId = 100;
         Projects projectTest = project;
+        projectTest.setProjectId(testId);
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         LocalDate date = projectTest.getDateAdded();
         String description = projectTest.getDescription();
@@ -88,6 +90,7 @@ class ProjectJdbcDaoTestIT {
         assertEquals(date, projectsDao.findByProjectId(id).get().getDateAdded());
         System.out.println("DateAdded_________________________" + projectsDao.findByProjectId(id).get().getDateAdded());
         assertNotNull(id);
+        assertEquals(testId, id);
     }
 
     @Test
@@ -111,4 +114,13 @@ class ProjectJdbcDaoTestIT {
 
     }
 
+
+    @Test
+    void shouldDeleteAllProjects() {
+
+        List<Projects> projectsList = projectsDao.findAll();
+        Integer countOfRow = projectsDao.deleteAllProjects();
+
+        assertEquals(projectsList.size(), countOfRow );
+    }
 }

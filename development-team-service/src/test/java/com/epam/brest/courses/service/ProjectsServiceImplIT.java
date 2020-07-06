@@ -99,4 +99,13 @@ class ProjectsServiceImplIT {
 
 
     }
+
+    @Test
+    void shouldDeleteAllProjects() {
+
+        List<Projects> projectsList = projectsService.findAll();
+        Integer countOfRow = projectsService.deleteAllProjects();
+
+        assertEquals(projectsList.size(), countOfRow );
+    }
 }

@@ -63,10 +63,9 @@ public class ExcelFileImportServiceImpl implements ExcelFileImportService, Excel
             }
 
 
-                if (row.getCell(1).getCellType() == CellType.STRING) {
+            if (row.getCell(1).getCellType() == CellType.STRING ) {
                     project.setDescription(row.getCell(1).getStringCellValue());
-                }
-
+            }
 
             if (row.getCell(2).getCellType() == CellType.STRING){
                 String dateAdded = row.getCell(2).getStringCellValue();

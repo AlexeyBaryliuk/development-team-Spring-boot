@@ -38,7 +38,7 @@ public interface DevelopersService {
      * @param developer developer.
      * @return number of updated records in the database.
      */
-    Integer update (Developers developer);
+    Integer update(Developers developer);
 
     /**
      * Delete developer.
@@ -47,5 +47,12 @@ public interface DevelopersService {
      * @return number of updated records in the database.
      */
     Integer deleteByDeveloperId(Integer developerId);
+
+    /**
+     * Delete all developers.
+     *
+     * @return number of updated records in the database.
+     */
+    Integer deleteAllDevelopers();
 }
 

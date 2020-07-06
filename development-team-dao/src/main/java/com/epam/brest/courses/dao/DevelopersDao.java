@@ -56,5 +56,12 @@ public interface DevelopersDao {
      * @return Count Of row.
      */
     Integer countOfRow();
+
+    /**
+     * Delete developers.
+     *
+     * @return number of updated records in the database.
+     */
+    Integer deleteAllDevelopers();
 }
 

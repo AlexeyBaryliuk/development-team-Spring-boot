@@ -106,5 +106,16 @@ public class ProjectsController {
         return projectsService.delete(projectId);
     }
 
+    /**
+     *Delete all projects.
+     *
+     * @return Affected rows.
+     */
+    @DeleteMapping(value = "/delete" )
+    public Integer deleteAllProjects(){
+
+        LOGGER.debug("deleteAllProjects()");
+        return projectsService.deleteAllProjects();
+    }
 
 }

@@ -52,7 +52,7 @@ class DevelopersServiceImplIT {
     }
 
     @Test
-    void shouldcreate() {
+    void shouldCreate() {
 
         developers.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
         String lastName = developers.getLastName();
@@ -105,5 +105,12 @@ class DevelopersServiceImplIT {
         assertFalse(optionalDevelopers.isPresent());
     }
 
+    @Test
+    void shouldDeleteAllDevelopers() {
+        List<Developers> developersList = developersService.findAll();
+        Integer countOfRow =  developersService.deleteAllDevelopers();
+
+        assertEquals(developersList.size(),countOfRow);
+    }
 
 }

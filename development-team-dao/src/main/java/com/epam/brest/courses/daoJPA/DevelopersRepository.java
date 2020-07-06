@@ -21,7 +21,7 @@ public interface DevelopersRepository extends JpaRepository<Developers, Integer>
      * @return persisted developer's id.
      */
     @Modifying
-    @Query(value="INSERT INTO developers (firstName, lastName) VALUES (:#{#dev.firstName}, :#{#dev.lastName})",
+    @Query(value="INSERT INTO developers (developerId, firstName, lastName) VALUES (:#{#dev.developerId}, :#{#dev.firstName}, :#{#dev.lastName})",
             nativeQuery = true)
     Integer create(@Param("dev")Developers developer);
     /**
@@ -43,4 +43,9 @@ public interface DevelopersRepository extends JpaRepository<Developers, Integer>
     @Query(value="SELECT count(*) AS Count FROM developers",
             nativeQuery = true)
     Integer countOfRow();
+
+    @Modifying
+    @Query(value="DELETE FROM developers",
+            nativeQuery = true)
+    Integer deleteAllDevelopers();
 }

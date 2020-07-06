@@ -57,8 +57,14 @@ public class ProjectJdbcDaoImpl implements ProjectsDao {
     @Value("${PRO.sqlCountOfDescription}")
     private String sqlCountOfDescription;
 
+    @Value("${PRO.sqlCountOfId}")
+    private String sqlCountOfId;
+
     @Value("${PRO.sqlCountOfRow}")
     private String sqlCountOfRow;
+
+    @Value("${PRO.sqlDeleteAll}")
+    private String sqlDeleteAll;
 
     private MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 
@@ -105,12 +111,17 @@ public class ProjectJdbcDaoImpl implements ProjectsDao {
                 Integer.class) == 0;
     }
 
+
+
     @Override
     public Integer create(Projects project) {
+
 
         if (!isNameUnique(project)) {
             throw new IllegalArgumentException("Project with same description already exist.");
         }
+
+        parameterSource.addValue(PROJECT_ID, project.getProjectId() );
         parameterSource.addValue(DESCRIPTION, project.getDescription());
         parameterSource.addValue(DATEADDED, project.getDateAdded());
         LOGGER.debug("Create new project {}", project);
@@ -143,6 +154,14 @@ public class ProjectJdbcDaoImpl implements ProjectsDao {
             }
         });
         return result;
+    }
+
+    @Override
+    public Integer deleteAllProjects() {
+
+        LOGGER.debug("deleteAll()");
+
+        return namedParameterJdbcTemplate.update(sqlDeleteAll, new MapSqlParameterSource());
     }
 
 }

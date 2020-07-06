@@ -7,6 +7,7 @@ import com.epam.brest.courses.rest_app.testConfig.TestConfig;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.RandomStringUtils;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
@@ -40,6 +41,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes={DevelopersController.class, TestConfig.class} )
 @TestPropertySource("classpath:sql-development-team.properties")
+@Sql({"classpath:schema.sql", "classpath:data.sql"})
 class DevelopersControllerIT {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersControllerIT.class);
@@ -63,7 +65,6 @@ class DevelopersControllerIT {
                 .alwaysDo(MockMvcResultHandlers.print())
                 .build();
     }
-
 
     @Test
     public void shouldFindAllDevelopers() throws Exception {
@@ -141,88 +142,116 @@ class DevelopersControllerIT {
 
         //when
         Integer result = developersService.delete(id);
-        List<Developers> developersListAfetr = developersService.findAll();
+        List<Developers> developersListAfter = developersService.findAll();
 
         //then
         assertTrue(result == 1);
-        assertTrue(developersListBefore.size()-1 == developersListAfetr.size());
+        assertTrue(developersListBefore.size()-1 == developersListAfter.size());
     }
 
-    class MockMvcDevelopersService{
+    @Test
+    public void shouldDeleteAllDevelopers() throws Exception {
 
-            public List<Developers> findAll() throws Exception {
+        // given
 
-                LOGGER.debug("findAll()");
+        List<Developers> developersListBefore = developersService.findAll();
 
-                MockHttpServletResponse response = mockMvc.perform(get(DEVELOPERS_ENDPOINT)
-                        .accept(MediaType.APPLICATION_JSON)
-                ).andExpect(status().isOk())
-                        .andReturn().getResponse();
-                assertNotNull(response);
+        //when
+        Integer result = developersService.deleteAllDevelopers();
+        List<Developers> developersListAfter = developersService.findAll();
 
-                return objectMapper.readValue(response.getContentAsString(), new TypeReference<List<Developers>>() {
-                });
-            }
+        //then
+        assertTrue(result == developersListBefore.size());
+        assertTrue(developersListAfter.size() == 0);
+    }
 
-            public Integer create(Developers developer) throws Exception {
+    class MockMvcDevelopersService {
 
-                LOGGER.debug("create({})", developer);
-                String json = objectMapper.writeValueAsString(developer);
-                MockHttpServletResponse response =
-                        mockMvc.perform(post(DEVELOPERS_ENDPOINT)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(json)
-                                .accept(MediaType.APPLICATION_JSON)
-                        ).andExpect(status().isOk())
-                                .andReturn().getResponse();
+        public List<Developers> findAll() throws Exception {
 
-                return objectMapper.readValue(response.getContentAsString(), Integer.class);
-            }
+            LOGGER.debug("findAll()");
 
+            MockHttpServletResponse response = mockMvc.perform(get(DEVELOPERS_ENDPOINT)
+                    .accept(MediaType.APPLICATION_JSON)
+            ).andExpect(status().isOk())
+                    .andReturn().getResponse();
+            assertNotNull(response);
 
-            public Optional<Developers> findByDeveloperId(Integer developerId) throws Exception {
-
-                LOGGER.debug("findByDeveloperId({})", developerId);
-                MockHttpServletResponse response = mockMvc.perform(get(DEVELOPERS_ENDPOINT + "/" + developerId)
-                        .accept(MediaType.APPLICATION_JSON)
-                ).andExpect(status().isOk())
-                        .andReturn().getResponse();
-                return Optional.of(objectMapper.readValue(response.getContentAsString(), Developers.class));
-            }
-
-            private int update(Developers developer) throws Exception {
-
-                LOGGER.debug("update({})", developer);
-                MockHttpServletResponse response =
-                        mockMvc.perform(put(DEVELOPERS_ENDPOINT)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsString(developer))
-                                .accept(MediaType.APPLICATION_JSON)
-                        ).andExpect(status().isOk())
-                                .andReturn().getResponse();
-                return objectMapper.readValue(response.getContentAsString(), Integer.class);
-            }
-
-            private int delete(Integer developerId) throws Exception {
-
-                LOGGER.debug("delete({})", developerId);
-                MockHttpServletResponse response = mockMvc.perform(
-                        MockMvcRequestBuilders.delete(new StringBuilder(DEVELOPERS_ENDPOINT).append("/").append(developerId)
-                                .toString())
-                                .accept(MediaType.APPLICATION_JSON)
-                ).andExpect(status().isOk())
-                        .andReturn().getResponse();
-
-                return objectMapper.readValue(response.getContentAsString(), Integer.class);
-            }
+            return objectMapper.readValue(response.getContentAsString(), new TypeReference<List<Developers>>() {
+            });
         }
 
+        public Integer create(Developers developer) throws Exception {
+
+            LOGGER.debug("create({})", developer);
+            String json = objectMapper.writeValueAsString(developer);
+            MockHttpServletResponse response =
+                    mockMvc.perform(post(DEVELOPERS_ENDPOINT)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(json)
+                            .accept(MediaType.APPLICATION_JSON)
+                    ).andExpect(status().isOk())
+                            .andReturn().getResponse();
+
+            return objectMapper.readValue(response.getContentAsString(), Integer.class);
+        }
+
+
+        public Optional<Developers> findByDeveloperId(Integer developerId) throws Exception {
+
+            LOGGER.debug("findByDeveloperId({})", developerId);
+            MockHttpServletResponse response = mockMvc.perform(get(DEVELOPERS_ENDPOINT + "/" + developerId)
+                    .accept(MediaType.APPLICATION_JSON)
+            ).andExpect(status().isOk())
+                    .andReturn().getResponse();
+            return Optional.of(objectMapper.readValue(response.getContentAsString(), Developers.class));
+        }
+
+        private int update(Developers developer) throws Exception {
+
+            LOGGER.debug("update({})", developer);
+            MockHttpServletResponse response =
+                    mockMvc.perform(put(DEVELOPERS_ENDPOINT)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(developer))
+                            .accept(MediaType.APPLICATION_JSON)
+                    ).andExpect(status().isOk())
+                            .andReturn().getResponse();
+            return objectMapper.readValue(response.getContentAsString(), Integer.class);
+        }
+
+        private int delete(Integer developerId) throws Exception {
+
+            LOGGER.debug("delete({})", developerId);
+            MockHttpServletResponse response = mockMvc.perform(
+                    MockMvcRequestBuilders.delete(new StringBuilder(DEVELOPERS_ENDPOINT).append("/").append(developerId)
+                            .toString())
+                            .accept(MediaType.APPLICATION_JSON)
+            ).andExpect(status().isOk())
+                    .andReturn().getResponse();
+
+            return objectMapper.readValue(response.getContentAsString(), Integer.class);
+        }
+
+
+        private int deleteAllDevelopers() throws Exception {
+
+            LOGGER.debug("deleteAllDevelopers()");
+            MockHttpServletResponse response = mockMvc.perform(
+                    MockMvcRequestBuilders.delete(new StringBuilder(DEVELOPERS_ENDPOINT).append("/delete")
+                            .toString())
+                            .accept(MediaType.APPLICATION_JSON)
+            ).andExpect(status().isOk())
+                    .andReturn().getResponse();
+
+            return objectMapper.readValue(response.getContentAsString(), Integer.class);
+        }
+    }
         public static Developers newDeveloper(){
 
             Developers developer = new Developers();
                     developer.setFirstName(RandomStringUtils.randomAlphabetic(FIRSTNAME_SIZE));
                     developer.setLastName(RandomStringUtils.randomAlphabetic(LASTNAME_SIZE));
-                    developer.setDeveloperId(1);
             return developer;
         }
 

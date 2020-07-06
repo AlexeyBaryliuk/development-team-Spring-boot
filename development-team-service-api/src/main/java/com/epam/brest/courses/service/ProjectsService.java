@@ -48,4 +48,11 @@ public interface ProjectsService {
      * @return number of updated records in the database.
      */
     Integer delete(Integer projectId);
+
+    /**
+     * Delete all projects.
+     *
+     * @return number of updated records in the database.
+     */
+    Integer deleteAllProjects();
 }

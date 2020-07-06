@@ -20,7 +20,7 @@ public interface ProjectsRepository extends JpaRepository<Projects, Integer>, Pr
      * @return persisted project's id.
      */
     @Modifying
-    @Query(value="INSERT INTO projects (description, dateAdded) VALUES (:#{#pro.description}, :#{#pro.dateAdded})",
+    @Query(value="INSERT INTO projects (projectId, description, dateAdded) VALUES (:#{#pro.projectId}, :#{#pro.description}, :#{#pro.dateAdded})",
             nativeQuery = true)
     Integer create(@Param("pro")Projects project);
 
@@ -44,4 +44,8 @@ public interface ProjectsRepository extends JpaRepository<Projects, Integer>, Pr
             nativeQuery = true)
     Integer countOfRow();
 
+    @Modifying
+    @Query(value="DELETE FROM projects",
+            nativeQuery = true)
+     Integer deleteAllProjects();
 }

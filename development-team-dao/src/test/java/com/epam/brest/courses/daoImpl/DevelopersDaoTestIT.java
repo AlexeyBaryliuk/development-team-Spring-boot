@@ -52,9 +52,12 @@ class DevelopersDaoTestIT {
     @Test
     void shouldCreateDeveloper() {
 
+        Integer testId = 100;
         Developers developer = newDeveloper();
+        developer.setDeveloperId(testId);
         Integer id = developersJdbcDao.create(developer);
         assertTrue(id > 0);
+        assertEquals(testId, id);
 
         Optional<Developers> optionalDevelopers = developersJdbcDao.findByDeveloperId(id);
         assertEquals(developer.getLastName(),optionalDevelopers.get().getLastName());
@@ -107,6 +110,16 @@ class DevelopersDaoTestIT {
 
         List<Developers> developersList = developersJdbcDao.findAll();
         Integer countOfRow = developersJdbcDao.countOfRow();
+
+        assertEquals(developersList.size(),countOfRow);
+
+    }
+
+    @Test
+    void shouldDeleteAllDevelopers() {
+
+        List<Developers> developersList = developersJdbcDao.findAll();
+        Integer countOfRow =  developersJdbcDao.deleteAllDevelopers();
 
         assertEquals(developersList.size(),countOfRow);
 

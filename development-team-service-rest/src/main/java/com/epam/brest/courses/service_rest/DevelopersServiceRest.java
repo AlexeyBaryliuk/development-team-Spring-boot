@@ -77,4 +77,16 @@ public class DevelopersServiceRest implements DevelopersService {
 
         return (Integer) responseEntity.getBody();
     }
+
+    @Override
+    public Integer deleteAllDevelopers() {
+
+        LOGGER.debug("deleteAllDevelopers()");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Integer> entity = new HttpEntity<>(headers);
+        ResponseEntity responseEntity = restTemplate.exchange(url +"/delete" , HttpMethod.DELETE,entity,Integer.class);
+
+        return (Integer) responseEntity.getBody();
+    }
 }

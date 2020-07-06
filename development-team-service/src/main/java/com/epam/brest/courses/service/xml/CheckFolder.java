@@ -29,5 +29,19 @@ public class CheckFolder {
         return dir;
     }
 
+    public String checkFolder( String file_path, String unzipFolder)
+    {
+        String dir = unzipFolder;
+        if (!file_path.endsWith(SLASH_BACK) && file_path.contains(SLASH_BACK)) {
+            dir += file_path.substring(0, file_path.lastIndexOf(SLASH_BACK));
+            createDir(dir);
+        }
+        return dir;
+    }
 
+    public void createFolder(final String dirName) {
+        if (dirName.endsWith(SLASH_BACK)) {
+            createDir(dirName.substring(0, dirName.length() - 1));
+        }
+    }
 }
