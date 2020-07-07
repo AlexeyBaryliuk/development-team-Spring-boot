@@ -8,9 +8,7 @@ var select = document.querySelector("#work")
         var option = $(this).find('option:selected');
         window.location.href = option.data("url");
     }else if($(this).val() == 3){
-         $("#input-box").hide();
-         var option = $(this).find('option:selected');
-         window.location.href = option.data("url");
+         $("#xml-input-box").show();
     }else if($(this).val() == 4){
           $("#input-box").hide();
           var option = $(this).find('option:selected');

@@ -60,8 +60,8 @@
                     <option data-url="http://localhost:8080/developers/export/excel"value="2">export</option>
                     <option disabled>_____________</option>
                     <option disabled >Xml</option>
-                    <option value="1">import</option>
-                    <option data-url="http://localhost:8080/developers/export/xml"value="2">export</option>
+                    <option value="3">import</option>
+                    <option data-url="http://localhost:8080/developers/export/xml"value="4">export</option>
                 </select>
             </li>
         </ul>
@@ -69,7 +69,6 @@
 </header>
 <section>
     <form class="form-inline" action="" th:action =  "@{/developers/import}"
-          th:object = "${developerExcel}"
           method="post"
           enctype="multipart/form-data">
         <div  id="input-box">
@@ -77,6 +76,22 @@
                 <div class="input-group">
                     <div class="custom-file">
                         <input id="input" type="file" class="form-control" name="file" th:fild = "*{multipartFile}">
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form class="form-inline" action="" th:action =  "@{/developers/import/xml}"
+          method="post"
+          enctype="multipart/form-data">
+        <div  id="xml-input-box">
+            <div class="col-sm-auto col-md-auto">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input id="xml-input" type="file" class="form-control" name="file" th:fild = "*{multipartFile}">
                     </div>
                     <div class="input-group-append">
                         <button class="btn btn-outline-primary" type="submit">Submit</button>

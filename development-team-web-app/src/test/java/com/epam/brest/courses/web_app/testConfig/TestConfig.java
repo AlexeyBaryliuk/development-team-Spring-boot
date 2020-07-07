@@ -5,10 +5,12 @@ import com.epam.brest.courses.daoImpl.ProjectJdbcDaoDtoImpl;
 import com.epam.brest.courses.daoImpl.ProjectJdbcDaoImpl;
 import com.epam.brest.courses.daoImpl.Projects_DevelopersJdbcDaoImpl;
 import com.epam.brest.courses.service.*;
+import com.epam.brest.courses.service.xml.*;
 import com.epam.brest.courses.web_app.controllers.DevelopersController;
 import com.epam.brest.courses.web_app.controllers.FakerController;
 import com.epam.brest.courses.web_app.controllers.HelloController;
 import com.epam.brest.courses.web_app.controllers.ProjectsController;
+import com.epam.brest.courses.web_app.controllers.work_with_data.XmlController;
 import com.epam.brest.courses.web_app.validators.DevelopersValidator;
 import com.epam.brest.courses.web_app.validators.ProjectsValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,11 +23,37 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 
+
 @TestConfiguration
 public class TestConfig {
 
+    @Bean
+    public ArchiveService archiveService(){
+        return new ArchiveService();
+    }
+
+    @Bean
+    public CheckFolder checkFolder(){
+        return new CheckFolder();
+
+    }
+
+    @Bean
+    public XmlFileImportService xmlFileImportServiceRest(){
+        return new XmlFileImportServiceImpl();
+    }
+
+    @Bean
+    public XmlFileExportService xmlFileExportServiceRest(){
+        return new XmlFileExportServiceImpl();
+    }
     @Autowired
     private DriverManagerDataSource dataSource;
+
+    @Bean
+    public XmlController xmlController(){
+        return new XmlController(xmlFileExportServiceRest(), xmlFileImportServiceRest());
+    }
 
     @Bean
     public FakerController fakeController(){
@@ -55,6 +83,7 @@ public class TestConfig {
     public FakerService fakerService(){
         return new FakerServiceImpl();
     }
+
     @Bean
     public DevelopersJdbcDaoImpl developersJdbcDao() {
         return new DevelopersJdbcDaoImpl(namedParameterJdbcTemplate());
@@ -136,4 +165,5 @@ public class TestConfig {
         dataSource.setPassword("root");
         return  dataSource;
     }
+
 }

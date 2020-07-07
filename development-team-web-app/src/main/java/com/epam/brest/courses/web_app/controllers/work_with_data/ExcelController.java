@@ -1,6 +1,5 @@
 package com.epam.brest.courses.web_app.controllers.work_with_data;
 
-import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.model.dto.ProjectsDto;
 import com.epam.brest.courses.service.DevelopersService;
@@ -16,7 +15,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -56,23 +58,20 @@ public class ExcelController {
     private ProjectsController projectsController;
 
     @PostMapping("/projects/import")
-    public String projectsImportFile(@ModelAttribute ("projectExcel")  Projects project
-                            , @RequestParam("file") MultipartFile file){
-        LOGGER.debug("Project {} = ", project);
-        LOGGER.debug("importFile({})", file.getSize());
-        project.setMultipartFile(file);
-        excelFileImportServiceRest.saveProjectsDataFromUploadFile(project.getMultipartFile());
+    public String projectsImportFile( @RequestParam("file") MultipartFile file){
+
+        LOGGER.debug("projectsImportFile({})", file.getOriginalFilename());
+
+        excelFileImportServiceRest.saveProjectsDataFromUploadFile(file);
         return "redirect:/projects";
     }
 
     @PostMapping("/developers/import")
-    public String developersImportFile(@ModelAttribute("developerExcel") Developers developer
-            , @RequestParam("file") MultipartFile file){
+    public String developersImportFile(@RequestParam("file") MultipartFile file){
 
-        LOGGER.debug("Developer {} = ", developer);
-        LOGGER.debug("importFile({})", file.getSize());
-        developer.setMultipartFile(file);
-        excelFileImportServiceRest.saveDevelopersDataFromUploadFile(developer.getMultipartFile());
+        LOGGER.debug("developersImportFile({})", file.getOriginalFilename());
+
+        excelFileImportServiceRest.saveDevelopersDataFromUploadFile(file);
         return "redirect:/developers";
     }
 

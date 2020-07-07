@@ -6,6 +6,7 @@ import com.epam.brest.courses.model.dto.ProjectsDto;
 import com.epam.brest.courses.service.DevelopersService;
 import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.service.xml.XmlFileExportService;
+import com.epam.brest.courses.service.xml.XmlFileImportService;
 import com.epam.brest.courses.web_app.controllers.ProjectsController;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,8 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.stream.XMLStreamException;
@@ -45,15 +46,20 @@ public class XmlController {
 
     private final XmlFileExportService xmlFileExportService;
 
-    public XmlController(XmlFileExportService xmlFileExportService) {
+    private final XmlFileImportService xmlFileImportService;
+
+    ObjectMapper mapper = new ObjectMapper();
+
+    public XmlController(XmlFileExportService xmlFileExportService, XmlFileImportService xmlFileImportService) {
         this.xmlFileExportService = xmlFileExportService;
+        this.xmlFileImportService = xmlFileImportService;
     }
 
     @GetMapping("/projects/export/xml")
-    public String projectsDownloadXml(HttpServletResponse response) throws IOException, XMLStreamException {
+    public String projectsExportXml(HttpServletResponse response) throws IOException, XMLStreamException {
 
-        LOGGER.debug("projectsDownloadXml()");
-        ObjectMapper mapper = new ObjectMapper();
+        LOGGER.debug("projectsExportXml()");
+
         List<ProjectsDto> projectsDtoList = projectsController.getProjectsDtoList();
         System.out.println("++++++++++++++++++++++++++" + projectsDtoList);
         List<Projects> projectsList = new ArrayList<>();
@@ -86,4 +92,40 @@ public class XmlController {
         return "redirect:/developers";
     }
 
+    @PostMapping("/projects/import/xml")
+    public String projectsImportFile( @RequestParam("file") MultipartFile file){
+
+        LOGGER.debug("projectsImportFile({})", file.getOriginalFilename());
+        List <Projects> projectsList = xmlFileImportService.parseProjectsXMLFile(file);
+
+        projectsService.deleteAllProjects();
+        List<Projects> projectsListMapper = mapper.convertValue(
+                projectsList,
+                new TypeReference<List<Projects>>(){}
+        );
+        for (int i = 0; i < projectsListMapper.size(); i++) {
+            projectsService.create(projectsListMapper.get(i));
+        }
+
+        return "redirect:/projects";
+    }
+
+    @PostMapping("/developers/import/xml")
+    public String developersImportFile( @RequestParam("file") MultipartFile file){
+
+        LOGGER.debug("developersImportFile({})", file.getOriginalFilename());
+        List <Developers> developersList = xmlFileImportService.parseDevelopersXMLFile(file);
+
+        List<Developers> developersListMapper = mapper.convertValue(
+                developersList,
+                new TypeReference<List<Developers>>(){}
+        );
+        developersService.deleteAllDevelopers();
+
+        for (int i = 0; i < developersListMapper.size(); i++) {
+            developersService.create(developersListMapper.get(i));
+        }
+
+        return "redirect:/developers";
+    }
 }
