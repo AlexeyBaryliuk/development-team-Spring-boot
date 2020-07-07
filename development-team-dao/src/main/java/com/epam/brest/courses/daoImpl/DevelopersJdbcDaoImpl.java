@@ -2,7 +2,6 @@ package com.epam.brest.courses.daoImpl;
 
 import com.epam.brest.courses.dao.DevelopersDao;
 import com.epam.brest.courses.model.Developers;
-import com.epam.brest.courses.model.Projects;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +24,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.epam.brest.courses.model.constants.DeveloperConstants.*;
-import static com.epam.brest.courses.model.constants.ProjectConstants.PROJECT_ID;
 
 @Component
 @PropertySource("classpath:sql-development-team.properties")
@@ -66,9 +64,6 @@ public class DevelopersJdbcDaoImpl implements DevelopersDao {
     @Value("${DEV.sqlDeleteAll}")
     private String sqlDeleteAll;
 
-    @Value("${PRO.sqlCountOfId}")
-    private String sqlCountOfId;
-
     @Override
     public List<Developers> findAll() {
 
@@ -81,26 +76,17 @@ public class DevelopersJdbcDaoImpl implements DevelopersDao {
     @Override
     public Optional<Developers> findByDeveloperId(Integer developerId) {
 
-        LOGGER.debug("findByDeveloperIddeveloperId = {}", developerId);
+        LOGGER.debug("findByDeveloperId = {}", developerId);
+
         parameterSource.addValue(DEVELOPER_ID, developerId);
         List<Developers> developersList = namedParameterJdbcTemplate
                 .query(sqlGetDeveloperById,parameterSource,new BeanPropertyRowMapper<>(Developers.class));
         return Optional.ofNullable(DataAccessUtils.uniqueResult(developersList));
     }
 
-    @SuppressWarnings("ConstantConditions")
-    private boolean isIdUnique(Developers developer) {
-
-        return namedParameterJdbcTemplate.queryForObject(sqlCountOfId,
-                new MapSqlParameterSource(DEVELOPER_ID, developer.getDeveloperId()),
-                Integer.class) == 0;
-    }
     @Override
     public Integer create(Developers developer) {
 
-        if (!isIdUnique(developer)){
-            developer.setDeveloperId(null);
-        }
         LOGGER.debug("Create developer = {} ", developer);
         parameterSource.addValue(DEVELOPER_ID, developer.getDeveloperId());
         parameterSource.addValue(LASTNAME, developer.getLastName());

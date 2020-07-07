@@ -30,6 +30,11 @@ class DevelopersServiceImplIT {
     @Test
     void shouldFindAll() {
 
+        Developers developer = new Developers();
+        developer.setDeveloperId(1);
+        developer.setFirstName("Test");
+        developer.setLastName("Test");
+        developersService.create(developer);
         List<Developers> developersList = developersService.findAll();
         assertNotNull(developersList);
         assertTrue(developersList.size() > 0);

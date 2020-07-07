@@ -57,8 +57,6 @@ public class ProjectJdbcDaoImpl implements ProjectsDao {
     @Value("${PRO.sqlCountOfDescription}")
     private String sqlCountOfDescription;
 
-    @Value("${PRO.sqlCountOfId}")
-    private String sqlCountOfId;
 
     @Value("${PRO.sqlCountOfRow}")
     private String sqlCountOfRow;

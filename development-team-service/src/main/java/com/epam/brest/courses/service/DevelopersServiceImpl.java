@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @Service
 @Transactional
-
 public class DevelopersServiceImpl implements DevelopersService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersServiceImpl.class);
@@ -40,9 +39,20 @@ public class DevelopersServiceImpl implements DevelopersService {
         return developersDao.findByDeveloperId(developerId);
     }
 
+    private boolean isIdUnique(Developers developer) {
+
+        if(developersDao.findByDeveloperId(developer.getDeveloperId()).isPresent()){
+            return false;
+        }
+
+        return true;
+    }
     @Override
     public Integer create(Developers developer) {
+        if (!isIdUnique(developer)){
 
+            developer.setDeveloperId(null);
+        }
         LOGGER.debug("create() developer = {}", developer);
         return developersDao.create(developer);
     }

@@ -30,6 +30,7 @@ public class TestConfig {
 
     @Autowired
     private DriverManagerDataSource dataSource;
+
     @Bean
     public XmlFileImportService xmlFileImportService(){
         return new XmlFileImportServiceImpl();
@@ -39,26 +40,18 @@ public class TestConfig {
     public XmlFileExportService xmlFileExportService(){
         return new XmlFileExportServiceImpl();
     }
+
     @Bean
     public ArchiveService archiveService(){
         return new ArchiveService();
     }
+
     @Bean
     public CheckFolder checkFolder(){
         return new CheckFolder();
 
     }
 
-    @Bean
-    public static PropertyPlaceholderConfigurer properties() {
-        PropertyPlaceholderConfigurer ppc
-                = new PropertyPlaceholderConfigurer();
-        Resource[] resources = new ClassPathResource[]
-                { new ClassPathResource( "xml.properties" ) };
-        ppc.setLocations( resources );
-        ppc.setIgnoreUnresolvablePlaceholders( true );
-        return ppc;
-    }
     @Bean
     public ExcelFileImportService excelFileImportService(){
         return new ExcelFileImportServiceImpl();

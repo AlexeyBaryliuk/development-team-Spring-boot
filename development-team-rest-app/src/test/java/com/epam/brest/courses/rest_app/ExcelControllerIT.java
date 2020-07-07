@@ -51,7 +51,7 @@ class ExcelControllerIT {
     public static final String PROJECTS_EXCEL_ENDPOINT = "";
 
     @Autowired
-    private ExcelController excelProjectsController;
+    private ExcelController excelController;
 
     @Autowired
     private ProjectsService projectsService;
@@ -69,7 +69,7 @@ class ExcelControllerIT {
 
     @BeforeEach
     public void before() {
-        mockMvc = MockMvcBuilders.standaloneSetup(excelProjectsController)
+        mockMvc = MockMvcBuilders.standaloneSetup(excelController)
                 .setMessageConverters(new MappingJackson2HttpMessageConverter(),new ByteArrayHttpMessageConverter())
                 .alwaysDo(MockMvcResultHandlers.print())
                 .build();

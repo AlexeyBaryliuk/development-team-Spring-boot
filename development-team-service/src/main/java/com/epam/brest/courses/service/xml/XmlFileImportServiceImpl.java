@@ -2,10 +2,10 @@ package com.epam.brest.courses.service.xml;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +18,7 @@ import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Service
+@SuppressFBWarnings(value = {"OBL_UNSATISFIED_OBLIGATION"})
 public class XmlFileImportServiceImpl implements XmlFileImportService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(XmlFileImportServiceImpl.class);
@@ -87,7 +88,7 @@ public class XmlFileImportServiceImpl implements XmlFileImportService {
                     }
                 }
 
-            } catch (XMLStreamException | FileNotFoundException exc) {
+            } catch (XMLStreamException | IOException exc) {
                 exc.printStackTrace();
             }
             return projectsList;
@@ -141,7 +142,7 @@ public class XmlFileImportServiceImpl implements XmlFileImportService {
                 }
             }
 
-        } catch (XMLStreamException | FileNotFoundException exc) {
+        } catch (XMLStreamException | IOException exc) {
             exc.printStackTrace();
         }
         return developersList;

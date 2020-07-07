@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(classes={Projects.class,Developers.class, TestConfig.class} )
 @ExtendWith(SpringExtension.class)
+@TestPropertySource({"classpath:sql-development-team.properties", "classpath:xml.properties"})
 class XmlFileExportServiceImplIT {
 
     @Value("${pro.zip_file}")

@@ -4,14 +4,11 @@ import com.epam.brest.courses.dao.ProjectsDao;
 import com.epam.brest.courses.model.Projects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-
-import static com.epam.brest.courses.model.constants.ProjectConstants.PROJECT_ID;
 
 @Service
 @Transactional
@@ -48,10 +45,10 @@ public class ProjectsServiceImpl implements ProjectsService {
         return projectsDao.update(project);
     }
 
-    @SuppressWarnings("ConstantConditions")
     private boolean isIdUnique(Projects project) {
 
-        if((projectsDao.findByProjectId(project.getProjectId()).isPresent())){
+        if(projectsDao.findByProjectId(project.getProjectId()).isPresent()){
+
     return false;
         }
 

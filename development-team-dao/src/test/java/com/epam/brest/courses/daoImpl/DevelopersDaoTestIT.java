@@ -31,7 +31,9 @@ class DevelopersDaoTestIT {
     @Test
     void shouldFindAllDevelopers() {
 
+        developersJdbcDao.create(newDeveloper());
         List<Developers> developersList = developersJdbcDao.findAll();
+        System.out.println("++++++++++++++++++++" + developersList);
         assertTrue(developersList.size() > 0);
     }
 

@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.util.Enumeration;
-import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -34,31 +33,27 @@ public class ArchiveService {
 
     public String unzip(MultipartFile multipartFile) throws Exception
     {
+        LOGGER.debug("unzip({})", multipartFile.getOriginalFilename());
         File file = convertMultiPartToFile(multipartFile);
 
-        LOGGER.debug("++++++++++++++++++++++++ Bytes = {}", file.length());
         String pathToFile = "";
 
         ZipFile zipFile = new ZipFile(file);
-        LOGGER.debug("++++++++++++++++++++++++ Zip = {}", zipFile.getEntries());
+
         Enumeration<?> entries = zipFile.getEntries();
-        LOGGER.debug("++++++++++++++++ = {}", entries.hasMoreElements());
 
         while (entries.hasMoreElements()) {
             org.apache.tools.zip.ZipEntry entry = (org.apache.tools.zip.ZipEntry) entries.nextElement();
-            LOGGER.debug("********************* = {}" , entry.getSize());
+
             String entryName = entry.getName();
 
             if (entryName.endsWith(SLASH_BACK)) {
-                LOGGER.debug("Create the directory <{}>", entryName );
                 checkFolder.createFolder (entryName);
                 continue;
             } else
                 checkFolder.checkFolder(entryName, pathToProjectsUnzipFolder);
-            LOGGER.debug("Reading the file < {} >" , entryName );
 
             InputStream fis = zipFile.getInputStream(entry);
-            LOGGER.debug("/////////////////fis.available() = {} ", fis.available());
 
             pathToFile = pathToProjectsUnzipFolder + entryName;
             FileOutputStream fos = new FileOutputStream(pathToFile);
@@ -83,7 +78,7 @@ public class ArchiveService {
         fos.write( file.getBytes() );
         fos.close();
         convFile.deleteOnExit();
-        LOGGER.debug("++++++++++++++++++++++++ Bytes = {}", convFile.length());
+
         return convFile;
     }
 
