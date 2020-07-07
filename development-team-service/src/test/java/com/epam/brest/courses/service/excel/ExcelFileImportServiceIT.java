@@ -1,14 +1,13 @@
-package com.epam.brest.courses.service;
+package com.epam.brest.courses.service.excel;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
-import com.epam.brest.courses.service.excel.ExcelFileExportServiceImpl;
-import com.epam.brest.courses.service.excel.ExcelFileImportServiceImpl;
+import com.epam.brest.courses.service.DevelopersService;
+import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.service.testConfig.TestConfig;
 import org.apache.commons.compress.utils.IOUtils;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;

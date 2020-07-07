@@ -2,12 +2,9 @@ package com.epam.brest.courses.service.xml;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
-import org.apache.tools.zip.ZipEntry;
-import org.apache.tools.zip.ZipFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,93 +17,33 @@ import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 @Service
-@PropertySource("classpath:xml.properties")
 public class XmlFileImportServiceImpl implements XmlFileImportService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(XmlFileImportServiceImpl.class);
 
-    private static final String SLASH_BACK      = "/";
-
-    @Value("${path_to_unzipFolder}")
-    private String pathToProjectsUnzipFolder;
-
-    @Autowired
-    private CheckFolder checkFolder;
-
-
-    private String unzip(MultipartFile multipartFile) throws Exception
-    {
-        File file = convertMultiPartToFile(multipartFile);
-
-        String pathToFile = "";
-
-        ZipFile zipFile = new ZipFile(file);
-        Enumeration<?> entries = zipFile.getEntries();
-        LOGGER.debug("++++++++++++++++ = {}", entries.hasMoreElements());
-
-        while (entries.hasMoreElements()) {
-            ZipEntry entry = (ZipEntry) entries.nextElement();
-            LOGGER.debug("********************* = {}" , entry.getSize());
-            String entryName = entry.getName();
-
-            if (entryName.endsWith(SLASH_BACK)) {
-                LOGGER.debug("Create the directory <{}>", entryName );
-                checkFolder.createFolder (entryName);
-                continue;
-            } else
-                checkFolder.checkFolder(entryName, pathToProjectsUnzipFolder);
-            LOGGER.debug("Reading the file < {} >" , entryName );
-
-            InputStream fis = zipFile.getInputStream(entry);
-            LOGGER.debug("/////////////////fis.available() = {} ", fis.available());
-
-            pathToFile = pathToProjectsUnzipFolder + entryName;
-            FileOutputStream fos = new FileOutputStream(pathToFile);
-
-            copyData(fis,fos);
-
-            fis.close();
-            fos.close();
-        }
-        zipFile.close() ;
-        LOGGER.debug("Zip file has unzipped!");
-
-        return pathToFile;
-    }
-
-    private static File convertMultiPartToFile(MultipartFile file ) throws IOException
-    {
-        File convFile = new File(Objects.requireNonNull(file.getOriginalFilename()));
-        FileOutputStream fos = new FileOutputStream( convFile );
-        fos.write( file.getBytes() );
-        fos.close();
-        return convFile;
-    }
-
-    private static void copyData(InputStream in, OutputStream out) throws Exception {
-        int b;
-        while ((b = in.read()) > 0) {
-
-            out.write(b);
-
-        }
-    }
+   @Autowired
+   private ArchiveService archiveService;
 
     @Override
     public List<Projects> parseProjectsXMLFile(MultipartFile multipartFile) {
 
+        LOGGER.debug("parseProjectsXMLFile({})", multipartFile);
+
         String fileName = null;
 
         try {
-            fileName = unzip(multipartFile);
+            fileName = archiveService.unzip(multipartFile);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.debug("File wasn't created.");
         }
 
         List<Projects> projectsList = new ArrayList<>();
@@ -159,12 +96,14 @@ public class XmlFileImportServiceImpl implements XmlFileImportService {
     @Override
     public List<Developers> parseDevelopersXMLFile(MultipartFile multipartFile) {
 
+        LOGGER.debug("parseDevelopersXMLFile({})", multipartFile);
+
         String fileName = null;
 
         try {
-            fileName = unzip(multipartFile);
+            fileName = archiveService.unzip(multipartFile);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.debug("File wasn't created.");
         }
 
         List<Developers> developersList = new ArrayList<>();

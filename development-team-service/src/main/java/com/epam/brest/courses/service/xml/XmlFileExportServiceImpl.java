@@ -41,10 +41,10 @@ public class XmlFileExportServiceImpl implements XmlFileExportService{
     private CheckFolder checkFolder;
 
     @Autowired
-    private XmlArchiveService xmlArchiveService;
+    private ArchiveService archiveService;
 
     @Override
-    public void exportProjectsToXml(List<Projects> projectsList) throws IOException, XMLStreamException {
+    public void exportProjectsToXml(List<Projects> projectsList) throws IOException {
 
         LOGGER.debug("List of projects({})", projectsList);
 
@@ -62,11 +62,14 @@ public class XmlFileExportServiceImpl implements XmlFileExportService{
                 if (writer != null)
                     writer.close();
             }
+        } catch (IOException | XMLStreamException e) {
+            e.printStackTrace();
         }
+
         checkFolder.checkFolder(projectsZipFile);
 
         try {
-            xmlArchiveService.zip(source_dir, projectsZipFile);
+            archiveService.zip(source_dir, projectsZipFile);
         } catch (Exception e) {
             LOGGER.debug("Archive was not created");
         }
@@ -129,7 +132,7 @@ public class XmlFileExportServiceImpl implements XmlFileExportService{
         checkFolder.checkFolder(developersZipFile);
 
         try {
-            xmlArchiveService.zip(source_dir, developersZipFile);
+            archiveService.zip(source_dir, developersZipFile);
         } catch (Exception e) {
             LOGGER.debug("Archive was not created");
         }

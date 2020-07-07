@@ -13,11 +13,15 @@ import com.epam.brest.courses.service.excel.ExcelFileExportService;
 import com.epam.brest.courses.service.excel.ExcelFileExportServiceImpl;
 import com.epam.brest.courses.service.excel.ExcelFileImportService;
 import com.epam.brest.courses.service.excel.ExcelFileImportServiceImpl;
+import com.epam.brest.courses.service.xml.*;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
@@ -26,7 +30,35 @@ public class TestConfig {
 
     @Autowired
     private DriverManagerDataSource dataSource;
+    @Bean
+    public XmlFileImportService xmlFileImportService(){
+        return new XmlFileImportServiceImpl();
+    }
 
+    @Bean
+    public XmlFileExportService xmlFileExportService(){
+        return new XmlFileExportServiceImpl();
+    }
+    @Bean
+    public ArchiveService archiveService(){
+        return new ArchiveService();
+    }
+    @Bean
+    public CheckFolder checkFolder(){
+        return new CheckFolder();
+
+    }
+
+    @Bean
+    public static PropertyPlaceholderConfigurer properties() {
+        PropertyPlaceholderConfigurer ppc
+                = new PropertyPlaceholderConfigurer();
+        Resource[] resources = new ClassPathResource[]
+                { new ClassPathResource( "xml.properties" ) };
+        ppc.setLocations( resources );
+        ppc.setIgnoreUnresolvablePlaceholders( true );
+        return ppc;
+    }
     @Bean
     public ExcelFileImportService excelFileImportService(){
         return new ExcelFileImportServiceImpl();

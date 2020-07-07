@@ -1,8 +1,9 @@
-package com.epam.brest.courses.service;
+package com.epam.brest.courses.service.excel;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects;
-import com.epam.brest.courses.service.excel.ExcelFileExportService;
+import com.epam.brest.courses.service.DevelopersService;
+import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.service.testConfig.TestConfig;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
