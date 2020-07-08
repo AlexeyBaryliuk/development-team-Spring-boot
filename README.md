@@ -39,7 +39,9 @@ Setup java 8 and Maven, see [enviroment_setup.md](README/enviroment_setup.md "cl
 ## Create fakeTestData using Faker
 
  Create fake data using Faker class [fake_data.md](README/fake_data.md "click")
-
+## Import and export projects and developers in XML with data archiving
+ Import and export projects and developers in XML with data archiving [xml.md](README/xml.md "click")
+ 
 ## Rest server
 
 ## Available REST endpoints  
