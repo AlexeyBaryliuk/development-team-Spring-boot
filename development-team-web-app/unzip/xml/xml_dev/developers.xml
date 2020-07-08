@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<developers>
+  <developer developerId="1">
+    <firstname>Test</firstname>
+    <lastname>Developer</lastname>
+  </developer>
+  <developer developerId="2">
+    <firstname>Test</firstname>
+    <lastname>Developer</lastname>
+  </developer>
+  <developer developerId="3">
+    <firstname>Test</firstname>
+    <lastname>Developer</lastname>
+  </developer>
+</developers>

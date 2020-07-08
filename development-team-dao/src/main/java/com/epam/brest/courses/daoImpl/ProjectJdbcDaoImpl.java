@@ -109,11 +109,8 @@ public class ProjectJdbcDaoImpl implements ProjectsDao {
                 Integer.class) == 0;
     }
 
-
-
     @Override
     public Integer create(Projects project) {
-
 
         if (!isNameUnique(project)) {
             throw new IllegalArgumentException("Project with same description already exist.");
