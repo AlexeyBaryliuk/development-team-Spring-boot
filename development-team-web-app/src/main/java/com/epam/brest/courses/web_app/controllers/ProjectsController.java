@@ -95,7 +95,7 @@ public class ProjectsController {
             LOGGER.debug("__________________________findAll() PPPP= :{}", projectsDtoList);
 
             model.addAttribute("projects", projectsDtoList);
-
+            model.addAttribute("describe", "Hello");
         }
 
         return "projects";
