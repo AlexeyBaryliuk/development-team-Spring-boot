@@ -7,9 +7,12 @@ import com.epam.brest.courses.service.DevelopersService;
 import com.epam.brest.courses.service.ProjectsDtoService;
 import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.service.Projects_DevelopersService;
+import com.epam.brest.courses.web_app.rabbit_mq.RabbitMQListener;
 import com.epam.brest.courses.web_app.validators.ProjectsValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -31,6 +34,14 @@ import java.util.Optional;
 public class ProjectsController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsController.class);
+
+    private StringBuilder description;
+
+    @Autowired
+    private AmqpTemplate template;
+
+    @Autowired
+    private RabbitMQListener rabbitListener;
 
     @Autowired
     private final ProjectsDtoService projectsDtoService;
@@ -95,7 +106,7 @@ public class ProjectsController {
             LOGGER.debug("__________________________findAll() PPPP= :{}", projectsDtoList);
 
             model.addAttribute("projects", projectsDtoList);
-            model.addAttribute("describe", "Hello");
+            model.addAttribute("describe", rabbitListener.getMessage());
         }
 
         return "projects";
@@ -116,6 +127,7 @@ public class ProjectsController {
 
             projects_developersService.addDeveloperToProjects_Developers(projectId, developerId);
             LOGGER.debug("Developer with developerId = {} added to projects_developers", developerId);
+
         }
 
         LOGGER.debug("CONTROLLER - gotoEditProjectsPage({},{})", projectId, model);
@@ -150,7 +162,16 @@ public class ProjectsController {
         if (result.hasErrors()) {
             return "project";
         } else {
-            this.projectsService.update(project);
+            Integer res = projectsService.update(project);
+            if (res == 1) {
+
+                description = new StringBuilder().append("The project with id = ")
+                        .append(project.getProjectId())
+                        .append(" was updated");
+
+                template.convertAndSend("projects_changes", description);
+
+            }
             return "redirect:/projects";
         }
     }
@@ -187,7 +208,15 @@ public class ProjectsController {
             return "projectAdd";
         } else {
             try {
-                this.projectsService.create(project);
+                Integer id = projectsService.create(project);
+                if (id != null) {
+
+                    description = new StringBuilder().append("The project with description \" ")
+                            .append(project.getDescription())
+                            .append("\" was created");
+
+                    template.convertAndSend("projects_changes", description);
+                }
             } catch (IllegalArgumentException ie) {
                 result.rejectValue("description", "projectDescription.exist");
                 return "projectAdd";
@@ -207,7 +236,16 @@ public class ProjectsController {
     public final String deleteProjectById(@PathVariable Integer id, Model model) {
 
         LOGGER.debug("delete({},{})", id, model);
-        projectsService.delete(id);
+        Integer result = projectsService.delete(id);
+
+        if (result == 1) {
+
+            description = new StringBuilder().append("The project with id = ")
+                    .append(id)
+                    .append(" was deleted");
+
+            template.convertAndSend("projects_changes", description);
+        }
         return "redirect:/projects";
     }
 
@@ -225,5 +263,6 @@ public class ProjectsController {
         projects_developersService.deleteDeveloperFromProject_Developers(projectId, developerId);
         return "redirect:/projects/" + projectId;
     }
+
 }
 
