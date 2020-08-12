@@ -92,7 +92,7 @@ class ProjectsControllerIT {
     public void shouldReturnProjectsBetweenDatesPage() throws Exception {
 
         //given
-        LocalDate dateStart = LocalDate.now().minusMonths(5);
+        LocalDate dateStart = LocalDate.now().minusYears(10);
         LocalDate dateEnd = LocalDate.now().plusDays(1);
 
         mockMvc.perform(
