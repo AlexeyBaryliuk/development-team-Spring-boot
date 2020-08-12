@@ -52,13 +52,14 @@
             </li>
             <li class="nav-item">
                 <a href="projects.html"
+                   id="refresh"
                    th:href="@{|/projects|}"
                    class="btn btn-light"
                    title="Add project"
                    data-toggle="tooltip"
                    data-placement="bottom">
                     <i class="fa fa-refresh"></i>
-                    <span class="d-none d-sm-inline">Refresh</span></a>
+                    <span class="d-none d-sm-inline"  >Refresh</span></a>
            </li>
         </ul>
     </nav>
@@ -147,111 +148,9 @@
 
                             </td>
                         </tr>
-<!--                        <tr th:remove="all">-->
-<!--                            <td>&nbsp;&nbsp;Accounting</td>-->
-<!--                            <td>2500</td>-->
-<!--                            <td class="text-right">-->
-<!--                                <a href="department.html"-->
-<!--                                   th:href="@{/department}"-->
-<!--                                   class="btn-sm btn-outline-secondary"-->
-<!--                                   title="Edit department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-pencil"></i> <span-->
-<!--                                        class="d-none d-md-inline">Edit</span></a>-->
-<!--                                <span data-toggle="modal" data-target="#deleteDialog">-->
-<!--                                <a href="#" class="btn-sm btn-outline-secondary"-->
-<!--                                   title="delete department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>-->
-<!--                                </span>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-<!--                        <tr th:remove="all">-->
-<!--                            <td>&nbsp;&nbsp;Development</td>-->
-<!--                            <td>1150</td>-->
-<!--                            <td class="text-right">-->
-<!--                                <a href="department.html"-->
-<!--                                   th:href="@{/department}"-->
-<!--                                   class="btn-sm btn-outline-secondary"-->
-<!--                                   title="Edit department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-pencil"></i> <span-->
-<!--                                        class="d-none d-md-inline">Edit</span></a>-->
-<!--                                <span data-toggle="modal" data-target="#deleteDialog">-->
-<!--                                <a href="#" class="btn-sm btn-outline-secondary"-->
-<!--                                   title="delete department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>-->
-<!--                                </span>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-<!--                        <tr th:remove="all">-->
-<!--                            <td>&nbsp;&nbsp;&nbsp;&nbsp;Java</td>-->
-<!--                            <td>1500</td>-->
-<!--                            <td class="text-right">-->
-<!--                                <a href="department.html"-->
-<!--                                   th:href="@{/department}"-->
-<!--                                   class="btn-sm btn-outline-secondary"-->
-<!--                                   title="Edit department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-pencil"></i> <span-->
-<!--                                        class="d-none d-md-inline">Edit</span></a>-->
-<!--                                <span data-toggle="modal" data-target="#deleteDialog">-->
-<!--                                <a href="#" class="btn-sm btn-outline-secondary"-->
-<!--                                   title="delete department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>-->
-<!--                                </span>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-<!--                        <tr th:remove="all">-->
-<!--                            <td>&nbsp;&nbsp;&nbsp;&nbsp;Testing</td>-->
-<!--                            <td>1100</td>-->
-<!--                            <td class="text-right">-->
-<!--                                <a href="department.html"-->
-<!--                                   th:href="@{/department}"-->
-<!--                                   class="btn-sm btn-outline-secondary"-->
-<!--                                   title="Edit department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-pencil"></i> <span-->
-<!--                                        class="d-none d-md-inline">Edit</span></a>-->
-<!--                                <span data-toggle="modal" data-target="#deleteDialog">-->
-<!--                                <a href="#" class="btn-sm btn-outline-secondary"-->
-<!--                                   title="delete department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>-->
-<!--                                </span>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-<!--                        <tr th:remove="all">-->
-<!--                            <td>&nbsp;&nbsp;People management</td>-->
-<!--                            <td>800</td>-->
-<!--                            <td class="text-right">-->
-<!--                                <a href="department.html"-->
-<!--                                   th:href="@{/department}"-->
-<!--                                   class="btn-sm btn-outline-secondary"-->
-<!--                                   title="Edit department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-pencil"></i> <span-->
-<!--                                        class="d-none d-md-inline">Edit</span></a>-->
-<!--                                <span data-toggle="modal" data-target="#deleteDialog">-->
-<!--                                <a href="#" class="btn-sm btn-outline-secondary"-->
-<!--                                   title="delete department"-->
-<!--                                   data-toggle="tooltip"-->
-<!--                                   data-placement="top">-->
-<!--                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>-->
-<!--                                </span>-->
-<!--                            </td>-->
-<!--                        </tr>-->
+                        <tr id="newRow">
+
+                        </tr>
                         </tbody>
                     </table>
 
@@ -294,24 +193,13 @@
         th:src="@{/js/popper.min.js}"></script>
 <script src="../../resources/static/js/bootstrap.min.js"
         th:src="@{/js/bootstrap.min.js}"></script>
-<script>
-    $('#deleteDialog').on('show.bs.modal', function (event) {
-        var target = $(event.relatedTarget)
-        $(this).find('.modal-body').text('Please confirm delete project: "' + target.data('id') + '"')
-        document.getElementById('deleteUrl').href = 'projects/' + target.data('id') + '/delete';
-    })
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
-<script>
-    $('#descriptionProject').on('show.bs.modal', function (event) {
-        var target = $(event.relatedTarget)
-        $(this).find('.modal-body').text('"' + target.data('desc') + '"')
-    })
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
+<script src="../../resources/static/js/projectJS/common.js"
+        th:src="@{/js/projectJS/common.js}"></script>
+<script src="../../resources/static/js/projectJS/websocket.js"
+        th:src="@{/js/projectJS/websocket.js}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
 </body>
 </html>
