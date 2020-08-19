@@ -48,7 +48,7 @@
                    data-toggle="tooltip"
                    data-placement="bottom">
                     <i class="fa fa-plus"></i>
-                    <span class="d-none d-sm-inline">Add</span></a>
+                    <span id="add" class="d-none d-sm-inline">Add</span></a>
             </li>
             <li class="nav-item">
                 <a href="projects.html"
@@ -86,7 +86,7 @@
 
                         </form>
                     </div>
-                    <table class="table table-striped">
+                    <table class="table table-striped" id ="tab">
                         <thead class="thead-dark">
                         <tr>
                             <th>ProjectId</th>
@@ -95,8 +95,8 @@
                             <th></th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr th:each="project : ${projects}">
+                        <tbody id="bodyt">
+                        <tr th:each="project : ${projects}" >
                             <td th:text="${project.projectId}">1</td>
                             <td th:text="${project.dateAdded}">2019-03-12</td>
                             <td th:text="${project.countOfDevelopers}">0</td>
@@ -110,6 +110,7 @@
                                     <i class="fa fa-pencil"></i> <span
                                         class="d-none d-md-inline">Edit</span></a>
                                 <span data-toggle="modal"
+                                      id="test"
                                       data-target="#deleteDialog"
                                       th:attr="data-id=${project.projectId},data-date=${project.dateAdded}">
                                 <a href="#" class="btn-sm btn-outline-secondary"
@@ -145,12 +146,9 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </td>
                         </tr>
-                        <tr id="newRow">
 
-                        </tr>
                         </tbody>
                     </table>
 
@@ -181,7 +179,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a id="deleteUrl" href="#" class="btn btn-danger">Delete</a>
+                <button id="deleteUrl" type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+<!--                <a id="deleteUrl" href="#" class="btn btn-danger">Delete</a>-->
             </div>
         </div>
     </div>

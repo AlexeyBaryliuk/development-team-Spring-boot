@@ -77,7 +77,7 @@ public class ProjectsController {
 
         LOGGER.debug("Add project {}", project);
 
-        return projectsService.create(project);
+        return projectsService.createF(project);
     }
 
     /**

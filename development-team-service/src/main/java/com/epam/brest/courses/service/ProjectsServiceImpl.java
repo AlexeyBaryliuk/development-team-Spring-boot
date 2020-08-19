@@ -16,10 +16,10 @@ public class ProjectsServiceImpl implements ProjectsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsServiceImpl.class);
 
-    private final ProjectsDao ProjectsDao;
+    private final ProjectsDao projectsDao;
 
     public ProjectsServiceImpl(ProjectsDao ProjectsDao) {
-        this.ProjectsDao = ProjectsDao;
+        this.projectsDao = ProjectsDao;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class ProjectsServiceImpl implements ProjectsService {
     public List<Projects> findAll() {
 
         LOGGER.debug("Find all projects - findAll()");
-        List<Projects> projectsList = ProjectsDao.findAll();
+        List<Projects> projectsList = projectsDao.findAll();
         return projectsList;
     }
 
@@ -35,27 +35,34 @@ public class ProjectsServiceImpl implements ProjectsService {
     public Optional<Projects> findByDeveloperId(Integer projectId) {
 
         LOGGER.debug("Find by id - findByDeveloperId() projectId = {}", projectId);
-        return ProjectsDao.findByProjectId(projectId);
+        return projectsDao.findByProjectId(projectId);
     }
 
     @Override
     public Integer update(Projects project) {
 
         LOGGER.debug("Update project - update(): project = {}",project);
-        return ProjectsDao.update(project);
+        return projectsDao.update(project);
     }
 
     @Override
     public Integer create(Projects project) {
 
         LOGGER.debug("Create project - create(): project = {}",project);
-        return ProjectsDao.create(project);
+        return projectsDao.create(project);
+    }
+
+    @Override
+    public Integer createF(Projects project) {
+
+        LOGGER.debug("Create project - create(): project = {}",project);
+        return projectsDao.saveAndFlush(project).getProjectId();
     }
 
     @Override
     public Integer delete(Integer projectId) {
 
         LOGGER.debug("Delete project - delete() projectId = {}",projectId);
-        return ProjectsDao.deleteByProjectId(projectId);
+        return projectsDao.deleteByProjectId(projectId);
     }
 }

@@ -47,4 +47,6 @@ public interface ProjectsDao {
      * @return number of updated records in the database.
      */
     Integer deleteByProjectId(Integer projectId);
+
+    Projects saveAndFlush(Projects project);
 }
