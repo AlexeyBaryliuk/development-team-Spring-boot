@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,6 +43,9 @@ public class ProjectsController {
 
     @Autowired
     private final Projects_DevelopersService projects_developersService;
+
+    @Autowired
+    private SimpMessageSendingOperations messagingTemplate;
 
     public ProjectsController(ProjectsDtoService projectsDtoService
                             , ProjectsService projectsService
@@ -174,7 +178,9 @@ public class ProjectsController {
             return "projectAdd";
         } else {
             try {
-                this.projectsService.create(project);
+                Integer projectId = projectsService.create(project);
+                project.setProjectId(projectId);
+                messagingTemplate.convertAndSend("/topic/add", project);
             }
                 catch (IllegalArgumentException ie){
                     result.rejectValue("description", "projectDescription.exist");

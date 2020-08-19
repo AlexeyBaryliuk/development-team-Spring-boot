@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -94,14 +93,15 @@
                                    data-toggle="tooltip"
                                    data-placement="top">
                                     Cancel</a>
-                                <a href="projects.html"
-                                   th:href="@{/projects}"
-                                   th:onclick="@{document.forms['projectForm'].submit(); return false;}"
-                                   class="btn btn-primary"
-                                   title="Save project"
-                                   data-toggle="tooltip"
-                                   data-placement="top">
-                                    <i class="d-none d-sm-inline fa fa-save"></i> Save</a>
+                                    <a href="projects.html"
+
+                                       th:href="@{/projects}"
+                                       th:onclick="@{document.forms['projectForm'].submit(); return false;}"
+                                       class="btn btn-primary"
+                                       title="Save project"
+                                       data-toggle="tooltip"
+                                       data-placement="top">
+                                       <i class="d-none d-sm-inline fa fa-save"></i> Save</a>
                             </div>
                         </form>
                     </div>
@@ -109,6 +109,7 @@
             </div>
         </div>
     </div>
+</section>
 
 <footer>
     <hr/>
@@ -121,7 +122,11 @@
         th:src="@{/js/popper.min.js}"></script>
 <script src="../../resources/static/js/bootstrap.min.js"
         th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../../resources/static/js/projectJS/websocket.js"
+            th:src="@{/js/projectJS/websocket.js}"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
 </body>
 </html>

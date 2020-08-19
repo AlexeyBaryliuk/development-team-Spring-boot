@@ -24,6 +24,7 @@ public interface ProjectsRepository extends JpaRepository<Projects, Integer>, Pr
             nativeQuery = true)
     Integer create(@Param("pro")Projects project);
 
+
     /**
      * Update project.
      *
