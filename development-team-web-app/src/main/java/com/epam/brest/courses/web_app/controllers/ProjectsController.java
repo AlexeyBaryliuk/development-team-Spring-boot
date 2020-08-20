@@ -8,6 +8,8 @@ import com.epam.brest.courses.service.ProjectsDtoService;
 import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.service.Projects_DevelopersService;
 import com.epam.brest.courses.web_app.validators.ProjectsValidator;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,8 @@ import java.util.Optional;
 public class ProjectsController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsController.class);
+
+    ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     private final ProjectsDtoService projectsDtoService;
@@ -179,8 +183,22 @@ public class ProjectsController {
         } else {
             try {
                 Integer projectId = projectsService.create(project);
-                project.setProjectId(projectId);
-                messagingTemplate.convertAndSend("/topic/add", project);
+                List<ProjectsDto> projectsDtoList = projectsDtoService.countOfDevelopers();
+                List<ProjectsDto> projectsDtoMapperList = mapper.convertValue(
+                        projectsDtoList,
+                        new TypeReference<List<ProjectsDto>>(){});
+
+                for (int i = projectsDtoMapperList.size()-1; i >= 0  ; i--) {
+
+                    if (projectsDtoMapperList.get(i).getProjectId() == (projectId)){
+                        ProjectsDto projectsDto = projectsDtoMapperList.get(i);
+                        LOGGER.debug("Message ({}) was sent)", projectsDto);
+
+                        messagingTemplate.convertAndSend("/topic/add", projectsDto);
+                        break;
+                    }
+
+                }
             }
                 catch (IllegalArgumentException ie){
                     result.rejectValue("description", "projectDescription.exist");

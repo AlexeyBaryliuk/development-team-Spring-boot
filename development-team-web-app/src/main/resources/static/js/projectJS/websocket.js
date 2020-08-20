@@ -78,7 +78,12 @@ var message = null;
     function onAddProject(payload){
 
     var project = JSON.parse(payload.body);
-    alert("++++++++++++++++++++++" + project.projectId);
+    var addBody = table.getElementsByTagName("tbody")[0];
+    if(project){
+        var res = getListContent(project);
+        addBody.append(res);
+    }
+
 
     }
 
@@ -105,20 +110,27 @@ var message = null;
 
     function getListContent(message, j) {
 
+        var tempMessage = null;
+        if(j != null){
+        tempMessage = message[j];
+        }
+        else{
+        tempMessage = message;
+        }
         var messageElement = document.createElement('tr');
-    console.log('_____________________HELLO MESSAGE FROM GET LIST'  + message.length)
+    console.log('_____________________HELLO MESSAGE FROM GET LIST'  + message)
         var trElement1 = document.createElement('td');
-            trElement1.append(message[j].projectId);
+            trElement1.append(tempMessage.projectId);
             messageElement.append(trElement1);
-    console.log('_____________________MESSAGE FROM GET LIST :'  + j);
+    console.log('_____________________MESSAGE FROM GET LIST :');
         var trElement2 = document.createElement('td');
-            trElement2.append(message[j].dateAdded);
+            trElement2.append(tempMessage.dateAdded);
             messageElement.append(trElement2);
-    console.log('_____________________MESSAGE FROM GET LIST :'  + j);
+    console.log('_____________________MESSAGE FROM GET LIST :');
         var trElement3 = document.createElement('td');
-            trElement3.append(message[j].countOfDevelopers);
+            trElement3.append(tempMessage.countOfDevelopers);
             messageElement.append(trElement3);
-    console.log('_____________________MESSAGE FROM GET LIST :'  + j);
+    console.log('_____________________MESSAGE FROM GET LIST :');
         var trElement4 = document.createElement('td');
             trElement4.className ="text-right";
             trElement4.innerHTML =
@@ -131,7 +143,7 @@ var message = null;
                                                  "class=\"d-none d-md-inline\">Edit</span></a>" +
                                          "<span data-toggle=\"modal\"" +
                                                "data-target=\"#deleteDialog\"" +
-                                               "data-id= \"" + message[j].projectId + "\"  data-date= \"" + message[j].dateAdded +"\">" +
+                                               "data-id= \"" + tempMessage.projectId + "\"  data-date= \"" + tempMessage.dateAdded +"\">" +
                                          "<a href=\"#\" class=\"btn-sm btn-outline-secondary\"" +
                                             "title=\"delete project\"" +
                                             "data-toggle=\"tooltip\"" +
@@ -140,7 +152,7 @@ var message = null;
                                          "</span>" +
                                          "<span data-toggle=\"modal\"" +
                                                "data-target=\"#descriptionProject\"" +
-                                               "data-desc=\"" + message[j].description + "\">" +
+                                               "data-desc=\"" + tempMessage.description + "\">" +
                                         " <a href=\"#\"" +
                                             "class=\"btn-sm btn-outline-secondary\"" +
                                             "title=\"Description\"" +
@@ -166,7 +178,7 @@ var message = null;
                                              "</div>" +
                                          "</div>";
         messageElement.append(trElement4);
-
+        console.log('_____________________MESSAGE FROM GET LISTTHE END:');
      return messageElement;
     }
 
