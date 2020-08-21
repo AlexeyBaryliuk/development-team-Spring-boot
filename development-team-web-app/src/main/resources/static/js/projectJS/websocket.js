@@ -10,6 +10,7 @@ console.log("++++++++++++++++++++++++++++++++++" );
 var stompClientAll = null;
 var stompClientDelete = null;
 var stompClientAdd = null;
+var stompClientUpdate = null;
 
 var delProjectId = null;
 var message = null;
@@ -21,16 +22,18 @@ var message = null;
         var socketAll = new SockJS('/ws');
         var socketDelete = new SockJS('/ws');
         var socketAdd = new SockJS('/ws');
+        var socketUpdate = new SockJS('/ws');
             stompClientAll = Stomp.over(socketAll);
             stompClientDelete = Stomp.over(socketDelete);
             stompClientAdd = Stomp.over(socketAdd);
+            stompClientUpdate = Stomp.over(socketUpdate);
 
         console.log('_____________________HELLO CONNECT');
 
         stompClientAll.connect({}, onConnectedAll, onError);
         stompClientDelete.connect({}, onConnectedDelete, onError);
         stompClientAdd.connect({}, onConnectedAdd, onError);
-
+        stompClientUpdate.connect({}, onConnectedUpdate, onError);
         event.preventDefault();
     }
 
@@ -51,8 +54,13 @@ var message = null;
         console.log('_____________________onConnectedAdd');
             // Subscribe to the Public Topic
             stompClientAdd.subscribe('/topic/add', onAddProject);
-
     }
+
+    function onConnectedUpdate() {
+            console.log('_____________________onConnectedUpdate');
+                // Subscribe to the Public Topic
+                stompClientUpdate.subscribe('/topic/update', onUpdateProject);
+        }
 
     function onError(error) {
         connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
@@ -77,16 +85,26 @@ var message = null;
 
     function onAddProject(payload){
 
-    var project = JSON.parse(payload.body);
-    var addBody = table.getElementsByTagName("tbody")[0];
-    if(project){
-        var res = getListContent(project);
-        addBody.append(res);
+        var project = JSON.parse(payload.body);
+        var addBody = table.getElementsByTagName("tbody")[0];
+        if(project){
+            var res = getListContent(project);
+            addBody.append(res);
+        }
     }
 
+    function onUpdateProject(payload){
 
+            var project = JSON.parse(payload.body);
+            if(project){
+                var res = getListContent(project);
+            }
+            for (var j = 1;  j < table.rows.length; j++){
+                if(table.rows [j].cells [0].innerHTML == project.projectId.toString() ){
+                table.rows [j].outerHTML = res.outerHTML;
+                }
+            }
     }
-
 
     function onAllProjectsReceived(payload) {
 
@@ -130,11 +148,11 @@ var message = null;
         var trElement3 = document.createElement('td');
             trElement3.append(tempMessage.countOfDevelopers);
             messageElement.append(trElement3);
-    console.log('_____________________MESSAGE FROM GET LIST :');
+    console.log('_____________________MESSAGE FROM GET LIST :' + tempMessage.description);
         var trElement4 = document.createElement('td');
             trElement4.className ="text-right";
             trElement4.innerHTML =
-            " <a href=\"project.html\" th:href=\"@{|/projects/${project.projectId}|}\"" +
+            " <a href=\"/projects/" + tempMessage.projectId + "\" " +
              "class=\"btn-sm btn-outline-secondary\"" +
                                             "title=\"Edit project\"" +
                                             "data-toggle=\"tooltip\"" +
