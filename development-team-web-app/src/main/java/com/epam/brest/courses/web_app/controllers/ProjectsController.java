@@ -85,6 +85,8 @@ public class ProjectsController {
          List<ProjectsDto> projectsDtoListBetween = projectsDtoService.findAllByDateAddedBetween(dateStart, dateEnd);
                  LOGGER.debug("______________________ {}", projectsDtoListBetween);
          model.addAttribute("projects", projectsDtoListBetween);
+
+         messagingTemplate.convertAndSend("/topic/filter", projectsDtoListBetween);
     }
     else{
 
@@ -147,7 +149,11 @@ public class ProjectsController {
         } else {
             this.projectsService.update(project);
             Integer projectId = project.getProjectId();
-            mapperDtoList(projectId, "/topic/update");
+
+            List<ProjectsDto> projectsDtoList = projectsDtoService.countOfDevelopers();
+
+            List<ProjectsDto> projectsDtoMapperList = mapperDtoList(projectsDtoList);
+            sendMessage(projectsDtoMapperList,"/topic/update", projectId);
             return "redirect:/projects";
         }
     }
@@ -186,7 +192,11 @@ public class ProjectsController {
             try {
                 Integer projectId = projectsService.create(project);
 
-                mapperDtoList(projectId, "/topic/add");
+                List<ProjectsDto> projectsDtoList = projectsDtoService.countOfDevelopers();
+
+                List<ProjectsDto> projectsDtoMapperList = mapperDtoList(projectsDtoList);
+                sendMessage(projectsDtoMapperList,"/topic/add", projectId);
+
             }
                 catch (IllegalArgumentException ie){
                     result.rejectValue("description", "projectDescription.exist");
@@ -226,18 +236,22 @@ public class ProjectsController {
         return "redirect:/projects/" + projectId;
     }
 
-    private void mapperDtoList(Integer projectId, String topic) {
-        List<ProjectsDto> projectsDtoList = projectsDtoService.countOfDevelopers();
+    private List<ProjectsDto> mapperDtoList(List<ProjectsDto> projectsDtoList) {
+
         List<ProjectsDto> projectsDtoMapperList = mapper.convertValue(
                 projectsDtoList,
                 new TypeReference<List<ProjectsDto>>() {
                 });
+    return projectsDtoMapperList;
+    }
+
+    private void sendMessage(List<ProjectsDto> projectsDtoMapperList, String topic, Integer projectId){
 
         for (int i = projectsDtoMapperList.size()-1; i >= 0  ; i--) {
 
             if (projectsDtoMapperList.get(i).getProjectId().equals(projectId)){
                 ProjectsDto projectsDto = projectsDtoMapperList.get(i);
-                LOGGER.debug("Message ({}) was sent)", projectsDto);
+                LOGGER.debug("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Message ({}) was sent)", projectsDto);
 
                 messagingTemplate.convertAndSend(topic, projectsDto);
                 break;

@@ -19,8 +19,6 @@ public class WebSocketController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebSocketController.class);
 
-    int i = 1;
-
     @Autowired
     private final ProjectsDtoService projectsDtoService;
 
@@ -38,8 +36,8 @@ public class WebSocketController {
 
     List<ProjectsDto> projectsList = projectsDtoService.countOfDevelopers();
 
-        LOGGER.debug("WebSocket - all.++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  {}",  i);
-       i ++;
+        LOGGER.debug("WebSocket - all.");
+
         return projectsList;
     }
 
@@ -47,7 +45,7 @@ public class WebSocketController {
     @SendTo("/topic/delete")
     public String deleteProject(@Payload Integer projectId) {
 
-        LOGGER.debug("WebSocket - delete project with id = {}.++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" , projectId);
+        LOGGER.debug("WebSocket - delete project with id = {}." , projectId);
 
         Integer num = projectsService.delete(projectId);
 
