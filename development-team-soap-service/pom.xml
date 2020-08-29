@@ -33,6 +33,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>development-team-soap-app</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
         </dependency>
@@ -41,32 +46,51 @@
             <groupId>wsdl4j</groupId>
             <artifactId>wsdl4j</artifactId>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>development-team-soap-app</artifactId>
+        </dependency>
+
+    </dependencies>
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <id>xjc</id>
-                        <goals>
-                            <goal>xjc</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
-                    <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-                    <clearOutputDir>false</clearOutputDir>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+<!--                <plugin>-->
+<!--                    <groupId>org.jvnet.jaxb2.maven2</groupId>-->
+<!--                    <artifactId>maven-jaxb2-plugin</artifactId>-->
+<!--                    <version>0.13.3</version>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <goals>-->
+<!--                                <goal>generate</goal>-->
+<!--                            </goals>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                    <configuration>-->
+<!--                        <schemaLanguage>WSDL</schemaLanguage>-->
+<!--                        <generatePackage>com.epam.brest.courses.soap_service.wsdl</generatePackage>-->
+<!--                        <schemas>-->
+<!--                            <schema>-->
+<!--                                <url>http://localhost:8088/ws/development_team.wsdl</url>-->
+<!--                            </schema>-->
+<!--                        </schemas>-->
+<!--                    </configuration>-->
+<!--                </plugin>-->
+            </plugins>
+        </build>
 </project>
