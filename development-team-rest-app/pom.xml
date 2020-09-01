@@ -12,12 +12,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>development-team-rest-app</artifactId>
+        <packaging>war</packaging>
 
-    <packaging>war</packaging>
-
-    <properties>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-    </properties>
+            <properties>
+                <failOnMissingWebXml>false</failOnMissingWebXml>
+            </properties>
 
     <dependencies>
 
@@ -75,12 +74,6 @@
 
     <build>
         <finalName>rest_app_DT</finalName>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
 
         <plugins>
             <plugin>
@@ -89,39 +82,4 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-
-        <profile>
-            <id>h2</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <activatedProperties>h2</activatedProperties>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>mySql</id>
-            <properties>
-                <activatedProperties>mySql</activatedProperties>
-            </properties>
-        </profile>
-        <profile>
-            <id>jpa</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <activatedProperties>jpa</activatedProperties>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>jdbc</id>
-            <properties>
-                <activatedProperties>jdbc</activatedProperties>
-            </properties>
-        </profile>
-    </profiles>
 </project>
