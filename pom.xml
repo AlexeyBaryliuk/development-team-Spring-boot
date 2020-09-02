@@ -19,6 +19,7 @@
         <module>development-team-web-app</module>
         <module>development-team-service-rest</module>
         <module>development-team-rest-soap</module>
+        <module>development-team-soapp-app</module>
     </modules>
 
 
@@ -66,6 +67,12 @@
             <dependency>
                 <groupId>com.epam.brest.courses</groupId>
                 <artifactId>development-team-rest-app</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.epam.brest.courses</groupId>
+                <artifactId>development-team-soapp-app</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

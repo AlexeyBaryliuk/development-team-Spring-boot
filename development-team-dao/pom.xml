@@ -87,12 +87,5 @@
                 </dependency>
             </dependencies>
         </profile>
-
-<!--        <profile>-->
-<!--            <id>jdbc</id>-->
-<!--            <properties>-->
-<!--                <spring.profiles.active>jdbc</spring.profiles.active>-->
-<!--            </properties>-->
-<!--        </profile>-->
     </profiles>
 </project>

@@ -20,6 +20,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>development-team-soapp-app</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
@@ -68,6 +73,13 @@
             <id>rest</id>
             <properties>
                 <spring.profiles.active>rest</spring.profiles.active>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>soap</id>
+            <properties>
+                <spring.profiles.active>soap</spring.profiles.active>
             </properties>
         </profile>
 
