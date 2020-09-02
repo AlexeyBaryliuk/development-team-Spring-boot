@@ -6,6 +6,7 @@ import com.epam.brest.courses.rest_app.exception.ErrorResponse;
 import com.epam.brest.courses.service.DevelopersServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.Optional;
 /**
  * DevelopersController.
  */
+@Profile("rest")
 @RestController
 @RequestMapping("/developers")
 public class DevelopersController {
@@ -85,6 +87,7 @@ public class DevelopersController {
      * @param developer
      * @return ResponsEntity.
      */
+
     @PutMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Integer> update(@RequestBody Developers developer){
 

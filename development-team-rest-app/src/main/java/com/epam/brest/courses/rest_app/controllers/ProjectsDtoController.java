@@ -5,6 +5,7 @@ import com.epam.brest.courses.model.dto.ProjectsDto;
 import com.epam.brest.courses.service.ProjectsDtoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.Collection;
 /**
  * ProjectsDtoController
  */
+@Profile("rest")
 @RestController
 @RequestMapping("/projectsDto")
 public class ProjectsDtoController {

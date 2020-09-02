@@ -1,0 +1,289 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://epam.com/brest/courses/soap_api"
+           targetNamespace="http://epam.com/brest/courses/soap_api"
+           elementFormDefault="qualified">
+
+    <!--  Projects  -->
+    <xs:complexType name="projectInfo">
+        <xs:sequence>
+            <xs:element name="projectId" type="xs:int"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="dateAdded" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="getAllProjectsRequest">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="getAllProjectsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projectInfo" maxOccurs="unbounded"
+                            minOccurs="0" type="tns:projectInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="findByDeveloperIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="project" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="findByDeveloperIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projectInfo" type="tns:projectInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateProjectRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projectInfo" type="tns:projectInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="updateProjectResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="updatedProject" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="createProjectRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projectInfo" type="tns:projectInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createProjectResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projectCreate" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteProjectRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projectId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteProjectResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projectDelete" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Developers  -->
+    <xs:complexType name="developerInfo">
+        <xs:sequence>
+            <xs:element name="developerId" type="xs:int"/>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="findAllDevelopersRequest">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="findAllDevelopersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="developerInfo" maxOccurs="unbounded"
+                            minOccurs="0" type="tns:developerInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="findDevByDeveloperIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="developerId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="findDevByDeveloperIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="developerInfo" type="tns:developerInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createDeveloperRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="developerInfo" type="tns:developerInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createDeveloperResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="developerCreate" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateDeveloperRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="developerInfo" type="tns:developerInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="updateDeveloperResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="updatedDeveloper" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteDeveloperRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="developerId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteDeveloperResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="developerDelete" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--  Projects_Developers  -->
+
+    <xs:complexType name="projects_developersInfo">
+        <xs:sequence>
+            <xs:element name="projectId" type="xs:int"/>
+            <xs:element name="developerId" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="selectDevelopersFromProjects_DevelopersRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projectId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="selectDevelopersFromProjects_DevelopersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projects_developersInfo" maxOccurs="unbounded"
+                            minOccurs="0" type="tns:projects_developersInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addDeveloperToProjects_DevelopersRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projectId" type="xs:int"/>
+                <xs:element name="developerId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="addDeveloperToProjects_DevelopersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="addToProjects_Developers"
+                            minOccurs="0" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteDeveloperToProjects_DevelopersRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projectId" type="xs:int"/>
+                <xs:element name="developerId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteDeveloperToProjects_DevelopersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="deleteFromProjects_Developers"
+                            minOccurs="0" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="findByIdFromProjects_DevelopersRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projectId" type="xs:int"/>
+                <xs:element name="developerId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="findByIdFromProjects_DevelopersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projects_developersInfo" type="tns:projects_developersInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--  ProjectsDto  -->
+
+    <xs:complexType name="projectDtoInfo">
+        <xs:sequence>
+            <xs:element name="projectId" type="xs:int"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="dateAdded" type="xs:date"/>
+            <xs:element name="countOfDevelopers" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="findAllByDateAddedBetweenRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="dateStart" type="xs:date"/>
+                <xs:element name="dateEnd" type="xs:date"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="findAllByDateAddedBetweenResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projectDtoInfo" maxOccurs="unbounded"
+                            minOccurs="0" type="tns:projectDtoInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="countOfDevelopersRequest">
+        <xs:complexType/>
+    </xs:element>
+
+    <xs:element name="countOfDevelopersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="projectDtoInfo" maxOccurs="unbounded"
+                            minOccurs="0" type="tns:projectDtoInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

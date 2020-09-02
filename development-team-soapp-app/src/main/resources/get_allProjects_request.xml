@@ -1,0 +1,7 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:ps="http://epam.com/brest/courses/soap_api">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ps:getAllProjectsRequest/>
+    </soapenv:Body>
+</soapenv:Envelope>
