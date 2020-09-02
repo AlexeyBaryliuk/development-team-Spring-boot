@@ -65,35 +65,40 @@
     <profiles>
 
         <profile>
-            <id>h2</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>rest</id>
             <properties>
-                <activatedProperties>h2</activatedProperties>
+                <spring.profiles.active>rest</spring.profiles.active>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>h2</id>
+            <properties>
+                <spring.profiles.active>h2</spring.profiles.active>
             </properties>
         </profile>
 
         <profile>
             <id>mySql</id>
             <properties>
-                <activatedProperties>mySql</activatedProperties>
+                <spring.profiles.active>mySql</spring.profiles.active>
             </properties>
         </profile>
+
         <profile>
             <id>jpa</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <activatedProperties>jpa</activatedProperties>
+                <spring.profiles.active>jpa</spring.profiles.active>
             </properties>
         </profile>
 
         <profile>
             <id>jdbc</id>
             <properties>
-                <activatedProperties>jdbc</activatedProperties>
+                <spring.profiles.active>jdbc</spring.profiles.active>
             </properties>
         </profile>
     </profiles>

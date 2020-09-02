@@ -10,7 +10,11 @@ import java.util.Set;
  * Developers.
  */
 @Entity
-@Data
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "developers")
 public class Developers {
 

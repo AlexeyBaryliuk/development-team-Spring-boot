@@ -5,6 +5,7 @@ import com.epam.brest.courses.rest_app.exception.ProjectsNotFoundException;
 import com.epam.brest.courses.service.ProjectsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.Collection;
 /**
  * ProjectsController
  */
+@Profile("rest")
 @RestController
 @RequestMapping("/projects")
 public class ProjectsController {

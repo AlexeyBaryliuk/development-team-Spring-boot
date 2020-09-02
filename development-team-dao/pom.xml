@@ -74,12 +74,12 @@
 
         <profile>
             <id>jpa</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <activatedProperties>jpa</activatedProperties>
-            </properties>
+                <activation>
+                    <activeByDefault>true</activeByDefault>
+                </activation>
+                <properties>
+                    <spring.profiles.active>jpa</spring.profiles.active>
+                </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.springframework.boot</groupId>
@@ -88,11 +88,11 @@
             </dependencies>
         </profile>
 
-        <profile>
-            <id>jdbc</id>
-            <properties>
-                <activatedProperties>jdbc</activatedProperties>
-            </properties>
-        </profile>
+<!--        <profile>-->
+<!--            <id>jdbc</id>-->
+<!--            <properties>-->
+<!--                <spring.profiles.active>jdbc</spring.profiles.active>-->
+<!--            </properties>-->
+<!--        </profile>-->
     </profiles>
 </project>
