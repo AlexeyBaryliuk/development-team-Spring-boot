@@ -20,6 +20,7 @@
         <module>development-team-service-rest</module>
         <module>development-team-rest-soap</module>
         <module>development-team-soapp-app</module>
+        <module>development-team-service-soap</module>
     </modules>
 
 
@@ -95,6 +96,11 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.epam.brest.courses</groupId>
+                <artifactId>development-team-service-soap</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>

@@ -1,19 +1,17 @@
-package com.epam.brest.courses.web_app.config.projectsConfig;
+package com.epam.brest.courses.web_app.config.projectsConfig.rest_config;
 
 import com.epam.brest.courses.service_rest.DevelopersServiceRest;
 import com.epam.brest.courses.service_rest.ProjectsDtoServiceRest;
 import com.epam.brest.courses.service_rest.ProjectsServiceRest;
 import com.epam.brest.courses.service_rest.Projects_DevelopersServiceRest;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
+@Profile("rest_service")
 @PropertySource("classpath:application.properties")
-public class ProjectConfig {
+public class ProjectsRest {
 
     @Value("${point.start-url}")
     private String startUrl;
