@@ -47,6 +47,11 @@
 
         <dependency>
             <groupId>com.epam.brest.courses</groupId>
+            <artifactId>development-team-service-soap</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.brest.courses</groupId>
             <artifactId>development-team-test</artifactId>
         </dependency>
 
@@ -65,6 +70,11 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-configuration-processor</artifactId>-->
+<!--        </dependency>-->
 
         <!-- Optional, for bootstrap -->
         <dependency>
@@ -139,5 +149,22 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>soap_service</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring.profiles.active>soap_service</spring.profiles.active>
+            </properties>
+        </profile>
 
+        <profile>
+            <id>rest_service</id>
+            <properties>
+                <spring.profiles.active>rest_service</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
 </project>
