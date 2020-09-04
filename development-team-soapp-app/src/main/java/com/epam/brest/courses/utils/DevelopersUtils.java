@@ -5,7 +5,6 @@ import com.epam.brest.courses.soap_api.DeveloperInfo;
 
 public class DevelopersUtils {
 
-
     public static DeveloperInfo convertDevelopersToDevelopersInfo(Developers developer){
 
         DeveloperInfo developerInfo = new DeveloperInfo();
