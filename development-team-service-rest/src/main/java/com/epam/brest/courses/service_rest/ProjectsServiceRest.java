@@ -33,7 +33,7 @@ public class ProjectsServiceRest implements ProjectsService {
     }
 
     @Override
-    public Optional<Projects> findByDeveloperId(Integer projectId) {
+    public Optional<Projects> findByProjectId(Integer projectId) {
 
         LOGGER.debug("findByDeveloperId({})", projectId);
         ResponseEntity<Projects> responseEntity =

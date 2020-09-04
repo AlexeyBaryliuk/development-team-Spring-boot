@@ -32,7 +32,7 @@ public class ProjectsServiceImpl implements ProjectsService {
     }
 
     @Override
-    public Optional<Projects> findByDeveloperId(Integer projectId) {
+    public Optional<Projects> findByProjectId(Integer projectId) {
 
         LOGGER.debug("Find by id - findByDeveloperId() projectId = {}", projectId);
         return projectsDao.findByProjectId(projectId);

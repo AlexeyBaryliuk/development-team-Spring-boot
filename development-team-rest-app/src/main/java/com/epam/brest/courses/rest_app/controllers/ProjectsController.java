@@ -52,7 +52,7 @@ public class ProjectsController {
     public Projects findByDeveloperId(@PathVariable Integer projectId) {
 
         LOGGER.debug("findById");
-        return projectsService.findByDeveloperId(projectId).orElseThrow(() -> new ProjectsNotFoundException(projectId));
+        return projectsService.findByProjectId(projectId).orElseThrow(() -> new ProjectsNotFoundException(projectId));
     }
 
     /**

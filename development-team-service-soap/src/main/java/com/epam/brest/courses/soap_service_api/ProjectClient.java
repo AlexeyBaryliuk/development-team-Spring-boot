@@ -2,9 +2,10 @@ package com.epam.brest.courses.soap_service_api;
 
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.service.ProjectsService;
-import com.epam.brest.courses.soap_api.GetAllProjectsRequest;
-import com.epam.brest.courses.soap_api.GetAllProjectsResponse;
-import com.epam.brest.courses.soap_api.ProjectInfo;
+
+import com.epam.brest.courses.wsdl.GetAllProjectsRequest;
+import com.epam.brest.courses.wsdl.GetAllProjectsResponse;
+import com.epam.brest.courses.wsdl.ProjectInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
@@ -29,7 +30,7 @@ public class ProjectClient extends WebServiceGatewaySupport implements ProjectsS
 
         List<ProjectInfo> projectInfoList = getAllProjectsResponse.getProjectInfo();
         List<Projects> projects = new ArrayList<>();
-
+//
         for (int i = 0; i < projectInfoList.size(); i++) {
             Projects project = new Projects();
             project.setProjectId(projectInfoList.get(i).getProjectId());
@@ -42,7 +43,7 @@ public class ProjectClient extends WebServiceGatewaySupport implements ProjectsS
     }
 
     @Override
-    public Optional<Projects> findByDeveloperId(Integer projectId) {
+    public Optional<Projects> findByProjectId(Integer projectId) {
         return Optional.empty();
     }
 
@@ -66,3 +67,4 @@ public class ProjectClient extends WebServiceGatewaySupport implements ProjectsS
         return null;
     }
 }
+

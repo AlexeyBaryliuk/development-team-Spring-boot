@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -51,7 +50,7 @@ class ProjectsServiceImplIT {
         LocalDate testDate = project.getDateAdded();
         Integer projectId = projectsService.create(project);
 
-        Optional<Projects> optionalProjects = projectsService.findByDeveloperId(projectId);
+        Optional<Projects> optionalProjects = projectsService.findByProjectId(projectId);
         assertTrue(optionalProjects.isPresent());
         assertEquals(testDate,optionalProjects.get().getDateAdded());
         assertEquals(description,optionalProjects.get().getDescription());
@@ -65,12 +64,12 @@ class ProjectsServiceImplIT {
         LocalDate testDate = project.getDateAdded();
         Integer projectId = projectsService.create(project);
 
-        Optional<Projects> projectBeforeUpdate = projectsService.findByDeveloperId(projectId);
+        Optional<Projects> projectBeforeUpdate = projectsService.findByProjectId(projectId);
         assertTrue(projectBeforeUpdate.isPresent());
         projectBeforeUpdate.get().setDescription("TextAfterUpdate");
 
         projectsService.update(projectBeforeUpdate.get());
-        Optional<Projects> projectAfterUpdate = projectsService.findByDeveloperId(projectId);
+        Optional<Projects> projectAfterUpdate = projectsService.findByProjectId(projectId);
         assertTrue(projectAfterUpdate.isPresent());
         assertNotEquals(description,projectAfterUpdate.get().getDescription());
         assertEquals("TextAfterUpdate",projectAfterUpdate.get().getDescription());
@@ -84,7 +83,7 @@ class ProjectsServiceImplIT {
         String description = project.getDescription();
         Integer projectId = projectsService.create(project);
 
-        Optional<Projects> optionalProjects = projectsService.findByDeveloperId(projectId);
+        Optional<Projects> optionalProjects = projectsService.findByProjectId(projectId);
         assertTrue(optionalProjects.isPresent());
         assertEquals(description,optionalProjects.get().getDescription());
     }
@@ -97,7 +96,7 @@ class ProjectsServiceImplIT {
         Integer projectId = projectsService.create(project);
 
         projectsService.delete(projectId);
-        Optional<Projects> optionalProjects = projectsService.findByDeveloperId(projectId);
+        Optional<Projects> optionalProjects = projectsService.findByProjectId(projectId);
         assertFalse(optionalProjects.isPresent());
 
 
