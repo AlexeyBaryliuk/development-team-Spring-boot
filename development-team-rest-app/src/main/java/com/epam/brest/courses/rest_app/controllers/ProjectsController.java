@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.xml.datatype.DatatypeConfigurationException;
 import java.util.Collection;
 
 /**
@@ -61,7 +62,7 @@ public class ProjectsController {
      * @return Project id.
      */
     @PostMapping(value = "/addByDescription", consumes = "application/json", produces = "application/json" )
-    public Integer add(@RequestBody String description){
+    public Integer add(@RequestBody String description) throws DatatypeConfigurationException {
 
         Projects project = new Projects();
         LOGGER.debug("Add project {}", description);
@@ -75,7 +76,7 @@ public class ProjectsController {
      * @returnnew Project().
      */
     @PostMapping(consumes = "application/json", produces = "application/json" )
-    public Integer add(@RequestBody Projects project){
+    public Integer add(@RequestBody Projects project) throws DatatypeConfigurationException {
 
         LOGGER.debug("Add project {}", project);
 
@@ -88,7 +89,7 @@ public class ProjectsController {
      * @return new ResponseEntity.
      */
     @PutMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Integer> updateProject(@RequestBody Projects project) {
+    public ResponseEntity<Integer> updateProject(@RequestBody Projects project) throws DatatypeConfigurationException {
 
         LOGGER.debug("updateProjectt({})", project);
         int result = projectsService.update(project);

@@ -1,5 +1,6 @@
 package com.epam.brest.courses.utils;
 
+
 import com.epam.brest.courses.model.dto.ProjectsDto;
 import com.epam.brest.courses.wsdl.ProjectDtoInfo;
 
@@ -19,12 +20,17 @@ public class ProjectsDtoUtils {
         return LocalDate.parse(xmlGregorianCalendar.toXMLFormat());
     }
 
-    public static XMLGregorianCalendar convertLocalDateToXMLGregorianCalendar
-            (LocalDate in) throws DatatypeConfigurationException {
+    public static ProjectsDto convertProjectsDtoInfoToProjectDto(ProjectDtoInfo projectDtoInfo) throws DatatypeConfigurationException {
 
-        return DatatypeFactory.newInstance().newXMLGregorianCalendar(in.toString());
+        ProjectsDto projectsDto = new ProjectsDto();
+
+        projectsDto.setProjectId(projectDtoInfo.getProjectId());
+        projectsDto.setDescription(projectDtoInfo.getDescription());
+        projectsDto.setDateAdded(convertXMLGregorianCalendarToLocalDate(projectDtoInfo.getDateAdded()));
+        projectsDto.setCountOfDevelopers(projectDtoInfo.getCountOfDevelopers());
+
+        return projectsDto;
     }
-
     public static ProjectDtoInfo convertProjectsDtoToProjectDtoInfo(ProjectsDto projectsDto) throws DatatypeConfigurationException {
 
         ProjectDtoInfo projectDtoInfo = new ProjectDtoInfo();
@@ -39,16 +45,17 @@ public class ProjectsDtoUtils {
         return projectDtoInfo;
     }
 
-    public static List<ProjectDtoInfo> convertProjectsListToProjectDtoInfoList
-            (List<ProjectsDto> projectsDtoList) throws DatatypeConfigurationException {
+    public static List<ProjectsDto> convertProjectInfosListToProjectDtoList
+            (List<ProjectDtoInfo> projectsDtoInfoList) throws DatatypeConfigurationException {
 
-        List<ProjectDtoInfo> projectDtoInfos = new ArrayList<>();
+        List<ProjectsDto> projectsDtoList = new ArrayList<>();
 
-        for (int i = 0; i < projectsDtoList.size(); i++) {
+        for (int i = 0; i < projectsDtoInfoList.size(); i++) {
 
-            projectDtoInfos.add(convertProjectsDtoToProjectDtoInfo(projectsDtoList.get(i)));
+            projectsDtoList.add(convertProjectsDtoInfoToProjectDto(projectsDtoInfoList.get(i)));
         }
-        return projectDtoInfos;
+        return projectsDtoList;
     }
 }
+
 

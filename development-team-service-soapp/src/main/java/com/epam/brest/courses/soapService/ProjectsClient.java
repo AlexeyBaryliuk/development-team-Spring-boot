@@ -1,8 +1,8 @@
-package com.epam.brest.courses.soap_service_api;
+package com.epam.brest.courses.soapService;
+
 
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.service.ProjectsService;
-
 import com.epam.brest.courses.wsdl.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,9 @@ import java.util.Optional;
 import static com.epam.brest.courses.utils.ProjectsUtils.convertProjectInfoToProjects;
 import static com.epam.brest.courses.utils.ProjectsUtils.convertProjectsToProjectInfo;
 
-public class ProjectsClient extends WebServiceGatewaySupport implements ProjectsService {
+public class ProjectsClient extends WebServiceGatewaySupport
+        implements ProjectsService
+{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsClient.class);
 
@@ -109,4 +111,5 @@ public class ProjectsClient extends WebServiceGatewaySupport implements Projects
         return deleteProjectResponse.getProjectDelete();
     }
 }
+
 

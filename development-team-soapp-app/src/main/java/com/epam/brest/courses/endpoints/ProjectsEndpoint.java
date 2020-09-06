@@ -51,18 +51,18 @@ public class ProjectsEndpoint {
     }
 
     @PayloadRoot(namespace = "http://epam.com/brest/courses/soap_api",
-            localPart = "findByDeveloperIdRequest")
+            localPart = "findByProjectIdRequest")
     @ResponsePayload
-    public FindByProjectIdResponse findByProjectId(@RequestPayload FindByProjectIdRequest findByDeveloperIdRequest) throws DatatypeConfigurationException {
+    public FindByProjectIdResponse findByProjectId(@RequestPayload FindByProjectIdRequest findByProjectIdRequest) throws DatatypeConfigurationException {
 
         LOGGER.debug("Endpoint - findByProjectId");
-        FindByProjectIdResponse findByDeveloperIdResponse = new FindByProjectIdResponse();
-        Integer projectId = findByDeveloperIdRequest.getProjectId();
+        FindByProjectIdResponse findByProjectIdResponse = new FindByProjectIdResponse();
+        Integer projectId = findByProjectIdRequest.getProjectId();
 
         Projects project = projectsService.findByProjectId(projectId).get();
 
-        findByDeveloperIdResponse.setProjectInfo(convertProjectsToProjectInfo(project));
-        return findByDeveloperIdResponse;
+        findByProjectIdResponse.setProjectInfo(convertProjectsToProjectInfo(project));
+        return findByProjectIdResponse;
     }
 
     @PayloadRoot(namespace = "http://epam.com/brest/courses/soap_api",

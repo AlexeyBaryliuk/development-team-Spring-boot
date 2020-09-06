@@ -10,6 +10,7 @@ import com.epam.brest.courses.service.Projects_DevelopersService;
 import com.epam.brest.courses.web_app.validators.ProjectsValidator;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.xml.datatype.DatatypeConfigurationException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +32,7 @@ import java.util.Optional;
  */
 @Controller
 @RequestMapping("/projects")
+@SuppressFBWarnings("SIC_INNER_SHOULD_BE_STATIC_ANON")
 public class ProjectsController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsController.class);
@@ -52,9 +55,9 @@ public class ProjectsController {
     private SimpMessageSendingOperations messagingTemplate;
 
     public ProjectsController(ProjectsDtoService projectsDtoService
-                            , ProjectsService projectsService
-                            , DevelopersService developersService
-                            , Projects_DevelopersService projects_developersService) {
+            , ProjectsService projectsService
+            , DevelopersService developersService
+            , Projects_DevelopersService projects_developersService) {
         this.projectsDtoService = projectsDtoService;
         this.projectsService = projectsService;
         this.developersService = developersService;
@@ -77,7 +80,7 @@ public class ProjectsController {
                                  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateStart,
                                  @RequestParam (value = "dateEnd", required = false)
                                  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd,
-                                 Model model){
+                                 Model model) throws DatatypeConfigurationException {
 
      if (dateStart!= null && dateEnd != null){
 
@@ -101,7 +104,7 @@ public class ProjectsController {
 }
 
     /**
-     * Goto edit project's page.
+     * Goto edit project'AddDeveloperToProjectsDevelopersRequest page.
      *
      * @return view name
      */
@@ -139,7 +142,7 @@ public class ProjectsController {
      */
     @PostMapping(value = "/{id}")
     public String updateProject(@ModelAttribute("project") @Valid Projects project,
-                                BindingResult result, Model model){
+                                BindingResult result, Model model) throws DatatypeConfigurationException {
 
         model.addAttribute("developerEntity", developer);
         LOGGER.debug("updateProject({}, {})", project, result);
@@ -181,7 +184,7 @@ public class ProjectsController {
     @PostMapping(value = "/add")
     public String addProject(@ModelAttribute("project")
                              @Valid Projects project,
-                             BindingResult result,Model model) {
+                             BindingResult result,Model model) throws DatatypeConfigurationException {
 
         LOGGER.debug("addProject{}, {})", project, result);
         projectsValidator.validate(project, result);
@@ -198,7 +201,7 @@ public class ProjectsController {
                 sendMessage(projectsDtoMapperList,"/topic/add", projectId);
 
             }
-                catch (IllegalArgumentException ie){
+                catch (IllegalArgumentException e ){
                     result.rejectValue("description", "projectDescription.exist");
                     return "projectAdd";
                 }

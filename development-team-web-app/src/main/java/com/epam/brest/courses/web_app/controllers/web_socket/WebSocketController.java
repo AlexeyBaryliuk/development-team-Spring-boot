@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
+import javax.xml.datatype.DatatypeConfigurationException;
 import java.util.List;
 
 @Controller
@@ -32,7 +32,7 @@ public class WebSocketController {
 
     @MessageMapping("/chat.getAll")
     @SendTo("/topic/all")
-    public List<ProjectsDto> allProjects( ) {
+    public List<ProjectsDto> allProjects( ) throws DatatypeConfigurationException {
 
     List<ProjectsDto> projectsList = projectsDtoService.countOfDevelopers();
 

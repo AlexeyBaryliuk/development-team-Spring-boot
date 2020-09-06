@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.datatype.DatatypeConfigurationException;
 import java.time.LocalDate;
 import java.util.Collection;
 
@@ -38,7 +39,7 @@ public class ProjectsDtoController {
      */
     @GetMapping
     public Collection<ProjectsDto> findBetweenDates(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateStart
-                                                   ,@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd) {
+                                                   ,@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateEnd) throws DatatypeConfigurationException {
 
         LOGGER.debug("findBetwenDates({},{})", dateStart, dateEnd);
         return projectsDtoService.findAllByDateAddedBetween(dateStart, dateEnd);
@@ -51,7 +52,7 @@ public class ProjectsDtoController {
      * @return List of all projects Dto.
      */
     @GetMapping("/findAll")
-    public Collection<ProjectsDto> findAll() {
+    public Collection<ProjectsDto> findAll() throws DatatypeConfigurationException {
 
         LOGGER.debug("findAll()");
         return projectsDtoService.countOfDevelopers();

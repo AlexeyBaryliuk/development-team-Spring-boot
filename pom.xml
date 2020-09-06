@@ -20,7 +20,7 @@
         <module>development-team-service-rest</module>
         <module>development-team-rest-soap</module>
         <module>development-team-soapp-app</module>
-        <module>development-team-service-soap</module>
+        <module>development-team-service-soapp</module>
     </modules>
 
 
@@ -83,6 +83,11 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.epam.brest.courses</groupId>
+                <artifactId>development-team-service-soapp</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.epam.brest.courses</groupId>
@@ -97,15 +102,9 @@
             </dependency>
 
             <dependency>
-                <groupId>com.epam.brest.courses</groupId>
-                <artifactId>development-team-service-soap</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-configuration-processor</artifactId>
-                <version>${org.springframework.boot.version}</version>
+                <version>${spring-boot.version}</version>
                 <optional>true</optional>
             </dependency>
 

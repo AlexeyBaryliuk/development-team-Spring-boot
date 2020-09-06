@@ -1,4 +1,4 @@
-package com.epam.brest.courses.soap_service_api;
+package com.epam.brest.courses.soapService;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.service.DevelopersService;
@@ -14,7 +14,9 @@ import java.util.Optional;
 import static com.epam.brest.courses.utils.DevelopersUtils.convertDeveloperInfoToDevelopers;
 import static com.epam.brest.courses.utils.DevelopersUtils.convertDevelopersToDevelopersInfo;
 
-public class DevelopersClient extends WebServiceGatewaySupport implements DevelopersService {
+public class DevelopersClient extends WebServiceGatewaySupport
+        implements DevelopersService
+{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersClient.class);
 
@@ -88,3 +90,4 @@ public class DevelopersClient extends WebServiceGatewaySupport implements Develo
         return deleteDeveloperResponse.getDeveloperDelete();
     }
 }
+

@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.client.ExpectedCount;
 import org.springframework.test.web.client.MockRestServiceServer;
@@ -93,7 +94,7 @@ class ProjectsServiceRestIT {
                 );
 
         // when
-        Optional<Projects> optionalProject = projectsServiceRest.findByDeveloperId(id);
+        Optional<Projects> optionalProject = projectsServiceRest.findByProjectId(id);
 
         // then
         mockServer.verify();
@@ -125,7 +126,7 @@ class ProjectsServiceRestIT {
 
         // when
         int result = projectsServiceRest.update(project);
-        Optional<Projects> updatedProjectOptional = projectsServiceRest.findByDeveloperId(id);
+        Optional<Projects> updatedProjectOptional = projectsServiceRest.findByProjectId(id);
 
         // then
         mockServer.verify();

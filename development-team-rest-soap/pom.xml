@@ -113,5 +113,19 @@
                 <spring.profiles.active>jdbc</spring.profiles.active>
             </properties>
         </profile>
+        <profile>
+            <id>soap_service</id>
+
+            <properties>
+                <spring.profiles.active>soap_service</spring.profiles.active>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>rest_service</id>
+            <properties>
+                <spring.profiles.active>rest_service</spring.profiles.active>
+            </properties>
+        </profile>
     </profiles>
 </project>

@@ -31,7 +31,6 @@ public class ProjectsRest {
     private StringBuilder newUrl;
 
     @Bean
-    @Primary
     public DevelopersServiceRest developersServiceRest() {
 
          newUrl= new StringBuilder();
@@ -40,7 +39,6 @@ public class ProjectsRest {
     }
 
     @Bean
-    @Primary
     public ProjectsServiceRest projectsServiceRest() {
 
         newUrl= new StringBuilder();
@@ -49,7 +47,6 @@ public class ProjectsRest {
     }
 
     @Bean
-    @Primary
     public ProjectsDtoServiceRest projectsDtoServiceRest() {
 
         newUrl= new StringBuilder();
@@ -58,7 +55,6 @@ public class ProjectsRest {
     }
 
     @Bean
-    @Primary
     public Projects_DevelopersServiceRest projects_developersServiceRest() {
 
         newUrl= new StringBuilder();

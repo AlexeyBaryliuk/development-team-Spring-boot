@@ -43,7 +43,6 @@ public class ProjectsDtoEndpoint {
             (@RequestPayload FindAllByDateAddedBetweenRequest request) throws DatatypeConfigurationException {
 
         LOGGER.debug("Endpoint - findAllByDateAddedBetweenRequest");
-
         FindAllByDateAddedBetweenResponse response = new FindAllByDateAddedBetweenResponse();
 
         LocalDate from = convertXMLGregorianCalendarToLocalDate(request.getDateStart());
@@ -71,6 +70,4 @@ public class ProjectsDtoEndpoint {
 
         return response;
     }
-
-
 }

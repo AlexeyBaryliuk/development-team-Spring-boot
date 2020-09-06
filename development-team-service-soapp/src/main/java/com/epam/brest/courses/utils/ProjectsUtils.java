@@ -1,5 +1,6 @@
 package com.epam.brest.courses.utils;
 
+
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.wsdl.ProjectInfo;
 
@@ -13,8 +14,9 @@ public class ProjectsUtils {
     public static ProjectInfo convertProjectsToProjectInfo(Projects project) throws DatatypeConfigurationException {
 
         ProjectInfo projectInfo = new ProjectInfo();
-
-        projectInfo.setProjectId(project.getProjectId());
+        if (project.getProjectId() != null) {
+            projectInfo.setProjectId(project.getProjectId());
+        }
         projectInfo.setDescription(project.getDescription());
         projectInfo.setDateAdded(DatatypeFactory
                 .newInstance()

@@ -1,17 +1,16 @@
 package com.epam.brest.courses.web_app;
 
 import com.epam.brest.courses.model.Projects;
-import com.epam.brest.courses.web_app.testConfig.TestConfig;
 import com.epam.brest.courses.web_app.config.viewConfig.ViewConfig;
+import com.epam.brest.courses.web_app.testConfig.TestConfig;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -26,10 +25,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
 import static com.epam.brest.courses.model.constants.ProjectConstants.PROJECT_DESCRIPTION_SIZE;
 import static org.hamcrest.Matchers.*;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)

@@ -14,17 +14,16 @@ import com.epam.brest.courses.web_app.controllers.ProjectsController;
 import com.epam.brest.courses.web_app.validators.DevelopersValidator;
 import com.epam.brest.courses.web_app.validators.ProjectsValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
-import javax.activation.DataSource;
+import org.springframework.messaging.core.MessageSendingOperations;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 
 @TestConfiguration
@@ -50,6 +49,11 @@ public class TestConfig {
                                     , projects_developersService());
     }
 
+
+    @Bean
+    public SimpMessagingTemplate messagingTemplate() {
+        return Mockito.mock(SimpMessagingTemplate.class);
+    }
 
     @Bean
     public DevelopersJdbcDaoImpl developersJdbcDao() {
@@ -102,6 +106,7 @@ public class TestConfig {
     public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
         return new NamedParameterJdbcTemplate(dataSource);
     }
+
 
     @Bean
     @Profile("h2")

@@ -47,7 +47,7 @@
 
         <dependency>
             <groupId>com.epam.brest.courses</groupId>
-            <artifactId>development-team-service-soap</artifactId>
+            <artifactId>development-team-service-soapp</artifactId>
         </dependency>
 
         <dependency>
@@ -71,10 +71,10 @@
             <optional>true</optional>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-configuration-processor</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
 
         <!-- Optional, for bootstrap -->
         <dependency>
@@ -129,6 +129,26 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-reactor-netty</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>annotations</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>annotations</artifactId>
+            <version>3.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -144,7 +164,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
-                    <argLine>-Dspring.profiles.active=mySql</argLine>
+                    <argLine>-Dspring.profiles.active=h2</argLine>
                 </configuration>
             </plugin>
         </plugins>
@@ -152,9 +172,7 @@
     <profiles>
         <profile>
             <id>soap_service</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+
             <properties>
                 <spring.profiles.active>soap_service</spring.profiles.active>
             </properties>

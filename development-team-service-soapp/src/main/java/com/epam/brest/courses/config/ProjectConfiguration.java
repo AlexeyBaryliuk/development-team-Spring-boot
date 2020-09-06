@@ -1,9 +1,9 @@
 package com.epam.brest.courses.config;
 
-import com.epam.brest.courses.soap_service_api.DevelopersClient;
-import com.epam.brest.courses.soap_service_api.ProjectsClient;
-import com.epam.brest.courses.soap_service_api.ProjectsDtoClient;
-import com.epam.brest.courses.soap_service_api.Projects_DevelopersClient;
+import com.epam.brest.courses.soapService.DevelopersClient;
+import com.epam.brest.courses.soapService.ProjectsClient;
+import com.epam.brest.courses.soapService.ProjectsDtoClient;
+import com.epam.brest.courses.soapService.Projects_DevelopersClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
@@ -59,3 +59,4 @@ public class ProjectConfiguration {
         return projectsDtoClient;
     }
 }
+
