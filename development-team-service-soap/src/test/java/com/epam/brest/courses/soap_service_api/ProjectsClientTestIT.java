@@ -20,15 +20,15 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ProjectConfiguration.class
         , loader = AnnotationConfigContextLoader.class)
-class ProjectClientTestIT {
+class ProjectsClientTestIT {
 
     @Autowired
-    private ProjectClient projectClient;
+    private ProjectsClient projectsClient;
 
     @Test
     void shouldFindAllProjects() {
 
-        List<Projects> projectsList = projectClient.findAll();
+        List<Projects> projectsList = projectsClient.findAll();
 
         assertNotNull(projectsList);
 

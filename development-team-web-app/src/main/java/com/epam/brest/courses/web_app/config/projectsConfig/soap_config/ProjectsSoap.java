@@ -1,6 +1,6 @@
 package com.epam.brest.courses.web_app.config.projectsConfig.soap_config;
 
-import com.epam.brest.courses.soap_service_api.ProjectClient;
+import com.epam.brest.courses.soap_service_api.ProjectsClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,15 +11,15 @@ import org.springframework.context.annotation.Profile;
 @ComponentScan(basePackages = {"com.epam.brest.courses.*"})
 public class ProjectsSoap {
 
-    private ProjectClient projectClient;
+    private ProjectsClient projectsClient;
 
-    public ProjectsSoap(ProjectClient projectClient) {
-        this.projectClient = projectClient;
+    public ProjectsSoap(ProjectsClient projectsClient) {
+        this.projectsClient = projectsClient;
     }
 
     @Bean
-    public ProjectClient projectClient(){
-        return new ProjectClient();
+    public ProjectsClient projectClient(){
+        return new ProjectsClient();
     }
 
 }

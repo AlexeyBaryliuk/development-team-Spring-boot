@@ -2,6 +2,7 @@ package com.epam.brest.courses.service;
 
 import com.epam.brest.courses.model.Projects;
 
+import javax.xml.datatype.DatatypeConfigurationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +32,7 @@ public interface ProjectsService {
      * @param project project.
      * @return number of updated records in the database.
      */
-    Integer update(Projects project);
+    Integer update(Projects project) throws DatatypeConfigurationException;
 
     /**
      * Persist new project.
@@ -39,8 +40,8 @@ public interface ProjectsService {
      * @param project project.
      * @return persisted project's id.
      */
-    Integer create(Projects project);
-    Integer createF(Projects project);
+    Integer create(Projects project) throws DatatypeConfigurationException;
+    Integer createF(Projects project) throws DatatypeConfigurationException;
     /**
      * Delete project.
      *

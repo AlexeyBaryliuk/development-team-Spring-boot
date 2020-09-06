@@ -68,7 +68,7 @@ public class ProjectsEndpoint {
     @PayloadRoot(namespace = "http://epam.com/brest/courses/soap_api",
             localPart = "updateProjectRequest")
     @ResponsePayload
-    public UpdateProjectResponse updateProject(@RequestPayload UpdateProjectRequest updateProjectRequest){
+    public UpdateProjectResponse updateProject(@RequestPayload UpdateProjectRequest updateProjectRequest) throws DatatypeConfigurationException {
 
         LOGGER.debug("Endpoint - updateProject");
         UpdateProjectResponse updateProjectResponse = new UpdateProjectResponse();
@@ -84,7 +84,7 @@ public class ProjectsEndpoint {
     @PayloadRoot(namespace = "http://epam.com/brest/courses/soap_api",
             localPart = "createProjectRequest")
     @ResponsePayload
-    public CreateProjectResponse addProject(@RequestPayload CreateProjectRequest createProjectRequest) {
+    public CreateProjectResponse addProject(@RequestPayload CreateProjectRequest createProjectRequest) throws DatatypeConfigurationException {
 
         LOGGER.debug("Endpoint - createProject");
         CreateProjectResponse createProjectResponse = new CreateProjectResponse();
