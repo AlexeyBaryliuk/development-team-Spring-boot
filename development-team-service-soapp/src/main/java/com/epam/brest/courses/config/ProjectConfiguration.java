@@ -11,6 +11,7 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 @Configuration
 public class ProjectConfiguration {
 
+    private final static String URI = "http://localhost:8088/ws/soap-xsd.wsdl";
     @Bean
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
@@ -23,7 +24,7 @@ public class ProjectConfiguration {
     @Bean
     public ProjectsClient projectsClient(Jaxb2Marshaller marshaller) {
         ProjectsClient projectsClient = new ProjectsClient();
-        projectsClient.setDefaultUri("http://localhost:8088/ws");
+        projectsClient.setDefaultUri(URI);
         projectsClient.setMarshaller(marshaller);
         projectsClient.setUnmarshaller(marshaller);
         return projectsClient;
@@ -33,7 +34,7 @@ public class ProjectConfiguration {
     public DevelopersClient developersClient(Jaxb2Marshaller marshaller) {
 
         DevelopersClient developersClient = new DevelopersClient();
-        developersClient.setDefaultUri("http://localhost:8088/ws");
+        developersClient.setDefaultUri(URI);
         developersClient.setMarshaller(marshaller);
         developersClient.setUnmarshaller(marshaller);
         return developersClient;
@@ -43,7 +44,7 @@ public class ProjectConfiguration {
     public Projects_DevelopersClient projects_developersClient(Jaxb2Marshaller marshaller) {
 
         Projects_DevelopersClient projects_developersClient = new Projects_DevelopersClient();
-        projects_developersClient.setDefaultUri("http://localhost:8088/ws");
+        projects_developersClient.setDefaultUri(URI);
         projects_developersClient.setMarshaller(marshaller);
         projects_developersClient.setUnmarshaller(marshaller);
         return projects_developersClient;
@@ -53,7 +54,7 @@ public class ProjectConfiguration {
     public ProjectsDtoClient projectsDtoClient(Jaxb2Marshaller marshaller) {
 
         ProjectsDtoClient projectsDtoClient = new ProjectsDtoClient();
-        projectsDtoClient.setDefaultUri("http://localhost:8088/ws");
+        projectsDtoClient.setDefaultUri(URI);
         projectsDtoClient.setMarshaller(marshaller);
         projectsDtoClient.setUnmarshaller(marshaller);
         return projectsDtoClient;

@@ -41,7 +41,6 @@ public interface ProjectsService {
      * @return persisted project's id.
      */
     Integer create(Projects project) throws DatatypeConfigurationException;
-    Integer createF(Projects project) throws DatatypeConfigurationException;
     /**
      * Delete project.
      *

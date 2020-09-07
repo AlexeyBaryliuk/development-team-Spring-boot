@@ -51,7 +51,7 @@ public class Projects_DevelopersDaoTestIT {
         Integer secondDeveloperId = developersJdbcDao.create(developer);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectJdbcDao.create(newProject);
+        Integer projectId = projectJdbcDao.saveAndFlush(newProject).getProjectId();
         Integer resultFirst = projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId, firstDeveloperId);
         Integer resultSecond = projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId, secondDeveloperId);
 
@@ -69,7 +69,7 @@ public class Projects_DevelopersDaoTestIT {
         Integer developerId = developersJdbcDao.create(developer);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectJdbcDao.create(newProject);
+        Integer projectId = projectJdbcDao.saveAndFlush(newProject).getProjectId();
         Integer result = projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId, developerId);
 
         List<Developers> developersList = projects_developersJdbcDao.selectDevelopersFromProjects_Developers(projectId);
@@ -84,7 +84,7 @@ public class Projects_DevelopersDaoTestIT {
         Integer developerId = developersJdbcDao.create(developer);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectJdbcDao.create(newProject);
+        Integer projectId = projectJdbcDao.saveAndFlush(newProject).getProjectId();
         Integer resultFirst = projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId, developerId);
 
         List<Developers> developersList = projects_developersJdbcDao.selectDevelopersFromProjects_Developers(projectId);
@@ -104,7 +104,7 @@ public class Projects_DevelopersDaoTestIT {
         Integer developerId = developersJdbcDao.create(developer);
         Projects newProject = project;
         newProject.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer projectId = projectJdbcDao.create(newProject);
+        Integer projectId = projectJdbcDao.saveAndFlush(newProject).getProjectId();
         projects_developersJdbcDao.addDeveloperToProjects_Developers(projectId,developerId);
         Optional<Projects_Developers> listFromProjects_Developers = projects_developersJdbcDao
                 .findByIdFromProjects_Developers(projectId,developerId);

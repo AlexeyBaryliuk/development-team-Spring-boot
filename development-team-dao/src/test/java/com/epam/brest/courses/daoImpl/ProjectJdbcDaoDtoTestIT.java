@@ -49,12 +49,12 @@ class ProjectJdbcDaoDtoTestIT {
 
         Projects projectStart = project;
         projectStart.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer idStart = projectJdbcDao.create(projectStart);
+        Integer idStart = projectJdbcDao.saveAndFlush(projectStart).getProjectId();
             assertTrue(idStart > 0);
 
         Projects projectEnd = project;
         projectEnd.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer idEnd = projectJdbcDao.create(projectEnd);
+        Integer idEnd = projectJdbcDao.saveAndFlush(projectEnd).getProjectId();
             assertTrue(idEnd > 0);
 
         List<ProjectsDto> projectsList = projectJdbcDaoDto.findAllByDateAddedBetween(dateStart,dateEnd);

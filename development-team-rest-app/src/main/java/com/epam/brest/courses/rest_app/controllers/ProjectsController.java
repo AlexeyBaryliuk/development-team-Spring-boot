@@ -80,7 +80,7 @@ public class ProjectsController {
 
         LOGGER.debug("Add project {}", project);
 
-        return projectsService.createF(project);
+        return projectsService.create(project);
     }
 
     /**

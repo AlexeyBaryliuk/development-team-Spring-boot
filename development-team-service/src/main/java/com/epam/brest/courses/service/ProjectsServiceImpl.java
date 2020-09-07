@@ -49,13 +49,6 @@ public class ProjectsServiceImpl implements ProjectsService {
     public Integer create(Projects project) {
 
         LOGGER.debug("Create project - create(): project = {}",project);
-        return projectsDao.create(project);
-    }
-
-    @Override
-    public Integer createF(Projects project) {
-
-        LOGGER.debug("Create project - create(): project = {}",project);
         return projectsDao.saveAndFlush(project).getProjectId();
     }
 

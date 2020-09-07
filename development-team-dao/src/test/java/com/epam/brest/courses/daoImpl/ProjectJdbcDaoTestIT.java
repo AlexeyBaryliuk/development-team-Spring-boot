@@ -43,7 +43,7 @@ class ProjectJdbcDaoTestIT {
 
         Projects projectTest = project;
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer id = projectsDao.create(projectTest);
+        Integer id = projectsDao.saveAndFlush(projectTest).getProjectId();
         Optional<Projects> projectOptional = projectsDao.findByProjectId(id);
 
         assertTrue(projectOptional.isPresent());
@@ -60,7 +60,7 @@ class ProjectJdbcDaoTestIT {
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         LocalDate checkDate = projectTest.getDateAdded();
 
-        Integer id = projectsDao.create(projectTest);
+        Integer id = projectsDao.saveAndFlush(projectTest).getProjectId();
         Optional<Projects> optionalProjects = projectsDao.findByProjectId(id);
             assertTrue(optionalProjects.isPresent());
 
@@ -83,7 +83,7 @@ class ProjectJdbcDaoTestIT {
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
         LocalDate date = projectTest.getDateAdded();
         String description = projectTest.getDescription();
-        Integer id = projectsDao.create(projectTest);
+        Integer id = projectsDao.saveAndFlush(projectTest).getProjectId();
         assertEquals(description, projectsDao.findByProjectId(id).get().getDescription());
 
         assertEquals(date, projectsDao.findByProjectId(id).get().getDateAdded());
@@ -96,7 +96,7 @@ class ProjectJdbcDaoTestIT {
 
         Projects projectTest = project;
         projectTest.setDescription(RandomStringUtils.randomAlphabetic(PROJECT_DESCRIPTION_SIZE));
-        Integer id = projectsDao.create(projectTest);
+        Integer id = projectsDao.saveAndFlush(projectTest).getProjectId();
         assertTrue(projectsDao.findByProjectId(id).isPresent());
         projectsDao.deleteByProjectId(id);
         assertFalse(projectsDao.findByProjectId(id).isPresent());

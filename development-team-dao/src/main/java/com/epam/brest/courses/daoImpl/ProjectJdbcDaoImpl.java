@@ -98,22 +98,6 @@ public class ProjectJdbcDaoImpl implements ProjectsDao {
     }
 
     @Override
-    public Integer create(Projects project) {
-
-        if (!isNameUnique(project)) {
-            throw new IllegalArgumentException("Project with same description already exist.");
-        }
-        parameterSource.addValue(DESCRIPTION, project.getDescription());
-        parameterSource.addValue(DATEADDED, project.getDateAdded());
-        LOGGER.debug("Create new project {}", project);
-
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        namedParameterJdbcTemplate.update(sqlAdd,parameterSource,keyHolder);
-        LOGGER.debug("Date {}", project.getDateAdded());
-    return keyHolder.getKey().intValue();
-    }
-
-    @Override
     public Integer deleteByProjectId(Integer projectId) {
 
         LOGGER.debug("Delete project by id {}", projectId);
@@ -124,7 +108,18 @@ public class ProjectJdbcDaoImpl implements ProjectsDao {
 
     @Override
     public Projects saveAndFlush(Projects project) {
-        return null;
+        if (!isNameUnique(project)) {
+            throw new IllegalArgumentException("Project with same description already exist.");
+        }
+        parameterSource.addValue(DESCRIPTION, project.getDescription());
+        parameterSource.addValue(DATEADDED, project.getDateAdded());
+        LOGGER.debug("Create new project {}", project);
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        namedParameterJdbcTemplate.update(sqlAdd,parameterSource,keyHolder);
+        LOGGER.debug("Date {}", project.getDateAdded());
+
+        return findByProjectId(keyHolder.getKey().intValue()).get();
     }
 
 }

@@ -86,19 +86,6 @@ public class ProjectsClient extends WebServiceGatewaySupport
     }
 
     @Override
-    public Integer createF(Projects project) throws DatatypeConfigurationException {
-
-        LOGGER.debug("SoapService - createProject");
-        CreateProjectRequest createProjectRequest = new CreateProjectRequest();
-        createProjectRequest.setProjectInfo(convertProjectsToProjectInfo(project));
-
-        CreateProjectResponse createProjectResponse = (CreateProjectResponse)getWebServiceTemplate()
-                .marshalSendAndReceive(createProjectRequest);
-
-        return createProjectResponse.getProjectCreate();
-    }
-
-    @Override
     public Integer delete(Integer projectId) {
 
         LOGGER.debug("SoapService - deleteProject");

@@ -38,7 +38,7 @@ public interface ProjectsDao {
      * @param project project.
      * @return persisted project's id.
      */
-    Integer create(Projects project);
+    Projects saveAndFlush(Projects project);
 
     /**
      * Delete project.
@@ -48,5 +48,5 @@ public interface ProjectsDao {
      */
     Integer deleteByProjectId(Integer projectId);
 
-    Projects saveAndFlush(Projects project);
+
 }
