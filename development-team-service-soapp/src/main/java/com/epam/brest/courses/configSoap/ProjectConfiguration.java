@@ -1,4 +1,4 @@
-package com.epam.brest.courses.config;
+package com.epam.brest.courses.configSoap;
 
 import com.epam.brest.courses.soapService.DevelopersClient;
 import com.epam.brest.courses.soapService.ProjectsClient;

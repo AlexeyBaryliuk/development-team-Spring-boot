@@ -64,11 +64,6 @@ public class ProjectsServiceRest implements ProjectsService {
     }
 
     @Override
-    public Integer createF(Projects project) {
-        return null;
-    }
-
-    @Override
     public Integer delete(Integer projectId) {
 
         LOGGER.debug("delete({})", projectId);

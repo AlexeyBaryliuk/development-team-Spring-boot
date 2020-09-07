@@ -1,6 +1,6 @@
 package com.epam.brest.courses.soapService;
 
-import com.epam.brest.courses.config.ProjectConfiguration;
+import com.epam.brest.courses.configSoap.ProjectConfiguration;
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.model.dto.ProjectsDto;
 import org.junit.jupiter.api.Test;
@@ -41,7 +41,8 @@ class ProjectsDtoClientTestIT {
         LocalDate from = LocalDate.now().minusDays(1);
         LocalDate to = LocalDate.now().plusDays(1);
         List<ProjectsDto> projectsDtoList = projectsDtoClient.findAllByDateAddedBetween(from, to);
-
+        System.out.println("Project = " + projectId);
+        System.out.println("+++++Project = " + projectsDtoList.size());
         assertTrue(projectsDtoList.size() == 1);
 
         assertEquals(description, projectsDtoList.get(0).getDescription());

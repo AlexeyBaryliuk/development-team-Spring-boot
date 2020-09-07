@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 @Profile("rest_service")
 @PropertySource("classpath:application.properties")
+@ComponentScan("com.epam.brest.courses.service_rest")
 public class ProjectsRest {
 
     @Value("${point.start-url}")

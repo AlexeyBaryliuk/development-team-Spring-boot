@@ -1,6 +1,6 @@
 package com.epam.brest.courses.soapService;
 
-import com.epam.brest.courses.config.ProjectConfiguration;
+import com.epam.brest.courses.configSoap.ProjectConfiguration;
 import com.epam.brest.courses.model.Projects;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
