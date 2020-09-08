@@ -1,8 +1,12 @@
 package com.epam.brest.courses.model;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Projects_Developers{
 
     /**

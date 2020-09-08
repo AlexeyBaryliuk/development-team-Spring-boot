@@ -10,8 +10,10 @@ public class DevelopersUtils {
     public static DeveloperInfo convertDevelopersToDevelopersInfo(Developers developer){
 
         DeveloperInfo developerInfo = new DeveloperInfo();
+        if(developer.getDeveloperId() != null){
+            developerInfo.setDeveloperId(developer.getDeveloperId());
+        }
 
-        developerInfo.setDeveloperId(developer.getDeveloperId());
         developerInfo.setFirstName(developer.getFirstName());
         developerInfo.setLastName(developer.getLastName());
 

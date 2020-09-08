@@ -7,6 +7,7 @@ import com.epam.brest.courses.wsdl.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+import org.springframework.ws.soap.client.SoapFaultClientException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,12 +74,17 @@ public class Projects_DevelopersClient extends WebServiceGatewaySupport
         FindByIdFromProjectsDevelopersRequest request = new FindByIdFromProjectsDevelopersRequest();
         request.setProjectId(projectId);
         request.setDeveloperId(developerId);
-
-        FindByIdFromProjectsDevelopersResponse response = (FindByIdFromProjectsDevelopersResponse)getWebServiceTemplate()
-                .marshalSendAndReceive(request);
         Projects_Developers projects_developers = new Projects_Developers();
-        projects_developers.setDeveloperId(response.getProjectsDevelopersInfo().getDeveloperId());
-        projects_developers.setProjectId(response.getProjectsDevelopersInfo().getProjectId());
+        try {
+            FindByIdFromProjectsDevelopersResponse response = (FindByIdFromProjectsDevelopersResponse) getWebServiceTemplate()
+                    .marshalSendAndReceive(request);
+
+            projects_developers.setDeveloperId(response.getProjectsDevelopersInfo().getDeveloperId());
+            projects_developers.setProjectId(response.getProjectsDevelopersInfo().getProjectId());
+        }
+        catch (SoapFaultClientException e){
+            return Optional.empty();
+        }
 
         return Optional.of(projects_developers);
     }

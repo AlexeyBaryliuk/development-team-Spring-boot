@@ -51,10 +51,17 @@ private final Projects_DevelopersDao projects_developersDao;
 
     @Override
     public Optional<Projects_Developers> findByIdFromProjects_Developers(Integer projectId, Integer developerId) {
-
+        Projects_Developers projects_developers = new Projects_Developers();
         LOGGER.debug("SERVICE findByIdFromProjects_Develoers(). Developer id = {}. ProjectId = {}", developerId, projectId);
-        Optional<Projects_Developers> projects_developers = projects_developersDao.findByIdFromProjects_Developers(projectId,developerId);
-        return projects_developers;
+        List<Developers> developersList = projects_developersDao.selectDevelopersFromProjects_Developers(projectId);
+        for (int i = 0; i < developersList.size(); i++) {
+            if(developersList.get(i).getDeveloperId() == developerId){
+                projects_developers.setProjectId(projectId);
+                projects_developers.setDeveloperId(developerId);
+                return Optional.of(projects_developers);
+            }
+        }
+        return Optional.empty();
     }
 
 

@@ -71,10 +71,10 @@ public class DevelopersClient extends WebServiceGatewaySupport
         UpdateDeveloperRequest updateDeveloperRequest = new UpdateDeveloperRequest();
         updateDeveloperRequest.setDeveloperInfo(convertDevelopersToDevelopersInfo(developer));
 
-        UpdateProjectResponse updateProjectResponse = (UpdateProjectResponse)getWebServiceTemplate()
+        UpdateDeveloperResponse updateDeveloperResponse = (UpdateDeveloperResponse) getWebServiceTemplate()
                 .marshalSendAndReceive(updateDeveloperRequest);
 
-        return updateProjectResponse.getUpdatedProject();
+        return updateDeveloperResponse.getUpdatedDeveloper();
     }
 
     @Override

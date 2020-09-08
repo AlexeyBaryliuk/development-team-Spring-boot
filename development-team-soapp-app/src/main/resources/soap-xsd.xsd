@@ -231,15 +231,15 @@
     <xs:element name="findByIdFromProjects_DevelopersRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="projectId" type="xs:int"/>
-                <xs:element name="developerId" type="xs:int"/>
+                <xs:element name="projectId" nillable="true" type="xs:int"/>
+                <xs:element name="developerId" nillable="true" type="xs:int"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
     <xs:element name="findByIdFromProjects_DevelopersResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="projects_developersInfo" type="tns:projects_developersInfo"/>
+                <xs:element name="projects_developersInfo" nillable="true" type="tns:projects_developersInfo"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
