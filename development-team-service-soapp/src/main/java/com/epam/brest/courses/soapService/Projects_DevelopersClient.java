@@ -18,7 +18,6 @@ import static com.epam.brest.courses.utils.DevelopersUtils.convertDeveloperInfoT
 public class Projects_DevelopersClient extends WebServiceGatewaySupport
         implements Projects_DevelopersService
 {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(Projects_DevelopersClient.class);
 
     @Override

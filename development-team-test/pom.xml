@@ -12,4 +12,6 @@
 
     <artifactId>development-team-test</artifactId>
 
+    <packaging>jar</packaging>
+
 </project>

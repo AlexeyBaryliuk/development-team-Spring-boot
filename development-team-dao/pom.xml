@@ -12,6 +12,8 @@
 
     <artifactId>development-team-dao</artifactId>
 
+    <packaging>jar</packaging>
+
     <dependencies>
         <dependency>
             <groupId>com.epam.brest.courses</groupId>

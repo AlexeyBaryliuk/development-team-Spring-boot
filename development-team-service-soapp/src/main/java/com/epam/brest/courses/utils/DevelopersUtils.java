@@ -4,7 +4,6 @@ package com.epam.brest.courses.utils;
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.wsdl.DeveloperInfo;
 
-
 public class DevelopersUtils {
 
     public static DeveloperInfo convertDevelopersToDevelopersInfo(Developers developer){

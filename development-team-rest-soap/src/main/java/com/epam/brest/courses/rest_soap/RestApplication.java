@@ -8,11 +8,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories("com.epam.brest.courses.*")
-@ComponentScan("com.epam.brest.courses.*")
+@ComponentScan(basePackages = "com.epam.brest.courses.*")
 @EntityScan("com.epam.brest.courses.*")
 public class RestApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RestApplication.class);
+        SpringApplication.run(RestApplication.class, args);
     }
 }

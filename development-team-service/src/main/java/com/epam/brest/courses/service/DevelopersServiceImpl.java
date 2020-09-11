@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @Service
 @Transactional
-
 public class DevelopersServiceImpl implements DevelopersService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersServiceImpl.class);

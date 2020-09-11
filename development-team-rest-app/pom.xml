@@ -12,11 +12,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>development-team-rest-app</artifactId>
-        <packaging>war</packaging>
 
-            <properties>
-                <failOnMissingWebXml>false</failOnMissingWebXml>
-            </properties>
+        <packaging>jar</packaging>
 
     <dependencies>
 
