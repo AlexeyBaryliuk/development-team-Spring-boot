@@ -17,7 +17,7 @@ services:
     image: docker-rest-service
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-REST
     ports:
       - "8088:8088"
     networks:
@@ -30,6 +30,14 @@ services:
     - DATABASE_NAME=test_db
     depends_on:
       - mysql-service
+  web-service:
+    image: docker-web-service
+    build:
+      context: ./
+      dockerfile: Dockerfile-WEB
+    ports:
+      - "8080:8080"
+    network_mode: "host"   # please see the change in alignment now
 # Names our volume
 volumes:
   my-db:
