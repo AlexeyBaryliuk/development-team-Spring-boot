@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  mysql-service:
+    image: mysql:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile-db
+    restart: always
+    ports:
+      - "3307:3306"
+    networks:
+      - my_mysql_net
+    volumes:
+      - my-db:/var/lib/mysql
+  rest-service:
+    image: docker-rest-service
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8088:8088"
+    networks:
+      - my_mysql_net
+    environment:
+    - DATABASE_HOST=mysql-service
+    - DATABASE_PORT=3306
+    - DATABASE_USER=alex
+    - DATABASE_PASSWORD=alex
+    - DATABASE_NAME=test_db
+    depends_on:
+      - mysql-service
+# Names our volume
+volumes:
+  my-db:
+networks:
+  my_mysql_net:
+    driver: bridge

@@ -1,0 +1,20 @@
+FROM maven:3.6.0-jdk-8-alpine AS build
+
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache openssl
+
+COPY . ./app
+WORKDIR /app
+
+RUN mvn clean package -DskipTests -pl development-team-rest-app -am
+
+FROM openjdk:8
+
+WORKDIR /app
+
+COPY --from=build /app/development-team-rest-app/target/*.jar  /app
+
+EXPOSE 8088
+
+ENTRYPOINT ["java", "-jar", "/app/rest_app_DT.jar"]
