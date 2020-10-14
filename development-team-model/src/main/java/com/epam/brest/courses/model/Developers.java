@@ -35,4 +35,5 @@ public class Developers {
     @ManyToMany(mappedBy = "developers",fetch= FetchType.LAZY)
     Set<Projects> projects;
 
+
 }
