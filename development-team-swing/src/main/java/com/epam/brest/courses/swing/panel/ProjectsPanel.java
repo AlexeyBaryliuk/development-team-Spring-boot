@@ -1,13 +1,19 @@
 package com.epam.brest.courses.swing.panel;
 
 import com.epam.brest.courses.model.dto.ProjectsDto;
-import com.epam.brest.courses.swing.action_listener.ActionListenerFind;
+import com.epam.brest.courses.service.ProjectsDtoService;
+import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.swing.editor.ButtonEditEditor;
 import com.epam.brest.courses.swing.instance_of.DateTextField;
 import com.epam.brest.courses.swing.instance_of.DescriptionJDialog;
 import com.epam.brest.courses.swing.instance_of.MyTableModel;
 import com.epam.brest.courses.swing.renderer.ButtonEditRenderer;
 import com.epam.brest.courses.swing.renderer.RowRenderer;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -39,8 +46,19 @@ public class ProjectsPanel extends JPanel {
     private JButton refresh;
     private JTable table;
     private ProjectsCards parent;
+    private List<ProjectsDto> projectsDtoList ;
+    private ObjectMapper mapper = new ObjectMapper();
 
-    public ProjectsPanel(){
+
+
+    private final ProjectsDtoService projectsDtoService;
+
+    private final ProjectsService projectsService;
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsPanel.class);
+
+    public ProjectsPanel(ProjectsDtoService projectsDtoService, ProjectsService projectsService){
+        this.projectsDtoService = projectsDtoService;
+        this.projectsService = projectsService;
 
         northPanel = new JPanel();
         header = new JPanel();
@@ -52,7 +70,7 @@ public class ProjectsPanel extends JPanel {
                 parent = (ProjectsCards) getParent();
 
                     CardLayout layout = (CardLayout)(parent.getLayout());
-                    layout.show(parent, parent.ADD_PROJECT );
+                    layout.show(parent, ProjectsCards.ADD_PROJECT);
 
             }
         });
@@ -61,7 +79,10 @@ public class ProjectsPanel extends JPanel {
         refresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                add_row(createObj());
+
+                cleanTable();
+
+                add_row(convertFromLinked(projectsDtoService.countOfDevelopers()));
             }
         });
 
@@ -77,12 +98,23 @@ public class ProjectsPanel extends JPanel {
         });
 
         delete = new JButton();
-//        delete.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent actionEvent) {
-//
-//            }
-//        });
+        delete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+                DefaultTableModel dm = (DefaultTableModel)table.getModel();
+
+                int row = table.getSelectedRow();
+                int projectId = (int)table.getModel().getValueAt(row, 0);
+                try {
+                    projectsService.delete(projectId);
+                    dm.removeRow(row);
+                }
+                catch (Exception e){
+                    LOGGER.debug("The row number {} wasn't removed.", row);
+                }
+            }
+        });
 
         description = new JButton();
         description.addActionListener(new ActionListener() {
@@ -96,10 +128,13 @@ public class ProjectsPanel extends JPanel {
 
                 int row = table.getSelectedRow();
                 int projectId = (int)table.getModel().getValueAt(row, 0);
+                projectsDtoList = new ArrayList<>();
+                projectsDtoList = projectsDtoService.countOfDevelopers();
 
-                for (int i = 0; i < createObj().size(); i++) {
-                    if (createObj().get(i).getProjectId() == projectId){
-                        description =  createObj().get(i).getDescription();
+                projectsDtoList = convertFromLinked(projectsDtoList);
+                for (int i = 0; i < projectsDtoList.size(); i++) {
+                    if (projectsDtoList.get(i).getProjectId() == projectId){
+                        description =  projectsDtoList.get(i).getDescription();
                         descriptionLable.setText(description);
 
                         break;
@@ -146,7 +181,17 @@ public class ProjectsPanel extends JPanel {
         to = new JLabel(" to ");
         textFieldTo = new DateTextField();
         find = new JButton("Find");
-        find.addActionListener(new ActionListenerFind(textFieldFrom, textFieldTo));
+        find.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+                LocalDate dateFrom = localDateFromString(textFieldFrom.getText());
+                LocalDate dateTo = localDateFromString(textFieldTo.getText());
+
+                cleanTable();
+                add_row(convertFromLinked(projectsDtoService.findAllByDateAddedBetween(dateFrom, dateTo)));
+            }
+        });
 
         filter.setLayout(new FlowLayout(FlowLayout.LEFT));
         filter.add(from);
@@ -163,20 +208,21 @@ public class ProjectsPanel extends JPanel {
 
         add(contents, BorderLayout.CENTER);
         add(northPanel,BorderLayout.NORTH);
-        add_row(createObj());
+        add_row(this.projectsDtoService.countOfDevelopers());
     }
 
 
-    public void add_row(ArrayList<ProjectsDto> obj){
+    public void add_row(List<ProjectsDto> obj){
 
+       projectsDtoList = convertFromLinked(obj);
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
         Object[] row = new Object[6];
         for (int i = 0; i < obj.size(); i++) {
 
-            row[0] = obj.get(i).getProjectId();
-            row[1] = stringFromLocalDate(obj.get(i).getDateAdded());
-            row[2] = obj.get(i).getCountOfDevelopers();
+            row[0] = projectsDtoList.get(i).getProjectId();
+            row[1] = stringFromLocalDate(projectsDtoList.get(i).getDateAdded());
+            row[2] = projectsDtoList.get(i).getCountOfDevelopers();
             row[3] = "edit";
             row[4] = "delete";
             row[5] = "description";
@@ -185,15 +231,23 @@ public class ProjectsPanel extends JPanel {
         }
 
     }
-    public ArrayList<ProjectsDto> createObj(){
-        ArrayList<ProjectsDto> projectsDtos = new ArrayList<>();
-        projectsDtos.add(new ProjectsDto(1,"Hello0",localDateFromString("12-03-2018"), 1));
-        projectsDtos.add(new ProjectsDto(2,"Hello1",localDateFromString("13-03-2016"), 5));
-        projectsDtos.add(new ProjectsDto(3,"Hello2",localDateFromString("14-07-2018"), 7));
-        projectsDtos.add(new ProjectsDto(4,"Hello2",localDateFromString("18-07-2018"), 7));
-        return projectsDtos;
-    }
+//    public ArrayList<ProjectsDto> createObj(){
+//        ArrayList<ProjectsDto> projectsDtos = new ArrayList<>();
+//        projectsDtos.add(new ProjectsDto(1,"Hello0",localDateFromString("12-03-2018"), 1));
+//        projectsDtos.add(new ProjectsDto(2,"Hello1",localDateFromString("13-03-2016"), 5));
+//        projectsDtos.add(new ProjectsDto(3,"Hello2",localDateFromString("14-07-2018"), 7));
+//        projectsDtos.add(new ProjectsDto(4,"Hello2",localDateFromString("18-07-2018"), 7));
+//        return projectsDtos;
+//    }
 
+    public List<ProjectsDto> convertFromLinked(List<ProjectsDto> projectsList){
+
+        List<ProjectsDto> projectsDtoList = mapper.convertValue(
+                projectsList,
+                new TypeReference<List<ProjectsDto>>(){}
+        );
+            return projectsDtoList;
+    }
 
     public LocalDate localDateFromString(String dateS){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -208,4 +262,9 @@ public class ProjectsPanel extends JPanel {
         return formattedString;
     }
 
+    public void cleanTable(){
+
+        DefaultTableModel dm = (DefaultTableModel)table.getModel();
+        dm.getDataVector().removeAllElements();
+    }
 }

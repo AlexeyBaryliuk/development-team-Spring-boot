@@ -1,5 +1,9 @@
 package com.epam.brest.courses.swing.panel;
 
+import com.epam.brest.courses.service.DevelopersService;
+import com.epam.brest.courses.service.ProjectsDtoService;
+import com.epam.brest.courses.service.ProjectsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -15,12 +19,25 @@ public class DevelopmentTeam extends JFrame {
     private JPanel projectsCards;
     private JLabel footer;
 
+    @Autowired
+    private final ProjectsDtoService projectsDtoService;
+    @Autowired
+    private final ProjectsService projectsService;
+    @Autowired
+    private final DevelopersService developersServiceRest;
+
     private CardLayout cardLayout = new CardLayout();
     private BorderLayout borderLayout = new BorderLayout();
 
-    public DevelopmentTeam(){
+    public DevelopmentTeam(ProjectsDtoService projectsDtoService
+                         , ProjectsService projectsService
+                         , DevelopersService developersServiceRest){
 
         super("Development team");
+        this.projectsDtoService = projectsDtoService;
+        this.projectsService = projectsService;
+        this.developersServiceRest = developersServiceRest;
+
         parent = new JPanel();
 
         parent.setLayout(borderLayout);
@@ -31,7 +48,9 @@ public class DevelopmentTeam extends JFrame {
         cardPanel.setLayout(cardLayout);
         parent.add(cardPanel, BorderLayout.CENTER);
 
-        projectsCards = new ProjectsCards();
+        projectsCards = new ProjectsCards(this.projectsDtoService
+                                        , this.projectsService
+                                        , this.developersServiceRest);
         cardPanel.add(projectsCards);
 
         ImageIcon icon = createIcon("../../../../../../img/footer.png");

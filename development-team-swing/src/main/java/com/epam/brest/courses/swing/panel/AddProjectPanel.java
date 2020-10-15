@@ -1,5 +1,9 @@
 package com.epam.brest.courses.swing.panel;
 
+import com.epam.brest.courses.model.Projects;
+import com.epam.brest.courses.service.ProjectsDtoService;
+import com.epam.brest.courses.service.ProjectsService;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,7 +24,17 @@ public class AddProjectPanel extends JPanel{
     private JButton save;
     private JLabel label;
 
-    public AddProjectPanel(){
+    private final ProjectsService projectsService;
+    private final ProjectsDtoService projectsDtoService;
+    private final ProjectsPanel projectsPanel;
+
+
+    public AddProjectPanel(ProjectsService projectsService
+            , ProjectsDtoService projectsDtoService, ProjectsPanel projectsPanel){
+        this.projectsService = projectsService;
+        this.projectsDtoService = projectsDtoService;
+        this.projectsPanel = projectsPanel;
+
 
         setLayout(new BorderLayout());
         northPanel = new JPanel();
@@ -60,15 +74,16 @@ public class AddProjectPanel extends JPanel{
             textField = new JTextField();
                 text.add(textField);
             label = new JLabel("Description");
+
             cancel = new JButton("Cancel");
             cancel.addActionListener(actionEvent -> {
-                ProjectsCards parent = (ProjectsCards) getParent();
 
-                CardLayout layout = (CardLayout)(parent.getLayout());
-                layout.show(parent, parent.COMMON_PROJECTS );
-                textField.setText("");
+                goToParent();
+
+
             });
         save = new JButton("Save");
+
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -105,10 +120,33 @@ public class AddProjectPanel extends JPanel{
         cancel.addActionListener(actionEvent -> dialog.setVisible(false));
 
         JButton save = new JButton("Save");
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+                Projects project = new Projects();
+                project.setDescription(textField.getText());
+                projectsService.create(project);
+
+                projectsPanel.cleanTable();
+                projectsPanel.add_row(projectsPanel.convertFromLinked
+                                     (projectsDtoService.countOfDevelopers()));
+                goToParent();
+            }
+        });
+
         save.setBackground(Color.white);
         save.addActionListener(actionEvent -> dialog.setVisible(false));
         buttonPane.add(save);
 
         return dialog;
+    }
+
+    public void goToParent(){
+
+        ProjectsCards parent = (ProjectsCards) getParent();
+        CardLayout layout = (CardLayout)(parent.getLayout());
+        layout.show(parent, ProjectsCards.COMMON_PROJECTS);
+        textField.setText("");
     }
 }
