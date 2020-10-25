@@ -7,6 +7,7 @@ public class MyTableModel extends DefaultTableModel {
 
 
     public MyTableModel() {
+        
         super(new Object[][]{},
                 new String[]{
                         "projectId","dateAdded","countOfDevelopers", "edit", "delete", "description"
