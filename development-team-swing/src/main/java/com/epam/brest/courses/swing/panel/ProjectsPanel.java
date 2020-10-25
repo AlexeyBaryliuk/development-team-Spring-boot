@@ -13,13 +13,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -34,7 +34,6 @@ public class ProjectsPanel extends JPanel {
     private JLabel from;
     private JLabel to;
     private JButton find;
-    private JTable projectsData;
     private JButton edit;
     private JButton delete;
     private JButton description;
@@ -48,7 +47,7 @@ public class ProjectsPanel extends JPanel {
     private ProjectsCards parent;
     private List<ProjectsDto> projectsDtoList ;
     private ObjectMapper mapper = new ObjectMapper();
-
+    private static Integer projectEditId = 0;
 
 
     private final ProjectsDtoService projectsDtoService;
@@ -63,14 +62,15 @@ public class ProjectsPanel extends JPanel {
         northPanel = new JPanel();
         header = new JPanel();
         filter = new JPanel();
+        delete = new JButton();
         add = new JButton("Add");
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 parent = (ProjectsCards) getParent();
 
-                    CardLayout layout = (CardLayout)(parent.getLayout());
-                    layout.show(parent, ProjectsCards.ADD_PROJECT);
+                CardLayout layout = (CardLayout)(parent.getLayout());
+                layout.show(parent, ProjectsCards.ADD_PROJECT);
 
             }
         });
@@ -81,39 +81,20 @@ public class ProjectsPanel extends JPanel {
             public void actionPerformed(ActionEvent actionEvent) {
 
                 cleanTable();
-
+                System.out.println("1++++++++++++++++++++" + projectsDtoService.countOfDevelopers());
                 add_row(convertFromLinked(projectsDtoService.countOfDevelopers()));
             }
         });
 
         edit = new JButton();
-        edit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                parent = (ProjectsCards) getParent();
+        edit.addActionListener(actionEvent -> {
+            parent = (ProjectsCards) getParent();
 
-                CardLayout layout = (CardLayout)(parent.getLayout());
-                layout.show(parent, parent.EDIT_PROJECT);
-            }
-        });
+            int row = table.getSelectedRow();
+            projectEditId = (int)table.getModel().getValueAt(row, 0);
 
-        delete = new JButton();
-        delete.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-                DefaultTableModel dm = (DefaultTableModel)table.getModel();
-
-                int row = table.getSelectedRow();
-                int projectId = (int)table.getModel().getValueAt(row, 0);
-                try {
-                    projectsService.delete(projectId);
-                    dm.removeRow(row);
-                }
-                catch (Exception e){
-                    LOGGER.debug("The row number {} wasn't removed.", row);
-                }
-            }
+            CardLayout layout = (CardLayout)(parent.getLayout());
+            layout.show(parent, ProjectsCards.EDIT_PROJECT);
         });
 
         description = new JButton();
@@ -160,14 +141,14 @@ public class ProjectsPanel extends JPanel {
         table.getColumn("delete").setCellRenderer(new ButtonEditRenderer());
         table.getColumn("delete").setCellEditor(new ButtonEditEditor(new JCheckBox(),delete));
 
-            table.getColumn("description").setCellRenderer(new ButtonEditRenderer());
-            table.getColumn("description").setCellEditor(new ButtonEditEditor(new JCheckBox(), description));
+        table.getColumn("description").setCellRenderer(new ButtonEditRenderer());
+        table.getColumn("description").setCellEditor(new ButtonEditEditor(new JCheckBox(), description));
 
-                table.getColumn("projectId").setCellRenderer(new RowRenderer());
-                table.getColumn("dateAdded").setCellRenderer(new RowRenderer());
-                table.getColumn("countOfDevelopers").setCellRenderer(new RowRenderer());
+        table.getColumn("projectId").setCellRenderer(new RowRenderer());
+        table.getColumn("dateAdded").setCellRenderer(new RowRenderer());
+        table.getColumn("countOfDevelopers").setCellRenderer(new RowRenderer());
 
-                contents = new Box(BoxLayout.Y_AXIS);
+        contents = new Box(BoxLayout.Y_AXIS);
         contents.add(new JScrollPane(table));
 
         setLayout(new BorderLayout());
@@ -193,6 +174,29 @@ public class ProjectsPanel extends JPanel {
             }
         });
 
+        delete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                DefaultTableModel dm = (DefaultTableModel)table.getModel();
+
+                int row = table.getSelectedRow();
+                int projectId = (int)table.getModel().getValueAt(row, 0);
+                try {
+                    projectsService.delete(projectId);
+
+                    if (table.isEditing())
+                        table.getCellEditor().stopCellEditing();
+
+                    ((DefaultTableModel)table.getModel()).removeRow(row);
+
+                }
+                catch (Exception ex){
+                    LOGGER.debug("The row number {} wasn't removed.", row);
+                }
+            }
+        });
+
         filter.setLayout(new FlowLayout(FlowLayout.LEFT));
         filter.add(from);
         filter.add(textFieldFrom);
@@ -214,7 +218,7 @@ public class ProjectsPanel extends JPanel {
 
     public void add_row(List<ProjectsDto> obj){
 
-       projectsDtoList = convertFromLinked(obj);
+        projectsDtoList = convertFromLinked(obj);
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
         Object[] row = new Object[6];
@@ -226,19 +230,11 @@ public class ProjectsPanel extends JPanel {
             row[3] = "edit";
             row[4] = "delete";
             row[5] = "description";
-
+            System.out.println("Row++++++" + row);
             tableModel.addRow(row);
         }
 
     }
-//    public ArrayList<ProjectsDto> createObj(){
-//        ArrayList<ProjectsDto> projectsDtos = new ArrayList<>();
-//        projectsDtos.add(new ProjectsDto(1,"Hello0",localDateFromString("12-03-2018"), 1));
-//        projectsDtos.add(new ProjectsDto(2,"Hello1",localDateFromString("13-03-2016"), 5));
-//        projectsDtos.add(new ProjectsDto(3,"Hello2",localDateFromString("14-07-2018"), 7));
-//        projectsDtos.add(new ProjectsDto(4,"Hello2",localDateFromString("18-07-2018"), 7));
-//        return projectsDtos;
-//    }
 
     public List<ProjectsDto> convertFromLinked(List<ProjectsDto> projectsList){
 
@@ -246,7 +242,7 @@ public class ProjectsPanel extends JPanel {
                 projectsList,
                 new TypeReference<List<ProjectsDto>>(){}
         );
-            return projectsDtoList;
+        return projectsDtoList;
     }
 
     public LocalDate localDateFromString(String dateS){
@@ -265,6 +261,9 @@ public class ProjectsPanel extends JPanel {
     public void cleanTable(){
 
         DefaultTableModel dm = (DefaultTableModel)table.getModel();
-        dm.getDataVector().removeAllElements();
+        dm.setRowCount(0);
+    }
+    public static Integer getProjectId(){
+        return projectEditId;
     }
 }

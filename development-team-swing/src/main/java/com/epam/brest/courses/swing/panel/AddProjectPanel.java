@@ -12,17 +12,19 @@ import java.awt.event.ActionListener;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public class AddProjectPanel extends JPanel{
-
     private JPanel northPanel;
     private JPanel headerPanel;
     protected JLabel header;
-    private JTextField textField;
+    protected JTextField textField;
     private JPanel textBlock;
     private JPanel buttonBlock;
     private Box text;
     private JButton cancel;
-    private JButton save;
+    protected JButton save;
     private JLabel label;
+    protected JButton saveDialog;
+    protected ActionListener actionListener;
+
 
     private final ProjectsService projectsService;
     private final ProjectsDtoService projectsDtoService;
@@ -35,6 +37,9 @@ public class AddProjectPanel extends JPanel{
         this.projectsDtoService = projectsDtoService;
         this.projectsPanel = projectsPanel;
 
+        actionListener = new AddActionListener();
+        saveDialog = new JButton("Save");
+        saveDialog.addActionListener(actionListener);
 
         setLayout(new BorderLayout());
         northPanel = new JPanel();
@@ -71,17 +76,17 @@ public class AddProjectPanel extends JPanel{
         textBlock = new JPanel(new BorderLayout());
         textBlock.setBorder(BorderFactory.createLineBorder(Color.black, 2));
         text = new Box(BoxLayout.Y_AXIS);
-            textField = new JTextField();
-                text.add(textField);
-            label = new JLabel("Description");
+        textField = new JTextField();
+        text.add(textField);
+        label = new JLabel("Description");
 
-            cancel = new JButton("Cancel");
-            cancel.addActionListener(actionEvent -> {
+        cancel = new JButton("Cancel");
+        cancel.addActionListener(actionEvent -> {
 
-                goToParent();
+            goToParent();
 
 
-            });
+        });
         save = new JButton("Save");
 
         save.addActionListener(new ActionListener() {
@@ -96,8 +101,8 @@ public class AddProjectPanel extends JPanel{
         textBlock.add(textField, BorderLayout.CENTER);
 
         buttonBlock = new JPanel(new FlowLayout());
-            buttonBlock.add(cancel);
-            buttonBlock.add(save);
+        buttonBlock.add(cancel);
+        buttonBlock.add(save);
         textBlock.add(buttonBlock, BorderLayout.LINE_END);
 
         northPanel.add(textBlock, BorderLayout.CENTER);
@@ -119,25 +124,25 @@ public class AddProjectPanel extends JPanel{
         dialog.add(buttonPane, BorderLayout.PAGE_END);
         cancel.addActionListener(actionEvent -> dialog.setVisible(false));
 
-        JButton save = new JButton("Save");
-        save.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
 
-                Projects project = new Projects();
-                project.setDescription(textField.getText());
-                projectsService.create(project);
+//        saveDialog.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent actionEvent) {
+//
+//                Projects project = new Projects();
+//                project.setDescription(textField.getText());
+//                projectsService.create(project);
+//
+//                projectsPanel.cleanTable();
+//                projectsPanel.add_row(projectsPanel.convertFromLinked
+//                                     (projectsDtoService.countOfDevelopers()));
+//                goToParent();
+//            }
+//        });
 
-                projectsPanel.cleanTable();
-                projectsPanel.add_row(projectsPanel.convertFromLinked
-                                     (projectsDtoService.countOfDevelopers()));
-                goToParent();
-            }
-        });
-
-        save.setBackground(Color.white);
-        save.addActionListener(actionEvent -> dialog.setVisible(false));
-        buttonPane.add(save);
+        saveDialog.setBackground(Color.white);
+        saveDialog.addActionListener(actionEvent -> dialog.setVisible(false));
+        buttonPane.add(saveDialog);
 
         return dialog;
     }
@@ -148,5 +153,20 @@ public class AddProjectPanel extends JPanel{
         CardLayout layout = (CardLayout)(parent.getLayout());
         layout.show(parent, ProjectsCards.COMMON_PROJECTS);
         textField.setText("");
+    }
+    class AddActionListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            Projects project = new Projects();
+            project.setDescription(textField.getText());
+            projectsService.create(project);
+
+            projectsPanel.cleanTable();
+            projectsPanel.add_row(projectsPanel.convertFromLinked
+                    (projectsDtoService.countOfDevelopers()));
+            goToParent();
+
+        }
     }
 }

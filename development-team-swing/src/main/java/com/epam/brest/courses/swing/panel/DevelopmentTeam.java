@@ -30,8 +30,8 @@ public class DevelopmentTeam extends JFrame {
     private BorderLayout borderLayout = new BorderLayout();
 
     public DevelopmentTeam(ProjectsDtoService projectsDtoService
-                         , ProjectsService projectsService
-                         , DevelopersService developersServiceRest){
+            , ProjectsService projectsService
+            , DevelopersService developersServiceRest){
 
         super("Development team");
         this.projectsDtoService = projectsDtoService;
@@ -49,8 +49,8 @@ public class DevelopmentTeam extends JFrame {
         parent.add(cardPanel, BorderLayout.CENTER);
 
         projectsCards = new ProjectsCards(this.projectsDtoService
-                                        , this.projectsService
-                                        , this.developersServiceRest);
+                , this.projectsService
+                , this.developersServiceRest);
         cardPanel.add(projectsCards);
 
         ImageIcon icon = createIcon("../../../../../../img/footer.png");

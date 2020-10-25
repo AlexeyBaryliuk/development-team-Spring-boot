@@ -33,13 +33,13 @@ public class ProjectsCards extends JPanel {
         setLayout(new CardLayout());
 
         projectsPanel = new ProjectsPanel(this.projectsDtoService
-                                        , this.projectsService);
+                , this.projectsService);
         addProjectPanel = new AddProjectPanel(this.projectsService
-                                            , this.projectsDtoService
-                                            , projectsPanel);
+                , this.projectsDtoService
+                , projectsPanel);
         editProjectPanel = new EditProjectPanel(this.projectsService
-                                              , this.projectsDtoService
-                                              , this.developersServiceRest, projectsPanel);
+                , this.projectsDtoService
+                , this.developersServiceRest, projectsPanel);
 
         add(projectsPanel, COMMON_PROJECTS);
         add(addProjectPanel, ADD_PROJECT);
