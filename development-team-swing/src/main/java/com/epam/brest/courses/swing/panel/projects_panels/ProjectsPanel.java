@@ -1,4 +1,4 @@
-package com.epam.brest.courses.swing.panel;
+package com.epam.brest.courses.swing.panel.projects_panels;
 
 import com.epam.brest.courses.model.dto.ProjectsDto;
 import com.epam.brest.courses.service.ProjectsDtoService;
@@ -6,7 +6,7 @@ import com.epam.brest.courses.service.ProjectsService;
 import com.epam.brest.courses.swing.editor.ButtonEditEditor;
 import com.epam.brest.courses.swing.instance_of.DateTextField;
 import com.epam.brest.courses.swing.instance_of.DescriptionJDialog;
-import com.epam.brest.courses.swing.instance_of.MyTableModel;
+import com.epam.brest.courses.swing.instance_of.ProjectsTableModel;
 import com.epam.brest.courses.swing.renderer.ButtonEditRenderer;
 import com.epam.brest.courses.swing.renderer.RowRenderer;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -17,9 +17,7 @@ import org.slf4j.LoggerFactory;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -55,7 +53,8 @@ public class ProjectsPanel extends JPanel {
     private final ProjectsService projectsService;
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsPanel.class);
 
-    public ProjectsPanel(ProjectsDtoService projectsDtoService, ProjectsService projectsService){
+    public ProjectsPanel(ProjectsDtoService projectsDtoService
+                        , ProjectsService projectsService){
         this.projectsDtoService = projectsDtoService;
         this.projectsService = projectsService;
 
@@ -80,9 +79,7 @@ public class ProjectsPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
-                cleanTable();
-                System.out.println("1++++++++++++++++++++" + projectsDtoService.countOfDevelopers());
-                add_row(convertFromLinked(projectsDtoService.countOfDevelopers()));
+                refreshTable();
             }
         });
 
@@ -93,18 +90,33 @@ public class ProjectsPanel extends JPanel {
             int row = table.getSelectedRow();
             projectEditId = (int)table.getModel().getValueAt(row, 0);
 
+            if (table.isEditing())
+                table.getCellEditor().stopCellEditing();
+
             CardLayout layout = (CardLayout)(parent.getLayout());
             layout.show(parent, ProjectsCards.EDIT_PROJECT);
-        });
 
+        });
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent evt) {
+
+                refreshTable();
+            }
+        });
         description = new JButton();
         description.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 int c = 0;
                 String description = null;
-                JPanel textPanel = new JPanel(new FlowLayout());
-                JLabel descriptionLable = new JLabel();
+                JPanel textPanel = new JPanel();
+
+                JTextArea descriptionLable = new JTextArea();
+                descriptionLable.setEditable(false);
+                descriptionLable.setLineWrap(true);
+                descriptionLable.setBackground(Color.LIGHT_GRAY);
+
                 textPanel.add(descriptionLable);
 
                 int row = table.getSelectedRow();
@@ -125,12 +137,12 @@ public class ProjectsPanel extends JPanel {
                 }
 
                 JDialog dialog = new DescriptionJDialog("Description", true);
-                dialog.add(textPanel);
+                dialog.add(descriptionLable);
                 dialog.setVisible(true);
             }
         });
 
-        MyTableModel model = new MyTableModel();
+        ProjectsTableModel model = new ProjectsTableModel();
 
         table = new JTable();
         table.setModel(model);
@@ -263,6 +275,12 @@ public class ProjectsPanel extends JPanel {
         DefaultTableModel dm = (DefaultTableModel)table.getModel();
         dm.setRowCount(0);
     }
+    private void refreshTable(){
+        cleanTable();
+        System.out.println("1++++++++++++++++++++" + projectsDtoService.countOfDevelopers());
+        add_row(convertFromLinked(projectsDtoService.countOfDevelopers()));
+    }
+
     public static Integer getProjectId(){
         return projectEditId;
     }

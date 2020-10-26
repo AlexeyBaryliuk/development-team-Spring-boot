@@ -1,8 +1,10 @@
-package com.epam.brest.courses.swing.panel;
+package com.epam.brest.courses.swing.panel.projects_panels;
 
+import ch.qos.logback.core.Layout;
 import com.epam.brest.courses.service.DevelopersService;
 import com.epam.brest.courses.service.ProjectsDtoService;
 import com.epam.brest.courses.service.ProjectsService;
+import com.epam.brest.courses.service.Projects_DevelopersService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +20,7 @@ public class ProjectsCards extends JPanel {
     private final ProjectsDtoService projectsDtoService;
     private final ProjectsService projectsService;
     private final DevelopersService developersServiceRest;
+    private final Projects_DevelopersService projects_developersService;
 
 
     public final static String COMMON_PROJECTS = "commonProjects";
@@ -25,10 +28,13 @@ public class ProjectsCards extends JPanel {
     public final static String EDIT_PROJECT = "editProject";
 
     public ProjectsCards(ProjectsDtoService projectsDtoService
-            , ProjectsService projectsService, DevelopersService developersServiceRest) {
+            , ProjectsService projectsService
+            , DevelopersService developersServiceRest
+            , Projects_DevelopersService projects_developersService) {
         this.projectsDtoService = projectsDtoService;
         this.projectsService = projectsService;
         this.developersServiceRest = developersServiceRest;
+        this.projects_developersService = projects_developersService;
 
         setLayout(new CardLayout());
 
@@ -39,7 +45,7 @@ public class ProjectsCards extends JPanel {
                 , projectsPanel);
         editProjectPanel = new EditProjectPanel(this.projectsService
                 , this.projectsDtoService
-                , this.developersServiceRest, projectsPanel);
+                , this.projects_developersService, this.developersServiceRest, projectsPanel);
 
         add(projectsPanel, COMMON_PROJECTS);
         add(addProjectPanel, ADD_PROJECT);

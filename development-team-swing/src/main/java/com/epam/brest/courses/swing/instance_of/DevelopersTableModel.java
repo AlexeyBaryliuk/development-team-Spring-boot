@@ -3,14 +3,13 @@ package com.epam.brest.courses.swing.instance_of;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class MyTableModel extends DefaultTableModel {
+public class DevelopersTableModel extends DefaultTableModel {
 
+    public DevelopersTableModel() {
 
-    public MyTableModel() {
-        
         super(new Object[][]{},
                 new String[]{
-                        "projectId","dateAdded","countOfDevelopers", "edit", "delete", "description"
+                        "developerId","FirstName","LastName", "edit", "delete"
                 });
     }
     Class[] types = new Class[]{
@@ -19,10 +18,10 @@ public class MyTableModel extends DefaultTableModel {
             , String.class
             , JButton.class
             , JButton.class
-            , JButton.class
+
     };
     boolean[] canEdit = new boolean[]{
-            false, true, false, true, true, true
+            false, false, false, true, true
     };
 
     public Class getColumnClass(int columnIndex) {
@@ -32,5 +31,4 @@ public class MyTableModel extends DefaultTableModel {
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return canEdit[columnIndex];
     }
-
 }
