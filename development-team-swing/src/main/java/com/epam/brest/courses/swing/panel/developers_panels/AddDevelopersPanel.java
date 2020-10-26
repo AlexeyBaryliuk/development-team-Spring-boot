@@ -17,7 +17,7 @@ public class AddDevelopersPanel extends JPanel{
     private JPanel headerPanel;
     protected JLabel header;
     protected JTextField textLastName;
-    private JTextField textFirstName;
+    protected JTextField textFirstName;
     private JPanel textBlock;
     private JPanel buttonBlock;
     private Box text;

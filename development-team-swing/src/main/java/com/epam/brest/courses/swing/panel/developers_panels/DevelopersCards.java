@@ -25,11 +25,12 @@ public class DevelopersCards extends JPanel {
         developersPanel = new DevelopersPanel(this.developersServiceRest);
         addDeveloperPanel = new AddDevelopersPanel(this.developersServiceRest
                                                   ,developersPanel);
-//        editDeveloperPanel = new EditDeveloperPanel(this.developersServiceRest);
+        editDeveloperPanel = new EditDevelopersPanel(this.developersServiceRest
+                                                    , developersPanel);
 
         add(developersPanel, COMMON_DEVELOPERS);
         add(addDeveloperPanel, ADD_DEVELOPERS);
-//        add(editDeveloperPanel, EDIT_DEVELOPERS);
+        add(editDeveloperPanel, EDIT_DEVELOPERS);
     }
 
 }

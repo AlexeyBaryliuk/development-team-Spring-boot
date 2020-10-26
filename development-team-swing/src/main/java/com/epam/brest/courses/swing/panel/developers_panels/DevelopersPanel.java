@@ -26,7 +26,7 @@ import java.util.List;
 
 public class DevelopersPanel extends JPanel {
 
-    private int developerEditId;
+    private static int developerEditId = 0;
     private JButton edit;
     private JButton delete;
     private JButton add;
@@ -72,7 +72,7 @@ public class DevelopersPanel extends JPanel {
                 table.getCellEditor().stopCellEditing();
 
             CardLayout layout = (CardLayout)(parent.getLayout());
-            layout.show(parent, ProjectsCards.EDIT_PROJECT);
+            layout.show(parent, DevelopersCards.EDIT_DEVELOPERS);
 
         });
         addComponentListener(new ComponentAdapter() {
@@ -177,5 +177,9 @@ public class DevelopersPanel extends JPanel {
             System.out.println("Row++++++" + row);
             tableModel.addRow(row);
         }
+    }
+
+    public static Integer getDeveloperId(){
+        return developerEditId;
     }
 }
