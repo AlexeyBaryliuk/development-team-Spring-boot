@@ -1,4 +1,4 @@
-package com.epam.brest.courses.swing.panel;
+package com.epam.brest.courses.swing.panel.projects_panels;
 
 import com.epam.brest.courses.model.Projects;
 import com.epam.brest.courses.service.ProjectsDtoService;
@@ -32,7 +32,8 @@ public class AddProjectPanel extends JPanel{
 
 
     public AddProjectPanel(ProjectsService projectsService
-            , ProjectsDtoService projectsDtoService, ProjectsPanel projectsPanel){
+            , ProjectsDtoService projectsDtoService
+            , ProjectsPanel projectsPanel){
         this.projectsService = projectsService;
         this.projectsDtoService = projectsDtoService;
         this.projectsPanel = projectsPanel;
@@ -85,7 +86,6 @@ public class AddProjectPanel extends JPanel{
 
             goToParent();
 
-
         });
         save = new JButton("Save");
 
@@ -123,22 +123,6 @@ public class AddProjectPanel extends JPanel{
 
         dialog.add(buttonPane, BorderLayout.PAGE_END);
         cancel.addActionListener(actionEvent -> dialog.setVisible(false));
-
-
-//        saveDialog.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent actionEvent) {
-//
-//                Projects project = new Projects();
-//                project.setDescription(textField.getText());
-//                projectsService.create(project);
-//
-//                projectsPanel.cleanTable();
-//                projectsPanel.add_row(projectsPanel.convertFromLinked
-//                                     (projectsDtoService.countOfDevelopers()));
-//                goToParent();
-//            }
-//        });
 
         saveDialog.setBackground(Color.white);
         saveDialog.addActionListener(actionEvent -> dialog.setVisible(false));
