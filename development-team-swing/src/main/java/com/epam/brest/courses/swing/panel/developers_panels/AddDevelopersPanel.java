@@ -2,7 +2,6 @@ package com.epam.brest.courses.swing.panel.developers_panels;
 
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.service.DevelopersService;
-import jdk.internal.org.objectweb.asm.util.Printer;
 
 import javax.swing.*;
 import java.awt.*;

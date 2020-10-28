@@ -29,6 +29,7 @@
         <java.version>1.8</java.version>
         <spring-boot.version> 2.2.6.RELEASE </spring-boot.version>
         <bootstrap.version>4.2.1</bootstrap.version>
+        <version.cucumber>6.0.0</version.cucumber>
     </properties>
 
     <dependencyManagement>
@@ -187,6 +188,34 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${spring-boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>5.7.0-M1</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <version>${version.cucumber}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-spring</artifactId>
+                <version>${version.cucumber}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-junit</artifactId>
+                <version>${version.cucumber}</version>
                 <scope>test</scope>
             </dependency>
 
