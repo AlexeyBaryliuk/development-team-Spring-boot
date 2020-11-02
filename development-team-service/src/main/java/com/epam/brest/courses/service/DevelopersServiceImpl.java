@@ -2,6 +2,7 @@ package com.epam.brest.courses.service;
 
 import com.epam.brest.courses.dao.DevelopersDao;
 import com.epam.brest.courses.model.Developers;
+import com.epam.brest.courses.myBatis.DevelopersMyBatis;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,13 @@ import java.util.Optional;
 
 @Service
 @Transactional
-
 public class DevelopersServiceImpl implements DevelopersService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopersServiceImpl.class);
 
     private final DevelopersDao developersDao;
+    @Autowired
+    DevelopersMyBatis developersMyBatis;
 
     @Autowired
     public DevelopersServiceImpl(DevelopersDao developersDao) {
