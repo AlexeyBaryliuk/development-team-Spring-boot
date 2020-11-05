@@ -1,17 +1,13 @@
 package com.epam.brest.courses.myBatis;
 
-import com.epam.brest.courses.dao.DevelopersDao;
 import com.epam.brest.courses.model.Developers;
 import org.apache.ibatis.annotations.*;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
 @Mapper
-@Profile("myBatis")
-public interface DevelopersMyBatis extends DevelopersDao {
+public interface DevelopersMyBatis {
 
     /**
      * Find all developers.
@@ -56,4 +52,7 @@ public interface DevelopersMyBatis extends DevelopersDao {
      */
     @Delete("DELETE FROM developers WHERE developerId = #{developerId}")
     Integer deleteByDeveloperId(@Param("developerId")Integer developerId);
+
+    @Delete("DELETE FROM developers")
+    Integer deleteAllDevelopers();
 }

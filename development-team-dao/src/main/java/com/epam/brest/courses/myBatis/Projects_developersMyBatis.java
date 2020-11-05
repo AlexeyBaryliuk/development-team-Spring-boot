@@ -1,21 +1,15 @@
 package com.epam.brest.courses.myBatis;
 
-import com.epam.brest.courses.dao.Projects_DevelopersDao;
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects_Developers;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.context.annotation.Profile;
-import org.springframework.data.repository.query.Param;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Optional;
 
 
-@Profile("myBatis")
-public interface Projects_developersMyBatis extends Projects_DevelopersDao {
+@Mapper
+public interface Projects_developersMyBatis {
     /**
      * Select all developers from project by projectId.
      *

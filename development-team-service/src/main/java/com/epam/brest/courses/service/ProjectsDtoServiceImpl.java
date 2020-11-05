@@ -1,10 +1,10 @@
 package com.epam.brest.courses.service;
 
-import com.epam.brest.courses.dao.ProjectsDaoDto;
 import com.epam.brest.courses.model.dto.ProjectsDto;
+import com.epam.brest.courses.myBatis.ProjectsDtoMyBatis;
+import com.epam.brest.courses.myBatis.ProjectsMyBatis;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,9 +17,9 @@ public class ProjectsDtoServiceImpl implements ProjectsDtoService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsDtoServiceImpl.class);
 
-    private final ProjectsDaoDto ProjectsDaoDto;
+    private final ProjectsDtoMyBatis ProjectsDaoDto;
 
-    public ProjectsDtoServiceImpl(ProjectsDaoDto ProjectsDaoDto) {
+    public ProjectsDtoServiceImpl(ProjectsDtoMyBatis ProjectsDaoDto) {
         this.ProjectsDaoDto = ProjectsDaoDto;
     }
 

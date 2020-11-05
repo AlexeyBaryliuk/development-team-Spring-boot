@@ -1,17 +1,15 @@
 package com.epam.brest.courses.myBatis;
 
-import com.epam.brest.courses.dao.ProjectsDaoDto;
 import com.epam.brest.courses.model.dto.ProjectsDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.context.annotation.Profile;
-import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Profile("myBatis")
-public interface ProjectsDtoMyBatis extends ProjectsDaoDto {
+@Mapper
+public interface ProjectsDtoMyBatis {
 
     /**
      * Find all projects between two dates.

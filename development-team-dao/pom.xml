@@ -25,17 +25,12 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter-test</artifactId>
         </dependency>
 
         <dependency>
@@ -57,20 +52,17 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+
     </dependencies>
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <configuration>
-                    <argLine>-Dspring.profiles.active=mySql</argLine>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-failsafe-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <argLine>-Dspring.profiles.active=mySql</argLine>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -78,33 +70,5 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
 
-        <profile>
-            <id>jpa</id>
-<!--            <activation>-->
-<!--                <activeByDefault>true</activeByDefault>-->
-<!--            </activation>-->
-            <properties>
-                <activatedProperties>jpa</activatedProperties>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>myBatis</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <activatedProperties>myBatis</activatedProperties>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>jdbc</id>
-            <properties>
-                <activatedProperties>jdbc</activatedProperties>
-            </properties>
-        </profile>
-    </profiles>
 </project>

@@ -16,9 +16,6 @@ import java.time.LocalDate;
  * POJO Projects for model.
  */
 
-
-@Entity
-@Table(name = "projectsDto")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
