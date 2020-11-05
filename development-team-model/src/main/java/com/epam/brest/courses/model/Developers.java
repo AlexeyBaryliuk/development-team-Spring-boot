@@ -9,16 +9,18 @@ import java.util.Set;
 /**
  * Developers.
  */
-@Entity
-@Data
-@Table(name = "developers")
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@ToString
 public class Developers {
 
     /**
      * Developer's id.
      */
-    @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
+
     private Integer developerId;
 
     /**
@@ -31,9 +33,6 @@ public class Developers {
      */
     private String lastName;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "developers",fetch= FetchType.LAZY)
-    Set<Projects> projects;
 
 
 }

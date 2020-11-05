@@ -18,9 +18,10 @@ import java.util.Set;
 /**
  * Projects.
  */
-@Entity
-@Data
-@Table(name = "projects")
+@AllArgsConstructor
+@Setter
+@Getter
+@ToString
 @SuppressFBWarnings(value = { "EI_EXPOSE_REP", "EI_EXPOSE_REP2" }
                     , justification = "I prefer to suppress these FindBugs warnings")
 public class Projects {
@@ -54,25 +55,11 @@ public class Projects {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateAdded;
 
-    /**
-     * Returns <code>Integer</code> representation of this projectId.
-     *
-     * @return projectId Project Id.
-     */
-    public Integer getProjectId() {
-        return projectId;
-    }
-
     @JsonFormat(pattern = "yyyy-MM-dd")
     public LocalDate getDateAdded() {
         return dateAdded;
     }
 
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="projects_developers",
-            joinColumns=@JoinColumn(name="projectId"),
-            inverseJoinColumns = @JoinColumn(name="developerId"))
-    Set<Developers> developers;
+
 
 }

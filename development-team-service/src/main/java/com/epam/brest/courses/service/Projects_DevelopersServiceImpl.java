@@ -1,8 +1,8 @@
 package com.epam.brest.courses.service;
 
-import com.epam.brest.courses.dao.Projects_DevelopersDao;
 import com.epam.brest.courses.model.Developers;
 import com.epam.brest.courses.model.Projects_Developers;
+import com.epam.brest.courses.myBatis.Projects_developersMyBatis;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,9 +18,9 @@ public class Projects_DevelopersServiceImpl implements Projects_DevelopersServic
 private static final Logger LOGGER = LoggerFactory.getLogger(Projects_DevelopersServiceImpl.class);
 
 
-private final Projects_DevelopersDao projects_developersDao;
+private final Projects_developersMyBatis projects_developersDao;
 
-    public Projects_DevelopersServiceImpl(Projects_DevelopersDao projects_developersDao) {
+    public Projects_DevelopersServiceImpl(Projects_developersMyBatis projects_developersDao) {
         this.projects_developersDao = projects_developersDao;
     }
 
